@@ -1,6 +1,25 @@
 *.class
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.ear
+
+# Maven
+target
+
+# IDEs
+*.classpath
+*.project
+*.settings
+*.metadata
+*.iml
+*.ipr
+*.iws
+*.idea
+*.jasper
+*.netbeans
+*.orig
+*.springBeans
+*.swp
+.DS_Store
