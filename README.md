@@ -1,4 +1,4 @@
-# jbanking - The Java banking API [![Build Status](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/badge/icon)](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/)
+# jbanking - A Java banking API [![Build Status](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/badge/icon)](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/)
 
 ## What is jbanking ?
 jbanking is a library of utilities to assist with developing banking functionality.
