@@ -29,46 +29,48 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 
-public class CountryTest {
+public class IsoCountryTest {
+
+    private static final String COUNTRY_FILE_URL = "http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt.htm";
 
     private static final InputSupplier<? extends InputStream> ISO_FILE_SUPPLIER = new InputSupplier<InputStream>() {
         @Override
         public InputStream getInput() throws IOException {
-            return new URL(CountryEnumGenerator.ISO_FILE_URL).openStream();
+            return new URL(COUNTRY_FILE_URL).openStream();
         }
     };
 
     private static final Splitter ISO_FILE_SPLITTER = Splitter.on(";").omitEmptyStrings().trimResults();
 
     @Test
-    public void fromIsoCodeAllowsNull() {
-        Assert.assertNull(Country.fromCode(null));
+    public void fromCodeAllowsNull() {
+        Assert.assertNull(IsoCountry.fromCode(null));
     }
 
     @Test
-    public void fromIsoCodeAllowsUnknownOrInvalidCodes() {
-        Assert.assertNull(Country.fromCode("XX"));
+    public void fromCodeAllowsUnknownOrInvalidCodes() {
+        Assert.assertNull(IsoCountry.fromCode("XXX"));
     }
 
     @Test
-    public void fromIsoCodeIsNotCaseSensitive() {
-        Assert.assertEquals(Country.FRANCE, Country.fromCode(Country.FRANCE.getIsoCode().toLowerCase()));
+    public void fromCodeIsNotCaseSensitive() {
+        Assert.assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(IsoCountry.FRANCE.getCode().toLowerCase()));
     }
 
     @Test
-    public void fromIsoCodeIsNotSpacesSensitive() {
-        Assert.assertEquals(Country.FRANCE, Country.fromCode(" " + Country.FRANCE.getIsoCode() + " "));
+    public void fromCodeIsNotSpacesSensitive() {
+        Assert.assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(" " + IsoCountry.FRANCE.getCode() + " "));
     }
 
     @Test
-    public void fromIsoCodeWorksWithExistingValues() {
-        for(Country country : Country.values()) {
-            Assert.assertEquals(country, Country.fromCode(country.getIsoCode()));
+    public void fromCodeWorksWithExistingValues() {
+        for(IsoCountry country : IsoCountry.values()) {
+            Assert.assertEquals(country, IsoCountry.fromCode(country.getCode()));
         }
     }
 
     @Test
-    public void ensureCountryEnumCompleteness() throws IOException {
+    public void ensureEnumCompleteness() throws IOException {
         InputSupplier<InputStreamReader> readerSupplier = CharStreams.newReaderSupplier(ISO_FILE_SUPPLIER, Charsets.UTF_8);
 
         for (String line : CharStreams.readLines(readerSupplier)) {
@@ -82,7 +84,7 @@ public class CountryTest {
                 continue;
             }
 
-            Assert.assertNotNull(Country.fromCode(code));
+            Assert.assertNotNull(IsoCountry.fromCode(code));
         }
     }
 

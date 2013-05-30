@@ -16,12 +16,12 @@
 package org.jbanking;
 
 /**
- * <p>Countries having an ISO 3166-1-alpha-2 code.</p>
+ * <p>The countries having an ISO 3166-1-alpha-2 code.</p>
  *
  * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International
- * Organization for Standardization website</a></p>
+ * Organization for Standardization website</a>.</p>
  */
-public enum Country {
+public enum IsoCountry {
 
     AFGHANISTAN("AF"),
     ALAND_ISLANDS("AX"),
@@ -56,6 +56,7 @@ public enum Country {
     BOUVET_ISLAND("BV"),
     BRAZIL("BR"),
     BRITISH_INDIAN_OCEAN_TERRITORY("IO"),
+    BRITISH_VIRGIN_ISLANDS("VG"),
     BRUNEI_DARUSSALAM("BN"),
     BULGARIA("BG"),
     BURKINA_FASO("BF"),
@@ -74,7 +75,6 @@ public enum Country {
     COLOMBIA("CO"),
     COMOROS("KM"),
     CONGO("CG"),
-    THE_DEMOCRATIC_REPUBLIC_OF_THE_CONGO("CD"),
     COOK_ISLANDS("CK"),
     COSTA_RICA("CR"),
     COTE_D_IVOIRE("CI"),
@@ -120,7 +120,6 @@ public enum Country {
     GUYANA("GY"),
     HAITI("HT"),
     HEARD_ISLAND_AND_MCDONALD_ISLANDS("HM"),
-    HOLY_SEE("VA"),
     HONDURAS("HN"),
     HONG_KONG("HK"),
     HUNGARY("HU"),
@@ -140,11 +139,9 @@ public enum Country {
     KAZAKHSTAN("KZ"),
     KENYA("KE"),
     KIRIBATI("KI"),
-    NORTH_KOREA("KP"),
-    SOUTH_KOREA("KR"),
     KUWAIT("KW"),
     KYRGYZSTAN("KG"),
-    LAO_PEOPLE_S_DEMOCRATIC_REPUBLIC("LA"),
+    LAO_PEOPLES_DEMOCRATIC_REPUBLIC("LA"),
     LATVIA("LV"),
     LEBANON("LB"),
     LESOTHO("LS"),
@@ -188,6 +185,7 @@ public enum Country {
     NIUE("NU"),
     NORFOLK_ISLAND("NF"),
     NORTHERN_MARIANA_ISLANDS("MP"),
+    NORTH_KOREA("KP"),
     NORWAY("NO"),
     OMAN("OM"),
     PAKISTAN("PK"),
@@ -230,6 +228,7 @@ public enum Country {
     SOMALIA("SO"),
     SOUTH_AFRICA("ZA"),
     SOUTH_GEORGIA_AND_THE_SOUTH_SANDWICH_ISLANDS("GS"),
+    SOUTH_KOREA("KR"),
     SOUTH_SUDAN("SS"),
     SPAIN("ES"),
     SRI_LANKA("LK"),
@@ -244,6 +243,7 @@ public enum Country {
     TAJIKISTAN("TJ"),
     TANZANIA("TZ"),
     THAILAND("TH"),
+    THE_DEMOCRATIC_REPUBLIC_OF_THE_CONGO("CD"),
     TIMOR_LESTE("TL"),
     TOGO("TG"),
     TOKELAU("TK"),
@@ -261,39 +261,50 @@ public enum Country {
     UNITED_STATES("US"),
     UNITED_STATES_MINOR_OUTLYING_ISLANDS("UM"),
     URUGUAY("UY"),
+    US_VIRGIN_ISLANDS("VI"),
     UZBEKISTAN("UZ"),
     VANUATU("VU"),
+    VATICAN_CITY_STATE("VA"),
     VENEZUELA("VE"),
     VIET_NAM("VN"),
-    BRITISH_VIRGIN_ISLANDS("VG"),
-    US_VIRGIN_ISLANDS("VI"),
     WALLIS_AND_FUTUNA("WF"),
     WESTERN_SAHARA("EH"),
     YEMEN("YE"),
     ZAMBIA("ZM"),
     ZIMBABWE("ZW");
 
-    private String isoCode;
+    private final String code;
 
-    private Country(String isoCode) {
-        this.isoCode = isoCode;
-    }
-
-    public String getIsoCode() {
-        return isoCode;
+    private IsoCountry(String code) {
+        this.code = code;
     }
 
     /**
-     * Translate the given ISO 3166-1-alpha-2 code to a Country.
+     * <p>Returns this country ISO 3166-1-alpha-2 code.</p>
+     *
+     * @return a non null and 2 characters length string
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * <p>Translate the given ISO 3166-1-alpha-2 code to an IsoCountry.</p>
+     *
+     * <p>This method is not case sensitive not spaces sensitive.</p>
      *
      * @param code A non-null String.
-     * @return The country having the given ISO 3166-1-alpha-2 code, or null if it does not exist.
+     * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist
      */
-    public static Country fromCode(String code) {
+    public static IsoCountry fromCode(String code) {
         String cleanedCode = (code == null ? null : code.toUpperCase().trim());
 
-        for (Country country : values()) {
-            if (country.isoCode.equals(cleanedCode)) {
+        if(cleanedCode == null || cleanedCode.length() != 2) {
+            return null;
+        }
+
+        for (IsoCountry country : values()) {
+            if (country.getCode().equals(cleanedCode)) {
                 return country;
             }
         }

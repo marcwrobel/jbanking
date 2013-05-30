@@ -55,6 +55,8 @@
         <maven-surefire-plugin.version>2.14.1</maven-surefire-plugin.version>
         <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
 
+        <guava.version>14.0.1</guava.version>
+        <dom4j.version>1.6.1</dom4j.version>
         <junit.version>4.11</junit.version>
     </properties>
 
@@ -67,8 +69,13 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>14.0.1</version>
+            <version>${guava.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -166,6 +173,7 @@
                     <strictCheck>true</strictCheck>
                     <excludes>
                         <exclude>**/*.md</exclude>
+                        <exclude>**/LICENSE</exclude>
                         <exclude>.gitignore</exclude>
                     </excludes>
                 </configuration>
