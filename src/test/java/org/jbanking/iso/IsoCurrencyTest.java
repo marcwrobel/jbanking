@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking;
+package org.jbanking.iso;
 
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.jbanking.iso.IsoCurrency;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,28 +34,28 @@ public class IsoCurrencyTest {
 
     @Test
     public void fromAlphaCodeAllowsNull() {
-        Assert.assertNull(IsoCurrency.fromAlphaCode(null));
+        Assert.assertNull(IsoCurrency.fromAlphabeticCode(null));
     }
 
     @Test
     public void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
-        Assert.assertNull(IsoCurrency.fromAlphaCode("AA"));
+        Assert.assertNull(IsoCurrency.fromAlphabeticCode("AA"));
     }
 
     @Test
     public void fromAlphaCodeIsNotCaseSensitive() {
-        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphaCode(IsoCurrency.EURO.getAlphaCode().toLowerCase()));
+        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
     }
 
     @Test
     public void fromAlphaCodeIsNotSpacesSensitive() {
-        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphaCode(" " + IsoCurrency.EURO.getAlphaCode() + " "));
+        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(" " + IsoCurrency.EURO.getAlphabeticCode() + " "));
     }
 
     @Test
     public void fromAlphaCodeWorksWithExistingValues() {
         for (IsoCurrency currency : IsoCurrency.values()) {
-            Assert.assertEquals(currency, IsoCurrency.fromAlphaCode(currency.getAlphaCode()));
+            Assert.assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
         }
     }
 
@@ -86,7 +87,7 @@ public class IsoCurrencyTest {
         for (Iterator i = document.getRootElement().elementIterator("ISO_CURRENCY"); i.hasNext(); ) {
             Element element = (Element) i.next();
 
-            IsoCurrency c1 = IsoCurrency.fromAlphaCode(element.elementText("ALPHABETIC_CODE"));
+            IsoCurrency c1 = IsoCurrency.fromAlphabeticCode(element.elementText("ALPHABETIC_CODE"));
             IsoCurrency c2 = IsoCurrency.fromNumericCode(safeParseInt(element.elementText("NUMERIC_CODE")));
 
             Assert.assertNotNull(c1);

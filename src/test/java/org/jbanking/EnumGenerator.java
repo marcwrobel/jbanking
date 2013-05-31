@@ -28,6 +28,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.jbanking.iso.IsoCountry;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Generate {@link IsoCountry} enum values from the list provided by the International Organization for Standardization.
+ * Generate {@link org.jbanking.iso.IsoCountry} enum values from the list provided by the International Organization for Standardization.
  */
 public class EnumGenerator {
 

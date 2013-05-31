@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking;
+package org.jbanking.iso;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
+import org.jbanking.iso.IsoCountry;
 import org.junit.Assert;
 import org.junit.Test;
 

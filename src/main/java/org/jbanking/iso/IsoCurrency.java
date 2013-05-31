@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking;
+package org.jbanking.iso;
 
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 
-import static org.jbanking.IsoCountry.*;
+import static org.jbanking.iso.IsoCountry.*;
 
 /**
  * <p>The currencies having an ISO 4217 code.</p>
@@ -213,13 +213,13 @@ public enum IsoCurrency {
     ZIMBABWE_DOLLAR("ZWL", 932, 2, ZIMBABWE),
     ZLOTY("PLN", 985, 2, POLAND);
 
-    private final String alphaCode;
+    private final String alphabeticCode;
     private final Integer numericCode;
     private final Integer minorUnit;
     private final Set<IsoCountry> countries;
 
-    private IsoCurrency(String alphaCode, Integer numericCode, Integer minorUnit, IsoCountry... countries) {
-        this.alphaCode = alphaCode;
+    private IsoCurrency(String alphabeticCode, Integer numericCode, Integer minorUnit, IsoCountry... countries) {
+        this.alphabeticCode = alphabeticCode;
         this.numericCode = numericCode;
         this.minorUnit = minorUnit;
         this.countries = countries.length > 0 ? EnumSet.copyOf(Arrays.asList(countries)) : EnumSet.noneOf(IsoCountry.class);
@@ -230,8 +230,8 @@ public enum IsoCurrency {
      *
      * @return a non null and 3 characters length string
      */
-    public String getAlphaCode() {
-        return alphaCode;
+    public String getAlphabeticCode() {
+        return alphabeticCode;
     }
 
     /**
@@ -269,11 +269,11 @@ public enum IsoCurrency {
      * @param code A non null String.
      * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist
      */
-    public static IsoCurrency fromAlphaCode(String code) {
+    public static IsoCurrency fromAlphabeticCode(String code) {
         String cleanedCode = (code == null ? null : code.toUpperCase().trim());
 
         for (IsoCurrency currency : values()) {
-            if (currency.getAlphaCode().equals(cleanedCode)) {
+            if (currency.getAlphabeticCode().equals(cleanedCode)) {
                 return currency;
             }
         }
@@ -282,7 +282,7 @@ public enum IsoCurrency {
     }
 
     /**
-     * <p>Translate the given ISO 4217 alphabetical code to an IsoCurrency.</p>
+     * <p>Translate the given ISO 4217 numeric code to an IsoCurrency.</p>
      *
      * <p>This method allows null. In this case {@link #NO_UNIVERSAL_CURRENCY} is always returned (and not {@link #UIC_FRANC}).</p>
      *

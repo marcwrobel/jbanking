@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking;
+package org.jbanking.iso;
 
 /**
  * <p>The countries having an ISO 3166-1-alpha-2 code.</p>
