@@ -20,7 +20,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.jbanking.iso.IsoCurrency;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,6 +27,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
+/**
+ * Tests for the {@link org.jbanking.iso.IsoCountry} class.
+ *
+ * @author Marc Wrobel
+ */
 public class IsoCurrencyTest {
 
     private static final String CURRENCY_FILE_URL = "http://www.currency-iso.org/dam/downloads/dl_iso_table_a1.xml";
@@ -45,11 +49,6 @@ public class IsoCurrencyTest {
     @Test
     public void fromAlphaCodeIsNotCaseSensitive() {
         Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
-    }
-
-    @Test
-    public void fromAlphaCodeIsNotSpacesSensitive() {
-        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(" " + IsoCurrency.EURO.getAlphabeticCode() + " "));
     }
 
     @Test

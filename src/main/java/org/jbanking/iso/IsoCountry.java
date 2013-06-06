@@ -20,6 +20,10 @@ package org.jbanking.iso;
  *
  * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International
  * Organization for Standardization website</a>.</p>
+ *
+ * @author Marc Wrobel
+ * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">http://www.iso.org/iso/home/standards/country_codes.htm</a>
+ * @since 1.0
  */
 public enum IsoCountry {
 
@@ -291,15 +295,15 @@ public enum IsoCountry {
     /**
      * <p>Translate the given ISO 3166-1-alpha-2 code to an IsoCountry.</p>
      *
-     * <p>This method is not case sensitive not spaces sensitive.</p>
+     * <p>This method is not case sensitive.</p>
      *
      * @param code A non-null String.
      * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist
      */
     public static IsoCountry fromCode(String code) {
-        String cleanedCode = (code == null ? null : code.toUpperCase().trim());
+        String cleanedCode = (code == null ? null : code.toUpperCase());
 
-        if(cleanedCode == null || cleanedCode.length() != 2) {
+        if (cleanedCode == null || cleanedCode.length() != 2) {
             return null;
         }
 

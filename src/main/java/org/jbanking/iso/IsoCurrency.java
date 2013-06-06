@@ -26,6 +26,10 @@ import static org.jbanking.iso.IsoCountry.*;
  *
  * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the <a href="http://www.iso.org/iso/home/standards/currency_codes.htm">International
  * Organization for Standardization website</a>.</p>
+ *
+ * @author Marc Wrobel
+ * @see <a href="http://www.iso.org/iso/home/standards/currency_codes.htm">http://www.iso.org/iso/home/standards/currency_codes.htm</a>
+ * @since 1.0
  */
 public enum IsoCurrency {
 
@@ -270,7 +274,7 @@ public enum IsoCurrency {
      * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist
      */
     public static IsoCurrency fromAlphabeticCode(String code) {
-        String cleanedCode = (code == null ? null : code.toUpperCase().trim());
+        String cleanedCode = (code == null ? null : code.toUpperCase());
 
         for (IsoCurrency currency : values()) {
             if (currency.getAlphabeticCode().equals(cleanedCode)) {

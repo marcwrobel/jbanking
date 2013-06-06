@@ -43,7 +43,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Generate {@link org.jbanking.iso.IsoCountry} enum values from the list provided by the International Organization for Standardization.
+ * Generate {@link org.jbanking.iso.IsoCountry} and {@link org.jbanking.iso.IsoCurrency} enum values from the lists provided by the International Organization for Standardization.
+ *
+ * @author Marc Wrobel
+ * @since 1.0
  */
 public class EnumGenerator {
 
