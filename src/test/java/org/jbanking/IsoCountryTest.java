@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso;
+package org.jbanking;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
+import org.jbanking.IsoCountry;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +31,7 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Tests for the {@link org.jbanking.iso.IsoCountry} class.
+ * Tests for the {@link org.jbanking.IsoCountry} class.
  *
  * @author Marc Wrobel
  */

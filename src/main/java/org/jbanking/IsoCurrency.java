@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso;
+package org.jbanking;
 
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 
-import static org.jbanking.iso.IsoCountry.*;
+import static org.jbanking.IsoCountry.*;
 
 /**
  * <p>The currencies having an ISO 4217 code.</p>

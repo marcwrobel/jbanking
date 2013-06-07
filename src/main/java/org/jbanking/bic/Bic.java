@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso.bic;
+package org.jbanking.bic;
 
-import org.jbanking.iso.IsoCountry;
+import org.jbanking.IsoCountry;
 
 import java.util.regex.Pattern;
 

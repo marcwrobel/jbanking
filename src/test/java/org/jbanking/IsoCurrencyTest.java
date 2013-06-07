@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso;
+package org.jbanking;
 
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.jbanking.IsoCurrency;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Tests for the {@link org.jbanking.iso.IsoCountry} class.
+ * Tests for the {@link org.jbanking.IsoCountry} class.
  *
  * @author Marc Wrobel
  */

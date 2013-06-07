@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso.bic;
+package org.jbanking.bic;
 
 /**
- * Thrown to indicate that an attempt has been made to convert a string to a {@link org.jbanking.iso.bic.Bic}, but that the string does not have the appropriate format.
+ * Thrown to indicate that an attempt has been made to convert a string to a {@link org.jbanking.bic.Bic}, but that the string does not have the appropriate format.
  *
  * @author Marc Wrobel
- * @see org.jbanking.iso.bic.Bic#Bic(String)
+ * @see org.jbanking.bic.Bic#Bic(String)
  * @since 1.0
  */
 public class BicFormatException extends RuntimeException {

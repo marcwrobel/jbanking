@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iso.bic;
+package org.jbanking.bic;
 
 import org.jbanking.TestUtils;
-import org.jbanking.iso.IsoCountry;
+import org.jbanking.IsoCountry;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for the {@link org.jbanking.iso.bic.Bic} class.
+ * Tests for the {@link org.jbanking.bic.Bic} class.
  *
  * @author Marc Wrobel
  */
