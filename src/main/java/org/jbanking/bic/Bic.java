@@ -56,6 +56,7 @@ public final class Bic {
      */
     public static final String PRIMARY_OFFICE_BRANCH_CODE = "XXX";
 
+    private static final int BIC8_LENGTH = 8;
     private static final int INSTITUTION_CODE_INDEX = 0;
     private static final int INSTITUTION_CODE_LENGTH = 4;
     private static final int COUNTRY_CODE_INDEX = INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH;
@@ -85,18 +86,18 @@ public final class Bic {
             throw BicFormatException.forNotMatchingInput(bic8Or11);
         }
 
-        String normalizedBic = bic8Or11.toUpperCase();
-        if (normalizedBic.length() == 8) {
-            normalizedBic += PRIMARY_OFFICE_BRANCH_CODE;
+        String cleanedBic = bic8Or11.toUpperCase();
+        if (cleanedBic.length() == BIC8_LENGTH) {
+            cleanedBic += PRIMARY_OFFICE_BRANCH_CODE;
         }
 
-        String countryCode = normalizedBic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
+        String countryCode = cleanedBic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
         IsoCountry country = IsoCountry.fromCode(countryCode);
         if (country == null) {
             throw BicFormatException.forUnknownCountryCode(bic8Or11);
         }
 
-        this.normalizedBic = normalizedBic;
+        this.normalizedBic = cleanedBic;
     }
 
     /**
@@ -185,8 +186,13 @@ public final class Bic {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Bic bic = (Bic) o;
 

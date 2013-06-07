@@ -15,10 +15,11 @@
  */
 package org.jbanking.bic;
 
-import org.jbanking.TestUtils;
 import org.jbanking.IsoCountry;
-import org.junit.Assert;
+import org.jbanking.TestUtils;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests for the {@link org.jbanking.bic.Bic} class.
@@ -57,8 +58,8 @@ public class BicTest {
         try {
             new Bic(BIC_WITH_INVALID_FORMAT);
         } catch (BicFormatException e) {
-            Assert.assertEquals(BIC_WITH_INVALID_FORMAT, e.getInputString());
-            Assert.assertTrue(e.getMessage().contains("format"));
+            assertEquals(BIC_WITH_INVALID_FORMAT, e.getInputString());
+            assertTrue(e.getMessage().contains("format"));
             throw e;
         }
     }
@@ -68,8 +69,8 @@ public class BicTest {
         try {
             new Bic(BIC_WITH_INVALID_COUNTRY_CODE);
         } catch (BicFormatException e) {
-            Assert.assertEquals(BIC_WITH_INVALID_COUNTRY_CODE, e.getInputString());
-            Assert.assertTrue(e.getMessage().contains("country"));
+            assertEquals(BIC_WITH_INVALID_COUNTRY_CODE, e.getInputString());
+            assertTrue(e.getMessage().contains("country"));
             throw e;
         }
     }
@@ -92,19 +93,30 @@ public class BicTest {
     @Test
     public void bicDecompositionTest() {
         Bic bic = new Bic(VALID_BIC8);
-        Assert.assertEquals(INSTITUTION_CODE, bic.getInstitutionCode());
-        Assert.assertEquals(COUNTRY_CODE, bic.getCountryCode());
-        Assert.assertEquals(LOCATION_CODE, bic.getLocationCode());
-        Assert.assertEquals(BRANCH_CODE, bic.getBranchCode());
+        assertEquals(INSTITUTION_CODE, bic.getInstitutionCode());
+        assertEquals(COUNTRY_CODE, bic.getCountryCode());
+        assertEquals(LOCATION_CODE, bic.getLocationCode());
+        assertEquals(BRANCH_CODE, bic.getBranchCode());
+    }
+
+    @Test
+    public void liveBicTest() {
+        Bic liveBic = new Bic(VALID_BIC11);
+        assertTrue(liveBic.isLiveBic());
+        assertFalse(liveBic.isTestBic());
+
+        Bic testBic = liveBic.asTestBic();
+        assertTrue(testBic.isTestBic());
+        assertEquals(new Bic(VALID_BIC11_TEST), testBic);
     }
 
     @Test
     public void testBicTest() {
-        Assert.assertFalse(new Bic(VALID_BIC11).isTestBic());
-        Assert.assertTrue(new Bic(VALID_BIC11).isLiveBic());
-
-        Assert.assertFalse(new Bic(VALID_BIC11_TEST).isLiveBic());
-        Assert.assertTrue(new Bic(VALID_BIC11_TEST).isTestBic());
+        Bic testBic = new Bic(VALID_BIC11_TEST);
+        assertFalse(testBic.isLiveBic());
+        assertTrue(testBic.isTestBic());
+        assertEquals(new Bic(VALID_BIC11_TEST), testBic.asTestBic());
+        assertTrue(testBic.asTestBic() == testBic.asTestBic());
     }
 
     @Test
@@ -113,8 +125,8 @@ public class BicTest {
         Bic testBic = new Bic(VALID_BIC11_TEST);
         Bic liveBicAsTestBic = liveBic.asTestBic();
 
-        Assert.assertTrue(testBic.isTestBic());
-        Assert.assertEquals(testBic, liveBicAsTestBic);
+        assertTrue(testBic.isTestBic());
+        assertEquals(testBic, liveBicAsTestBic);
     }
 
     @Test
@@ -123,27 +135,26 @@ public class BicTest {
         Bic bic2 = new Bic(VALID_BIC11);
         Bic bic3 = new Bic(VALID_BIC8_LOWERCASE);
 
-        Assert.assertTrue(bic1.equals(bic1));
-        Assert.assertTrue(bic2.equals(bic2));
-        Assert.assertTrue(bic3.equals(bic3));
+        assertTrue(bic1.equals(bic1));
+        assertTrue(bic2.equals(bic2));
+        assertTrue(bic3.equals(bic3));
 
-        Assert.assertTrue(bic1.equals(bic2));
-        Assert.assertTrue(bic2.equals(bic1));
-        Assert.assertTrue(bic2.equals(bic3));
-        Assert.assertTrue(bic3.equals(bic2));
-        Assert.assertTrue(bic1.equals(bic3));
-        Assert.assertTrue(bic3.equals(bic1));
-        Assert.assertTrue(bic1.hashCode() == bic2.hashCode());
-        Assert.assertTrue(bic2.hashCode() == bic3.hashCode());
+        assertTrue(bic1.equals(bic2));
+        assertTrue(bic2.equals(bic1));
+        assertTrue(bic2.equals(bic3));
+        assertTrue(bic3.equals(bic2));
+        assertTrue(bic1.equals(bic3));
+        assertTrue(bic3.equals(bic1));
+        assertTrue(bic1.hashCode() == bic2.hashCode());
+        assertTrue(bic2.hashCode() == bic3.hashCode());
 
-        Assert.assertFalse(bic1.equals(null));
-        Assert.assertFalse(bic2.equals(null));
-        Assert.assertFalse(bic3.equals(null));
+        assertFalse(bic1.equals(null));
+        assertFalse(bic1.equals(new Object()));
     }
 
     @Test
     public void toStringReturnsANormalizedBic() {
         Bic bic = new Bic(VALID_BIC8_LOWERCASE);
-        Assert.assertEquals(VALID_BIC11, bic.toString());
+        assertEquals(VALID_BIC11, bic.toString());
     }
 }

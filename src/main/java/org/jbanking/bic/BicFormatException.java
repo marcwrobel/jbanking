@@ -22,7 +22,7 @@ package org.jbanking.bic;
  * @see org.jbanking.bic.Bic#Bic(String)
  * @since 1.0
  */
-public class BicFormatException extends RuntimeException {
+public final class BicFormatException extends RuntimeException {
 
     private final String inputString;
 

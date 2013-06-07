@@ -20,8 +20,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
-import org.jbanking.IsoCountry;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -29,6 +27,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests for the {@link org.jbanking.IsoCountry} class.
@@ -50,23 +50,23 @@ public class IsoCountryTest {
 
     @Test
     public void fromCodeAllowsNull() {
-        Assert.assertNull(IsoCountry.fromCode(null));
+        assertNull(IsoCountry.fromCode(null));
     }
 
     @Test
     public void fromCodeAllowsUnknownOrInvalidCodes() {
-        Assert.assertNull(IsoCountry.fromCode("XXX"));
+        assertNull(IsoCountry.fromCode("XXX"));
     }
 
     @Test
     public void fromCodeIsNotCaseSensitive() {
-        Assert.assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(IsoCountry.FRANCE.getCode().toLowerCase()));
+        assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(IsoCountry.FRANCE.getCode().toLowerCase()));
     }
 
     @Test
     public void fromCodeWorksWithExistingValues() {
         for (IsoCountry country : IsoCountry.values()) {
-            Assert.assertEquals(country, IsoCountry.fromCode(country.getCode()));
+            assertEquals(country, IsoCountry.fromCode(country.getCode()));
         }
     }
 
@@ -85,7 +85,7 @@ public class IsoCountryTest {
                 continue;
             }
 
-            Assert.assertNotNull(IsoCountry.fromCode(code));
+            assertNotNull(IsoCountry.fromCode(code));
         }
     }
 

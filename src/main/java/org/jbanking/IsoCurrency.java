@@ -217,6 +217,9 @@ public enum IsoCurrency {
     ZIMBABWE_DOLLAR("ZWL", 932, 2, ZIMBABWE),
     ZLOTY("PLN", 985, 2, POLAND);
 
+    private static final int MIN_NUMERIC_CODE = 1;
+    private static final int MAX_NUMERIC_CODE = 999;
+
     private final String alphabeticCode;
     private final Integer numericCode;
     private final Integer minorUnit;
@@ -298,7 +301,7 @@ public enum IsoCurrency {
             return NO_UNIVERSAL_CURRENCY;
         }
 
-        if (code < 0 || code > 999) {
+        if (code < MIN_NUMERIC_CODE || code > MAX_NUMERIC_CODE) {
             return null;
         }
 

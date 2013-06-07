@@ -20,13 +20,13 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.jbanking.IsoCurrency;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests for the {@link org.jbanking.IsoCountry} class.
@@ -39,42 +39,43 @@ public class IsoCurrencyTest {
 
     @Test
     public void fromAlphaCodeAllowsNull() {
-        Assert.assertNull(IsoCurrency.fromAlphabeticCode(null));
+        assertNull(IsoCurrency.fromAlphabeticCode(null));
     }
 
     @Test
     public void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
-        Assert.assertNull(IsoCurrency.fromAlphabeticCode("AA"));
+        assertNull(IsoCurrency.fromAlphabeticCode("AA"));
     }
 
     @Test
     public void fromAlphaCodeIsNotCaseSensitive() {
-        Assert.assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
+        assertEquals(IsoCurrency.EURO, IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
     }
 
     @Test
     public void fromAlphaCodeWorksWithExistingValues() {
         for (IsoCurrency currency : IsoCurrency.values()) {
-            Assert.assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
+            assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
         }
     }
 
     @Test
     public void fromNumericCodeAllowsNull() {
-        Assert.assertEquals(IsoCurrency.NO_UNIVERSAL_CURRENCY, IsoCurrency.fromNumericCode(null));
+        assertEquals(IsoCurrency.NO_UNIVERSAL_CURRENCY, IsoCurrency.fromNumericCode(null));
     }
 
     @Test
     public void fromNumericCodeAllowsUnknownOrInvalidCodes() {
-        Assert.assertNull(IsoCurrency.fromNumericCode(-1));
-        Assert.assertNull(IsoCurrency.fromNumericCode(1000));
+        assertNull(IsoCurrency.fromNumericCode(-1));
+        assertNull(IsoCurrency.fromNumericCode(1));
+        assertNull(IsoCurrency.fromNumericCode(1000));
     }
 
     @Test
     public void fromNumericCodeWorksWithExistingValuesExceptForUicFranc() {
         for (IsoCurrency currency : IsoCurrency.values()) {
             if (currency != IsoCurrency.UIC_FRANC) {
-                Assert.assertEquals(currency, IsoCurrency.fromNumericCode(currency.getNumericCode()));
+                assertEquals(currency, IsoCurrency.fromNumericCode(currency.getNumericCode()));
             }
         }
     }
@@ -87,15 +88,21 @@ public class IsoCurrencyTest {
         for (Iterator i = document.getRootElement().elementIterator("ISO_CURRENCY"); i.hasNext(); ) {
             Element element = (Element) i.next();
 
-            IsoCurrency c1 = IsoCurrency.fromAlphabeticCode(element.elementText("ALPHABETIC_CODE"));
-            IsoCurrency c2 = IsoCurrency.fromNumericCode(safeParseInt(element.elementText("NUMERIC_CODE")));
+            IsoCurrency currencyFromAlphabeticCode = IsoCurrency.fromAlphabeticCode(element.elementText("ALPHABETIC_CODE"));
+            IsoCurrency currencyFromNumericCode = IsoCurrency.fromNumericCode(safeParseInt(element.elementText("NUMERIC_CODE")));
 
-            Assert.assertNotNull(c1);
-            Assert.assertNotNull(c2);
+            assertNotNull(currencyFromAlphabeticCode);
+            assertNotNull(currencyFromNumericCode);
 
-            if (c1 != IsoCurrency.UIC_FRANC) {
-                Assert.assertEquals(c1, c2);
+            if (currencyFromAlphabeticCode != IsoCurrency.UIC_FRANC) {
+                assertEquals(currencyFromAlphabeticCode, currencyFromNumericCode);
             }
+
+            if (currencyFromAlphabeticCode.getMinorUnit() != null) {
+                assertEquals(currencyFromAlphabeticCode.getMinorUnit().toString(), element.elementText("MINOR_UNIT"));
+            }
+
+            assertNotNull(currencyFromAlphabeticCode.getCountries());
         }
     }
 
