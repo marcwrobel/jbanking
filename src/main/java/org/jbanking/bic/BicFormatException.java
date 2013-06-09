@@ -37,7 +37,7 @@ public final class BicFormatException extends RuntimeException {
         this.inputString = input;
     }
 
-    static BicFormatException forNotMatchingInput(String input) {
+    static BicFormatException forNotProperlyFormattedInput(String input) {
         return new BicFormatException(input, String.format("'%s' format is not appropriate for a BIC", input));
     }
 

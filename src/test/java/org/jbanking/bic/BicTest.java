@@ -42,6 +42,10 @@ public class BicTest {
     private static final String VALID_BIC8_LOWERCASE = VALID_BIC8.toLowerCase();
     private static final String VALID_BIC11_LOWERCASE = VALID_BIC11.toLowerCase();
 
+    @Test
+    public void nullIsNotValid() {
+        assertFalse(Bic.isValid(null));
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void aBicCannotBeNull() {
@@ -53,6 +57,11 @@ public class BicTest {
         new Bic(TestUtils.BLANK);
     }
 
+    @Test
+    public void blankIsNotValid() {
+        assertFalse(Bic.isValid(TestUtils.BLANK));
+    }
+
     @Test(expected = BicFormatException.class)
     public void aBicMustBeProperlyFormatted() {
         try {
@@ -62,6 +71,11 @@ public class BicTest {
             assertTrue(e.getMessage().contains("format"));
             throw e;
         }
+    }
+
+    @Test
+    public void aStringWithInvalidFormatIsNotValid() {
+        assertFalse(Bic.isValid(BIC_WITH_INVALID_FORMAT));
     }
 
     @Test(expected = BicFormatException.class)
@@ -76,13 +90,28 @@ public class BicTest {
     }
 
     @Test
+    public void aStringWithInvalidCountryCodeIsNotValid() {
+        assertFalse(Bic.isValid(BIC_WITH_INVALID_COUNTRY_CODE));
+    }
+
+    @Test
     public void validBic8AreAllowed() {
         new Bic(VALID_BIC8);
     }
 
     @Test
+    public void aValidBic8IsValid() {
+        assertTrue(Bic.isValid(VALID_BIC8));
+    }
+
+    @Test
     public void validBic11AreAllowed() {
         new Bic(VALID_BIC11);
+    }
+
+    @Test
+    public void aValidBic11IsValid() {
+        assertTrue(Bic.isValid(VALID_BIC11));
     }
 
     @Test

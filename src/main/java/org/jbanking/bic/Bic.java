@@ -31,8 +31,11 @@ import java.util.regex.Pattern;
  * <li>2 letters or digits: location code</li>
  * <li>3 letters or digits (optional): branch code</li>
  * </ul>
- * Where an 8-digit code is given, it is assumed that it refers to the primary office. The primary office is always designated by the branch code
- * {@value #PRIMARY_OFFICE_BRANCH_CODE}).
+ * Where an 8-digit code is given, it is assumed that it refers to the primary office. The primary office is always designated by the branch code {@value #PRIMARY_OFFICE_BRANCH_CODE}).
+ * </p>
+ *
+ * <p>
+ * This class is immutable.
  * </p>
  *
  * @author Marc Wrobel
@@ -71,7 +74,9 @@ public final class Bic {
     private final String normalizedBic;
 
     /**
-     * Create a new bic from the given BIC8 or BIC11 string.
+     * Create a new bic from the given string.
+     *
+     * The given string may be a BIC8 or a BIC11.
      *
      * @param bic8Or11 A non null String.
      * @throws IllegalArgumentException if the given string is null
@@ -79,11 +84,15 @@ public final class Bic {
      */
     public Bic(final String bic8Or11) {
         if (bic8Or11 == null) {
-            throw new IllegalArgumentException("The bic8Or11 argument cannot be null.");
+            throw new IllegalArgumentException("the bic8Or11 argument cannot be null");
         }
 
-        if (!BIC_PATTERN.matcher(bic8Or11).matches()) {
-            throw BicFormatException.forNotMatchingInput(bic8Or11);
+        if (!isWellFormatted(bic8Or11)) {
+            throw BicFormatException.forNotProperlyFormattedInput(bic8Or11);
+        }
+
+        if (!hasKnownCountryCode(bic8Or11)) {
+            throw BicFormatException.forUnknownCountryCode(bic8Or11);
         }
 
         String cleanedBic = bic8Or11.toUpperCase();
@@ -91,13 +100,25 @@ public final class Bic {
             cleanedBic += PRIMARY_OFFICE_BRANCH_CODE;
         }
 
-        String countryCode = cleanedBic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
-        IsoCountry country = IsoCountry.fromCode(countryCode);
-        if (country == null) {
-            throw BicFormatException.forUnknownCountryCode(bic8Or11);
-        }
-
         this.normalizedBic = cleanedBic;
+    }
+
+    /**
+     * Check whether or not the given string is valid BIC.
+     *
+     * @param bic A String.
+     * @return {@code true} if the given string is valid BIC, otherwise {@code false}
+     */
+    public static boolean isValid(String bic) {
+        return bic != null && isWellFormatted(bic) && hasKnownCountryCode(bic);
+    }
+
+    private static boolean isWellFormatted(String s) {
+        return BIC_PATTERN.matcher(s).matches();
+    }
+
+    private static boolean hasKnownCountryCode(String s) {
+        return IsoCountry.fromCode(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH)) != null;
     }
 
     /**
@@ -194,9 +215,7 @@ public final class Bic {
             return false;
         }
 
-        Bic bic = (Bic) o;
-
-        return normalizedBic.equals(bic.normalizedBic);
+        return normalizedBic.equals(((Bic) o).normalizedBic);
     }
 
     /**
