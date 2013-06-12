@@ -3,10 +3,10 @@
 ## What is jbanking ?
 jbanking is a library of utilities to assist with developing banking functionality.
 
-Features include :
-* Support of [ISO 3166-1-alpha-2 country codes](http://wikipedia.org/wiki/ISO_3166-1_alpha-2).
-* Support of [ISO 4217 currency codes](http://wikipedia.org/wiki/ISO_4217)
-* to be continued...
+jbanking is supporting the following features :
+* [ISO 3166-1-alpha-2 country codes](http://wikipedia.org/wiki/ISO_3166-1_alpha-2).
+* [ISO 4217 currency codes](http://wikipedia.org/wiki/ISO_4217).
+* [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
 
 
 ## Requirements
