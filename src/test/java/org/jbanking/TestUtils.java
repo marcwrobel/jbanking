@@ -15,6 +15,8 @@
  */
 package org.jbanking;
 
+import org.junit.Assert;
+
 /**
  * Some test utilities.
  *
@@ -23,5 +25,9 @@ package org.jbanking;
 public class TestUtils {
 
     public static final String BLANK = " \t\n ";
+
+    public static void shouldHaveThrown(Class<? extends Throwable> exceptionClass) {
+        Assert.fail("Should have thrown " + exceptionClass.getName());
+    }
 
 }

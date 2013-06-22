@@ -124,7 +124,6 @@ public class EnumGenerator {
         }
     }
 
-
     private String makeReplacements(String input) {
         input = CharMatcher.WHITESPACE.trimFrom(input).toUpperCase();
 

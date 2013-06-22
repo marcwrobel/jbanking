@@ -7,6 +7,7 @@ jbanking is supporting the following features :
 * [ISO 3166-1-alpha-2 country codes](http://wikipedia.org/wiki/ISO_3166-1_alpha-2).
 * [ISO 4217 currency codes](http://wikipedia.org/wiki/ISO_4217).
 * [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
+* [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation.
 
 
 ## Requirements

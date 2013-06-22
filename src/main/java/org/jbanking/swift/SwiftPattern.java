@@ -77,7 +77,6 @@ public final class SwiftPattern {
     private String expression;
     private Pattern equivalentJavaPattern;
 
-
     private SwiftPattern(String expression, Pattern equivalentJavaPattern) {
         this.expression = expression;
         this.equivalentJavaPattern = equivalentJavaPattern;
@@ -87,8 +86,7 @@ public final class SwiftPattern {
      * Compiles the given SWIFT expression into a SwiftPattern.
      *
      * @param expression The expression to be compiled
-     * @throws SwiftPatternSyntaxException
-     *          If the expression's syntax is invalid
+     * @throws SwiftPatternSyntaxException If the expression's syntax is invalid
      */
     public static SwiftPattern compile(String expression) {
         if (expression == null) {

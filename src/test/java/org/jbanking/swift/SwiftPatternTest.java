@@ -44,10 +44,10 @@ public class SwiftPatternTest {
 
     @Test
     public void digitsFormatTest() {
-        String expression = "2n";
+        String expression = "10n";
         assertMatches("1", expression);
         assertMatches("12", expression);
-        assertNotMatches("123", expression);
+        assertNotMatches("01234567890", expression);
         assertNotMatches("1a", expression);
     }
 
@@ -95,6 +95,16 @@ public class SwiftPatternTest {
     public void strictUpperAndLowerCaseAlphanumericsFormatTest() {
         String expression = "5!c";
         assertMatches("Ab1De", expression);
+        assertNotMatches("Ab1", expression);
+        assertNotMatches("Ab1De3", expression);
+        assertNotMatches("1111", expression);
+        assertNotMatches("aaaaaa", expression);
+    }
+
+    @Test
+    public void multipleBasicExpressionTest() {
+        String expression = "2!c18!c";
+        assertMatches("01234567890123456789", expression);
         assertNotMatches("Ab1", expression);
         assertNotMatches("Ab1De3", expression);
         assertNotMatches("1111", expression);
