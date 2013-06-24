@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking;
+package fr.marcwrobel.jbanking;
 
 /**
- * <p>The countries having an ISO 3166-1-alpha-2 code.</p>
+ * The countries having an ISO 3166-1-alpha-2 code.
  *
- * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International
- * Organization for Standardization website</a>.</p>
+ * <p>
+ * Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">
+ * International Organization for Standardization website</a>.
+ * </p>
  *
  * @author Marc Wrobel
  * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">http://www.iso.org/iso/home/standards/country_codes.htm</a>

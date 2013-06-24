@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
-import org.jbanking.IsoCountry;
-import org.jbanking.swift.SwiftPattern;
+import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.swift.SwiftPattern;
 
 import java.util.Arrays;
 import java.util.EnumSet;

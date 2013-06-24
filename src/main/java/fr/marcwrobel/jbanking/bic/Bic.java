@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.bic;
+package fr.marcwrobel.jbanking.bic;
 
-import org.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.IsoCountry;
 
 import java.util.regex.Pattern;
 
@@ -80,7 +80,7 @@ public final class Bic {
      *
      * @param bic8Or11 A non null String.
      * @throws IllegalArgumentException if the given string is null
-     * @throws BicFormatException       if the given BIC8 or BIC11 string does not match {@link #BIC_REGEX} or if the given BIC8 or BIC11 country code is not known in {@link IsoCountry}
+     * @throws BicFormatException       if the given BIC8 or BIC11 string does not match {@link #BIC_REGEX} or if the given BIC8 or BIC11 country code is not known in {@link fr.marcwrobel.jbanking.IsoCountry}
      */
     public Bic(final String bic8Or11) {
         if (bic8Or11 == null) {

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.swift;
+package fr.marcwrobel.jbanking.swift;
 
 /**
  * Thrown to indicate a syntax error in a SWIFT expression pattern.
  *
  * @author Marc Wrobel
- * @see org.jbanking.swift.SwiftPattern
+ * @see SwiftPattern
  * @since 1.0
  */
 public class SwiftPatternSyntaxException extends RuntimeException {

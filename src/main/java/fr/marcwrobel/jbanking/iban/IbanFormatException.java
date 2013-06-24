@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
-import org.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.IsoCountry;
 
 /**
- * Thrown to indicate that an attempt has been made to convert a string to a {@link org.jbanking.iban.Iban}, but that the string does not have the appropriate format.
+ * Thrown to indicate that an attempt has been made to convert a string to a {@link Iban}, but that the string does not have the appropriate format.
  *
  * @author Marc Wrobel
- * @see org.jbanking.iban.Iban#Iban(String)
+ * @see Iban#Iban(String)
  * @since 1.0
  */
 public final class IbanFormatException extends RuntimeException {

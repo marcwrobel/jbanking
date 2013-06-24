@@ -13,18 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
 /**
  * Provide ISO 7064 Mod 97,10 IBAN check digit calculation and validation.
  *
  * <p>
- * This class is implementing the singleton pattern by being an enumeration. Algorithm is based on the work in <a href="http://commons.apache.org/proper/commons-validator/">
- * Apache commons validator project</a>.
+ * This class is implementing the singleton pattern by being an enumeration. Algorithm is based on the work in
+ * <a href="http://svn.apache.org/viewvc/commons/proper/validator/trunk/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java?view=co">Apache commons
+ * validator project</a>.
  * </p>
  *
  * @author Marc Wrobel
  * @see <a href="http://en.wikipedia.org/wiki/International_Bank_Account_Number">http://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
+ * @see <a href="http://svn.apache.org/viewvc/commons/proper/validator/trunk/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java?view=co">IBANCheckDigit</a>
  * @since 1.0
  */
 public enum IbanCheckDigit {
@@ -62,10 +64,10 @@ public enum IbanCheckDigit {
     }
 
     private int modulus(String iban) {
-        if(iban == null) {
+        if (iban == null) {
             throw new IllegalArgumentException("the iban argument cannot be null");
         }
-        if(iban.length() <= BBAN_INDEX) {
+        if (iban.length() <= BBAN_INDEX) {
             throw new IllegalArgumentException("the iban argument size must be grater than " + BBAN_INDEX);
         }
 

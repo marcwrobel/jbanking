@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
 import com.google.common.collect.Sets;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 /**
- * Tests for the {@link org.jbanking.iban.IbanCheckDigit} class.
+ * Tests for the {@link IbanCheckDigit} class.
  *
  * @author Marc Wrobel
  */

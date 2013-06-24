@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
-import org.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.IsoCountry;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Tests for the {@link org.jbanking.iban.BbanStructure} enum.
+ * Tests for the {@link BbanStructure} enum.
  *
  * @author Marc Wrobel
  */

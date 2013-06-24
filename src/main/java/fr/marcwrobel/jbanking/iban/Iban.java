@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jbanking.iban;
+package fr.marcwrobel.jbanking.iban;
 
-import org.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.IsoCountry;
 
 import java.util.regex.Pattern;
 
@@ -33,14 +33,14 @@ import java.util.regex.Pattern;
  * </p>
  *
  * <p>
- * This class handles validation of the check digit and validation of the {@link org.jbanking.iban.BbanStructure BBAN structure} (based on information specified in the IBAN
+ * This class handles validation of the check digit and validation of the {@link BbanStructure BBAN structure} (based on information specified in the IBAN
  * registry Release 45 of may 2013).
  * </p>
  *
  * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.</p>
  *
  * @author Marc Wrobel
- * @see org.jbanking.iban.BbanStructure
+ * @see BbanStructure
  * @see <a href="http://wikipedia.org/wiki/International_Bank_Account_Number">http://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
  * @see <a href="http://www.swift.com/solutions/messaging/information_products/directory_products/iban_format_registry/index.page">IBAN registry</a>
  * @since 1.0

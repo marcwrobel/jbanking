@@ -3,14 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jbanking</groupId>
+    <groupId>fr.marcwrobel</groupId>
     <artifactId>jbanking</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>Banking API for Java</description>
-    <url>https://github.com/marcwrobel/jbanking</url>
+    <url>http://jbanking.marcwrobel.fr/</url>
     <inceptionYear>2013</inceptionYear>
 
     <licenses>
@@ -31,7 +31,7 @@
     <developers>
         <developer>
             <name>Marc Wrobel</name>
-            <url>http://careers.stackoverflow.com/marcwrobel</url>
+            <url>http://jbanking.marcwrobel.fr/</url>
             <id>marcwrobel</id>
         </developer>
     </developers>
