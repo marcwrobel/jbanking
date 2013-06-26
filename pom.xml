@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.marcwrobel.jbanking</groupId>
+    <groupId>fr.marcwrobel</groupId>
     <artifactId>jbanking</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
