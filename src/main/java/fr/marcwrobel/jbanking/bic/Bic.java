@@ -59,6 +59,11 @@ public final class Bic {
      */
     public static final String PRIMARY_OFFICE_BRANCH_CODE = "XXX";
 
+    /**
+     * If the last character of the location code in a BIC is this one it means that the BIC is a Test BIC,
+     */
+    public static final char TEST_BIC_INDICATOR = '0';
+
     private static final int BIC8_LENGTH = 8;
     private static final int INSTITUTION_CODE_INDEX = 0;
     private static final int INSTITUTION_CODE_LENGTH = 4;
@@ -68,8 +73,6 @@ public final class Bic {
     private static final int LOCATION_CODE_LENGTH = 2;
     private static final int BRANCH_CODE_INDEX = LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH;
     private static final int BRANCH_CODE_LENGTH = 3;
-
-    private static final Character TEST_BIC_INDICATOR = '0';
 
     private final String normalizedBic;
 
@@ -163,7 +166,7 @@ public final class Bic {
      * <p>A BIC is a test BIC if the last character of the location code is {@value #TEST_BIC_INDICATOR}.</p>
      *
      * @return {@code true} if this BIC is a test BIC, otherwise {@code false}
-     * @see {#isLiveBic}
+     * @see #isLiveBic
      */
     public boolean isTestBic() {
         return normalizedBic.charAt(LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH - 1) == TEST_BIC_INDICATOR;
@@ -175,7 +178,7 @@ public final class Bic {
      * <p>A BIC is a live BIC if the last character of the location code is not {@value #TEST_BIC_INDICATOR}.</p>
      *
      * @return {@code true} if this BIC is a live BIC, otherwise {@code false}
-     * @see {#isTestBic}
+     * @see #isTestBic
      */
     public boolean isLiveBic() {
         return !isTestBic();

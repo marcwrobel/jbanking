@@ -103,7 +103,7 @@ public class IbanTest {
     private static final String VALID_IBAN_CHECKDIGIT = "14";
     private static final String VALID_IBAN_BBAN = "20041010050500013M02606";
     private static final String VALID_IBAN = VALID_IBAN_COUNTRY + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-    private static final String VALID_IBAN2 ="AL36442788709271283994894168";
+    private static final String VALID_IBAN2 = "AL36442788709271283994894168";
 
     private static final String BBAN_WITH_INVALID_FORMAT = "132!";
     private static final String IBAN_WITH_INVALID_FORMAT = VALID_IBAN_COUNTRY + VALID_IBAN_CHECKDIGIT + BBAN_WITH_INVALID_FORMAT;

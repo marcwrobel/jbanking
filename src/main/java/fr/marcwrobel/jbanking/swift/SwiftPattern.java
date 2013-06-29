@@ -30,10 +30,10 @@ import java.util.regex.Pattern;
  *
  * <b>Character representations :</b>
  * <table>
- * <tr><td>{@value #DIGITS_CHARACTER}</td><td>digits (numeric characters 0 to 9 only)</td></tr>
- * <tr><td>{@value #UPPER_CASE_LETTERS_CHARACTER}</td><td>upper case letters (alphabetic characters A-Z only)</td></tr>
- * <tr><td>{@value #UPPER_AND_LOWER_CASE_ALPHANUMERICS_CHARACTER}</td><td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td></tr>
- * <tr><td>{@value #SPACES_CHARACTER}</td><td>blank space</td></tr>
+ * <tr><td>n</td><td>digits (numeric characters 0 to 9 only)</td></tr>
+ * <tr><td>a</td><td>upper case letters (alphabetic characters A-Z only)</td></tr>
+ * <tr><td>c</td><td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td></tr>
+ * <tr><td>e</td><td>blank space</td></tr>
  * </table>
  *
  * <b>Length indications :</b>
@@ -60,10 +60,10 @@ import java.util.regex.Pattern;
  */
 public final class SwiftPattern {
 
-    private static final char DIGITS_CHARACTER = 'n';
-    private static final char UPPER_CASE_LETTERS_CHARACTER = 'a';
-    private static final char UPPER_AND_LOWER_CASE_ALPHANUMERICS_CHARACTER = 'c';
-    private static final char SPACES_CHARACTER = 'e';
+    static final char DIGITS_CHARACTER = 'n';
+    static final char UPPER_CASE_LETTERS_CHARACTER = 'a';
+    static final char UPPER_AND_LOWER_CASE_ALPHANUMERICS_CHARACTER = 'c';
+    static final char SPACES_CHARACTER = 'e';
 
     private static final String DIGITS_CLASS = "[0-9]";
     private static final String UPPER_CASE_LETTERS_CLASS = "[A-Z]";
