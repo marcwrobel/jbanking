@@ -16,12 +16,16 @@ Any application that uses the jbanking library must use [Java 1.6](http://www.or
 
 
 ## Use it !
-Download the latest JAR or use Maven :
-    <dependency>
-        <groupId>fr.marcwrobel</groupId>
-        <artifactId>jbanking</artifactId>
-        <version>1.0</version>
-    </dependency>
+You can download the latest build at http://search.maven.org/remotecontent?filepath=fr/marcwrobel/jbanking/1.0/jbanking-1.0.jar or use it as a maven dependency:
+```xml
+<dependency>
+    <groupId>fr.marcwrobel</groupId>
+    <artifactId>jbanking</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
+For usage examples check the tests.
 
 
 ## Release
