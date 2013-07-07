@@ -1,5 +1,4 @@
 # jbanking - A Java banking API [![Build Status](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/badge/icon)](https://buildhive.cloudbees.com/job/marcwrobel/job/jbanking/)
-
 jbanking is a library of utilities to assist with developing banking functionality.
 
 
@@ -28,14 +27,14 @@ You can download the latest build at http://search.maven.org/remotecontent?filep
 For usage examples check the tests.
 
 
-## Release
-See [changelog](https://github.com/marcwrobel/jbanking/wiki/Changelog)
+## Releases
+Take a look at the [changelog](src/etc/changelog.md)
 
 
 ## Need help ?
 Read the documentation on the [Wiki](https://github.com/marcwrobel/jbanking/wiki).
 
-Send me an email at marc.wrobel@gmail.com.
+Send me an email at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).
 
 Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open).
 
