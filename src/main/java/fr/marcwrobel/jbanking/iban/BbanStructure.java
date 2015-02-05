@@ -106,10 +106,12 @@ public enum BbanStructure {
     SPAIN(IsoCountry.SPAIN, "4!n4!n1!n1!n10!n"),
     SWEDEN(IsoCountry.SWEDEN, "3!n16!n1!n"),
     SWITZERLAND(IsoCountry.SWITZERLAND, "5!n12!c"),
+    TIMOR_LESTE(IsoCountry.TIMOR_LESTE, "3!n14!n2!n"),
     TUNISIA(IsoCountry.TUNISIA, "2!n3!n13!n2!n"),
     TURKEY(IsoCountry.TURKEY, "5!n1!c16!c"),
     UNITED_ARAB_EMIRATES(IsoCountry.UNITED_ARAB_EMIRATES, "3!n16!n"),
     UNITED_KINGDOM(IsoCountry.UNITED_KINGDOM, "4!a6!n8!n"),
+    QATAR(IsoCountry.QATAR, "4!a21!c"),
     BRITISH_VIRGIN_ISLANDS(IsoCountry.BRITISH_VIRGIN_ISLANDS, "4!a16!n");
 
     private final IsoCountry country;
