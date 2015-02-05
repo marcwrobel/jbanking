@@ -20,6 +20,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -71,6 +72,7 @@ public class IsoCountryTest {
     }
 
     @Test
+    @Ignore("The external file this test depends on is no longer available")
     public void ensureEnumCompleteness() throws IOException {
         InputSupplier<InputStreamReader> readerSupplier = CharStreams.newReaderSupplier(ISO_FILE_SUPPLIER, Charsets.UTF_8);
 
