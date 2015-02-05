@@ -76,6 +76,7 @@ public enum BbanStructure {
     IRELAND(IsoCountry.IRELAND, "4!a6!n8!n"),
     ISRAEL(IsoCountry.ISRAEL, "3!n3!n13!n"),
     ITALY(IsoCountry.ITALY, "1!a5!n5!n12!c"),
+    JORDANIAN(IsoCountry.JORDAN, "4!a4!n18!c"),
     KAZAKHSTAN(IsoCountry.KAZAKHSTAN, "3!n13!c"),
     KUWAIT(IsoCountry.KUWAIT, "4!a22!c"),
     LATVIA(IsoCountry.LATVIA, "4!a13!c"),

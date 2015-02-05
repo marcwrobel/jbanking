@@ -96,7 +96,8 @@ public class IbanTest {
             "TR888859050625760496700846",
             "AE532299249995935421750",
             "GB42RHBR54612317078692",
-            "VG14NDUM4605555206975725"
+            "VG14NDUM4605555206975725",
+            "JO94CBJO0010000000000131000302"
     );
 
     private static final String VALID_IBAN_COUNTRY = "FR";
