@@ -145,6 +145,7 @@ public enum IsoCountry {
     KAZAKHSTAN("KZ"),
     KENYA("KE"),
     KIRIBATI("KI"),
+    KOSOVO("XK"),
     KUWAIT("KW"),
     KYRGYZSTAN("KG"),
     LAO_PEOPLES_DEMOCRATIC_REPUBLIC("LA"),

@@ -25,10 +25,10 @@ import java.util.Set;
 /**
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant national IBAN formats.
  *
- * <p>It is based on the document <i>IBAN REGISTRY Release 45</i> issued by SWIFT on May 2013.</p>
+ * <p>It is based on the document <i>IBAN REGISTRY Release 78</i> issued by SWIFT on August 2017.</p>
  *
  * @author Marc Wrobel
- * @see <a href="http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf">http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf</a>
+ * @see <a href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>
  * @since 1.0
  */
 public enum BbanStructure {
@@ -38,21 +38,23 @@ public enum BbanStructure {
     AUSTRIA(IsoCountry.AUSTRIA, "5!n11!n"),
     AZERBAIJAN(IsoCountry.AZERBAIJAN, "4!a20!c"),
     BAHRAIN(IsoCountry.BAHRAIN, "4!a14!c"),
+    BELARUS(IsoCountry.BELARUS, "4!c4!n16!c"),
     BELGIUM(IsoCountry.BELGIUM, "3!n7!n2!n"),
     BOSNIA_AND_HERZEGOVINA(IsoCountry.BOSNIA_AND_HERZEGOVINA, "3!n3!n8!n2!n"),
     BRAZIL(IsoCountry.BRAZIL, "8!n5!n10!n1!a1!c"),
     BULGARIA(IsoCountry.BULGARIA, "4!a4!n2!n8!c"),
-    COSTA_RICA(IsoCountry.COSTA_RICA, "3!n14!n"),
+    COSTA_RICA(IsoCountry.COSTA_RICA, "4!n14!n"),
     CROATIA(IsoCountry.CROATIA, "7!n10!n"),
     CYPRUS(IsoCountry.CYPRUS, "3!n5!n16!c"),
     CZECH_REPUBLIC(IsoCountry.CZECH_REPUBLIC, "4!n6!n10!n"),
     DENMARK(IsoCountry.DENMARK, "4!n9!n1!n"),
+    EL_SALVADOR(IsoCountry.EL_SALVADOR, "4!a20!n"),
     FAROE_ISLANDS(IsoCountry.FAROE_ISLANDS, "4!n9!n1!n"),
     GREENLAND(IsoCountry.GREENLAND, "4!n9!n1!n"),
     DOMINICAN_REPUBLIC(IsoCountry.DOMINICAN_REPUBLIC, "4!c20!n"),
     ESTONIA(IsoCountry.ESTONIA, "2!n2!n11!n1!n"),
-    FINLAND(IsoCountry.FINLAND, "6!n7!n1!n"),
-    ALAND_ISLANDS(IsoCountry.ALAND_ISLANDS, "6!n7!n1!n"),
+    FINLAND(IsoCountry.FINLAND, "3!n11!n",
+            IsoCountry.ALAND_ISLANDS),
     FRANCE(IsoCountry.FRANCE, "5!n5!n11!c2!n",
             IsoCountry.FRENCH_GUIANA,
             IsoCountry.GUADELOUPE,
@@ -60,6 +62,7 @@ public enum BbanStructure {
             IsoCountry.REUNION,
             IsoCountry.FRENCH_POLYNESIA,
             IsoCountry.FRENCH_SOUTHERN_TERRITORIES,
+            IsoCountry.MAYOTTE,
             IsoCountry.NEW_CALEDONIA,
             IsoCountry.SAINT_BARTHELEMY,
             IsoCountry.SAINT_MARTIN,
@@ -75,9 +78,11 @@ public enum BbanStructure {
     ICELAND(IsoCountry.ICELAND, "4!n2!n6!n10!n"),
     IRELAND(IsoCountry.IRELAND, "4!a6!n8!n"),
     ISRAEL(IsoCountry.ISRAEL, "3!n3!n13!n"),
+    IRAQ(IsoCountry.IRAQ, "4!a3!n12!n"),
     ITALY(IsoCountry.ITALY, "1!a5!n5!n12!c"),
-    JORDANIAN(IsoCountry.JORDAN, "4!a4!n18!c"),
+    JORDAN(IsoCountry.JORDAN, "4!a4!n18!c"),
     KAZAKHSTAN(IsoCountry.KAZAKHSTAN, "3!n13!c"),
+    KOSOVO(IsoCountry.KOSOVO, "4!n10!n2!n"),
     KUWAIT(IsoCountry.KUWAIT, "4!a22!c"),
     LATVIA(IsoCountry.LATVIA, "4!a13!c"),
     LEBANON(IsoCountry.LEBANON, "4!n20!c"),
@@ -98,9 +103,12 @@ public enum BbanStructure {
     POLAND(IsoCountry.POLAND, "8!n16!n"),
     PORTUGAL(IsoCountry.PORTUGAL, "4!n4!n11!n2!n"),
     ROMANIA(IsoCountry.ROMANIA, "4!a16!c"),
+    SAINT_LUCIA(IsoCountry.SAINT_LUCIA, "4!a24!c"),
     SAN_MARINO(IsoCountry.SAN_MARINO, "1!a5!n5!n12!c"),
+    SAO_TOME_AND_PRINCIPE(IsoCountry.SAO_TOME_AND_PRINCIPE, "4!n4!n11!n2!n"),
     SAUDI_ARABIA(IsoCountry.SAUDI_ARABIA, "2!n18!c"),
     SERBIA(IsoCountry.SERBIA, "3!n13!n2!n"),
+    SEYCHELLES(IsoCountry.SEYCHELLES, "4!a2!n2!n16!n3!a"),
     SLOVAKIA(IsoCountry.SLOVAKIA, "4!n6!n10!n"),
     SLOVENIA(IsoCountry.SLOVENIA, "5!n8!n2!n"),
     SPAIN(IsoCountry.SPAIN, "4!n4!n1!n1!n10!n"),
@@ -109,8 +117,12 @@ public enum BbanStructure {
     TIMOR_LESTE(IsoCountry.TIMOR_LESTE, "3!n14!n2!n"),
     TUNISIA(IsoCountry.TUNISIA, "2!n3!n13!n2!n"),
     TURKEY(IsoCountry.TURKEY, "5!n1!c16!c"),
+    UKRAINE(IsoCountry.UKRAINE, "6!n19!c"),
     UNITED_ARAB_EMIRATES(IsoCountry.UNITED_ARAB_EMIRATES, "3!n16!n"),
-    UNITED_KINGDOM(IsoCountry.UNITED_KINGDOM, "4!a6!n8!n"),
+    UNITED_KINGDOM(IsoCountry.UNITED_KINGDOM, "4!a6!n8!n",
+            IsoCountry.ISLE_OF_MAN,
+            IsoCountry.JERSEY,
+            IsoCountry.GUERNSEY),
     QATAR(IsoCountry.QATAR, "4!a21!c"),
     BRITISH_VIRGIN_ISLANDS(IsoCountry.BRITISH_VIRGIN_ISLANDS, "4!a16!n");
 

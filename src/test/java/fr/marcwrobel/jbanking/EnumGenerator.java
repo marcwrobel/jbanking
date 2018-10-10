@@ -28,6 +28,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -197,6 +198,7 @@ public class EnumGenerator {
     }
 
     @Test
+    @Ignore("The external XML file this test depends on is no longer available")
     public void currencyEnumGenerator() throws MalformedURLException, DocumentException {
         SAXReader reader = new SAXReader();
         Document document = reader.read(new URL(CURRENCY_FILE_URL));
