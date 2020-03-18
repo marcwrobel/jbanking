@@ -21,7 +21,7 @@
 
     <this.java.version>1.8</this.java.version>
 
-    <guava.version>14.0.1</guava.version>
+    <guava.version>28.2-jre</guava.version>
     <junit.version>4.11</junit.version>
   </properties>
 
