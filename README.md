@@ -1,3 +1,5 @@
+[![Build](https://github.com/marcwrobel/jbanking/workflows/build/badge.svg)](https://github.com/marcwrobel/jbanking/actions)
+
 # jbanking - A Java banking API
 jbanking is a library of utilities to assist with developing banking functionality.
 
