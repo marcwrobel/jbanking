@@ -9,15 +9,18 @@ jbanking is supporting the following features :
 * [ISO 3166-1-alpha-2 country codes](http://wikipedia.org/wiki/ISO_3166-1_alpha-2).
 * [ISO 4217 currency codes](http://wikipedia.org/wiki/ISO_4217).
 * [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
-* [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both checkdigit and national bank account number structure).
+* [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and
+  validation (for both checkdigit and national bank account number structure).
 
 
 ## Requirements
-Any application that uses the jbanking library must use [Java 1.6](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later. No additional dependency required !
+Any application that uses the jbanking library must use [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+or later. No additional dependency required !
 
 
 ## Use it !
-You can download the latest build at http://search.maven.org/remotecontent?filepath=fr/marcwrobel/jbanking/1.0/jbanking-1.0.jar or use it as a maven dependency:
+You can download the latest build on [Maven Central](https://search.maven.org/artifact/fr.marcwrobel/jbanking)
+or use it as a maven dependency:
 ```xml
 <dependency>
     <groupId>fr.marcwrobel</groupId>
