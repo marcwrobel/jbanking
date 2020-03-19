@@ -10,7 +10,7 @@ import java.util.Set;
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant
  * national IBAN formats.
  *
- * <p>It is based on the document <i>IBAN REGISTRY Release 78</i> issued by SWIFT on August 2017.
+ * <p>It is based on the document <i>IBAN REGISTRY Release 86</i> issued by SWIFT on January 2020.
  *
  * @author Marc Wrobel
  * @see <a

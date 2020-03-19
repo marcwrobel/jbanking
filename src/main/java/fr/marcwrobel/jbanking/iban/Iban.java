@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * (MOD97-10). Note that an IBAN is case-insensitive.
  *
  * <p>This class handles validation of the check digit and validation of the {@link BbanStructure
- * BBAN structure} (based on information specified in the IBAN registry Release 86 of january 2020).
+ * BBAN structure}.
  *
  * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
