@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>
+ *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>.
  * @since 1.0
  */
 public enum BbanStructure {
@@ -27,6 +27,7 @@ public enum BbanStructure {
   BELGIUM(IsoCountry.BELGIUM, "3!n7!n2!n"),
   BOSNIA_AND_HERZEGOVINA(IsoCountry.BOSNIA_AND_HERZEGOVINA, "3!n3!n8!n2!n"),
   BRAZIL(IsoCountry.BRAZIL, "8!n5!n10!n1!a1!c"),
+  BRITISH_VIRGIN_ISLANDS(IsoCountry.BRITISH_VIRGIN_ISLANDS, "4!a16!n"),
   BULGARIA(IsoCountry.BULGARIA, "4!a4!n2!n8!c"),
   COSTA_RICA(IsoCountry.COSTA_RICA, "4!n14!n"),
   CROATIA(IsoCountry.CROATIA, "7!n10!n"),
@@ -38,6 +39,7 @@ public enum BbanStructure {
   GREENLAND(IsoCountry.GREENLAND, "4!n9!n1!n"),
   DOMINICAN_REPUBLIC(IsoCountry.DOMINICAN_REPUBLIC, "4!c20!n"),
   ESTONIA(IsoCountry.ESTONIA, "2!n2!n11!n1!n"),
+  EGYPT(IsoCountry.EGYPT, "4!n4!n17!n"),
   FINLAND(IsoCountry.FINLAND, "3!n11!n", IsoCountry.ALAND_ISLANDS),
   FRANCE(
       IsoCountry.FRANCE,
@@ -87,6 +89,7 @@ public enum BbanStructure {
   PALESTINE(IsoCountry.PALESTINE, "4!a21!c"),
   POLAND(IsoCountry.POLAND, "8!n16!n"),
   PORTUGAL(IsoCountry.PORTUGAL, "4!n4!n11!n2!n"),
+  QATAR(IsoCountry.QATAR, "4!a21!c"),
   ROMANIA(IsoCountry.ROMANIA, "4!a16!c"),
   SAINT_LUCIA(IsoCountry.SAINT_LUCIA, "4!a24!c"),
   SAN_MARINO(IsoCountry.SAN_MARINO, "1!a5!n5!n12!c"),
@@ -101,7 +104,7 @@ public enum BbanStructure {
   SWITZERLAND(IsoCountry.SWITZERLAND, "5!n12!c"),
   TIMOR_LESTE(IsoCountry.TIMOR_LESTE, "3!n14!n2!n"),
   TUNISIA(IsoCountry.TUNISIA, "2!n3!n13!n2!n"),
-  TURKEY(IsoCountry.TURKEY, "5!n1!c16!c"),
+  TURKEY(IsoCountry.TURKEY, "5!n1!n16!c"),
   UKRAINE(IsoCountry.UKRAINE, "6!n19!c"),
   UNITED_ARAB_EMIRATES(IsoCountry.UNITED_ARAB_EMIRATES, "3!n16!n"),
   UNITED_KINGDOM(
@@ -110,15 +113,13 @@ public enum BbanStructure {
       IsoCountry.ISLE_OF_MAN,
       IsoCountry.JERSEY,
       IsoCountry.GUERNSEY),
-  QATAR(IsoCountry.QATAR, "4!a21!c"),
-  BRITISH_VIRGIN_ISLANDS(IsoCountry.BRITISH_VIRGIN_ISLANDS, "4!a16!n");
+  VATICAN_CITY_STATE(IsoCountry.VATICAN_CITY_STATE, "3!n15!n");
 
   private final IsoCountry country;
   private final SwiftPattern bbanPattern;
   private final Set<IsoCountry> subdivisions;
 
-  private BbanStructure(
-      IsoCountry country, String bbanSwiftExpression, IsoCountry... subdivisions) {
+  BbanStructure(IsoCountry country, String bbanSwiftExpression, IsoCountry... subdivisions) {
     this.country = country;
     this.bbanPattern = SwiftPattern.compile(bbanSwiftExpression);
 
@@ -164,7 +165,7 @@ public enum BbanStructure {
    * @param bban A non null string.
    * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false}
    *     otherwise.
-   * @throws IllegalArgumentException if the given BBAN is null
+   * @throws IllegalArgumentException if the given BBAN is null.
    */
   public boolean isBbanValid(String bban) {
     if (bban == null) {
@@ -177,7 +178,7 @@ public enum BbanStructure {
   /**
    * Returns this BBAN definition country.
    *
-   * @return a non null country
+   * @return a non null country.
    */
   public IsoCountry getCountry() {
     return country;
@@ -186,7 +187,7 @@ public enum BbanStructure {
   /**
    * Returns this BBAN definition pattern.
    *
-   * @return a non null pattern
+   * @return a non null pattern.
    */
   public SwiftPattern getBbanPattern() {
     return bbanPattern;
@@ -195,7 +196,7 @@ public enum BbanStructure {
   /**
    * Returns this BBAN definition subdivision countries.
    *
-   * @return a non null Set of countries (may be empty).
+   * @return a non null Set of countries (can be empty).
    */
   public Set<IsoCountry> getSubdivisions() {
     return subdivisions;
