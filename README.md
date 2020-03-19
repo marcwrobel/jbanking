@@ -16,6 +16,8 @@ jbanking is supporting the following features :
 * [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
 * [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and
   validation (for both checkdigit and national bank account number structure).
+* [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
+  handling and validation.
 
 
 ## Requirements
@@ -30,7 +32,7 @@ or use it as a maven dependency:
 <dependency>
     <groupId>fr.marcwrobel</groupId>
     <artifactId>jbanking</artifactId>
-    <version>1.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
