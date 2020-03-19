@@ -15,20 +15,19 @@ import java.util.regex.Pattern;
  *
  * <p>The SwiftPattern class partially supports the SWIFT expression by using the following
  * constructions :<br>
- * <b>Character representations :</b>
  *
- * <table summary="Character representations">
- * <tr><td>n</td><td>digits (numeric characters 0 to 9 only)</td></tr>
- * <tr><td>a</td><td>upper case letters (alphabetic characters A-Z only)</td></tr>
- * <tr><td>c</td><td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td></tr>
- * <tr><td>e</td><td>blank space</td></tr>
+ * <table>
+ *   <caption>Character representations</caption>
+ *   <tr><td>n</td><td>digits (numeric characters 0 to 9 only)</td></tr>
+ *   <tr><td>a</td><td>upper case letters (alphabetic characters A-Z only)</td></tr>
+ *   <tr><td>c</td><td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td></tr>
+ *   <tr><td>e</td><td>blank space</td></tr>
  * </table>
  *
- * <b>Length indications :</b>
- *
- * <table summary="Length indications">
- * <tr><td>nn!</td><td>fixed length</td></tr>
- * <tr><td>nn</td><td>maximum length</td></tr>
+ * <table>
+ *   <caption>Length indications</caption>
+ *   <tr><td>nn!</td><td>fixed length</td></tr>
+ *   <tr><td>nn</td><td>maximum length</td></tr>
  * </table>
  *
  * <p>Here are some examples of SWIFT expressions that are supported by this SwiftPattern :<br>
