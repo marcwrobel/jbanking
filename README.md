@@ -6,7 +6,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/fr.marcwrobel/jbanking/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fr.marcwrobel/jbanking)
 
 # jbanking - A Java banking API
-jbanking is a library of utilities to assist with developing banking functionality.
+jbanking is a library of utilities to assist with developing banking functionalities.
 
 
 ## Features
