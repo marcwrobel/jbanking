@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 /**
  * An International Bank Account Number (IBAN) Code as specified by the <a
- * href="http://www.swift.com/solutions/messaging/information_products/directory_products/iban_format_registry/index.page">ISO
- * 13616:2007 standard</a>.
+ * href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">ISO 13616:2007
+ * standard</a>.
  *
  * <p>An IBAN consists of a two-letter ISO 3166-1 country code, followed by two check digits and up
  * to thirty alphanumeric characters for a BBAN (Basic Bank Account Number) which has a fixed length
@@ -23,8 +23,7 @@ import java.util.regex.Pattern;
  * @see BbanStructure
  * @see <a
  *     href="http://wikipedia.org/wiki/International_Bank_Account_Number">http://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
- * @see <a
- *     href="http://www.swift.com/solutions/messaging/information_products/directory_products/iban_format_registry/index.page">IBAN
+ * @see <a href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">IBAN
  *     registry</a>
  * @since 1.0
  */

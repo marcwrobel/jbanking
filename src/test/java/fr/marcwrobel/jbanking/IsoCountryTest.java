@@ -2,7 +2,14 @@ package fr.marcwrobel.jbanking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.neovisionaries.i18n.CountryCode;
+import com.neovisionaries.i18n.CountryCode.Assignment;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,5 +39,25 @@ public class IsoCountryTest {
     for (IsoCountry country : IsoCountry.values()) {
       assertEquals(country, IsoCountry.fromCode(country.getCode()));
     }
+  }
+
+  @Test
+  public void ensureCompleteness() {
+    Set<Assignment> assignments =
+        EnumSet.of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
+
+    List<CountryCode> allCountries =
+        EnumSet.allOf(CountryCode.class).stream()
+            .filter(c -> c != CountryCode.UNDEFINED)
+            .filter(c -> assignments.contains(c.getAssignment()))
+            .collect(Collectors.toList());
+
+    List<CountryCode> undefinedCountries =
+        allCountries.stream()
+            .filter(c -> IsoCountry.fromCode(c.getAlpha2()) == null)
+            .collect(Collectors.toList());
+
+    assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
+    assertEquals(allCountries.size(), IsoCountry.values().length);
   }
 }

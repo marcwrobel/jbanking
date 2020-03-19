@@ -1,15 +1,19 @@
 package fr.marcwrobel.jbanking;
 
 /**
- * The countries having an ISO 3166-1-alpha-2 code.
+ * The countries having an <a
+ * href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">
+ * Officially assigned</a>, or a <a
+ * href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#User-assigned_code_elements">User
+ * assigned</a> ISO 3166-1-alpha-2 code.
  *
- * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for
+ * <p>Please be advised that this list is current as of 2020/03/19. Up-to-date list can be found for
  * free on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International
  * Organization for Standardization website</a>.
  *
  * @author Marc Wrobel
- * @see <a
- *     href="http://www.iso.org/iso/home/standards/country_codes.htm">http://www.iso.org/iso/home/standards/country_codes.htm</a>.
+ * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country
+ *     Codes</a>.
  * @since 1.0
  */
 public enum IsoCountry {
