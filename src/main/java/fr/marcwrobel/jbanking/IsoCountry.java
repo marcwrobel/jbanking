@@ -9,7 +9,7 @@ package fr.marcwrobel.jbanking;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://www.iso.org/iso/home/standards/country_codes.htm">http://www.iso.org/iso/home/standards/country_codes.htm</a>
+ *     href="http://www.iso.org/iso/home/standards/country_codes.htm">http://www.iso.org/iso/home/standards/country_codes.htm</a>.
  * @since 1.0
  */
 public enum IsoCountry {
@@ -266,14 +266,14 @@ public enum IsoCountry {
 
   private final String code;
 
-  private IsoCountry(String code) {
+  IsoCountry(String code) {
     this.code = code;
   }
 
   /**
    * Returns this country ISO 3166-1-alpha-2 code.
    *
-   * @return a non null and 2 characters length string
+   * @return a non null and 2 characters length string.
    */
   public String getCode() {
     return code;
@@ -282,10 +282,10 @@ public enum IsoCountry {
   /**
    * Translate the given ISO 3166-1-alpha-2 code to an IsoCountry.
    *
-   * <p>This method is not case sensitive.
+   * <p>This method is not case-sensitive.
    *
    * @param code A non-null String.
-   * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist
+   * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist.
    */
   public static IsoCountry fromCode(String code) {
     String cleanedCode = (code == null ? null : code.toUpperCase());

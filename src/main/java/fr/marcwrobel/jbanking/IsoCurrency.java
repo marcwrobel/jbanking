@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://www.iso.org/iso/home/standards/currency_codes.htm">http://www.iso.org/iso/home/standards/currency_codes.htm</a>
+ *     href="http://www.iso.org/iso/home/standards/currency_codes.htm">http://www.iso.org/iso/home/standards/currency_codes.htm</a>.
  * @since 1.0
  */
 public enum IsoCurrency {
@@ -342,7 +342,7 @@ public enum IsoCurrency {
   private final Integer minorUnit;
   private final Set<IsoCountry> countries;
 
-  private IsoCurrency(
+  IsoCurrency(
       String alphabeticCode, Integer numericCode, Integer minorUnit, IsoCountry... countries) {
     this.alphabeticCode = alphabeticCode;
     this.numericCode = numericCode;
@@ -356,7 +356,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency ISO 4217 alphabetical code.
    *
-   * @return a non null and 3 characters length string
+   * @return a non null and 3 characters length string.
    */
   public String getAlphabeticCode() {
     return alphabeticCode;
@@ -366,7 +366,7 @@ public enum IsoCurrency {
    * Returns this currency ISO 4217 numeric code.
    *
    * @return an Integer or null if this country is {@link #UIC_FRANC} or {@link
-   *     #NO_UNIVERSAL_CURRENCY}
+   *     #NO_UNIVERSAL_CURRENCY}.
    */
   public Integer getNumericCode() {
     return numericCode;
@@ -375,7 +375,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency minor unit, if applicable.
    *
-   * @return an Integer or null if this not applicable
+   * @return an Integer or null if this not applicable.
    */
   public Integer getMinorUnit() {
     return minorUnit;
@@ -384,7 +384,7 @@ public enum IsoCurrency {
   /**
    * Returns the countries that are using this currency.
    *
-   * @return a non null but may be empty set of countries
+   * @return a non null but may be empty set of countries.
    */
   public Set<IsoCountry> getCountries() {
     return countries;
@@ -393,10 +393,10 @@ public enum IsoCurrency {
   /**
    * Translate the given ISO 4217 alphabetical code to an IsoCurrency.
    *
-   * <p>This method is not case sensitive not spaces sensitive.
+   * <p>This method is not case-sensitive not spaces-sensitive.
    *
    * @param code A non null String.
-   * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist
+   * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
    */
   public static IsoCurrency fromAlphabeticCode(String code) {
     String cleanedCode = (code == null ? null : code.toUpperCase());
@@ -418,7 +418,7 @@ public enum IsoCurrency {
    *
    * @param code An Integer, null or not.
    * @return the currency having the given ISO 4217 numerical code ({@link #NO_UNIVERSAL_CURRENCY}
-   *     if the given code is null), or null if it does not exist
+   *     if the given code is null), or null if it does not exist.
    */
   public static IsoCurrency fromNumericCode(Integer code) {
     if (code == null) {

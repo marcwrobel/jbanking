@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
+ *     href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>.
  * @since 1.0
  */
 public final class Bic {
@@ -64,7 +64,7 @@ public final class Bic {
    * @throws IllegalArgumentException if the given string is null
    * @throws BicFormatException if the given BIC8 or BIC11 string does not match {@link #BIC_REGEX}
    *     or if the given BIC8 or BIC11 country code is not known in {@link
-   *     fr.marcwrobel.jbanking.IsoCountry}
+   *     fr.marcwrobel.jbanking.IsoCountry}.
    */
   public Bic(final String bic8Or11) {
     if (bic8Or11 == null) {
@@ -88,10 +88,10 @@ public final class Bic {
   }
 
   /**
-   * Check whether or not the given string is valid BIC.
+   * Check whether the given string is valid BIC.
    *
    * @param bic A String.
-   * @return {@code true} if the given string is valid BIC, otherwise {@code false}
+   * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
    */
   public static boolean isValid(String bic) {
     return bic != null && isWellFormatted(bic) && hasKnownCountryCode(bic);
@@ -145,12 +145,12 @@ public final class Bic {
   }
 
   /**
-   * Test whether or not this BIC is a test bic.
+   * Test whether this BIC is a test bic.
    *
    * <p>A BIC is a test BIC if the last character of the location code is {@value
    * #TEST_BIC_INDICATOR}.
    *
-   * @return {@code true} if this BIC is a test BIC, otherwise {@code false}
+   * @return {@code true} if this BIC is a test BIC, otherwise {@code false}.
    * @see #isLiveBic
    */
   public boolean isTestBic() {
@@ -159,12 +159,12 @@ public final class Bic {
   }
 
   /**
-   * Test whether or not this BIC is a live bic.
+   * Test whether this BIC is a live bic.
    *
    * <p>A BIC is a live BIC if the last character of the location code is not {@value
    * #TEST_BIC_INDICATOR}.
    *
-   * @return {@code true} if this BIC is a live BIC, otherwise {@code false}
+   * @return {@code true} if this BIC is a live BIC, otherwise {@code false}.
    * @see #isTestBic
    */
   public boolean isLiveBic() {
@@ -189,8 +189,8 @@ public final class Bic {
   /**
    * Indicates whether some other object is "equal to" this one.
    *
-   * <p>To be equals to this one an other object must be a Bic and the BICs normalized form (see
-   * {@link #toString()}) must be equal.
+   * <p>To be equals to this one an other object must be a {@link Bic} and the BICs normalized form
+   * (see {@link #toString()}) must be equal.
    *
    * @param o the object with which to compare.
    * @return {@code true} if this object is the same as the obj argument or {@code false} otherwise.

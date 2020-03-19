@@ -63,8 +63,8 @@ public final class SwiftPattern {
   private static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + ")+$");
   private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
 
-  private String expression;
-  private Pattern equivalentJavaPattern;
+  private final String expression;
+  private final Pattern equivalentJavaPattern;
 
   private SwiftPattern(String expression, Pattern equivalentJavaPattern) {
     this.expression = expression;
@@ -75,7 +75,7 @@ public final class SwiftPattern {
    * Compiles the given SWIFT expression into a SwiftPattern.
    *
    * @param expression The expression to be compiled
-   * @throws SwiftPatternSyntaxException If the expression's syntax is invalid
+   * @throws SwiftPatternSyntaxException If the expression's syntax is invalid.
    */
   public static SwiftPattern compile(String expression) {
     if (expression == null) {
@@ -104,8 +104,9 @@ public final class SwiftPattern {
   private static String transform(String simpleExpression) {
     int length = simpleExpression.length();
 
-    String charactersRegex = null;
-    switch (simpleExpression.charAt(length - 1)) {
+    String charactersRegex;
+    char qualifier = simpleExpression.charAt(length - 1);
+    switch (qualifier) {
       case DIGITS_CHARACTER:
         charactersRegex = DIGITS_CLASS;
         break;
@@ -118,19 +119,22 @@ public final class SwiftPattern {
       case SPACES_CHARACTER:
         charactersRegex = SPACES_CLASS;
         break;
+      default:
+        throw new IllegalArgumentException(
+            "illegal qualifier '" + qualifier + "' in expression '" + simpleExpression + "'");
     }
 
     boolean strict = simpleExpression.charAt(simpleExpression.length() - 2) == '!';
-    String maxOccurence = simpleExpression.substring(0, length - (strict ? 2 : 1));
+    String maxOccurrences = simpleExpression.substring(0, length - (strict ? 2 : 1));
 
-    return charactersRegex + "{" + (strict ? "" : "1,") + maxOccurence + "}";
+    return charactersRegex + "{" + (strict ? "" : "1,") + maxOccurrences + "}";
   }
 
   /**
    * Creates a matcher that will match the given input against this pattern.
    *
    * @param input The character sequence to be matched
-   * @return A new matcher for this pattern
+   * @return A new matcher for this pattern.
    */
   public Matcher matcher(CharSequence input) {
     return equivalentJavaPattern.matcher(input);
@@ -139,7 +143,7 @@ public final class SwiftPattern {
   /**
    * Returns the SWIFT expression from which this pattern was compiled.
    *
-   * @return a non null expression that matches {@value #}
+   * @return a non null expression that matches {@value #}.
    */
   public String getExpression() {
     return expression;
@@ -148,7 +152,7 @@ public final class SwiftPattern {
   /**
    * Returns the {@link java.util.regex.Pattern java Pattern} build using the SWIFT expression.
    *
-   * @return a non null pattern
+   * @return a non null pattern.
    */
   public Pattern getEquivalentJavaPattern() {
     return equivalentJavaPattern;
@@ -165,11 +169,7 @@ public final class SwiftPattern {
     }
 
     SwiftPattern that = (SwiftPattern) o;
-    if (!expression.equals(that.expression)) {
-      return false;
-    }
-
-    return true;
+    return expression.equals(that.expression);
   }
 
   @Override

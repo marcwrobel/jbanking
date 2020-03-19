@@ -17,6 +17,7 @@ import java.util.Set;
  *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>.
  * @since 1.0
  */
+@SuppressWarnings("java:S1192") // swift expressions cannot be constants (maintainability).
 public enum BbanStructure {
   ALBANIA(IsoCountry.ALBANIA, "8!n16!c"),
   ANDORRA(IsoCountry.ANDORRA, "4!n4!n12!c"),
@@ -160,7 +161,7 @@ public enum BbanStructure {
   }
 
   /**
-   * Test whether or not the given BBAN is valid.
+   * Test whether the given BBAN is valid.
    *
    * @param bban A non null string.
    * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false}

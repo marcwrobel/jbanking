@@ -78,7 +78,7 @@ public class CreditorIdentifier {
     String normalizedNationalId = normalize(creditorNationalId);
     String normalizedCreditorId = country.getCode() + "00" + normalizedNationalId;
 
-    if (!isWellFormatted(normalizedCreditorId)) {
+    if (isNotWellFormatted(normalizedCreditorId)) {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(creditorNationalId);
     }
 
@@ -99,7 +99,7 @@ public class CreditorIdentifier {
 
     String normalizedCreditorId = normalize(creditorId);
 
-    if (!isWellFormatted(normalizedCreditorId)) {
+    if (isNotWellFormatted(normalizedCreditorId)) {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorId);
     }
 
@@ -145,8 +145,8 @@ public class CreditorIdentifier {
    *       Creditor).
    * </ul>
    */
-  private static boolean isWellFormatted(String creditorIdentifier) {
-    return BASIC_PATTERN.matcher(creditorIdentifier).matches();
+  private static boolean isNotWellFormatted(String creditorIdentifier) {
+    return !BASIC_PATTERN.matcher(creditorIdentifier).matches();
   }
 
   /**
@@ -179,7 +179,7 @@ public class CreditorIdentifier {
 
     String normalizedCreditorId = normalize(creditorIdentifier);
 
-    if (!isWellFormatted(normalizedCreditorId)) {
+    if (isNotWellFormatted(normalizedCreditorId)) {
       return false;
     }
 

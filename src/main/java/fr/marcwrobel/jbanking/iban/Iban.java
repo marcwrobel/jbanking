@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
  * to thirty alphanumeric characters for a BBAN (Basic Bank Account Number) which has a fixed length
  * per country and, included within it, a bank identifier with a fixed position and a fixed length
  * per country. The check digits are calculated based on the scheme defined in ISO/IEC 7064
- * (MOD97-10). Also note that an IBAN is case insensitive.
+ * (MOD97-10). Note that an IBAN is case-insensitive.
  *
  * <p>This class handles validation of the check digit and validation of the {@link BbanStructure
- * BBAN structure} (based on information specified in the IBAN registry Release 45 of may 2013).
+ * BBAN structure} (based on information specified in the IBAN registry Release 86 of january 2020).
  *
  * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
@@ -41,7 +41,7 @@ public final class Iban {
 
   private static final int GROUP_SIZE_FOR_PRINTABLE_IBAN = 4;
 
-  private final String iban;
+  private final String normalizedIban;
 
   /**
    * Create a new IBAN from the given country code and BBAN.
@@ -50,7 +50,7 @@ public final class Iban {
    * @param bban A non null String.
    * @throws IllegalArgumentException if either the IsoCountry or BBAN is null
    * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry
-   *     and BBAN
+   *     and BBAN.
    */
   public Iban(IsoCountry country, String bban) {
     if (country == null) {
@@ -62,7 +62,7 @@ public final class Iban {
     }
 
     String normalizedBban = normalize(bban);
-    String normalizedIban = country.getCode() + "00" + normalizedBban;
+    String normalized = country.getCode() + "00" + normalizedBban;
 
     BbanStructure bbanStructure = BbanStructure.forCountry(country);
     if (bbanStructure == null) {
@@ -73,9 +73,9 @@ public final class Iban {
       throw IbanFormatException.forInvalidBbanStructure(bban, bbanStructure);
     }
 
-    String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalizedIban);
+    String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalized);
 
-    this.iban = country.getCode() + checkDigits + normalizedBban;
+    this.normalizedIban = country.getCode() + checkDigits + normalizedBban;
   }
 
   /**
@@ -83,20 +83,20 @@ public final class Iban {
    *
    * @param iban A non null String.
    * @throws IllegalArgumentException if the given string is null
-   * @throws IbanFormatException if the given string is not a valid IBAN
+   * @throws IbanFormatException if the given string is not a valid IBAN.
    */
   public Iban(String iban) {
     if (iban == null) {
       throw new IllegalArgumentException("the iban argument cannot be null");
     }
 
-    String normalizedIban = normalize(iban);
+    String normalized = normalize(iban);
 
-    if (!isWellFormatted(normalizedIban)) {
-      throw IbanFormatException.forNotProperlyFormattedInput(normalizedIban);
+    if (isNotWellFormatted(normalized)) {
+      throw IbanFormatException.forNotProperlyFormattedInput(normalized);
     }
 
-    IsoCountry country = findCountryFor(normalizedIban);
+    IsoCountry country = findCountryFor(normalized);
     if (country == null) {
       throw IbanFormatException.forUnknownCountry(iban);
     }
@@ -106,15 +106,15 @@ public final class Iban {
       throw IbanFormatException.forNotSupportedCountry(iban, country);
     }
 
-    if (!bbanStructure.isBbanValid(normalizedIban.substring(BBAN_INDEX))) {
+    if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       throw IbanFormatException.forInvalidBbanStructure(iban, bbanStructure);
     }
 
-    if (!IbanCheckDigit.INSTANCE.validate(normalizedIban)) {
+    if (!IbanCheckDigit.INSTANCE.validate(normalized)) {
       throw IbanFormatException.forIncorrectCheckDigits(iban);
     }
 
-    this.iban = normalizedIban;
+    this.normalizedIban = normalized;
   }
 
   /**
@@ -128,13 +128,13 @@ public final class Iban {
       return false;
     }
 
-    String normalizedIban = normalize(iban);
+    String normalized = normalize(iban);
 
-    if (!isWellFormatted(normalizedIban)) {
+    if (isNotWellFormatted(normalized)) {
       return false;
     }
 
-    IsoCountry country = findCountryFor(normalizedIban);
+    IsoCountry country = findCountryFor(normalized);
     if (country == null) {
       return false;
     }
@@ -144,23 +144,19 @@ public final class Iban {
       return false;
     }
 
-    if (!bbanStructure.isBbanValid(normalizedIban.substring(BBAN_INDEX))) {
+    if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       return false;
     }
 
-    if (!IbanCheckDigit.INSTANCE.validate(normalizedIban)) {
-      return false;
-    }
-
-    return true;
+    return IbanCheckDigit.INSTANCE.validate(normalized);
   }
 
   private static String normalize(String iban) {
     return iban.replaceAll("\\s+", "").toUpperCase();
   }
 
-  private static boolean isWellFormatted(String s) {
-    return BASIC_PATTERN.matcher(s).matches();
+  private static boolean isNotWellFormatted(String s) {
+    return !BASIC_PATTERN.matcher(s).matches();
   }
 
   private static IsoCountry findCountryFor(String s) {
@@ -174,7 +170,7 @@ public final class Iban {
    * @return A non null string representing this IBAN ISO 3166-1-alpha-2 country code.
    */
   public String getCountryCode() {
-    return iban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
+    return normalizedIban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
   }
 
   /**
@@ -183,7 +179,7 @@ public final class Iban {
    * @return A non null string representing this IBAN check digit.
    */
   public String getCheckDigit() {
-    return iban.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
+    return normalizedIban.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
   }
 
   /**
@@ -192,7 +188,7 @@ public final class Iban {
    * @return A non null string representing this IBAN BBAN.
    */
   public String getBban() {
-    return iban.substring(BBAN_INDEX);
+    return normalizedIban.substring(BBAN_INDEX);
   }
 
   /**
@@ -204,8 +200,8 @@ public final class Iban {
    * @return A non null string representing this IBAN formatted for printing.
    */
   public String toPrintableString() {
-    StringBuilder printableIban = new StringBuilder(iban);
-    int length = iban.length();
+    StringBuilder printableIban = new StringBuilder(normalizedIban);
+    int length = normalizedIban.length();
 
     for (int i = 0; i < length / GROUP_SIZE_FOR_PRINTABLE_IBAN; i++) {
       printableIban.insert((i + 1) * GROUP_SIZE_FOR_PRINTABLE_IBAN + i, ' ');
@@ -216,7 +212,7 @@ public final class Iban {
 
   @Override
   public String toString() {
-    return iban;
+    return normalizedIban;
   }
 
   @Override
@@ -230,11 +226,7 @@ public final class Iban {
     }
 
     Iban other = (Iban) o;
-    if (!iban.equals(other.iban)) {
-      return false;
-    }
-
-    return true;
+    return normalizedIban.equals(other.normalizedIban);
   }
 
   /**
@@ -251,6 +243,6 @@ public final class Iban {
    */
   @Override
   public int hashCode() {
-    return 29 * iban.hashCode();
+    return 29 * normalizedIban.hashCode();
   }
 }

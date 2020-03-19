@@ -41,7 +41,7 @@ public enum IbanCheckDigit {
    * have to be alphanumeric ([a-zA-Z0-9]) and check digit characters have to be set to zero.
    *
    * @param iban a non null string
-   * @return the given IBAN check digit
+   * @return the given IBAN check digit.
    */
   public String calculate(String iban) {
     int modulusResult = modulus(iban);

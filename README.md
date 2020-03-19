@@ -37,11 +37,12 @@ For usage examples check the tests.
 
 
 ## Releases
-Take a look at the [changelog](src/etc/changelog.md)
+Take a look at the [changelog on GitHub](https://github.com/marcwrobel/jbanking/releases).
 
 
 ## Need help ?
-Read the [javadoc](src/main/java/fr/marcwrobel/jbanking) and take a look at the [unit tests](src/test/java/fr/marcwrobel/jbanking).
+Read the [javadoc](src/main/java/fr/marcwrobel/jbanking) and take a look at the [unit
+tests](src/test/java/fr/marcwrobel/jbanking).
 
 Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open).
 
