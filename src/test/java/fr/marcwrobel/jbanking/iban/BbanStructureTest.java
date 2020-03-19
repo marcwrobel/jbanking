@@ -1,10 +1,11 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link BbanStructure} enum.
@@ -39,8 +40,8 @@ public class BbanStructureTest {
     }
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void isBbanValidCannotBeCalledWithNull() {
-    BbanStructure.ALBANIA.isBbanValid(null);
+    assertThrows(IllegalArgumentException.class, () -> BbanStructure.ALBANIA.isBbanValid(null));
   }
 }

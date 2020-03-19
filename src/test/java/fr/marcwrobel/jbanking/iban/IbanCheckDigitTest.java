@@ -1,12 +1,17 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.Sets;
 import java.util.Set;
-import org.junit.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link IbanCheckDigit} class.
@@ -86,48 +91,47 @@ public class IbanCheckDigitTest {
           "YY62DRWQ354548673SC833V5AMLYPNNR78",
           "ZZ70JJXD3109729650459XALAO5L68UDTR1");
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void nullIsNotValidForCalculation() {
-    IbanCheckDigit.INSTANCE.calculate(null);
+    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void nullIsNotValidForValidation() {
-    IbanCheckDigit.INSTANCE.validate(null);
+    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void ibanSizeLowerThanFourIsNotValidForCalculation() {
-    IbanCheckDigit.INSTANCE.calculate("123");
+    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate("123"));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void ibanSizeLowerThanFourIsIsNotValidForValidation() {
-    IbanCheckDigit.INSTANCE.validate("123");
+    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate("123"));
   }
 
-  @Test
-  public void ibanComputation() {
-    for (String iban : VALID_IBANS) {
-      String countryCode = iban.substring(0, 2);
-      String checkDigit = iban.substring(2, 4);
-      String bban = iban.substring(4);
-      assertEquals(
-          String.format("%s not properly calculated", iban),
-          checkDigit,
-          IbanCheckDigit.INSTANCE.calculate(countryCode + "00" + bban));
-    }
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void ibanComputation(String iban) {
+    String countryCode = iban.substring(0, 2);
+    String checkDigit = iban.substring(2, 4);
+    String bban = iban.substring(4);
+    assertEquals(checkDigit, IbanCheckDigit.INSTANCE.calculate(countryCode + "00" + bban));
   }
 
-  @Test
-  public void ibanValidation() {
-    for (String iban : VALID_IBANS) {
-      assertTrue(String.format("%s should be valid", iban), IbanCheckDigit.INSTANCE.validate(iban));
-    }
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void ibanValidation(String iban) {
+    assertTrue(IbanCheckDigit.INSTANCE.validate(iban));
   }
 
   @Test
   public void invalidIbanValidation() {
     assertFalse(IbanCheckDigit.INSTANCE.validate("FR45123"));
+  }
+
+  private static Stream<Arguments> validIbans() {
+    return VALID_IBANS.stream().map(Arguments::of);
   }
 }

@@ -1,10 +1,13 @@
 package fr.marcwrobel.jbanking.swift;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link SwiftPattern} class.
@@ -13,20 +16,18 @@ import org.junit.Test;
  */
 public class SwiftPatternTest {
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void aSwiftPatternCannotBeNull() {
-    SwiftPattern.compile(null);
+    assertThrows(IllegalArgumentException.class, () -> SwiftPattern.compile(null));
   }
 
-  @Test(expected = SwiftPatternSyntaxException.class)
+  @Test
   public void aSwiftPatternMustBeWellFormed() {
     String invalidPattern = "2!n3d";
-    try {
-      SwiftPattern.compile("2!n3d");
-    } catch (SwiftPatternSyntaxException e) {
-      assertEquals(invalidPattern, e.getExpression());
-      throw e;
-    }
+
+    SwiftPatternSyntaxException e =
+        assertThrows(SwiftPatternSyntaxException.class, () -> SwiftPattern.compile(invalidPattern));
+    assertEquals(invalidPattern, e.getExpression());
   }
 
   @Test
@@ -111,14 +112,12 @@ public class SwiftPatternTest {
 
   private void assertMatches(String value, String expression) {
     SwiftPattern pattern = SwiftPattern.compile(expression);
-    assertTrue(
-        String.format("%s should match %s", value, pattern), pattern.matcher(value).matches());
+    assertTrue(pattern.matcher(value).matches());
   }
 
   private void assertNotMatches(String value, String expression) {
     SwiftPattern pattern = SwiftPattern.compile(expression);
-    assertFalse(
-        String.format("%s should not match %s", value, pattern), pattern.matcher(value).matches());
+    assertFalse(pattern.matcher(value).matches());
   }
 
   @Test
@@ -134,16 +133,16 @@ public class SwiftPatternTest {
     SwiftPattern pattern1 = SwiftPattern.compile("4!n");
     SwiftPattern pattern2 = SwiftPattern.compile("4!n");
 
-    assertTrue(pattern1.equals(pattern1));
-    assertTrue(pattern2.equals(pattern2));
+    assertEquals(pattern1, pattern1);
+    assertEquals(pattern2, pattern2);
 
-    assertTrue(pattern1.equals(pattern2));
-    assertTrue(pattern2.equals(pattern1));
-    assertTrue(pattern1.hashCode() == pattern2.hashCode());
+    assertEquals(pattern1, pattern2);
+    assertEquals(pattern2, pattern1);
+    assertEquals(pattern1.hashCode(), pattern2.hashCode());
 
     SwiftPattern pattern3 = SwiftPattern.compile("3!n");
-    assertFalse(pattern1.equals(null));
-    assertFalse(pattern1.equals(new Object()));
-    assertFalse(pattern1.equals(pattern3));
+    assertNotNull(pattern1);
+    assertNotEquals(pattern1, new Object());
+    assertNotEquals(pattern1, pattern3);
   }
 }

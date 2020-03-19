@@ -1,15 +1,22 @@
 package fr.marcwrobel.jbanking.iban;
 
 import static fr.marcwrobel.jbanking.TestUtils.shouldHaveThrown;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.Sets;
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.TestUtils;
 import java.util.Set;
-import org.junit.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link Iban} class.
@@ -121,19 +128,19 @@ public class IbanTest {
     assertFalse(Iban.isValid(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void anIbanCannotBeNull() {
-    new Iban(null);
+    assertThrows(IllegalArgumentException.class, () -> new Iban(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void anIbanCountryCannotBeNull() {
-    new Iban(null, "123456");
+    assertThrows(IllegalArgumentException.class, () -> new Iban(null, "123456"));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void anIbanBbanCannotBeNull() {
-    new Iban(IsoCountry.FRANCE, null);
+    assertThrows(IllegalArgumentException.class, () -> new Iban(IsoCountry.FRANCE, null));
   }
 
   @Test
@@ -141,14 +148,14 @@ public class IbanTest {
     assertFalse(Iban.isValid(TestUtils.BLANK));
   }
 
-  @Test(expected = IbanFormatException.class)
+  @Test
   public void anIbanCannotBeBlank() {
-    new Iban(TestUtils.BLANK);
+    assertThrows(IbanFormatException.class, () -> new Iban(TestUtils.BLANK));
   }
 
-  @Test(expected = IbanFormatException.class)
+  @Test
   public void anIbanBbanCannotBeBlank() {
-    new Iban(IsoCountry.FRANCE, TestUtils.BLANK);
+    assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.FRANCE, TestUtils.BLANK));
   }
 
   @Test
@@ -262,46 +269,36 @@ public class IbanTest {
     assertEquals(VALID_IBAN_BBAN, iban.getBban());
   }
 
-  @Test
-  public void validIbansTest() {
-    for (String ibanString : VALID_IBANS) {
-      assertTrue(String.format("%s should be valid", ibanString), Iban.isValid(ibanString));
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void validIbansTest(String ibanString) {
+    assertTrue(Iban.isValid(ibanString));
 
-      Iban iban = new Iban(ibanString);
-      String countryCode = ibanString.substring(0, 2);
-      String bban = ibanString.substring(4);
-      assertEquals(
-          String.format("%s not properly calculated", iban),
-          iban,
-          new Iban(IsoCountry.fromCode(countryCode), bban));
-    }
+    Iban iban = new Iban(ibanString);
+    String countryCode = ibanString.substring(0, 2);
+    String bban = ibanString.substring(4);
+    assertEquals(iban, new Iban(IsoCountry.fromCode(countryCode), bban));
   }
 
-  @Test
-  public void ibanValidationIsNotCaseSensitive() {
-    for (String iban : VALID_IBANS) {
-      String lowerCaseIban = iban.toLowerCase();
-      assertTrue(String.format("%s should be valid", lowerCaseIban), Iban.isValid(lowerCaseIban));
-    }
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void ibanValidationIsNotCaseSensitive(String iban) {
+    String lowerCaseIban = iban.toLowerCase();
+    assertTrue(Iban.isValid(lowerCaseIban));
   }
 
-  @Test
-  public void ibanCreationIsNotCaseSensitive() {
-    for (String iban : VALID_IBANS) {
-      new Iban(iban.toLowerCase());
-    }
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void ibanCreationIsNotCaseSensitive(String iban) {
+    assertDoesNotThrow(() -> new Iban(iban.toLowerCase()));
   }
 
-  @Test
-  public void ibanFromBbanCreationIsNotCaseSensitive() {
-    for (String iban : VALID_IBANS) {
-      String countryCode = iban.substring(0, 2);
-      String bban = iban.substring(4);
-      assertEquals(
-          String.format("%s not properly calculated", iban),
-          iban,
-          new Iban(IsoCountry.fromCode(countryCode), bban.toLowerCase()).toString());
-    }
+  @ParameterizedTest
+  @MethodSource("validIbans")
+  public void ibanFromBbanCreationIsNotCaseSensitive(String iban) {
+    String countryCode = iban.substring(0, 2);
+    String bban = iban.substring(4);
+    assertEquals(iban, new Iban(IsoCountry.fromCode(countryCode), bban.toLowerCase()).toString());
   }
 
   @Test
@@ -319,21 +316,25 @@ public class IbanTest {
     Iban iban2 = new Iban(iban1.toPrintableString());
     Iban iban3 = new Iban(VALID_IBAN.toLowerCase());
 
-    assertTrue(iban1.equals(iban1));
-    assertTrue(iban2.equals(iban2));
-    assertTrue(iban3.equals(iban3));
+    assertEquals(iban1, iban1);
+    assertEquals(iban2, iban2);
+    assertEquals(iban3, iban3);
 
-    assertTrue(iban1.equals(iban2));
-    assertTrue(iban2.equals(iban1));
-    assertTrue(iban2.equals(iban3));
-    assertTrue(iban3.equals(iban2));
-    assertTrue(iban1.equals(iban3));
-    assertTrue(iban3.equals(iban1));
-    assertTrue(iban1.hashCode() == iban2.hashCode());
-    assertTrue(iban2.hashCode() == iban3.hashCode());
+    assertEquals(iban1, iban2);
+    assertEquals(iban2, iban1);
+    assertEquals(iban2, iban3);
+    assertEquals(iban3, iban2);
+    assertEquals(iban1, iban3);
+    assertEquals(iban3, iban1);
+    assertEquals(iban1.hashCode(), iban2.hashCode());
+    assertEquals(iban2.hashCode(), iban3.hashCode());
 
-    assertFalse(iban1.equals(null));
-    assertFalse(iban1.equals(new Object()));
-    assertFalse(iban1.equals(new Iban(VALID_IBAN2)));
+    assertNotEquals(null, iban1);
+    assertNotEquals(iban1, new Object());
+    assertNotEquals(iban1, new Iban(VALID_IBAN2));
+  }
+
+  private static Stream<Arguments> validIbans() {
+    return VALID_IBANS.stream().map(Arguments::of);
   }
 }

@@ -1,15 +1,23 @@
 package fr.marcwrobel.jbanking.creditor;
 
 import static fr.marcwrobel.jbanking.TestUtils.shouldHaveThrown;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.common.collect.Sets;
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.TestUtils;
-import java.util.Set;
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link fr.marcwrobel.jbanking.creditor.CreditorIdentifier} class.
@@ -18,8 +26,8 @@ import org.junit.Test;
  */
 public class CreditorIdentifierTest {
 
-  private static final Set<String> VALID_CREDITOR_IDENTIFIERS =
-      Sets.newHashSet(
+  private static final List<String> VALID_CREDITOR_IDENTIFIERS =
+      Arrays.asList(
           "HR04ZZZ01234567890",
           "SK19ZZZ70000000022",
           "NO38ZZZ123456785",
@@ -81,19 +89,23 @@ public class CreditorIdentifierTest {
     assertFalse(CreditorIdentifier.isValid(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void aCreditorIdentifierCannotBeNull() {
-    new CreditorIdentifier(null);
+    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(null));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void aCreditorIdentifierCountryCannotBeNull() {
-    new CreditorIdentifier(null, VALID_CI_BUSINESS_CODE, "123456");
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new CreditorIdentifier(null, VALID_CI_BUSINESS_CODE, "123456"));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void aCreditorNationalIdCannotBeNull() {
-    new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, null);
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, null));
   }
 
   @Test
@@ -101,14 +113,17 @@ public class CreditorIdentifierTest {
     assertFalse(CreditorIdentifier.isValid(TestUtils.BLANK));
   }
 
-  @Test(expected = CreditorIdentifierFormatException.class)
+  @Test
   public void aCreditorIdentifierCannotBeBlank() {
-    new CreditorIdentifier(TestUtils.BLANK);
+    assertThrows(
+        CreditorIdentifierFormatException.class, () -> new CreditorIdentifier(TestUtils.BLANK));
   }
 
-  @Test(expected = CreditorIdentifierFormatException.class)
+  @Test
   public void aCreditorNationalIdCannotBeBlank() {
-    new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, TestUtils.BLANK);
+    assertThrows(
+        CreditorIdentifierFormatException.class,
+        () -> new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, TestUtils.BLANK));
   }
 
   @Test
@@ -118,13 +133,12 @@ public class CreditorIdentifierTest {
 
   @Test
   public void aCreditorIdMustBeFromAKnownCountry() {
-    try {
-      new CreditorIdentifier(CI_WITH_UNKNOWN_COUNTRY);
-      shouldHaveThrown(CreditorIdentifierFormatException.class);
-    } catch (CreditorIdentifierFormatException e) {
-      assertEquals(CI_WITH_UNKNOWN_COUNTRY, e.getInputString());
-      assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
-    }
+    CreditorIdentifierFormatException e =
+        assertThrows(
+            CreditorIdentifierFormatException.class,
+            () -> new CreditorIdentifier(CI_WITH_UNKNOWN_COUNTRY));
+    assertEquals(CI_WITH_UNKNOWN_COUNTRY, e.getInputString());
+    assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
   }
 
   @Test
@@ -185,54 +199,44 @@ public class CreditorIdentifierTest {
     assertEquals(VALID_CI_NATIONAL_ID, creditorId.getNationalIdentifier());
   }
 
-  @Test
-  public void validCreditorIdentifiersTest() {
-    for (String creditorIdString : VALID_CREDITOR_IDENTIFIERS) {
-      assertTrue(
-          String.format("%s should be valid", creditorIdString),
-          CreditorIdentifier.isValid(creditorIdString));
+  @ParameterizedTest
+  @MethodSource("validCreditorIdentifiers")
+  public void validCreditorIdentifiersTest(String value) {
+    assertTrue(CreditorIdentifier.isValid(value));
 
-      CreditorIdentifier creditorId = new CreditorIdentifier(creditorIdString);
-      String countryCode = creditorIdString.substring(0, 2);
-      String businessCode = creditorIdString.substring(4, 7);
-      String nationalId = creditorIdString.substring(7);
-      assertEquals(
-          String.format("%s not properly calculated", creditorId),
-          creditorId,
-          new CreditorIdentifier(IsoCountry.fromCode(countryCode), businessCode, nationalId));
-    }
+    CreditorIdentifier creditorId = new CreditorIdentifier(value);
+    String countryCode = value.substring(0, 2);
+    String businessCode = value.substring(4, 7);
+    String nationalId = value.substring(7);
+    assertEquals(
+        creditorId,
+        new CreditorIdentifier(IsoCountry.fromCode(countryCode), businessCode, nationalId));
   }
 
-  @Test
-  public void creditorIdValidationIsNotCaseSensitive() {
-    for (String creditorId : VALID_CREDITOR_IDENTIFIERS) {
-      String lowerCaseCreditorIdentifier = creditorId.toLowerCase();
-      assertTrue(
-          String.format("%s should be valid", lowerCaseCreditorIdentifier),
-          CreditorIdentifier.isValid(lowerCaseCreditorIdentifier));
-    }
+  @ParameterizedTest
+  @MethodSource("validCreditorIdentifiers")
+  public void creditorIdValidationIsNotCaseSensitive(String value) {
+    String lowerCaseCreditorIdentifier = value.toLowerCase();
+    assertTrue(CreditorIdentifier.isValid(lowerCaseCreditorIdentifier));
   }
 
-  @Test
-  public void creditorIdCreationIsNotCaseSensitive() {
-    for (String creditorId : VALID_CREDITOR_IDENTIFIERS) {
-      new CreditorIdentifier(creditorId.toLowerCase());
-    }
+  @ParameterizedTest
+  @MethodSource("validCreditorIdentifiers")
+  public void creditorIdCreationIsNotCaseSensitive(String value) {
+    assertDoesNotThrow(() -> new CreditorIdentifier(value.toLowerCase()));
   }
 
-  @Test
-  public void creditorIdFromBbanCreationIsNotCaseSensitive() {
-    for (String creditorId : VALID_CREDITOR_IDENTIFIERS) {
-      String countryCode = creditorId.substring(0, 2);
-      String businessCode = creditorId.substring(4, 7);
-      String nationalId = creditorId.substring(7);
-      assertEquals(
-          String.format("%s not properly calculated", creditorId),
-          creditorId,
-          new CreditorIdentifier(
-                  IsoCountry.fromCode(countryCode), businessCode, nationalId.toLowerCase())
-              .toString());
-    }
+  @ParameterizedTest
+  @MethodSource("validCreditorIdentifiers")
+  public void creditorIdFromBbanCreationIsNotCaseSensitive(String value) {
+    String countryCode = value.substring(0, 2);
+    String businessCode = value.substring(4, 7);
+    String nationalId = value.substring(7);
+    assertEquals(
+        value,
+        new CreditorIdentifier(
+                IsoCountry.fromCode(countryCode), businessCode, nationalId.toLowerCase())
+            .toString());
   }
 
   @Test
@@ -250,21 +254,25 @@ public class CreditorIdentifierTest {
     CreditorIdentifier creditorId2 = new CreditorIdentifier(creditorId1.toString());
     CreditorIdentifier creditorId3 = new CreditorIdentifier(VALID_CI.toLowerCase());
 
-    assertTrue(creditorId1.equals(creditorId1));
-    assertTrue(creditorId2.equals(creditorId2));
-    assertTrue(creditorId3.equals(creditorId3));
+    assertEquals(creditorId1, creditorId1);
+    assertEquals(creditorId2, creditorId2);
+    assertEquals(creditorId3, creditorId3);
 
-    assertTrue(creditorId1.equals(creditorId2));
-    assertTrue(creditorId2.equals(creditorId1));
-    assertTrue(creditorId2.equals(creditorId3));
-    assertTrue(creditorId3.equals(creditorId2));
-    assertTrue(creditorId1.equals(creditorId3));
-    assertTrue(creditorId3.equals(creditorId1));
-    assertTrue(creditorId1.hashCode() == creditorId2.hashCode());
-    assertTrue(creditorId2.hashCode() == creditorId3.hashCode());
+    assertEquals(creditorId1, creditorId2);
+    assertEquals(creditorId2, creditorId1);
+    assertEquals(creditorId2, creditorId3);
+    assertEquals(creditorId3, creditorId2);
+    assertEquals(creditorId1, creditorId3);
+    assertEquals(creditorId3, creditorId1);
+    assertEquals(creditorId1.hashCode(), creditorId2.hashCode());
+    assertEquals(creditorId2.hashCode(), creditorId3.hashCode());
 
-    assertFalse(creditorId1.equals(null));
-    assertFalse(creditorId1.equals(new Object()));
-    assertFalse(creditorId1.equals(new CreditorIdentifier(VALID_CI2)));
+    assertNotNull(creditorId1);
+    assertNotEquals(creditorId1, new Object());
+    assertNotEquals(creditorId1, new CreditorIdentifier(VALID_CI2));
+  }
+
+  private static Stream<Arguments> validCreditorIdentifiers() {
+    return VALID_CREDITOR_IDENTIFIERS.stream().map(Arguments::of);
   }
 }
