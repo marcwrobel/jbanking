@@ -30,4 +30,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
-        run: mvn --settings .mvn/settings.xml -B -P sonar verify sonar:sonar
+        run: mvn --settings .mvn/settings.xml -B -P analyze verify sonar:sonar
