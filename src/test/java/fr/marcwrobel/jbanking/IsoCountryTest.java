@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CountryCode.Assignment;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -58,6 +59,15 @@ public class IsoCountryTest {
             .collect(Collectors.toList());
 
     assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
-    assertEquals(allCountries.size(), IsoCountry.values().length);
+  }
+
+  @Test
+  public void ensureNoDeprecated() {
+    List<IsoCountry> deprecated =
+        Arrays.stream(IsoCountry.values())
+            .filter(c -> CountryCode.getByCode(c.getCode()) == null)
+            .collect(Collectors.toList());
+
+    assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
   }
 }

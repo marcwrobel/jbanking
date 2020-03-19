@@ -8,12 +8,11 @@ import java.util.Set;
  * The currencies having an ISO 4217 code.
  *
  * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for
- * free on the <a href="http://www.iso.org/iso/home/standards/currency_codes.htm">International
- * Organization for Standardization website</a>.
+ * free on the <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">
+ * currency-iso.org</a>.
  *
  * @author Marc Wrobel
- * @see <a
- *     href="http://www.iso.org/iso/home/standards/currency_codes.htm">http://www.iso.org/iso/home/standards/currency_codes.htm</a>.
+ * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>.
  * @since 1.0
  */
 public enum IsoCurrency {
@@ -41,10 +40,10 @@ public enum IsoCurrency {
   BAHT("THB", 764, 2, IsoCountry.THAILAND),
   BALBOA("PAB", 590, 2, IsoCountry.PANAMA),
   BARBADOS_DOLLAR("BBD", 52, 2, IsoCountry.BARBADOS),
-  BELARUSSIAN_RUBLE("BYR", 974, 0, IsoCountry.BELARUS),
+  BELARUSIAN_RUBLE("BYN", 933, 2, IsoCountry.BELARUS),
   BELIZE_DOLLAR("BZD", 84, 2, IsoCountry.BELIZE),
   BERMUDIAN_DOLLAR("BMD", 60, 2, IsoCountry.BERMUDA),
-  BOLIVAR("VEF", 937, 2, IsoCountry.VENEZUELA),
+  BOLIVAR_SOBERANO("VES", 928, 2, IsoCountry.VENEZUELA),
   BOLIVIANO("BOB", 68, 2, IsoCountry.BOLIVIA),
   BRAZILIAN_REAL("BRL", 986, 2, IsoCountry.BRAZIL),
   BRUNEI_DOLLAR("BND", 96, 2, IsoCountry.BRUNEI_DARUSSALAM),
@@ -96,7 +95,7 @@ public enum IsoCurrency {
   DANISH_KRONE("DKK", 208, 2, IsoCountry.DENMARK, IsoCountry.FAROE_ISLANDS, IsoCountry.GREENLAND),
   DENAR("MKD", 807, 2, IsoCountry.MACEDONIA),
   DJIBOUTI_FRANC("DJF", 262, 0, IsoCountry.DJIBOUTI),
-  DOBRA("STD", 678, 2, IsoCountry.SAO_TOME_AND_PRINCIPE),
+  DOBRA("STN", 930, 2, IsoCountry.SAO_TOME_AND_PRINCIPE),
   DOMINICAN_PESO("DOP", 214, 2, IsoCountry.DOMINICAN_REPUBLIC),
   DONG("VND", 704, 0, IsoCountry.VIET_NAM),
   EAST_CARIBBEAN_DOLLAR(
@@ -154,7 +153,8 @@ public enum IsoCurrency {
       IsoCountry.FRANCE,
       IsoCountry.AUSTRIA,
       IsoCountry.CYPRUS,
-      IsoCountry.KOSOVO),
+      IsoCountry.KOSOVO,
+      IsoCountry.LATVIA),
   FALKLAND_ISLANDS_POUND("FKP", 238, 2, IsoCountry.FALKLAND_ISLANDS),
   FIJI_DOLLAR("FJD", 242, 2, IsoCountry.FIJI),
   FORINT("HUF", 348, 2, IsoCountry.HUNGARY),
@@ -181,7 +181,6 @@ public enum IsoCurrency {
   KWANZA("AOA", 973, 2, IsoCountry.ANGOLA),
   KYAT("MMK", 104, 2, IsoCountry.MYANMAR),
   LARI("GEL", 981, 2, IsoCountry.GEORGIA),
-  LATVIAN_LATS("LVL", 428, 2, IsoCountry.LATVIA),
   LEBANESE_POUND("LBP", 422, 2, IsoCountry.LEBANON),
   LEK("ALL", 8, 2, IsoCountry.ALBANIA),
   LEMPIRA("HNL", 340, 2, IsoCountry.HONDURAS),
@@ -235,7 +234,7 @@ public enum IsoCurrency {
       IsoCountry.BOUVET_ISLAND),
   NUEVO_SOL("PEN", 604, 2, IsoCountry.PERU),
   NO_CURRENCY("XXX", 999, null),
-  OUGUIYA("MRO", 478, 2, IsoCountry.MAURITANIA),
+  OUGUIYA("MRU", 929, 2, IsoCountry.MAURITANIA),
   PAKISTAN_RUPEE("PKR", 586, 2, IsoCountry.PAKISTAN),
   PALLADIUM("XPD", 964, null),
   PATACA("MOP", 446, 2, IsoCountry.MACAO),
@@ -293,7 +292,6 @@ public enum IsoCurrency {
   TESTING_CODE("XTS", 963, null),
   UAE_DIRHAM("AED", 784, 2, IsoCountry.UNITED_ARAB_EMIRATES),
   UGANDA_SHILLING("UGX", 800, 0, IsoCountry.UGANDA),
-  UIC_FRANC("XFU", null, null),
   UNIDAD_DE_VALOR_REAL("COU", 970, 2, IsoCountry.COLOMBIA),
   UNIDADES_DE_FOMENTO("CLF", 990, 0, IsoCountry.CHILE),
   URUGUAY_PESO_EN_UNIDADES_INDEXADAS("UYI", 940, 0, IsoCountry.URUGUAY),
@@ -365,8 +363,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency ISO 4217 numeric code.
    *
-   * @return an Integer or null if this country is {@link #UIC_FRANC} or {@link
-   *     #NO_UNIVERSAL_CURRENCY}.
+   * @return an Integer or null if this country is {@link #NO_UNIVERSAL_CURRENCY}.
    */
   public Integer getNumericCode() {
     return numericCode;
