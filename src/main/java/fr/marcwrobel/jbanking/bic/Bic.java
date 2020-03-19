@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>.
+ *     href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
  * @since 1.0
  */
 public final class Bic {

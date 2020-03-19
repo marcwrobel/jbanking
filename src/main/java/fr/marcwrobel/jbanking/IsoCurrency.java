@@ -12,7 +12,7 @@ import java.util.Set;
  * currency-iso.org</a>.
  *
  * @author Marc Wrobel
- * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>.
+ * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>
  * @since 1.0
  */
 public enum IsoCurrency {
@@ -410,8 +410,7 @@ public enum IsoCurrency {
   /**
    * Translate the given ISO 4217 numeric code to an IsoCurrency.
    *
-   * <p>This method allows null. In this case {@link #NO_UNIVERSAL_CURRENCY} is always returned (and
-   * not {@link #UIC_FRANC}).
+   * <p>This method allows null. In this case {@link #NO_UNIVERSAL_CURRENCY} is always returned.
    *
    * @param code An Integer, null or not.
    * @return the currency having the given ISO 4217 numerical code ({@link #NO_UNIVERSAL_CURRENCY}

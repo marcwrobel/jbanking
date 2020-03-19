@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Build
-        run: mvn -B verify
+        run: mvn -B verify javadoc:jar
 
   analyze:
     runs-on: ubuntu-latest

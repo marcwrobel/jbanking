@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * constructions :<br>
  * <b>Character representations :</b>
  *
- * <table>
+ * <table summary="Character representations">
  * <tr><td>n</td><td>digits (numeric characters 0 to 9 only)</td></tr>
  * <tr><td>a</td><td>upper case letters (alphabetic characters A-Z only)</td></tr>
  * <tr><td>c</td><td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td></tr>
@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  *
  * <b>Length indications :</b>
  *
- * <table>
+ * <table summary="Length indications">
  * <tr><td>nn!</td><td>fixed length</td></tr>
  * <tr><td>nn</td><td>maximum length</td></tr>
  * </table>
@@ -75,6 +75,7 @@ public final class SwiftPattern {
    * Compiles the given SWIFT expression into a SwiftPattern.
    *
    * @param expression The expression to be compiled
+   * @return a SwiftPattern representing the given expression
    * @throws SwiftPatternSyntaxException If the expression's syntax is invalid.
    */
   public static SwiftPattern compile(String expression) {
@@ -143,7 +144,7 @@ public final class SwiftPattern {
   /**
    * Returns the SWIFT expression from which this pattern was compiled.
    *
-   * @return a non null expression that matches {@value #}.
+   * @return a non null string.
    */
   public String getExpression() {
     return expression;

@@ -12,8 +12,7 @@ package fr.marcwrobel.jbanking;
  * Organization for Standardization website</a>.
  *
  * @author Marc Wrobel
- * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country
- *     Codes</a>.
+ * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country Codes</a>
  * @since 1.0
  */
 public enum IsoCountry {

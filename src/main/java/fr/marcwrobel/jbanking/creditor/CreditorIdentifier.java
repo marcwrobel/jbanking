@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
  * A Creditor Identifier (CI) Code as specified by the <a
  * href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC</a>.
  *
- * <p>
- *
  * <p>CI structure:
  *
  * <ul>
@@ -20,12 +18,8 @@ import java.util.regex.Pattern;
  *       identifier of the Creditor, as defined by the National Community.
  * </ul>
  *
- * <p>
- *
  * <p>This class handles validation of the check digit and validation of the Creditor Identifier
  * Structure described above without going into the validation of the national identifier.
- *
- * <p>
  *
  * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *

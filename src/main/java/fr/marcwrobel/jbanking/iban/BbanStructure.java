@@ -14,7 +14,7 @@ import java.util.Set;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>.
+ *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>
  * @since 1.0
  */
 @SuppressWarnings("java:S1192") // swift expressions cannot be constants (maintainability).

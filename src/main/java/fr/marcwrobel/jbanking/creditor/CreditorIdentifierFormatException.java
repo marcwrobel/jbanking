@@ -27,6 +27,9 @@ public class CreditorIdentifierFormatException extends RuntimeException {
   /**
    * Creates a {@code CreditorIdentifierFormatException} telling the given Creditor Identifier is
    * not properly formatted.
+   *
+   * @param input a string
+   * @return a non-null {@code CreditorIdentifierFormatException}
    */
   public static CreditorIdentifierFormatException forNotProperlyFormattedInput(String input) {
     return new CreditorIdentifierFormatException(
