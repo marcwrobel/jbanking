@@ -3,7 +3,7 @@
 [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=coverage)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=bugs)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/fr.marcwrobel/jbanking/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fr.marcwrobel/jbanking)
+[![Maven Central](https://img.shields.io/maven-central/v/fr.marcwrobel/jbanking.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22fr.marcwrobel%22%20AND%20a:%22jbanking%22)
 
 # jbanking - A Java banking API
 jbanking is a library of utilities to assist with developing banking functionalities.
