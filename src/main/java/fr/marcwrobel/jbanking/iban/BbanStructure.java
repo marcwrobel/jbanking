@@ -13,8 +13,7 @@ import java.util.Set;
  * <p>It is based on the document <i>IBAN REGISTRY Release 86</i> issued by SWIFT on January 2020.
  *
  * @author Marc Wrobel
- * @see <a
- *     href="https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu">https://www.swift.com/standards/data-standards/iban?tl=en#topic-tabs-menu</a>
+ * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */
 @SuppressWarnings("java:S1192") // swift expressions cannot be constants (maintainability).

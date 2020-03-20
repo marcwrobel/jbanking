@@ -10,7 +10,7 @@ package fr.marcwrobel.jbanking.iban;
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://en.wikipedia.org/wiki/International_Bank_Account_Number">http://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
+ *     href="http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>
  * @see <a
  *     href="http://svn.apache.org/viewvc/commons/proper/validator/trunk/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java?view=co">IBANCheckDigit</a>
  * @since 1.0
