@@ -23,6 +23,7 @@
 
     <guava.version>29.0-jre</guava.version>
     <nv-i18n.version>1.27</nv-i18n.version>
+    <strata.version>2.7.6</strata.version>
   </properties>
 
   <dependencies>
@@ -30,12 +31,6 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.neovisionaries</groupId>
-      <artifactId>nv-i18n</artifactId>
-      <version>${nv-i18n.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -49,6 +44,17 @@
       <artifactId>junit-jupiter-params</artifactId>
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.neovisionaries</groupId>
+      <artifactId>nv-i18n</artifactId>
+      <version>${nv-i18n.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.opengamma.strata</groupId>
+      <artifactId>strata-basics</artifactId>
+      <version>${strata.version}</version>
     </dependency>
   </dependencies>
 

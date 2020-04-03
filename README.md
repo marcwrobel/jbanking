@@ -28,6 +28,12 @@ jbanking is supporting the following features :
   validation (for both checkdigit and national bank account number structure).
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
+* Configurable [holiday](https://wikipedia.org/wiki/Holiday) calendar support with predefined
+  calendars for :
+  * Frankfurt, London, Paris and Sydney financial districts,
+  * Federal Reserve Bank of New York (FED),
+  * New York Stock Exchange (NYSE),
+  * European Union TARGET system.
 
 
 ## Requirements

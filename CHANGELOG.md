@@ -13,6 +13,11 @@ This new release includes :
 - Countries' participation to _SEPA COM Pacifique_ (#46).
 - Countries' participation to _European Economic Area_ (#45).
 - Countries' participation to _European Free Trade Association_ (#45).
+- Holiday support with predefined calendars for :
+  - Frankfurt, London, Paris and Sydney financial districts,
+  - Federal Reserve Bank of New York (FED),
+  - New York Stock Exchange (NYSE),
+  - European Union TARGET system.
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).
