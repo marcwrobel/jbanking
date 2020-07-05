@@ -10,9 +10,10 @@ import java.util.Set;
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant
  * national IBAN formats.
  *
- * <p>It is based on the document <i>IBAN REGISTRY Release 86</i> issued by SWIFT on January 2020.
+ * <p>It is based on the document <i>IBAN REGISTRY Release 87</i> issued by SWIFT in May 2020.
  *
  * @author Marc Wrobel
+ * @author Matthias Kay
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */
@@ -93,7 +94,7 @@ public enum BbanStructure {
   ROMANIA(IsoCountry.ROMANIA, "4!a16!c"),
   SAINT_LUCIA(IsoCountry.SAINT_LUCIA, "4!a24!c"),
   SAN_MARINO(IsoCountry.SAN_MARINO, "1!a5!n5!n12!c"),
-  SAO_TOME_AND_PRINCIPE(IsoCountry.SAO_TOME_AND_PRINCIPE, "4!n4!n11!n2!n"),
+  SAO_TOME_AND_PRINCIPE(IsoCountry.SAO_TOME_AND_PRINCIPE, "8!n11!n2!n"),
   SAUDI_ARABIA(IsoCountry.SAUDI_ARABIA, "2!n18!c"),
   SERBIA(IsoCountry.SERBIA, "3!n13!n2!n"),
   SEYCHELLES(IsoCountry.SEYCHELLES, "4!a2!n2!n16!n3!a"),
