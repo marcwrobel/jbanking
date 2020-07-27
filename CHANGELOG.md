@@ -8,6 +8,7 @@ This new release includes :
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).
+- Upgrade to parent 2.3.0 (#40).
 
 ### Fixed
 - Sonar analysis fails on merge requests (#39).
