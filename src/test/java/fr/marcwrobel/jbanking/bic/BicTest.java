@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Marc Wrobel
  */
-public class BicTest {
+class BicTest {
 
   private static final String INSTITUTION_CODE = "BNPA";
   private static final String COUNTRY_CODE = IsoCountry.FRANCE.getCode();
@@ -37,27 +37,27 @@ public class BicTest {
   private static final String VALID_BIC11_LOWERCASE = VALID_BIC11.toLowerCase();
 
   @Test
-  public void nullIsNotValid() {
+  void nullIsNotValid() {
     assertFalse(Bic.isValid(null));
   }
 
   @Test
-  public void aBicCannotBeNull() {
+  void aBicCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> new Bic(null));
   }
 
   @Test
-  public void aBicCannotBeBlank() {
+  void aBicCannotBeBlank() {
     assertThrows(BicFormatException.class, () -> new Bic(BLANK));
   }
 
   @Test
-  public void blankIsNotValid() {
+  void blankIsNotValid() {
     assertFalse(Bic.isValid(BLANK));
   }
 
   @Test
-  public void aBicMustBeProperlyFormatted() {
+  void aBicMustBeProperlyFormatted() {
     BicFormatException e =
         assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_FORMAT));
     assertEquals(BIC_WITH_INVALID_FORMAT, e.getInputString());
@@ -65,12 +65,12 @@ public class BicTest {
   }
 
   @Test
-  public void aStringWithInvalidFormatIsNotValid() {
+  void aStringWithInvalidFormatIsNotValid() {
     assertFalse(Bic.isValid(BIC_WITH_INVALID_FORMAT));
   }
 
   @Test
-  public void aBicCountryCodeMustBeKnown() {
+  void aBicCountryCodeMustBeKnown() {
     BicFormatException e =
         assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_COUNTRY_CODE));
     assertEquals(BIC_WITH_INVALID_COUNTRY_CODE, e.getInputString());
@@ -78,37 +78,37 @@ public class BicTest {
   }
 
   @Test
-  public void aStringWithInvalidCountryCodeIsNotValid() {
+  void aStringWithInvalidCountryCodeIsNotValid() {
     assertFalse(Bic.isValid(BIC_WITH_INVALID_COUNTRY_CODE));
   }
 
   @Test
-  public void validBic8AreAllowed() {
+  void validBic8AreAllowed() {
     assertDoesNotThrow(() -> new Bic(VALID_BIC8));
   }
 
   @Test
-  public void aValidBic8IsValid() {
+  void aValidBic8IsValid() {
     assertTrue(Bic.isValid(VALID_BIC8));
   }
 
   @Test
-  public void validBic11AreAllowed() {
+  void validBic11AreAllowed() {
     assertDoesNotThrow(() -> new Bic(VALID_BIC11));
   }
 
   @Test
-  public void aValidBic11IsValid() {
+  void aValidBic11IsValid() {
     assertTrue(Bic.isValid(VALID_BIC11));
   }
 
   @Test
-  public void bicIsCaseInsensitive() {
+  void bicIsCaseInsensitive() {
     assertDoesNotThrow(() -> new Bic(VALID_BIC11_LOWERCASE));
   }
 
   @Test
-  public void bicDecompositionTest() {
+  void bicDecompositionTest() {
     Bic bic = new Bic(VALID_BIC8);
     assertEquals(INSTITUTION_CODE, bic.getInstitutionCode());
     assertEquals(COUNTRY_CODE, bic.getCountryCode());
@@ -117,7 +117,7 @@ public class BicTest {
   }
 
   @Test
-  public void liveBicTest() {
+  void liveBicTest() {
     Bic liveBic = new Bic(VALID_BIC11);
     assertTrue(liveBic.isLiveBic());
     assertFalse(liveBic.isTestBic());
@@ -128,7 +128,7 @@ public class BicTest {
   }
 
   @Test
-  public void testBicTest() {
+  void testBicTest() {
     Bic testBic = new Bic(VALID_BIC11_TEST);
     assertFalse(testBic.isLiveBic());
     assertTrue(testBic.isTestBic());
@@ -137,7 +137,7 @@ public class BicTest {
   }
 
   @Test
-  public void testBicTransformationTest() {
+  void testBicTransformationTest() {
     Bic liveBic = new Bic(VALID_BIC11);
     Bic testBic = new Bic(VALID_BIC11_TEST);
     Bic liveBicAsTestBic = liveBic.asTestBic();
@@ -147,7 +147,7 @@ public class BicTest {
   }
 
   @Test
-  public void equalityTest() {
+  void equalityTest() {
     Bic bic1 = new Bic(VALID_BIC8);
     Bic bic2 = new Bic(VALID_BIC11);
     Bic bic3 = new Bic(VALID_BIC8_LOWERCASE);
@@ -170,7 +170,7 @@ public class BicTest {
   }
 
   @Test
-  public void toStringReturnsANormalizedBic() {
+  void toStringReturnsANormalizedBic() {
     Bic bic = new Bic(VALID_BIC8_LOWERCASE);
     assertEquals(VALID_BIC11, bic.toString());
   }

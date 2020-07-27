@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Marc Wrobel
  */
-public class IbanCheckDigitTest {
+class IbanCheckDigitTest {
 
   // Generated using
   // http://www.mobilefish.com/services/random_iban_generator/random_iban_generator.php
@@ -92,28 +92,28 @@ public class IbanCheckDigitTest {
           "ZZ70JJXD3109729650459XALAO5L68UDTR1");
 
   @Test
-  public void nullIsNotValidForCalculation() {
+  void nullIsNotValidForCalculation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate(null));
   }
 
   @Test
-  public void nullIsNotValidForValidation() {
+  void nullIsNotValidForValidation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate(null));
   }
 
   @Test
-  public void ibanSizeLowerThanFourIsNotValidForCalculation() {
+  void ibanSizeLowerThanFourIsNotValidForCalculation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate("123"));
   }
 
   @Test
-  public void ibanSizeLowerThanFourIsIsNotValidForValidation() {
+  void ibanSizeLowerThanFourIsIsNotValidForValidation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate("123"));
   }
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void ibanComputation(String iban) {
+  void ibanComputation(String iban) {
     String countryCode = iban.substring(0, 2);
     String checkDigit = iban.substring(2, 4);
     String bban = iban.substring(4);
@@ -122,12 +122,12 @@ public class IbanCheckDigitTest {
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void ibanValidation(String iban) {
+  void ibanValidation(String iban) {
     assertTrue(IbanCheckDigit.INSTANCE.validate(iban));
   }
 
   @Test
-  public void invalidIbanValidation() {
+  void invalidIbanValidation() {
     assertFalse(IbanCheckDigit.INSTANCE.validate("FR45123"));
   }
 

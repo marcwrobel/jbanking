@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test;
  *
  * @author Marc Wrobel
  */
-public class SwiftPatternTest {
+class SwiftPatternTest {
 
   @Test
-  public void aSwiftPatternCannotBeNull() {
+  void aSwiftPatternCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> SwiftPattern.compile(null));
   }
 
   @Test
-  public void aSwiftPatternMustBeWellFormed() {
+  void aSwiftPatternMustBeWellFormed() {
     String invalidPattern = "2!n3d";
 
     SwiftPatternSyntaxException e =
@@ -31,7 +31,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void digitsFormatTest() {
+  void digitsFormatTest() {
     String expression = "10n";
     assertMatches("1", expression);
     assertMatches("12", expression);
@@ -40,7 +40,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void strictDigitsFormatTest() {
+  void strictDigitsFormatTest() {
     String expression = "5!n";
     assertMatches("12345", expression);
     assertNotMatches("123", expression);
@@ -49,7 +49,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void upperCaseLettersFormatTest() {
+  void upperCaseLettersFormatTest() {
     String expression = "2a";
     assertMatches("A", expression);
     assertMatches("AB", expression);
@@ -58,7 +58,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void strictUpperCaseLettersFormatTest() {
+  void strictUpperCaseLettersFormatTest() {
     String expression = "5!a";
     assertMatches("ABCDE", expression);
     assertNotMatches("ABC", expression);
@@ -67,7 +67,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void upperAndLowerCaseAlphanumericsFormatTest() {
+  void upperAndLowerCaseAlphanumericsFormatTest() {
     String expression = "2c";
     assertMatches("1", expression);
     assertMatches("A", expression);
@@ -80,7 +80,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void strictUpperAndLowerCaseAlphanumericsFormatTest() {
+  void strictUpperAndLowerCaseAlphanumericsFormatTest() {
     String expression = "5!c";
     assertMatches("Ab1De", expression);
     assertNotMatches("Ab1", expression);
@@ -90,7 +90,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void multipleBasicExpressionTest() {
+  void multipleBasicExpressionTest() {
     String expression = "2!c18!c";
     assertMatches("01234567890123456789", expression);
     assertNotMatches("Ab1", expression);
@@ -100,7 +100,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void mixedFormatTest() {
+  void mixedFormatTest() {
     String expression = "2!n3!c1!a2e";
     assertMatches("12a1cC  ", expression);
     assertNotMatches("12", expression);
@@ -121,7 +121,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void transformationTest() {
+  void transformationTest() {
     String expression = "5!n";
     SwiftPattern pattern = SwiftPattern.compile(expression);
     assertEquals(expression, pattern.getExpression());
@@ -129,7 +129,7 @@ public class SwiftPatternTest {
   }
 
   @Test
-  public void equalityTest() {
+  void equalityTest() {
     SwiftPattern pattern1 = SwiftPattern.compile("4!n");
     SwiftPattern pattern2 = SwiftPattern.compile("4!n");
 

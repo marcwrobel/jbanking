@@ -18,32 +18,32 @@ import org.junit.jupiter.api.Test;
  *
  * @author Marc Wrobel
  */
-public class IsoCountryTest {
+class IsoCountryTest {
 
   @Test
-  public void fromCodeAllowsNull() {
+  void fromCodeAllowsNull() {
     assertNull(IsoCountry.fromCode(null));
   }
 
   @Test
-  public void fromCodeAllowsUnknownOrInvalidCodes() {
+  void fromCodeAllowsUnknownOrInvalidCodes() {
     assertNull(IsoCountry.fromCode("XXX"));
   }
 
   @Test
-  public void fromCodeIsNotCaseSensitive() {
+  void fromCodeIsNotCaseSensitive() {
     assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(IsoCountry.FRANCE.getCode().toLowerCase()));
   }
 
   @Test
-  public void fromCodeWorksWithExistingValues() {
+  void fromCodeWorksWithExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
       assertEquals(country, IsoCountry.fromCode(country.getCode()));
     }
   }
 
   @Test
-  public void ensureCompleteness() {
+  void ensureCompleteness() {
     Set<Assignment> assignments =
         EnumSet.of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
 
@@ -62,7 +62,7 @@ public class IsoCountryTest {
   }
 
   @Test
-  public void ensureNoDeprecated() {
+  void ensureNoDeprecated() {
     List<IsoCountry> deprecated =
         Arrays.stream(IsoCountry.values())
             .filter(c -> CountryCode.getByCode(c.getCode()) == null)

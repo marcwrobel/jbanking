@@ -23,7 +23,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Marc Wrobel
  */
-public class IbanTest {
+class IbanTest {
 
   private static final Set<String> VALID_IBANS =
       Sets.newHashSet(
@@ -126,47 +126,47 @@ public class IbanTest {
   private static final String IBAN_WITH_INVALID_BBAN_STRUCTURE = "GB72MIDLA0051539024150";
 
   @Test
-  public void nullIsNotAValidIban() {
+  void nullIsNotAValidIban() {
     assertFalse(Iban.isValid(null));
   }
 
   @Test
-  public void anIbanCannotBeNull() {
+  void anIbanCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> new Iban(null));
   }
 
   @Test
-  public void anIbanCountryCannotBeNull() {
+  void anIbanCountryCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> new Iban(null, "123456"));
   }
 
   @Test
-  public void anIbanBbanCannotBeNull() {
+  void anIbanBbanCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> new Iban(IsoCountry.FRANCE, null));
   }
 
   @Test
-  public void blankIsNotAValidIban() {
+  void blankIsNotAValidIban() {
     assertFalse(Iban.isValid(TestUtils.BLANK));
   }
 
   @Test
-  public void anIbanCannotBeBlank() {
+  void anIbanCannotBeBlank() {
     assertThrows(IbanFormatException.class, () -> new Iban(TestUtils.BLANK));
   }
 
   @Test
-  public void anIbanBbanCannotBeBlank() {
+  void anIbanBbanCannotBeBlank() {
     assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.FRANCE, TestUtils.BLANK));
   }
 
   @Test
-  public void ibanWithUnknownCountryIsNotValid() {
+  void ibanWithUnknownCountryIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_UNKNOWN_COUNTRY));
   }
 
   @Test
-  public void anIbanMustBeFromAKnownCountry() {
+  void anIbanMustBeFromAKnownCountry() {
     try {
       new Iban(IBAN_WITH_UNKNOWN_COUNTRY);
       shouldHaveThrown(IbanFormatException.class);
@@ -177,12 +177,12 @@ public class IbanTest {
   }
 
   @Test
-  public void ibanWithUnsupportedCountryIsNotValid() {
+  void ibanWithUnsupportedCountryIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_UNSUPPORTED_COUNTRY));
   }
 
   @Test
-  public void anIbanMustBeFromASupportedCountry() {
+  void anIbanMustBeFromASupportedCountry() {
     try {
       new Iban(IBAN_WITH_UNSUPPORTED_COUNTRY);
       shouldHaveThrown(IbanFormatException.class);
@@ -193,7 +193,7 @@ public class IbanTest {
   }
 
   @Test
-  public void anIbanCountryMustBeSupported() {
+  void anIbanCountryMustBeSupported() {
     try {
       new Iban(IsoCountry.UNITED_STATES, VALID_IBAN_BBAN);
       shouldHaveThrown(IbanFormatException.class);
@@ -204,12 +204,12 @@ public class IbanTest {
   }
 
   @Test
-  public void notProperlyFormattedIbanIsNotValid() {
+  void notProperlyFormattedIbanIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_INVALID_FORMAT));
   }
 
   @Test
-  public void anIbanMustBeProperlyFormatted() {
+  void anIbanMustBeProperlyFormatted() {
     try {
       new Iban(IBAN_WITH_INVALID_FORMAT);
       shouldHaveThrown(IbanFormatException.class);
@@ -220,12 +220,12 @@ public class IbanTest {
   }
 
   @Test
-  public void notProperlyStructuredIbanIsNotValid() {
+  void notProperlyStructuredIbanIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_INVALID_BBAN_STRUCTURE));
   }
 
   @Test
-  public void anIbanMustBeProperlyStructured() {
+  void anIbanMustBeProperlyStructured() {
     try {
       new Iban(IBAN_WITH_INVALID_BBAN_STRUCTURE);
       shouldHaveThrown(IbanFormatException.class);
@@ -236,7 +236,7 @@ public class IbanTest {
   }
 
   @Test
-  public void anIbanBbanMustBeProperlyStructured() {
+  void anIbanBbanMustBeProperlyStructured() {
     try {
       new Iban(IsoCountry.FRANCE, BBAN_WITH_INVALID_FORMAT);
       shouldHaveThrown(IbanFormatException.class);
@@ -247,12 +247,12 @@ public class IbanTest {
   }
 
   @Test
-  public void anIbanWithInvalidCheckDigitsIsNotValid() {
+  void anIbanWithInvalidCheckDigitsIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_INVALID_CHECK_DIGIT));
   }
 
   @Test
-  public void anIbanMustHaveCorrectCheckDigit() {
+  void anIbanMustHaveCorrectCheckDigit() {
     try {
       new Iban(IBAN_WITH_INVALID_CHECK_DIGIT);
       shouldHaveThrown(IbanFormatException.class);
@@ -263,7 +263,7 @@ public class IbanTest {
   }
 
   @Test
-  public void validIbanDecomposition() {
+  void validIbanDecomposition() {
     assertTrue(Iban.isValid(VALID_IBAN));
     Iban iban = new Iban(VALID_IBAN);
     assertEquals(VALID_IBAN_COUNTRY, iban.getCountryCode());
@@ -273,7 +273,7 @@ public class IbanTest {
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void validIbansTest(String ibanString) {
+  void validIbansTest(String ibanString) {
     assertTrue(Iban.isValid(ibanString));
 
     Iban iban = new Iban(ibanString);
@@ -284,27 +284,27 @@ public class IbanTest {
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void ibanValidationIsNotCaseSensitive(String iban) {
+  void ibanValidationIsNotCaseSensitive(String iban) {
     String lowerCaseIban = iban.toLowerCase();
     assertTrue(Iban.isValid(lowerCaseIban));
   }
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void ibanCreationIsNotCaseSensitive(String iban) {
+  void ibanCreationIsNotCaseSensitive(String iban) {
     assertDoesNotThrow(() -> new Iban(iban.toLowerCase()));
   }
 
   @ParameterizedTest
   @MethodSource("validIbans")
-  public void ibanFromBbanCreationIsNotCaseSensitive(String iban) {
+  void ibanFromBbanCreationIsNotCaseSensitive(String iban) {
     String countryCode = iban.substring(0, 2);
     String bban = iban.substring(4);
     assertEquals(iban, new Iban(IsoCountry.fromCode(countryCode), bban.toLowerCase()).toString());
   }
 
   @Test
-  public void printableIbansAreValid() {
+  void printableIbansAreValid() {
     Iban iban = new Iban(VALID_IBAN);
     String printableIban = iban.toPrintableString();
 
@@ -313,7 +313,7 @@ public class IbanTest {
   }
 
   @Test
-  public void equalityTest() {
+  void equalityTest() {
     Iban iban1 = new Iban(VALID_IBAN);
     Iban iban2 = new Iban(iban1.toPrintableString());
     Iban iban3 = new Iban(VALID_IBAN.toLowerCase());

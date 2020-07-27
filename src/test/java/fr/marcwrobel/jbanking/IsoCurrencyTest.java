@@ -17,46 +17,46 @@ import org.junit.jupiter.api.Test;
  *
  * @author Marc Wrobel
  */
-public class IsoCurrencyTest {
+class IsoCurrencyTest {
 
   @Test
-  public void fromAlphaCodeAllowsNull() {
+  void fromAlphaCodeAllowsNull() {
     assertNull(IsoCurrency.fromAlphabeticCode(null));
   }
 
   @Test
-  public void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
+  void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
     assertNull(IsoCurrency.fromAlphabeticCode("AA"));
   }
 
   @Test
-  public void fromAlphaCodeIsNotCaseSensitive() {
+  void fromAlphaCodeIsNotCaseSensitive() {
     assertEquals(
         IsoCurrency.EURO,
         IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
   }
 
   @Test
-  public void fromAlphaCodeWorksWithExistingValues() {
+  void fromAlphaCodeWorksWithExistingValues() {
     for (IsoCurrency currency : IsoCurrency.values()) {
       assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
     }
   }
 
   @Test
-  public void fromNumericCodeAllowsNull() {
+  void fromNumericCodeAllowsNull() {
     assertEquals(IsoCurrency.NO_UNIVERSAL_CURRENCY, IsoCurrency.fromNumericCode(null));
   }
 
   @Test
-  public void fromNumericCodeAllowsUnknownOrInvalidCodes() {
+  void fromNumericCodeAllowsUnknownOrInvalidCodes() {
     assertNull(IsoCurrency.fromNumericCode(-1));
     assertNull(IsoCurrency.fromNumericCode(1));
     assertNull(IsoCurrency.fromNumericCode(1000));
   }
 
   @Test
-  public void ensureCompleteness() {
+  void ensureCompleteness() {
     Set<CurrencyCode> exclusion =
         EnumSet.of(
             CurrencyCode.UNDEFINED,
@@ -82,7 +82,7 @@ public class IsoCurrencyTest {
   }
 
   @Test
-  public void ensureNoDeprecated() {
+  void ensureNoDeprecated() {
     List<IsoCurrency> deprecated =
         Arrays.stream(IsoCurrency.values())
             .filter(c -> c != IsoCurrency.NO_UNIVERSAL_CURRENCY)

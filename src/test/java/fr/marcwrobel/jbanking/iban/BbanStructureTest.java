@@ -12,27 +12,27 @@ import org.junit.jupiter.api.Test;
  *
  * @author Marc Wrobel
  */
-public class BbanStructureTest {
+class BbanStructureTest {
 
   @Test
-  public void nullReturnsNull() {
+  void nullReturnsNull() {
     assertNull(BbanStructure.forCountry(null));
   }
 
   @Test
-  public void unsupportedCountryReturnsNull() {
+  void unsupportedCountryReturnsNull() {
     assertNull(BbanStructure.forCountry(IsoCountry.UNITED_STATES));
   }
 
   @Test
-  public void supportedCountryReturnsCorrespondingBbanDefinition() {
+  void supportedCountryReturnsCorrespondingBbanDefinition() {
     for (BbanStructure structure : BbanStructure.values()) {
       assertEquals(structure, BbanStructure.forCountry(structure.getCountry()));
     }
   }
 
   @Test
-  public void supportedCountrySubdivisionReturnsCorrespondingBbanDefinition() {
+  void supportedCountrySubdivisionReturnsCorrespondingBbanDefinition() {
     for (BbanStructure structure : BbanStructure.values()) {
       for (IsoCountry country : structure.getSubdivisions()) {
         assertEquals(structure, BbanStructure.forCountry(country));
@@ -41,7 +41,7 @@ public class BbanStructureTest {
   }
 
   @Test
-  public void isBbanValidCannotBeCalledWithNull() {
+  void isBbanValidCannotBeCalledWithNull() {
     assertThrows(IllegalArgumentException.class, () -> BbanStructure.ALBANIA.isBbanValid(null));
   }
 }
