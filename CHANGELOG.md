@@ -8,7 +8,8 @@ This new release includes :
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).
-- Upgrade to parent 2.3.0 (#40).
+- Upgrade to parent [2.3.0](https://github.com/marcwrobel/parent/releases/tag/v2.3.0) (#40).
+- Upgrade to guava [29.0](https://github.com/google/guava/releases/tag/v29.0) (#41).
 
 ### Fixed
 - Sonar analysis fails on merge requests (#39).
