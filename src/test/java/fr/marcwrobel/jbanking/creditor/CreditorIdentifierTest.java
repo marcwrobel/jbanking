@@ -102,6 +102,13 @@ class CreditorIdentifierTest {
   }
 
   @Test
+  void aCreditorIdentifierBusinessCodeCannotBeNull() {
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new CreditorIdentifier(IsoCountry.FRANCE, null, "123456"));
+  }
+
+  @Test
   void aCreditorNationalIdCannotBeNull() {
     assertThrows(
         IllegalArgumentException.class,
