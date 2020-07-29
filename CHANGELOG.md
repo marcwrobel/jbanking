@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This new release includes :
 - an alignment of the IBAN definitions to [IBAN Registry Release 87](https://www.swift.com/standards/data-standards/iban) (May 2020).
 
+### Added
+- Set jbanking `Automatic-Module-Name` to `fr.marcwrobel.jbanking` (#42).
+
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).
 - Upgrade to parent [2.3.0](https://github.com/marcwrobel/parent/releases/tag/v2.3.0) (#40).
