@@ -279,7 +279,7 @@ class IbanTest {
     Iban iban = new Iban(ibanString);
     String countryCode = ibanString.substring(0, 2);
     String bban = ibanString.substring(4);
-    assertEquals(iban, new Iban(IsoCountry.fromCode(countryCode), bban));
+    assertEquals(iban, new Iban(IsoCountry.fromAlpha2Code(countryCode), bban));
   }
 
   @ParameterizedTest
@@ -300,7 +300,8 @@ class IbanTest {
   void ibanFromBbanCreationIsNotCaseSensitive(String iban) {
     String countryCode = iban.substring(0, 2);
     String bban = iban.substring(4);
-    assertEquals(iban, new Iban(IsoCountry.fromCode(countryCode), bban.toLowerCase()).toString());
+    assertEquals(
+        iban, new Iban(IsoCountry.fromAlpha2Code(countryCode), bban.toLowerCase()).toString());
   }
 
   @Test

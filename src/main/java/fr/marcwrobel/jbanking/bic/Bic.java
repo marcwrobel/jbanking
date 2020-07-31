@@ -102,7 +102,7 @@ public final class Bic {
   }
 
   private static boolean hasKnownCountryCode(String s) {
-    return IsoCountry.fromCode(
+    return IsoCountry.fromAlpha2Code(
             s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH))
         != null;
   }

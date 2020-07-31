@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,26 +23,29 @@ class IsoCountryTest {
 
   @Test
   void fromCodeAllowsNull() {
-    assertNull(IsoCountry.fromCode(null));
+    assertNull(IsoCountry.fromAlpha2Code(null));
   }
 
   @Test
   void fromCodeAllowsUnknownOrInvalidCodes() {
-    assertNull(IsoCountry.fromCode("XXX"));
+    assertNull(IsoCountry.fromAlpha2Code("XXX"));
   }
 
   @Test
   void fromCodeIsNotCaseSensitive() {
-    assertEquals(IsoCountry.FRANCE, IsoCountry.fromCode(IsoCountry.FRANCE.getCode().toLowerCase()));
+    assertEquals(
+        IsoCountry.FRANCE,
+        IsoCountry.fromAlpha2Code(IsoCountry.FRANCE.getAlpha2Code().toLowerCase()));
   }
 
   @Test
   void fromCodeWorksWithExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
-      assertEquals(country, IsoCountry.fromCode(country.getCode()));
+      assertEquals(country, IsoCountry.fromAlpha2Code(country.getAlpha2Code()));
     }
   }
 
+  // using nv-i18n helps us keeping the enum up-to-date
   @Test
   void ensureCompleteness() {
     Set<Assignment> assignments =
@@ -55,17 +59,34 @@ class IsoCountryTest {
 
     List<CountryCode> undefinedCountries =
         allCountries.stream()
-            .filter(c -> IsoCountry.fromCode(c.getAlpha2()) == null)
+            .filter(c -> IsoCountry.fromAlpha2Code(c.getAlpha2()) == null)
             .collect(Collectors.toList());
 
     assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
+  }
+
+  // using nv-i18n helps us keeping the enum exact
+  @Test
+  void ensureExactness() {
+    for (IsoCountry country : IsoCountry.values()) {
+      CountryCode code = CountryCode.getByAlpha2Code(country.getAlpha2Code());
+      assertNotNull(code);
+      assertEquals(code.getAlpha2(), country.getAlpha2Code());
+      assertEquals(code.getAlpha3(), country.getAlpha3Code());
+
+      if (country.getNumericCode() != null) {
+        assertEquals(code.getNumeric(), country.getNumericCode());
+      } else {
+        assertEquals(code.getNumeric(), -1);
+      }
+    }
   }
 
   @Test
   void ensureNoDeprecated() {
     List<IsoCountry> deprecated =
         Arrays.stream(IsoCountry.values())
-            .filter(c -> CountryCode.getByCode(c.getCode()) == null)
+            .filter(c -> CountryCode.getByCode(c.getAlpha2Code()) == null)
             .collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);

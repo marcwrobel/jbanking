@@ -55,6 +55,7 @@ class IsoCurrencyTest {
     assertNull(IsoCurrency.fromNumericCode(1000));
   }
 
+  // using nv-i18n helps us keeping the enum up-to-date
   @Test
   void ensureCompleteness() {
     Set<CurrencyCode> exclusion =
@@ -81,6 +82,7 @@ class IsoCurrencyTest {
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
   }
 
+  // using nv-i18n helps us keeping the enum up-to-date
   @Test
   void ensureNoDeprecated() {
     List<IsoCurrency> deprecated =

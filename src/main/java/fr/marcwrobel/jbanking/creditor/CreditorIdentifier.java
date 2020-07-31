@@ -70,7 +70,7 @@ public class CreditorIdentifier {
     }
 
     String normalizedNationalId = normalize(creditorNationalId);
-    String normalizedCreditorId = country.getCode() + "00" + normalizedNationalId;
+    String normalizedCreditorId = country.getAlpha2Code() + "00" + normalizedNationalId;
 
     if (isNotWellFormatted(normalizedCreditorId)) {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(creditorNationalId);
@@ -78,7 +78,7 @@ public class CreditorIdentifier {
 
     String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalizedCreditorId);
 
-    this.creditorId = country.getCode() + checkDigits + businessCode + normalizedNationalId;
+    this.creditorId = country.getAlpha2Code() + checkDigits + businessCode + normalizedNationalId;
   }
 
   /**
@@ -149,7 +149,7 @@ public class CreditorIdentifier {
    * <p>Returns null if not found.
    */
   private static IsoCountry findCountryFor(String creditorIdentifier) {
-    return IsoCountry.fromCode(
+    return IsoCountry.fromAlpha2Code(
         creditorIdentifier.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 

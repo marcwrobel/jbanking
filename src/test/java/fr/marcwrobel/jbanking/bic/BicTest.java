@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 class BicTest {
 
   private static final String INSTITUTION_CODE = "BNPA";
-  private static final String COUNTRY_CODE = IsoCountry.FRANCE.getCode();
+  private static final String COUNTRY_CODE = IsoCountry.FRANCE.getAlpha2Code();
   private static final String LOCATION_CODE = "PP";
   private static final String LOCATION_CODE_TEST = "P0";
   private static final String BRANCH_CODE = Bic.PRIMARY_OFFICE_BRANCH_CODE;

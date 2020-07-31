@@ -59,7 +59,7 @@ public final class Iban {
     }
 
     String normalizedBban = normalize(bban);
-    String normalized = country.getCode() + "00" + normalizedBban;
+    String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
     BbanStructure bbanStructure = BbanStructure.forCountry(country);
     if (bbanStructure == null) {
@@ -72,7 +72,7 @@ public final class Iban {
 
     String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalized);
 
-    this.normalizedIban = country.getCode() + checkDigits + normalizedBban;
+    this.normalizedIban = country.getAlpha2Code() + checkDigits + normalizedBban;
   }
 
   /**
@@ -157,7 +157,7 @@ public final class Iban {
   }
 
   private static IsoCountry findCountryFor(String s) {
-    return IsoCountry.fromCode(
+    return IsoCountry.fromAlpha2Code(
         s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
