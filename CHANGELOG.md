@@ -8,6 +8,7 @@ This new release includes :
 
 ### Added
 - Set jbanking `Automatic-Module-Name` to `fr.marcwrobel.jbanking` (#42).
+- Countries' participation to _Single Euro Payments Area_, also known as SEPA (#31).
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).

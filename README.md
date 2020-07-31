@@ -6,7 +6,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/fr.marcwrobel/jbanking.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22fr.marcwrobel%22%20AND%20a:%22jbanking%22)
 
 # jbanking - A Java banking API
-jbanking is a library of utilities to assist with developing banking functionalities.
+jbanking is a library of utilities to assist with developing banking functionalities. jbanking is
+focused on, but not limited to, European banking.
 
 
 ## Features
@@ -18,6 +19,8 @@ jbanking is supporting the following features :
   validation (for both checkdigit and national bank account number structure).
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
+* Countries' or territories' participation to economic agreements :
+  * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
 
 
 ## Requirements
@@ -49,4 +52,4 @@ tests](src/test/java/fr/marcwrobel/jbanking).
 
 Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open).
 
-Send me an email at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).
+Email me at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).

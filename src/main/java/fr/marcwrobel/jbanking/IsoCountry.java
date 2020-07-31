@@ -1,5 +1,8 @@
 package fr.marcwrobel.jbanking;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 /**
  * The countries having an <a
  * href="http://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially
@@ -280,6 +283,35 @@ public enum IsoCountry {
    */
   public String getCode() {
     return code;
+  }
+
+  /**
+   * Check whether or not this country is participating to the given {@link Agreement}.
+   *
+   * @param agreement a non-null {@link Agreement}
+   * @return {@code true} if this country is participating to the given {@link Agreement}, {@code
+   *     false} otherwise
+   * @since 2.1.0
+   * @throws IllegalArgumentException if agreement is null
+   */
+  public boolean isParticipatingTo(Agreement agreement) {
+    if (agreement == null) {
+      throw new IllegalArgumentException("the agreement argument cannot be null");
+    }
+
+    return agreement.getParticipants().contains(this);
+  }
+
+  public Set<Agreement> participations() {
+    Set<Agreement> agreements = EnumSet.noneOf(Agreement.class);
+
+    for (Agreement agreement : Agreement.values()) {
+      if (this.isParticipatingTo(agreement)) {
+        agreements.add(agreement);
+      }
+    }
+
+    return agreements;
   }
 
   /**
