@@ -67,6 +67,74 @@ import java.util.Set;
  * @since 2.1.0
  */
 public enum Agreement {
+
+  /**
+   * The European Union (EU) is a political and economic union of states that are located primarily
+   * in Europe. The EU has developed an internal single market through a standardised system of laws
+   * that apply in all member states in those matters, and only those matters, where members have
+   * agreed to act as one.
+   *
+   * <p><a
+   * href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">
+   * Special member state territories</a> are not listed in this enum.
+   *
+   * <p>This enum was last updated on 2020-07-31 based on information given in the europa.eu article
+   * <a href="https://europa.eu/european-union/about-eu/countries_en">Countries</a>.
+   *
+   * @see <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>
+   * @see <a href="https://wikipedia.org/wiki/European_Union">Wikipedia - European Union</a>
+   * @see <a
+   *     href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">Wikipedia
+   *     - Special member state territories and the European Union</a>
+   * @since 2.1.0
+   */
+  EUROPEAN_UNION(
+      AUSTRIA,
+      BELGIUM,
+      BULGARIA,
+      CROATIA,
+      CYPRUS,
+      CZECH_REPUBLIC,
+      DENMARK,
+      ESTONIA,
+      FINLAND,
+      FRANCE,
+      GERMANY,
+      GREECE,
+      HUNGARY,
+      IRELAND,
+      ITALY,
+      LATVIA,
+      LITHUANIA,
+      LUXEMBOURG,
+      MALTA,
+      NETHERLANDS,
+      POLAND,
+      PORTUGAL,
+      ROMANIA,
+      SLOVAKIA,
+      SLOVENIA,
+      SPAIN,
+      SWEDEN),
+
+  /**
+   * The French Republic is made up of a "SEPA zone" and a "non-SEPA" zone. In order to ensure the
+   * continuity of exchanges in euros between the part of the French Republic which is in the SEPA
+   * zone and the part of the French Republic which is outside the SEPA zone, namely French
+   * Polynesia, New Caledonia, Wallis and Futuna, the CFONB has defined a solution called SEPA COM
+   * PACIFIQUE.
+   *
+   * <p>This enum was last updated on 2020-07-31 based on information given in the CFONB article <a
+   * href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les territoires du
+   * Pacifique</a>.
+   *
+   * @see <a href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les
+   *     territoires du Pacifique</a>
+   * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
+   * @since 2.1.0
+   */
+  SEPA_COM_PACIFIQUE(FRENCH_POLYNESIA, NEW_CALEDONIA, WALLIS_AND_FUTUNA),
+
   /**
    * The Single Euro Payments Area (SEPA) is a payment-integration initiative of the European Union
    * for simplification of bank transfers denominated in euro. The aim of SEPA is to improve the
@@ -95,16 +163,16 @@ public enum Agreement {
       DENMARK,
       ESTONIA,
       FINLAND,
-      ALAND_ISLANDS, // with Finland
+      ALAND_ISLANDS, // through Finland
       FRANCE,
-      FRENCH_GUIANA, // with France
-      GUADELOUPE, // with France
-      MARTINIQUE, // with France
-      MAYOTTE, // with France
-      REUNION, // with France
-      SAINT_BARTHELEMY, // with France
-      SAINT_MARTIN, // with France
-      SAINT_PIERRE_AND_MIQUELON, // with France
+      FRENCH_GUIANA, // through France
+      GUADELOUPE, // through France
+      MARTINIQUE, // through France
+      MAYOTTE, // through France
+      REUNION, // through France
+      SAINT_BARTHELEMY, // through France
+      SAINT_MARTIN, // through France
+      SAINT_PIERRE_AND_MIQUELON, // through France
       GERMANY,
       GREECE,
       HUNGARY,
@@ -129,29 +197,11 @@ public enum Agreement {
       SWEDEN,
       SWITZERLAND,
       UNITED_KINGDOM, // under a transitional period until 31 December 2020
-      GIBRALTAR, // with United Kingdom
-      GUERNSEY, // with United Kingdom
-      JERSEY, // with United Kingdom
-      ISLE_OF_MAN, // with United Kingdom
-      VATICAN_CITY_STATE),
-
-  /**
-   * The French Republic is made up of a "SEPA zone" and a "non-SEPA" zone. In order to ensure the
-   * continuity of exchanges in euros between the part of the French Republic which is in the SEPA
-   * zone and the part of the French Republic which is outside the SEPA zone, namely French
-   * Polynesia, New Caledonia, Wallis and Futuna, the CFONB has defined a solution called SEPA COM
-   * PACIFIQUE.
-   *
-   * <p>This enum was last updated on 2020-07-31 based on information given in the CFONB article <a
-   * href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les territoires du
-   * Pacifique</a>.
-   *
-   * @see <a href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les
-   *     territoires du Pacifique</a>
-   * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
-   * @since 2.1.0
-   */
-  SEPA_COM_PACIFIQUE(FRENCH_POLYNESIA, NEW_CALEDONIA, WALLIS_AND_FUTUNA);
+      GIBRALTAR, // through United Kingdom
+      GUERNSEY, // through United Kingdom
+      JERSEY, // through United Kingdom
+      ISLE_OF_MAN, // through United Kingdom
+      VATICAN_CITY_STATE);
 
   private final Set<IsoCountry> participants;
 
