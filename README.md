@@ -21,6 +21,7 @@ jbanking is supporting the following features :
   handling and validation.
 * Countries' or territories' participation to economic agreements :
   * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
+  * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239)
 
 
 ## Requirements

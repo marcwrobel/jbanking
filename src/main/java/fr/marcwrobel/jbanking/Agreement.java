@@ -13,6 +13,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.ESTONIA;
 import static fr.marcwrobel.jbanking.IsoCountry.FINLAND;
 import static fr.marcwrobel.jbanking.IsoCountry.FRANCE;
 import static fr.marcwrobel.jbanking.IsoCountry.FRENCH_GUIANA;
+import static fr.marcwrobel.jbanking.IsoCountry.FRENCH_POLYNESIA;
 import static fr.marcwrobel.jbanking.IsoCountry.GERMANY;
 import static fr.marcwrobel.jbanking.IsoCountry.GIBRALTAR;
 import static fr.marcwrobel.jbanking.IsoCountry.GREECE;
@@ -33,6 +34,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.MARTINIQUE;
 import static fr.marcwrobel.jbanking.IsoCountry.MAYOTTE;
 import static fr.marcwrobel.jbanking.IsoCountry.MONACO;
 import static fr.marcwrobel.jbanking.IsoCountry.NETHERLANDS;
+import static fr.marcwrobel.jbanking.IsoCountry.NEW_CALEDONIA;
 import static fr.marcwrobel.jbanking.IsoCountry.NORWAY;
 import static fr.marcwrobel.jbanking.IsoCountry.POLAND;
 import static fr.marcwrobel.jbanking.IsoCountry.PORTUGAL;
@@ -49,6 +51,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.SWEDEN;
 import static fr.marcwrobel.jbanking.IsoCountry.SWITZERLAND;
 import static fr.marcwrobel.jbanking.IsoCountry.UNITED_KINGDOM;
 import static fr.marcwrobel.jbanking.IsoCountry.VATICAN_CITY_STATE;
+import static fr.marcwrobel.jbanking.IsoCountry.WALLIS_AND_FUTUNA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -70,7 +73,7 @@ public enum Agreement {
    * efficiency of cross-border payments and turn the previously fragmented national markets for
    * euro payments into a single domestic one.
    *
-   * <p>This enum was last updated on 2020-07-30 based on information given in the <a
+   * <p>This enum was last updated on 2020-07-30 based on information given in <a
    * href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">
    * EPC409-09 - EPC List of SEPA Countries v2.6</a>.
    *
@@ -130,7 +133,25 @@ public enum Agreement {
       GUERNSEY, // with United Kingdom
       JERSEY, // with United Kingdom
       ISLE_OF_MAN, // with United Kingdom
-      VATICAN_CITY_STATE);
+      VATICAN_CITY_STATE),
+
+  /**
+   * The French Republic is made up of a "SEPA zone" and a "non-SEPA" zone. In order to ensure the
+   * continuity of exchanges in euros between the part of the French Republic which is in the SEPA
+   * zone and the part of the French Republic which is outside the SEPA zone, namely French
+   * Polynesia, New Caledonia, Wallis and Futuna, the CFONB has defined a solution called SEPA COM
+   * PACIFIQUE.
+   *
+   * <p>This enum was last updated on 2020-07-31 based on information given in the CFONB article <a
+   * href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les territoires du
+   * Pacifique</a>.
+   *
+   * @see <a href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les
+   *     territoires du Pacifique</a>
+   * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
+   * @since 2.1.0
+   */
+  SEPA_COM_PACIFIQUE(FRENCH_POLYNESIA, NEW_CALEDONIA, WALLIS_AND_FUTUNA);
 
   private final Set<IsoCountry> participants;
 
