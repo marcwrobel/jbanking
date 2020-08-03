@@ -1,6 +1,12 @@
 package fr.marcwrobel.jbanking;
 
+import static fr.marcwrobel.jbanking.IsoCountry.ANTARCTICA;
+import static fr.marcwrobel.jbanking.IsoCountry.PALESTINE;
+import static fr.marcwrobel.jbanking.IsoCountry.TAIWAN;
+import static fr.marcwrobel.jbanking.IsoCountry.WESTERN_SAHARA;
+import static java.util.EnumSet.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -48,8 +54,7 @@ class IsoCountryTest {
   // using nv-i18n helps us keeping the enum up-to-date
   @Test
   void ensureCompleteness() {
-    Set<Assignment> assignments =
-        EnumSet.of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
+    Set<Assignment> assignments = of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
 
     List<CountryCode> allCountries =
         EnumSet.allOf(CountryCode.class).stream()
@@ -73,15 +78,11 @@ class IsoCountryTest {
       assertNotNull(code);
       assertEquals(code.getAlpha2(), country.getAlpha2Code());
       assertEquals(code.getAlpha3(), country.getAlpha3Code());
-
-      if (country.getNumericCode() != null) {
-        assertEquals(code.getNumeric(), country.getNumericCode());
-      } else {
-        assertEquals(code.getNumeric(), -1);
-      }
+      assertEquals(code.getNumeric(), country.getNumericCode());
     }
   }
 
+  // using nv-i18n helps us keeping the enum exact
   @Test
   void ensureNoDeprecated() {
     List<IsoCountry> deprecated =
@@ -90,5 +91,23 @@ class IsoCountryTest {
             .collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
+  }
+
+  @Test
+  void dependentCountriesDependsOnIndependentCountry() {
+    Set<IsoCountry> excludedCountries = of(ANTARCTICA, PALESTINE, TAIWAN, WESTERN_SAHARA);
+
+    for (IsoCountry country : IsoCountry.values()) {
+      if (country.isIndependent()) {
+        assertFalse(country.getDependency().isPresent(), country::name);
+
+      } else if (excludedCountries.contains(country)) {
+        assertFalse(country.getDependency().isPresent(), country::name);
+
+      } else {
+        assertTrue(country.getDependency().isPresent(), country::name);
+        assertTrue(country.getDependency().get().isIndependent(), country::name);
+      }
+    }
   }
 }

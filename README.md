@@ -12,18 +12,20 @@ focused on, but not limited to, European banking.
 
 ## Features
 jbanking is supporting the following features :
-* [ISO 3166-1 countries](http://wikipedia.org/wiki/ISO_3166-1) (with ISO 3166-1 alpha-2, ISO 3166-1
-  alpha-3 and ISO 3166-1 numeric codes).
-* [ISO 4217 currencies](http://wikipedia.org/wiki/ISO_4217).
+* [ISO 3166-1 countries](http://wikipedia.org/wiki/ISO_3166-1) (with alpha-2 code, alpha-3 code,
+  numeric code and status - e.g. independent or dependent - according to the [International
+  Organization for Standardization](https://www.iso.org)).
+* Countries' or territories' participation to economic agreements :
+  * [European Union (EU)](https://en.wikipedia.org/wiki/European_Union)
+  * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
+  * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239)
+* [ISO 4217 currencies](http://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code,
+  minor unit and countries using it).
 * [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
 * [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and
   validation (for both checkdigit and national bank account number structure).
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
-* Countries' or territories' participation to economic agreements :
-  * [European Union (EU)](https://en.wikipedia.org/wiki/European_Union)
-  * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
-  * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239)
 
 
 ## Requirements

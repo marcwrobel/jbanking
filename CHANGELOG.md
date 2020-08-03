@@ -17,6 +17,8 @@ This new release includes :
 - Upgrade to parent [2.3.0](https://github.com/marcwrobel/parent/releases/tag/v2.3.0) (#40).
 - Upgrade to guava [29.0](https://github.com/google/guava/releases/tag/v29.0) (#41).
 - Add ISO 3166-1 alpha-3 and numeric codes to IsoCountry (#43).
+- Add IsoCountry status, e.g. independent or dependent (according to the [International Organization
+  for Standardization](https://www.iso.org)) (#48).
 
 ### Fixed
 - Sonar analysis fails on merge requests (#39).
