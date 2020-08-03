@@ -69,6 +69,71 @@ import java.util.Set;
 public enum Agreement {
 
   /**
+   * The European Economic Area (EEA) was established via the Agreement on the European Economic
+   * Area, an international agreement which enables the extension of the European Union's single
+   * market to member states of the European Free Trade Association.
+   *
+   * <p>This enum was last updated on 2020-08-03 based on information given on <a
+   * href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic
+   * Area</a>.
+   *
+   * @see <a
+   *     href="https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:European_Economic_Area_(EEA)">europa.eu
+   *     - European Economic Area (EEA)</a>
+   * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic
+   *     Area</a>
+   * @since 2.1.0
+   */
+  EUROPEAN_ECONOMIC_AREA(
+      AUSTRIA,
+      BELGIUM,
+      BULGARIA,
+      CROATIA,
+      CYPRUS,
+      CZECH_REPUBLIC,
+      DENMARK,
+      ESTONIA,
+      FINLAND,
+      FRANCE,
+      GERMANY,
+      GREECE,
+      HUNGARY,
+      ICELAND,
+      IRELAND,
+      ITALY,
+      LATVIA,
+      LIECHTENSTEIN,
+      LITHUANIA,
+      LUXEMBOURG,
+      MALTA,
+      NETHERLANDS,
+      NORWAY,
+      POLAND,
+      PORTUGAL,
+      ROMANIA,
+      SLOVAKIA,
+      SLOVENIA,
+      SPAIN,
+      SWEDEN,
+      SWITZERLAND),
+
+  /**
+   * The European Free Trade Association (EFTA) is a regional trade organization and free trade
+   * area. The organization operates in parallel with the European Union (EU), and all member states
+   * participate in the European Single Market and are part of the Schengen Area. They are not,
+   * however, party to the European Union Customs Union.
+   *
+   * <p>This enum was last updated on 2020-08-03 based on information given on : <a
+   * href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>.
+   *
+   * @see <a href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>
+   * @see <a href="https://wikipedia.org/wiki/European_Free_Trade_Association">Wikipedia - European
+   *     Free Trade Association</a>
+   * @since 2.1.0
+   */
+  EUROPEAN_FREE_TRADE_ASSOCIATION(ICELAND, LIECHTENSTEIN, NORWAY, SWITZERLAND),
+
+  /**
    * The European Union (EU) is a political and economic union of states that are located primarily
    * in Europe. The EU has developed an internal single market through a standardised system of laws
    * that apply in all member states in those matters, and only those matters, where members have
@@ -78,8 +143,8 @@ public enum Agreement {
    * href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">
    * Special member state territories</a> are not listed in this enum.
    *
-   * <p>This enum was last updated on 2020-07-31 based on information given in the europa.eu article
-   * <a href="https://europa.eu/european-union/about-eu/countries_en">Countries</a>.
+   * <p>This enum was last updated on 2020-07-31 based on information given on <a
+   * href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>.
    *
    * @see <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>
    * @see <a href="https://wikipedia.org/wiki/European_Union">Wikipedia - European Union</a>

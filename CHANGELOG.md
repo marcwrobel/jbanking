@@ -11,6 +11,8 @@ This new release includes :
 - Countries' participation to _European Union_ (#44).
 - Countries' participation to _Single Euro Payments Area_, also known as SEPA (#31).
 - Countries' participation to _SEPA COM Pacifique_ (#46).
+- Countries' participation to _European Economic Area_ (#45).
+- Countries' participation to _European Free Trade Association_ (#45).
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).

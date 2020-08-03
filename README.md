@@ -16,9 +16,11 @@ jbanking is supporting the following features :
   numeric code and status - e.g. independent or dependent - according to the [International
   Organization for Standardization](https://www.iso.org)).
 * Countries' or territories' participation to economic agreements :
+  * [European Economic Area (EEA)](https://wikipedia.org/wiki/European_Economic_Area)
+  * [European Free Trade Association (EFTA)](https://wikipedia.org/wiki/European_Free_Trade_Association)
   * [European Union (EU)](https://en.wikipedia.org/wiki/European_Union)
-  * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
   * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239)
+  * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area)
 * [ISO 4217 currencies](http://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code,
   minor unit and countries using it).
 * [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
