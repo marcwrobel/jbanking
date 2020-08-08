@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking;
 
 import static fr.marcwrobel.jbanking.IsoCountry.ANTARCTICA;
+import static fr.marcwrobel.jbanking.IsoCountry.FRANCE;
 import static fr.marcwrobel.jbanking.IsoCountry.PALESTINE;
 import static fr.marcwrobel.jbanking.IsoCountry.TAIWAN;
 import static fr.marcwrobel.jbanking.IsoCountry.WESTERN_SAHARA;
@@ -8,7 +9,6 @@ import static java.util.EnumSet.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.neovisionaries.i18n.CountryCode;
@@ -16,6 +16,7 @@ import com.neovisionaries.i18n.CountryCode.Assignment;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
@@ -28,26 +29,82 @@ import org.junit.jupiter.api.Test;
 class IsoCountryTest {
 
   @Test
-  void fromCodeAllowsNull() {
-    assertNull(IsoCountry.fromAlpha2Code(null));
+  void fromAlpha2CodeAllowsNull() {
+    assertFalse(IsoCountry.fromAlpha2Code(null).isPresent());
   }
 
   @Test
-  void fromCodeAllowsUnknownOrInvalidCodes() {
-    assertNull(IsoCountry.fromAlpha2Code("XXX"));
+  void fromAlpha3CodeAllowsNull() {
+    assertFalse(IsoCountry.fromAlpha3Code(null).isPresent());
   }
 
   @Test
-  void fromCodeIsNotCaseSensitive() {
-    assertEquals(
-        IsoCountry.FRANCE,
-        IsoCountry.fromAlpha2Code(IsoCountry.FRANCE.getAlpha2Code().toLowerCase()));
+  void fromAlpha2CodeAllowsUnknownOrInvalidCodes() {
+    assertFalse(IsoCountry.fromAlpha2Code("XXX").isPresent());
   }
 
   @Test
-  void fromCodeWorksWithExistingValues() {
+  void fromAlpha3CodeAllowsUnknownOrInvalidCodes() {
+    assertFalse(IsoCountry.fromAlpha3Code("XX").isPresent());
+  }
+
+  @Test
+  void fromNumericCodeAllowsUnknownOrInvalidCodes() {
+    assertFalse(IsoCountry.fromNumericCode(-1).isPresent());
+  }
+
+  @Test
+  void fromAlpha2CodeIsNotCaseSensitive() {
+    Optional<IsoCountry> country =
+        IsoCountry.fromAlpha2Code(IsoCountry.FRANCE.getAlpha2Code().toLowerCase());
+
+    assertTrue(country.isPresent());
+    assertEquals(FRANCE, country.get());
+  }
+
+  @Test
+  void fromAlpha3CodeIsNotCaseSensitive() {
+    Optional<IsoCountry> country =
+        IsoCountry.fromAlpha3Code(IsoCountry.FRANCE.getAlpha3Code().toLowerCase());
+
+    assertTrue(country.isPresent());
+    assertEquals(FRANCE, country.get());
+  }
+
+  @Test
+  void fromCodeWorksWithAllExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
-      assertEquals(country, IsoCountry.fromAlpha2Code(country.getAlpha2Code()));
+      assertEquals(country, IsoCountry.fromCode(country.getAlpha2Code()));
+    }
+  }
+
+  @Test
+  void fromAlpha2CodeWorksWithAllExistingValues() {
+    for (IsoCountry country : IsoCountry.values()) {
+      Optional<IsoCountry> result = IsoCountry.fromAlpha2Code(country.getAlpha2Code());
+      assertTrue(result.isPresent());
+      assertEquals(country, result.get());
+    }
+  }
+
+  @Test
+  void fromAlpha3CodeWorksWithAllExistingValues() {
+    for (IsoCountry country : IsoCountry.values()) {
+      Optional<IsoCountry> result = IsoCountry.fromAlpha3Code(country.getAlpha3Code());
+      assertTrue(result.isPresent());
+      assertEquals(country, result.get());
+    }
+  }
+
+  @Test
+  void fromNumericCodeWorksWithAllExistingValues() {
+    for (IsoCountry country : IsoCountry.values()) {
+      Optional<Integer> code = country.getNumericCode();
+      if (code.isPresent()) {
+        Optional<IsoCountry> result = IsoCountry.fromNumericCode(code.get());
+        assertTrue(result.isPresent());
+        assertEquals(country, result.get());
+      }
     }
   }
 
@@ -64,7 +121,7 @@ class IsoCountryTest {
 
     List<CountryCode> undefinedCountries =
         allCountries.stream()
-            .filter(c -> IsoCountry.fromAlpha2Code(c.getAlpha2()) == null)
+            .filter(c -> !IsoCountry.fromAlpha2Code(c.getAlpha2()).isPresent())
             .collect(Collectors.toList());
 
     assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
@@ -78,7 +135,10 @@ class IsoCountryTest {
       assertNotNull(code);
       assertEquals(code.getAlpha2(), country.getAlpha2Code());
       assertEquals(code.getAlpha3(), country.getAlpha3Code());
-      assertEquals(code.getNumeric(), country.getNumericCode());
+
+      if (country.getNumericCode().isPresent()) {
+        assertEquals(code.getNumeric(), country.getNumericCode().get());
+      }
     }
   }
 

@@ -25,4 +25,12 @@ This new release includes :
 ### Fixed
 - Sonar analysis fails on merge requests (#39).
 
+### Deprecated
+- `IsoCountry.getCode()` is now deprecated in favor or `IsoCountry.getAlpha2Code()` (#43).
+- `IsoCountry.fromCode(String)` is now deprecated in favor or `IsoCountry.fromAlpha2Code(String)`
+  (#43).
+
+Those methods will be removed in the next major version (3.0.0).
+
+### Thanks
 Many thanks to @kayman-mk for his help !

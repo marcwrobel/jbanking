@@ -217,7 +217,10 @@ class CreditorIdentifierTest {
     String nationalId = value.substring(7);
     assertEquals(
         creditorId,
-        new CreditorIdentifier(IsoCountry.fromAlpha2Code(countryCode), businessCode, nationalId));
+        new CreditorIdentifier(
+            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
+            businessCode,
+            nationalId));
   }
 
   @ParameterizedTest
@@ -242,7 +245,9 @@ class CreditorIdentifierTest {
     assertEquals(
         value,
         new CreditorIdentifier(
-                IsoCountry.fromAlpha2Code(countryCode), businessCode, nationalId.toLowerCase())
+                IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
+                businessCode,
+                nationalId.toLowerCase())
             .toString());
   }
 

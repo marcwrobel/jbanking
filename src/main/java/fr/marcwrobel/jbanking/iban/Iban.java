@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking.iban;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -93,14 +94,14 @@ public final class Iban {
       throw IbanFormatException.forNotProperlyFormattedInput(normalized);
     }
 
-    IsoCountry country = findCountryFor(normalized);
-    if (country == null) {
+    Optional<IsoCountry> country = findCountryFor(normalized);
+    if (!country.isPresent()) {
       throw IbanFormatException.forUnknownCountry(iban);
     }
 
-    BbanStructure bbanStructure = BbanStructure.forCountry(country);
+    BbanStructure bbanStructure = BbanStructure.forCountry(country.get());
     if (bbanStructure == null) {
-      throw IbanFormatException.forNotSupportedCountry(iban, country);
+      throw IbanFormatException.forNotSupportedCountry(iban, country.get());
     }
 
     if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
@@ -131,12 +132,12 @@ public final class Iban {
       return false;
     }
 
-    IsoCountry country = findCountryFor(normalized);
-    if (country == null) {
+    Optional<IsoCountry> country = findCountryFor(normalized);
+    if (!country.isPresent()) {
       return false;
     }
 
-    BbanStructure bbanStructure = BbanStructure.forCountry(country);
+    BbanStructure bbanStructure = BbanStructure.forCountry(country.get());
     if (bbanStructure == null) {
       return false;
     }
@@ -156,7 +157,7 @@ public final class Iban {
     return !BASIC_PATTERN.matcher(s).matches();
   }
 
-  private static IsoCountry findCountryFor(String s) {
+  private static Optional<IsoCountry> findCountryFor(String s) {
     return IsoCountry.fromAlpha2Code(
         s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }

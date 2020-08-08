@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking.creditor;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.iban.IbanCheckDigit;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -97,8 +98,8 @@ public class CreditorIdentifier {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorId);
     }
 
-    IsoCountry country = findCountryFor(normalizedCreditorId);
-    if (country == null) {
+    Optional<IsoCountry> country = findCountryFor(normalizedCreditorId);
+    if (!country.isPresent()) {
       throw CreditorIdentifierFormatException.forUnknownCountry(creditorId);
     }
 
@@ -148,7 +149,7 @@ public class CreditorIdentifier {
    *
    * <p>Returns null if not found.
    */
-  private static IsoCountry findCountryFor(String creditorIdentifier) {
+  private static Optional<IsoCountry> findCountryFor(String creditorIdentifier) {
     return IsoCountry.fromAlpha2Code(
         creditorIdentifier.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
@@ -177,8 +178,8 @@ public class CreditorIdentifier {
       return false;
     }
 
-    IsoCountry country = findCountryFor(normalizedCreditorId);
-    if (country == null) {
+    Optional<IsoCountry> country = findCountryFor(normalizedCreditorId);
+    if (!country.isPresent()) {
       return false;
     }
 

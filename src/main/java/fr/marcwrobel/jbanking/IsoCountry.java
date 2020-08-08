@@ -351,7 +351,7 @@ public enum IsoCountry {
   KIRIBATI("KI", "KIR", 296),
 
   /** Temporarily used by the European Commission, the IMF, and SWIFT. */
-  KOSOVO("XK", "XKX", -1),
+  KOSOVO("XK", "XKX", null),
 
   /** @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KW">www.iso.org</a> */
   KUWAIT("KW", "KWT", 414),
@@ -773,8 +773,6 @@ public enum IsoCountry {
   /** @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ZW">www.iso.org</a> */
   ZIMBABWE("ZW", "ZWE", 716);
 
-  public static final int UNSPECIFIED_NUMERIC_CODE = -1;
-
   private final String alpha2Code;
   private final String alpha3Code;
   private final Integer numericCode;
@@ -786,7 +784,7 @@ public enum IsoCountry {
   IsoCountry(
       String alpha2Code,
       String alpha3Code,
-      int numericCode,
+      Integer numericCode,
       boolean independent,
       IsoCountry dependsOn) {
     this.alpha2Code = requireNonNull(alpha2Code);
@@ -798,12 +796,12 @@ public enum IsoCountry {
   }
 
   /** Dependents countries or territories constructor. */
-  IsoCountry(String alpha2Code, String alpha3Code, int numericCode, IsoCountry dependsOn) {
+  IsoCountry(String alpha2Code, String alpha3Code, Integer numericCode, IsoCountry dependsOn) {
     this(alpha2Code, alpha3Code, numericCode, false, dependsOn);
   }
 
   /** Independents countries constructor. */
-  IsoCountry(String alpha2Code, String alpha3Code, int numericCode) {
+  IsoCountry(String alpha2Code, String alpha3Code, Integer numericCode) {
     this(alpha2Code, alpha3Code, numericCode, true, null);
   }
 
@@ -823,6 +821,7 @@ public enum IsoCountry {
    * Returns this country ISO 3166-1 alpha-2 code.
    *
    * @return a non null and 2 characters length string.
+   * @since 2.1.0
    */
   public String getAlpha2Code() {
     return alpha2Code;
@@ -832,6 +831,7 @@ public enum IsoCountry {
    * Returns this country ISO 3166-1 alpha-3 code.
    *
    * @return a non null and 3 characters length string.
+   * @since 2.1.0
    */
   public String getAlpha3Code() {
     return alpha3Code;
@@ -840,11 +840,12 @@ public enum IsoCountry {
   /**
    * Returns this country ISO 3166-1 numeric code.
    *
-   * @return a positive integer, or {@link #UNSPECIFIED_NUMERIC_CODE} if the alpha-2 code was
-   *     user-assigned.
+   * @return a positive integer, or {@link Optional#empty()} if there is no code for the country
+   *     (user-assigned).
+   * @since 2.1.0
    */
-  public int getNumericCode() {
-    return numericCode;
+  public Optional<Integer> getNumericCode() {
+    return Optional.ofNullable(numericCode);
   }
 
   /**
@@ -921,30 +922,67 @@ public enum IsoCountry {
    */
   @Deprecated
   public static IsoCountry fromCode(String code) {
-    return fromAlpha2Code(code);
+    return fromAlpha2Code(code).orElse(null);
   }
 
   /**
-   * Translate the given ISO 3166-1-alpha-2 code to an IsoCountry.
+   * Translate the given ISO 3166-1 alpha-2 code to an IsoCountry.
    *
    * <p>This method is not case-sensitive.
    *
-   * @param code A non-null String.
-   * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist.
+   * @param code A string ({@code null} accepted).
+   * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}.
    */
-  public static IsoCountry fromAlpha2Code(String code) {
-    String cleanedCode = (code == null ? null : code.toUpperCase());
+  public static Optional<IsoCountry> fromAlpha2Code(String code) {
+    if (code != null && code.length() == 2) {
+      String upperCasedCode = code.toUpperCase();
 
-    if (cleanedCode == null || cleanedCode.length() != 2) {
-      return null;
-    }
-
-    for (IsoCountry country : values()) {
-      if (country.getAlpha2Code().equals(cleanedCode)) {
-        return country;
+      for (IsoCountry country : values()) {
+        if (country.getAlpha2Code().equals(upperCasedCode)) {
+          return Optional.of(country);
+        }
       }
     }
 
-    return null;
+    return Optional.empty();
+  }
+
+  /**
+   * Translate the given ISO 3166-1 alpha-3 code to an IsoCountry.
+   *
+   * <p>This method is not case-sensitive.
+   *
+   * @param code A string ({@code null} accepted).
+   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
+   */
+  public static Optional<IsoCountry> fromAlpha3Code(String code) {
+    if (code != null && code.length() == 3) {
+      String upperCasedCode = code.toUpperCase();
+
+      for (IsoCountry country : values()) {
+        if (country.getAlpha3Code().equals(upperCasedCode)) {
+          return Optional.of(country);
+        }
+      }
+    }
+
+    return Optional.empty();
+  }
+
+  /**
+   * Translate the given ISO 3166-1 numeric code to an IsoCountry.
+   *
+   * @param code A string ({@code null} accepted).
+   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
+   */
+  public static Optional<IsoCountry> fromNumericCode(int code) {
+    for (IsoCountry country : values()) {
+      Optional<Integer> numericCode = country.getNumericCode();
+      if (numericCode.isPresent() && numericCode.get() == code) {
+        return Optional.of(country);
+      }
+    }
+
+    return Optional.empty();
   }
 }

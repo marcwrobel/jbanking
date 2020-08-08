@@ -279,7 +279,11 @@ class IbanTest {
     Iban iban = new Iban(ibanString);
     String countryCode = ibanString.substring(0, 2);
     String bban = ibanString.substring(4);
-    assertEquals(iban, new Iban(IsoCountry.fromAlpha2Code(countryCode), bban));
+    assertEquals(
+        iban,
+        new Iban(
+            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
+            bban));
   }
 
   @ParameterizedTest
@@ -301,7 +305,11 @@ class IbanTest {
     String countryCode = iban.substring(0, 2);
     String bban = iban.substring(4);
     assertEquals(
-        iban, new Iban(IsoCountry.fromAlpha2Code(countryCode), bban.toLowerCase()).toString());
+        iban,
+        new Iban(
+                IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
+                bban.toLowerCase())
+            .toString());
   }
 
   @Test
