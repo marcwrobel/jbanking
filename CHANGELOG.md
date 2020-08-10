@@ -24,7 +24,7 @@ This new release includes :
 
 ### Changed
 - Adjust BBAN structure for Sao Tome and Principe (#36).
-- Upgrade to parent [2.3.0](https://github.com/marcwrobel/parent/releases/tag/v2.3.0) (#40).
+- Upgrade to parent [2.3.1](https://github.com/marcwrobel/parent/releases/tag/v2.3.1) (#51).
 - Upgrade to guava [29.0](https://github.com/google/guava/releases/tag/v29.0) (#41).
 - Add ISO 3166-1 alpha-3 and numeric codes to IsoCountry (#43).
 - Add IsoCountry status, e.g. independent or dependent (according to the [International Organization
