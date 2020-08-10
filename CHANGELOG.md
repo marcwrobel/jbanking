@@ -26,6 +26,7 @@ This new release includes :
 - Add ISO 3166-1 alpha-3 and numeric codes to IsoCountry (#43).
 - Add IsoCountry status, e.g. independent or dependent (according to the [International Organization
   for Standardization](https://www.iso.org)) (#48).
+- Improve project's consumer POM with flatten-maven-plugin (#50).
 
 ### Fixed
 - Sonar analysis fails on merge requests (#39).
