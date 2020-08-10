@@ -5,6 +5,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This new release includes :
 - an alignment of the IBAN definitions to [IBAN Registry Release 87](https://www.swift.com/standards/data-standards/iban) (May 2020).
+- improvements to IsoCountry : ISO 3166-1 alpha-3 and numeric codes, country status - e.g.
+  independent or dependent, participation to economic agreements (SEPA, EU, EEA...).
+- Holiday support with a few predefined calendars (TARGET, Paris, NYSE...).
 
 ### Added
 - Set jbanking `Automatic-Module-Name` to `fr.marcwrobel.jbanking` (#42).
