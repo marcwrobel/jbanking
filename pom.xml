@@ -55,6 +55,7 @@
       <groupId>com.opengamma.strata</groupId>
       <artifactId>strata-basics</artifactId>
       <version>${strata.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
