@@ -10,6 +10,9 @@ package fr.marcwrobel.jbanking.creditor;
  */
 public class CreditorIdentifierFormatException extends RuntimeException {
 
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
+
   private final String inputString;
 
   /**

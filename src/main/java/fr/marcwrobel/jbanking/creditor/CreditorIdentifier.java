@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking.creditor;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.iban.IbanCheckDigit;
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -29,7 +30,10 @@ import java.util.regex.Pattern;
  *     href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC
  *     Creditor Identifier Overview</a>
  */
-public class CreditorIdentifier {
+public class CreditorIdentifier implements Serializable {
+
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
 
   private static final String BASIC_REGEX = "[A-Za-z]{2}[0-9]{2}[A-Za-z0-9]{3}[A-Za-z0-9]+";
   private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);

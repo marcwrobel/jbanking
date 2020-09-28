@@ -1,5 +1,6 @@
 package fr.marcwrobel.jbanking.swift;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +47,10 @@ import java.util.regex.Pattern;
  * @see java.util.regex.Pattern
  * @since 1.0
  */
-public final class SwiftPattern {
+public final class SwiftPattern implements Serializable {
+
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
 
   static final char DIGITS_CHARACTER = 'n';
   static final char UPPER_CASE_LETTERS_CHARACTER = 'a';

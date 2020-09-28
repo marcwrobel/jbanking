@@ -12,6 +12,9 @@ import fr.marcwrobel.jbanking.IsoCountry;
  */
 public final class IbanFormatException extends RuntimeException {
 
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
+
   private final String inputString;
 
   /**
