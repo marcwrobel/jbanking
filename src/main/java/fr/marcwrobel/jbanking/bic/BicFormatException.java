@@ -10,6 +10,9 @@ package fr.marcwrobel.jbanking.bic;
  */
 public final class BicFormatException extends RuntimeException {
 
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
+
   private final String inputString;
 
   /**

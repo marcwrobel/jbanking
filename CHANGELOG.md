@@ -9,7 +9,8 @@ This new release includes :
 
 ### Changed
 
-- Upgrade to Strata 2.8.1.
+- Upgrade to Strata 2.8.1 (#52).
+- Make jbanking serializable-friendly (#53).
 
 ### Fixed
 

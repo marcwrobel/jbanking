@@ -8,6 +8,9 @@ package fr.marcwrobel.jbanking.calendar;
  */
 public class DateCalculationException extends RuntimeException {
 
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
+
   /**
    * Creates a new instance with the given message.
    *

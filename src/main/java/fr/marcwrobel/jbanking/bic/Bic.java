@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking.bic;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 /**
@@ -26,7 +27,10 @@ import java.util.regex.Pattern;
  *     href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
  * @since 1.0
  */
-public final class Bic {
+public final class Bic implements Serializable {
+
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
 
   /** A simple regex that validate well-formed BIC. */
   public static final String BIC_REGEX = "[A-Za-z]{4}[A-Za-z]{2}[A-Za-z0-9]{2}([A-Za-z0-9]{3})?";

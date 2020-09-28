@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking.iban;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -26,7 +27,10 @@ import java.util.regex.Pattern;
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */
-public final class Iban {
+public final class Iban implements Serializable {
+
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
 
   private static final String BASIC_REGEX = "[A-Za-z]{2}[0-9]{2}[A-Za-z0-9]+";
   private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);

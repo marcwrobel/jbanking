@@ -9,6 +9,9 @@ package fr.marcwrobel.jbanking.swift;
  */
 public class SwiftPatternSyntaxException extends RuntimeException {
 
+  /** Serialization version. */
+  private static final long serialVersionUID = 0;
+
   private final String expression;
 
   /**
