@@ -9,6 +9,8 @@ This new release includes :
 
 ### Changed
 
+- Upgrade to Strata 2.8.1.
+
 ### Fixed
 
 ### Deprecated
