@@ -21,7 +21,7 @@ class BbanStructureTest {
 
   @Test
   void unsupportedCountryReturnsNull() {
-    assertNull(BbanStructure.forCountry(IsoCountry.UNITED_STATES));
+    assertNull(BbanStructure.forCountry(IsoCountry.US));
   }
 
   @Test

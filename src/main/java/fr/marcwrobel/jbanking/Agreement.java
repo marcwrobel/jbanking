@@ -1,57 +1,57 @@
 package fr.marcwrobel.jbanking;
 
-import static fr.marcwrobel.jbanking.IsoCountry.ALAND_ISLANDS;
-import static fr.marcwrobel.jbanking.IsoCountry.ANDORRA;
-import static fr.marcwrobel.jbanking.IsoCountry.AUSTRIA;
-import static fr.marcwrobel.jbanking.IsoCountry.BELGIUM;
-import static fr.marcwrobel.jbanking.IsoCountry.BULGARIA;
-import static fr.marcwrobel.jbanking.IsoCountry.CROATIA;
-import static fr.marcwrobel.jbanking.IsoCountry.CYPRUS;
-import static fr.marcwrobel.jbanking.IsoCountry.CZECH_REPUBLIC;
-import static fr.marcwrobel.jbanking.IsoCountry.DENMARK;
-import static fr.marcwrobel.jbanking.IsoCountry.ESTONIA;
-import static fr.marcwrobel.jbanking.IsoCountry.FINLAND;
-import static fr.marcwrobel.jbanking.IsoCountry.FRANCE;
-import static fr.marcwrobel.jbanking.IsoCountry.FRENCH_GUIANA;
-import static fr.marcwrobel.jbanking.IsoCountry.FRENCH_POLYNESIA;
-import static fr.marcwrobel.jbanking.IsoCountry.GERMANY;
-import static fr.marcwrobel.jbanking.IsoCountry.GIBRALTAR;
-import static fr.marcwrobel.jbanking.IsoCountry.GREECE;
-import static fr.marcwrobel.jbanking.IsoCountry.GUADELOUPE;
-import static fr.marcwrobel.jbanking.IsoCountry.GUERNSEY;
-import static fr.marcwrobel.jbanking.IsoCountry.HUNGARY;
-import static fr.marcwrobel.jbanking.IsoCountry.ICELAND;
-import static fr.marcwrobel.jbanking.IsoCountry.IRELAND;
-import static fr.marcwrobel.jbanking.IsoCountry.ISLE_OF_MAN;
-import static fr.marcwrobel.jbanking.IsoCountry.ITALY;
-import static fr.marcwrobel.jbanking.IsoCountry.JERSEY;
-import static fr.marcwrobel.jbanking.IsoCountry.LATVIA;
-import static fr.marcwrobel.jbanking.IsoCountry.LIECHTENSTEIN;
-import static fr.marcwrobel.jbanking.IsoCountry.LITHUANIA;
-import static fr.marcwrobel.jbanking.IsoCountry.LUXEMBOURG;
-import static fr.marcwrobel.jbanking.IsoCountry.MALTA;
-import static fr.marcwrobel.jbanking.IsoCountry.MARTINIQUE;
-import static fr.marcwrobel.jbanking.IsoCountry.MAYOTTE;
-import static fr.marcwrobel.jbanking.IsoCountry.MONACO;
-import static fr.marcwrobel.jbanking.IsoCountry.NETHERLANDS;
-import static fr.marcwrobel.jbanking.IsoCountry.NEW_CALEDONIA;
-import static fr.marcwrobel.jbanking.IsoCountry.NORWAY;
-import static fr.marcwrobel.jbanking.IsoCountry.POLAND;
-import static fr.marcwrobel.jbanking.IsoCountry.PORTUGAL;
-import static fr.marcwrobel.jbanking.IsoCountry.REUNION;
-import static fr.marcwrobel.jbanking.IsoCountry.ROMANIA;
-import static fr.marcwrobel.jbanking.IsoCountry.SAINT_BARTHELEMY;
-import static fr.marcwrobel.jbanking.IsoCountry.SAINT_MARTIN;
-import static fr.marcwrobel.jbanking.IsoCountry.SAINT_PIERRE_AND_MIQUELON;
-import static fr.marcwrobel.jbanking.IsoCountry.SAN_MARINO;
-import static fr.marcwrobel.jbanking.IsoCountry.SLOVAKIA;
-import static fr.marcwrobel.jbanking.IsoCountry.SLOVENIA;
-import static fr.marcwrobel.jbanking.IsoCountry.SPAIN;
-import static fr.marcwrobel.jbanking.IsoCountry.SWEDEN;
-import static fr.marcwrobel.jbanking.IsoCountry.SWITZERLAND;
-import static fr.marcwrobel.jbanking.IsoCountry.UNITED_KINGDOM;
-import static fr.marcwrobel.jbanking.IsoCountry.VATICAN_CITY_STATE;
-import static fr.marcwrobel.jbanking.IsoCountry.WALLIS_AND_FUTUNA;
+import static fr.marcwrobel.jbanking.IsoCountry.AD;
+import static fr.marcwrobel.jbanking.IsoCountry.AT;
+import static fr.marcwrobel.jbanking.IsoCountry.AX;
+import static fr.marcwrobel.jbanking.IsoCountry.BE;
+import static fr.marcwrobel.jbanking.IsoCountry.BG;
+import static fr.marcwrobel.jbanking.IsoCountry.BL;
+import static fr.marcwrobel.jbanking.IsoCountry.CH;
+import static fr.marcwrobel.jbanking.IsoCountry.CY;
+import static fr.marcwrobel.jbanking.IsoCountry.CZ;
+import static fr.marcwrobel.jbanking.IsoCountry.DE;
+import static fr.marcwrobel.jbanking.IsoCountry.DK;
+import static fr.marcwrobel.jbanking.IsoCountry.EE;
+import static fr.marcwrobel.jbanking.IsoCountry.ES;
+import static fr.marcwrobel.jbanking.IsoCountry.FI;
+import static fr.marcwrobel.jbanking.IsoCountry.FR;
+import static fr.marcwrobel.jbanking.IsoCountry.GB;
+import static fr.marcwrobel.jbanking.IsoCountry.GF;
+import static fr.marcwrobel.jbanking.IsoCountry.GG;
+import static fr.marcwrobel.jbanking.IsoCountry.GI;
+import static fr.marcwrobel.jbanking.IsoCountry.GP;
+import static fr.marcwrobel.jbanking.IsoCountry.GR;
+import static fr.marcwrobel.jbanking.IsoCountry.HR;
+import static fr.marcwrobel.jbanking.IsoCountry.HU;
+import static fr.marcwrobel.jbanking.IsoCountry.IE;
+import static fr.marcwrobel.jbanking.IsoCountry.IM;
+import static fr.marcwrobel.jbanking.IsoCountry.IS;
+import static fr.marcwrobel.jbanking.IsoCountry.IT;
+import static fr.marcwrobel.jbanking.IsoCountry.JE;
+import static fr.marcwrobel.jbanking.IsoCountry.LI;
+import static fr.marcwrobel.jbanking.IsoCountry.LT;
+import static fr.marcwrobel.jbanking.IsoCountry.LU;
+import static fr.marcwrobel.jbanking.IsoCountry.LV;
+import static fr.marcwrobel.jbanking.IsoCountry.MC;
+import static fr.marcwrobel.jbanking.IsoCountry.MF;
+import static fr.marcwrobel.jbanking.IsoCountry.MQ;
+import static fr.marcwrobel.jbanking.IsoCountry.MT;
+import static fr.marcwrobel.jbanking.IsoCountry.NC;
+import static fr.marcwrobel.jbanking.IsoCountry.NL;
+import static fr.marcwrobel.jbanking.IsoCountry.NO;
+import static fr.marcwrobel.jbanking.IsoCountry.PF;
+import static fr.marcwrobel.jbanking.IsoCountry.PL;
+import static fr.marcwrobel.jbanking.IsoCountry.PM;
+import static fr.marcwrobel.jbanking.IsoCountry.PT;
+import static fr.marcwrobel.jbanking.IsoCountry.RE;
+import static fr.marcwrobel.jbanking.IsoCountry.RO;
+import static fr.marcwrobel.jbanking.IsoCountry.SE;
+import static fr.marcwrobel.jbanking.IsoCountry.SI;
+import static fr.marcwrobel.jbanking.IsoCountry.SK;
+import static fr.marcwrobel.jbanking.IsoCountry.SM;
+import static fr.marcwrobel.jbanking.IsoCountry.VA;
+import static fr.marcwrobel.jbanking.IsoCountry.WF;
+import static fr.marcwrobel.jbanking.IsoCountry.YT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -85,37 +85,8 @@ public enum Agreement {
    * @since 2.1.0
    */
   EUROPEAN_ECONOMIC_AREA(
-      AUSTRIA,
-      BELGIUM,
-      BULGARIA,
-      CROATIA,
-      CYPRUS,
-      CZECH_REPUBLIC,
-      DENMARK,
-      ESTONIA,
-      FINLAND,
-      FRANCE,
-      GERMANY,
-      GREECE,
-      HUNGARY,
-      ICELAND,
-      IRELAND,
-      ITALY,
-      LATVIA,
-      LIECHTENSTEIN,
-      LITHUANIA,
-      LUXEMBOURG,
-      MALTA,
-      NETHERLANDS,
-      NORWAY,
-      POLAND,
-      PORTUGAL,
-      ROMANIA,
-      SLOVAKIA,
-      SLOVENIA,
-      SPAIN,
-      SWEDEN,
-      SWITZERLAND),
+      AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, NL, NO,
+      PL, PT, RO, SK, SI, ES, SE, CH),
 
   /**
    * The European Free Trade Association (EFTA) is a regional trade organization and free trade
@@ -131,7 +102,7 @@ public enum Agreement {
    *     Free Trade Association</a>
    * @since 2.1.0
    */
-  EUROPEAN_FREE_TRADE_ASSOCIATION(ICELAND, LIECHTENSTEIN, NORWAY, SWITZERLAND),
+  EUROPEAN_FREE_TRADE_ASSOCIATION(IS, LI, NO, CH),
 
   /**
    * The European Union (EU) is a political and economic union of states that are located primarily
@@ -154,33 +125,8 @@ public enum Agreement {
    * @since 2.1.0
    */
   EUROPEAN_UNION(
-      AUSTRIA,
-      BELGIUM,
-      BULGARIA,
-      CROATIA,
-      CYPRUS,
-      CZECH_REPUBLIC,
-      DENMARK,
-      ESTONIA,
-      FINLAND,
-      FRANCE,
-      GERMANY,
-      GREECE,
-      HUNGARY,
-      IRELAND,
-      ITALY,
-      LATVIA,
-      LITHUANIA,
-      LUXEMBOURG,
-      MALTA,
-      NETHERLANDS,
-      POLAND,
-      PORTUGAL,
-      ROMANIA,
-      SLOVAKIA,
-      SLOVENIA,
-      SPAIN,
-      SWEDEN),
+      AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO,
+      SK, SI, ES, SE),
 
   /**
    * The French Republic is made up of a "SEPA zone" and a "non-SEPA" zone. In order to ensure the
@@ -198,7 +144,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
-  SEPA_COM_PACIFIQUE(FRENCH_POLYNESIA, NEW_CALEDONIA, WALLIS_AND_FUTUNA),
+  SEPA_COM_PACIFIQUE(PF, NC, WF),
 
   /**
    * The Single Euro Payments Area (SEPA) is a payment-integration initiative of the European Union
@@ -218,55 +164,22 @@ public enum Agreement {
    * @since 2.1.0
    */
   SINGLE_EURO_PAYMENTS_AREA(
-      ANDORRA,
-      AUSTRIA,
-      BELGIUM,
-      BULGARIA,
-      CROATIA,
-      CYPRUS,
-      CZECH_REPUBLIC,
-      DENMARK,
-      ESTONIA,
-      FINLAND,
-      ALAND_ISLANDS, // through Finland
-      FRANCE,
-      FRENCH_GUIANA, // through France
-      GUADELOUPE, // through France
-      MARTINIQUE, // through France
-      MAYOTTE, // through France
-      REUNION, // through France
-      SAINT_BARTHELEMY, // through France
-      SAINT_MARTIN, // through France
-      SAINT_PIERRE_AND_MIQUELON, // through France
-      GERMANY,
-      GREECE,
-      HUNGARY,
-      ICELAND,
-      IRELAND,
-      ITALY,
-      LATVIA,
-      LIECHTENSTEIN,
-      LITHUANIA,
-      LUXEMBOURG,
-      MALTA,
-      MONACO,
-      NETHERLANDS,
-      NORWAY,
-      POLAND,
-      PORTUGAL,
-      ROMANIA,
-      SAN_MARINO,
-      SLOVAKIA,
-      SLOVENIA,
-      SPAIN,
-      SWEDEN,
-      SWITZERLAND,
-      UNITED_KINGDOM, // under a transitional period until 31 December 2020
-      GIBRALTAR, // through United Kingdom
-      GUERNSEY, // through United Kingdom
-      JERSEY, // through United Kingdom
-      ISLE_OF_MAN, // through United Kingdom
-      VATICAN_CITY_STATE);
+      AD, AT, BE, BG, HR, CY, CZ, DK, EE, FI, AX, // through Finland
+      FR, GF, // through France
+      GP, // through France
+      MQ, // through France
+      YT, // through France
+      RE, // through France
+      BL, // through France
+      MF, // through France
+      PM, // through France
+      DE, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, MC, NL, NO, PL, PT, RO, SM, SK, SI, ES, SE, CH,
+      GB, // under a transitional period until 31 December 2020
+      GI, // through United Kingdom
+      GG, // through United Kingdom
+      JE, // through United Kingdom
+      IM, // through United Kingdom
+      VA);
 
   private final Set<IsoCountry> participants;
 

@@ -1,10 +1,10 @@
 package fr.marcwrobel.jbanking;
 
-import static fr.marcwrobel.jbanking.IsoCountry.ANTARCTICA;
-import static fr.marcwrobel.jbanking.IsoCountry.FRANCE;
-import static fr.marcwrobel.jbanking.IsoCountry.PALESTINE;
-import static fr.marcwrobel.jbanking.IsoCountry.TAIWAN;
-import static fr.marcwrobel.jbanking.IsoCountry.WESTERN_SAHARA;
+import static fr.marcwrobel.jbanking.IsoCountry.AQ;
+import static fr.marcwrobel.jbanking.IsoCountry.EH;
+import static fr.marcwrobel.jbanking.IsoCountry.FR;
+import static fr.marcwrobel.jbanking.IsoCountry.PS;
+import static fr.marcwrobel.jbanking.IsoCountry.TW;
 import static java.util.EnumSet.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -56,19 +56,19 @@ class IsoCountryTest {
   @Test
   void fromAlpha2CodeIsNotCaseSensitive() {
     Optional<IsoCountry> country =
-        IsoCountry.fromAlpha2Code(IsoCountry.FRANCE.getAlpha2Code().toLowerCase());
+        IsoCountry.fromAlpha2Code(IsoCountry.FR.getAlpha2Code().toLowerCase());
 
     assertTrue(country.isPresent());
-    assertEquals(FRANCE, country.get());
+    assertEquals(FR, country.get());
   }
 
   @Test
   void fromAlpha3CodeIsNotCaseSensitive() {
     Optional<IsoCountry> country =
-        IsoCountry.fromAlpha3Code(IsoCountry.FRANCE.getAlpha3Code().toLowerCase());
+        IsoCountry.fromAlpha3Code(IsoCountry.FR.getAlpha3Code().toLowerCase());
 
     assertTrue(country.isPresent());
-    assertEquals(FRANCE, country.get());
+    assertEquals(FR, country.get());
   }
 
   @Test
@@ -148,7 +148,7 @@ class IsoCountryTest {
 
   @Test
   void dependentCountriesDependsOnIndependentCountry() {
-    Set<IsoCountry> excludedCountries = of(ANTARCTICA, PALESTINE, TAIWAN, WESTERN_SAHARA);
+    Set<IsoCountry> excludedCountries = of(AQ, PS, TW, EH);
 
     for (IsoCountry country : IsoCountry.values()) {
       if (country.isIndependent()) {
@@ -161,6 +161,13 @@ class IsoCountryTest {
         assertTrue(country.getDependency().isPresent(), country::name);
         assertTrue(country.getDependency().get().isIndependent(), country::name);
       }
+    }
+  }
+
+  @Test
+  void ensureIsoAlpha2CodeIsUsedForEnumEntries() {
+    for (IsoCountry country : IsoCountry.values()) {
+      assertEquals(2, country.name().length());
     }
   }
 }

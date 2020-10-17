@@ -8,6 +8,7 @@ This new release includes :
 - calendar API improvements (composite calendars),
 
 This new release also includes breaking changes :
+- renaming of IsoCountry and IsoCurrency enums entries,
 - deprecated methods removal (see details below).
 
 ### Added
@@ -20,6 +21,10 @@ This new release also includes breaking changes :
 - Make jbanking serializable-friendly (#53).
 - Upgrade to Strata 2.8.2 (#57).
 - Upgrade to Guava 30.0 (#58).
+- IsoCountry and IsoCurrency enums entries renamed using their alpha-code instead of their full
+  names to reduce breaking changes in future versions (#56).
+- Changed `IsoCurrency.fromNumericCode(Integer)` signature to `IsoCurrency.fromNumericCode(int)`
+  (#56).
 
 ### Fixed
 
@@ -30,5 +35,7 @@ This new release also includes breaking changes :
 - Remove deprecated method `IsoCountry.getCode()` : use `IsoCountry.getAlpha2Code()` instead (#49).
 - Remove deprecated method `IsoCountry.fromCode(String)` : use `IsoCountry.fromAlpha2Code(String)`
   instead (#49).
+- Remove `IsoCountry.NO_UNIVERSAL_CURRENCY` : this currency has no associated code and could not be
+  retained during IsoCountry enum entries renaming (#56).
 
 ### Thanks

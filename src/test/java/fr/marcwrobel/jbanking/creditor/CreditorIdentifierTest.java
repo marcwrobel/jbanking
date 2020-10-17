@@ -105,14 +105,14 @@ class CreditorIdentifierTest {
   void aCreditorIdentifierBusinessCodeCannotBeNull() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> new CreditorIdentifier(IsoCountry.FRANCE, null, "123456"));
+        () -> new CreditorIdentifier(IsoCountry.FR, null, "123456"));
   }
 
   @Test
   void aCreditorNationalIdCannotBeNull() {
     assertThrows(
         IllegalArgumentException.class,
-        () -> new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, null));
+        () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, null));
   }
 
   @Test
@@ -130,7 +130,7 @@ class CreditorIdentifierTest {
   void aCreditorNationalIdCannotBeBlank() {
     assertThrows(
         CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, TestUtils.BLANK));
+        () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, TestUtils.BLANK));
   }
 
   @Test
@@ -172,7 +172,7 @@ class CreditorIdentifierTest {
   @Test
   void aCreditorNationalIdMustBeProperlyStructured() {
     try {
-      new CreditorIdentifier(IsoCountry.FRANCE, VALID_CI_BUSINESS_CODE, INVALID_CI_NATIONAL_ID);
+      new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, INVALID_CI_NATIONAL_ID);
       shouldHaveThrown(CreditorIdentifierFormatException.class);
     } catch (CreditorIdentifierFormatException e) {
       assertEquals(INVALID_CI_NATIONAL_ID, e.getInputString());

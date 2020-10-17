@@ -142,7 +142,7 @@ class IbanTest {
 
   @Test
   void anIbanBbanCannotBeNull() {
-    assertThrows(IllegalArgumentException.class, () -> new Iban(IsoCountry.FRANCE, null));
+    assertThrows(IllegalArgumentException.class, () -> new Iban(IsoCountry.FR, null));
   }
 
   @Test
@@ -157,7 +157,7 @@ class IbanTest {
 
   @Test
   void anIbanBbanCannotBeBlank() {
-    assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.FRANCE, TestUtils.BLANK));
+    assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.FR, TestUtils.BLANK));
   }
 
   @Test
@@ -195,7 +195,7 @@ class IbanTest {
   @Test
   void anIbanCountryMustBeSupported() {
     try {
-      new Iban(IsoCountry.UNITED_STATES, VALID_IBAN_BBAN);
+      new Iban(IsoCountry.US, VALID_IBAN_BBAN);
       shouldHaveThrown(IbanFormatException.class);
     } catch (IbanFormatException e) {
       assertEquals(VALID_IBAN_BBAN, e.getInputString());
@@ -238,7 +238,7 @@ class IbanTest {
   @Test
   void anIbanBbanMustBeProperlyStructured() {
     try {
-      new Iban(IsoCountry.FRANCE, BBAN_WITH_INVALID_FORMAT);
+      new Iban(IsoCountry.FR, BBAN_WITH_INVALID_FORMAT);
       shouldHaveThrown(IbanFormatException.class);
     } catch (IbanFormatException e) {
       assertEquals(BBAN_WITH_INVALID_FORMAT, e.getInputString());

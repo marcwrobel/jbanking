@@ -32,8 +32,8 @@ class IsoCurrencyTest {
   @Test
   void fromAlphaCodeIsNotCaseSensitive() {
     assertEquals(
-        IsoCurrency.EURO,
-        IsoCurrency.fromAlphabeticCode(IsoCurrency.EURO.getAlphabeticCode().toLowerCase()));
+        IsoCurrency.EUR,
+        IsoCurrency.fromAlphabeticCode(IsoCurrency.EUR.getAlphabeticCode().toLowerCase()));
   }
 
   @Test
@@ -41,11 +41,6 @@ class IsoCurrencyTest {
     for (IsoCurrency currency : IsoCurrency.values()) {
       assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
     }
-  }
-
-  @Test
-  void fromNumericCodeAllowsNull() {
-    assertEquals(IsoCurrency.NO_UNIVERSAL_CURRENCY, IsoCurrency.fromNumericCode(null));
   }
 
   @Test
@@ -87,7 +82,6 @@ class IsoCurrencyTest {
   void ensureNoDeprecated() {
     List<IsoCurrency> deprecated =
         Arrays.stream(IsoCurrency.values())
-            .filter(c -> c != IsoCurrency.NO_UNIVERSAL_CURRENCY)
             .filter(
                 currency -> {
                   CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
@@ -107,5 +101,12 @@ class IsoCurrencyTest {
             .collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
+  }
+
+  @Test
+  void ensureIsoCodeIsUsedForEnumEntries() {
+    for (IsoCurrency currency : IsoCurrency.values()) {
+      assertEquals(3, currency.name().length());
+    }
   }
 }
