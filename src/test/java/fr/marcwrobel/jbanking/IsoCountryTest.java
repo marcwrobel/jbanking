@@ -72,13 +72,6 @@ class IsoCountryTest {
   }
 
   @Test
-  void fromCodeWorksWithAllExistingValues() {
-    for (IsoCountry country : IsoCountry.values()) {
-      assertEquals(country, IsoCountry.fromCode(country.getAlpha2Code()));
-    }
-  }
-
-  @Test
   void fromAlpha2CodeWorksWithAllExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
       Optional<IsoCountry> result = IsoCountry.fromAlpha2Code(country.getAlpha2Code());

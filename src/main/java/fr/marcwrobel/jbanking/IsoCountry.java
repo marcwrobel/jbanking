@@ -806,18 +806,6 @@ public enum IsoCountry {
   }
 
   /**
-   * Returns this country ISO 3166-1-alpha-2 code.
-   *
-   * @deprecated use {@link #getAlpha2Code()}, will be removed in the next major version
-   * @return a non null and 2 characters length string.
-   * @see #getAlpha2Code()
-   */
-  @Deprecated
-  public String getCode() {
-    return getAlpha2Code();
-  }
-
-  /**
    * Returns this country ISO 3166-1 alpha-2 code.
    *
    * @return a non null and 2 characters length string.
@@ -908,21 +896,6 @@ public enum IsoCountry {
     }
 
     return agreements;
-  }
-
-  /**
-   * Translate the given ISO 3166-1-alpha-2 code to an IsoCountry.
-   *
-   * <p>This method is not case-sensitive.
-   *
-   * @param code A non-null String.
-   * @deprecated use {@link #fromAlpha2Code(String)}, will be removed in the next major version
-   * @return the country having the given ISO 3166-1-alpha-2 code, or null if it does not exist.
-   * @see #fromAlpha2Code(String)
-   */
-  @Deprecated
-  public static IsoCountry fromCode(String code) {
-    return fromAlpha2Code(code).orElse(null);
   }
 
   /**
