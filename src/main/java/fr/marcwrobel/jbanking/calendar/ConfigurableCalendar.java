@@ -5,11 +5,8 @@ import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,10 +15,7 @@ import java.util.Set;
  * @author Marc Wrobel
  * @since 2.1.0
  */
-public final class ConfigurableCalendar implements Calendar {
-
-  /** Maximum number of iteration for date calculations before giving up. */
-  private static final int MAX_ITERATIONS = 3650;
+public final class ConfigurableCalendar extends CalendarSupport {
 
   private final Set<Holiday> holidays;
 
@@ -42,12 +36,7 @@ public final class ConfigurableCalendar implements Calendar {
     this.holidays = unmodifiableSet(copy);
   }
 
-  /**
-   * Creates a new instance using the given bank {@link Holiday}s.
-   *
-   * @param holidays the {@link Holiday}s that the calendar will be using.
-   * @throws NullPointerException if {@code holidays} is {code null}.
-   */
+  /** @see ConfigurableCalendar#ConfigurableCalendar(Collection) */
   public ConfigurableCalendar(Holiday... holidays) {
     this(asList(holidays));
   }
@@ -76,91 +65,5 @@ public final class ConfigurableCalendar implements Calendar {
     }
 
     return unmodifiableSet(matchingHolidays);
-  }
-
-  /** @see Calendar#isBusinessDay(LocalDate) */
-  @Override
-  public boolean isBusinessDay(LocalDate date) {
-    return !isHoliday(date);
-  }
-
-  /**
-   * @see Calendar#previousBusinessDay(LocalDate)
-   * @throws DateCalculationException if no business day could be found in the previous {@value
-   *     MAX_ITERATIONS} days
-   */
-  @Override
-  public LocalDate previousBusinessDay(LocalDate date) {
-    int c = 0;
-
-    LocalDate previous = date.minusDays(1);
-    while (isHoliday(previous)) {
-      previous = previous.minusDays(1);
-
-      if (++c >= MAX_ITERATIONS) {
-        throw new DateCalculationException(
-            "no business day found within the previous " + MAX_ITERATIONS + " days");
-      }
-    }
-
-    return previous;
-  }
-
-  /**
-   * @see Calendar#nextBusinessDay(LocalDate)
-   * @throws DateCalculationException if no business day could be found in the next {@value
-   *     MAX_ITERATIONS} days
-   */
-  @Override
-  public LocalDate nextBusinessDay(LocalDate date) {
-    int c = 0;
-
-    LocalDate next = date.plusDays(1);
-    while (isHoliday(next)) {
-      next = next.plusDays(1);
-
-      if (++c >= MAX_ITERATIONS) {
-        throw new DateCalculationException(
-            "no business day found within the next " + MAX_ITERATIONS + " days");
-      }
-    }
-
-    return next;
-  }
-
-  /** @see Calendar#holidaysWithin(LocalDate, LocalDate) */
-  @Override
-  public List<LocalDate> holidaysWithin(LocalDate from, LocalDate to) {
-    ensureFromIsNotAfterTo(from, to);
-    List<LocalDate> occurrences = new ArrayList<>(0);
-
-    for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
-      if (isHoliday(date)) {
-        occurrences.add(date);
-      }
-    }
-
-    return Collections.unmodifiableList(occurrences);
-  }
-
-  /** @see Calendar#businessDaysWithin(LocalDate, LocalDate) */
-  @Override
-  public List<LocalDate> businessDaysWithin(LocalDate from, LocalDate to) {
-    ensureFromIsNotAfterTo(from, to);
-    List<LocalDate> occurrences = new ArrayList<>(0);
-
-    for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
-      if (isBusinessDay(date)) {
-        occurrences.add(date);
-      }
-    }
-
-    return Collections.unmodifiableList(occurrences);
-  }
-
-  private void ensureFromIsNotAfterTo(LocalDate from, LocalDate to) {
-    if (from.isAfter(to)) {
-      throw new IllegalArgumentException("from is after to");
-    }
   }
 }

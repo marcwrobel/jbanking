@@ -7,6 +7,9 @@ This new release includes :
 
 ### Added
 
+- Add support for composite calendars, e.g. calendars calendars that combine multiple calendars into
+  a single one.
+
 ### Changed
 
 - Make jbanking serializable-friendly (#53).
