@@ -31,7 +31,7 @@ class NoHolidayCalendarTest {
 
   @Test
   void previousAndNextDaysAreBusinessDays() {
-    assertEquals(NOW.minusDays(1), NO_HOLIDAYS.previousBusinessDay(NOW));
-    assertEquals(NOW.plusDays(1), NO_HOLIDAYS.nextBusinessDay(NOW));
+    assertEquals(NOW.minusDays(1), NO_HOLIDAYS.previous(NOW));
+    assertEquals(NOW.plusDays(1), NO_HOLIDAYS.next(NOW));
   }
 }

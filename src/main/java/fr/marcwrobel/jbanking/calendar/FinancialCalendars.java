@@ -322,16 +322,16 @@ public enum FinancialCalendars implements Calendar {
     return calendar.isBusinessDay(date);
   }
 
-  /** @see Calendar#previousBusinessDay(LocalDate) */
+  /** @see Calendar#previous(LocalDate) */
   @Override
-  public LocalDate previousBusinessDay(LocalDate date) {
-    return calendar.previousBusinessDay(date);
+  public LocalDate previous(LocalDate date) {
+    return calendar.previous(date);
   }
 
-  /** @see Calendar#nextBusinessDay(LocalDate) */
+  /** @see Calendar#next(LocalDate) */
   @Override
-  public LocalDate nextBusinessDay(LocalDate date) {
-    return calendar.nextBusinessDay(date);
+  public LocalDate next(LocalDate date) {
+    return calendar.next(date);
   }
 
   /** @see Calendar#holidaysWithin(LocalDate, LocalDate) */

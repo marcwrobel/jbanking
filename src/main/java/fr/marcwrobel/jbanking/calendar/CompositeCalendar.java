@@ -15,7 +15,7 @@ import java.util.Set;
  * @author Marc Wrobel
  * @since 3.0.0
  */
-public final class CompositeCalendar extends CalendarSupport {
+public final class CompositeCalendar implements Calendar {
 
   private final List<Calendar> calendars;
 

@@ -15,7 +15,7 @@ import java.util.Set;
  * @author Marc Wrobel
  * @since 2.1.0
  */
-public final class ConfigurableCalendar extends CalendarSupport {
+public final class ConfigurableCalendar implements Calendar {
 
   private final Set<Holiday> holidays;
 

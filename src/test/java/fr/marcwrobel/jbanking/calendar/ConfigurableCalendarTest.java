@@ -53,8 +53,10 @@ class ConfigurableCalendarTest {
 
     assertTrue(emptyCalendar.isBusinessDay(date));
     assertFalse(emptyCalendar.isHoliday(date));
-    assertEquals(date.plusDays(1), emptyCalendar.nextBusinessDay(date));
-    assertEquals(date.minusDays(1), emptyCalendar.previousBusinessDay(date));
+    assertEquals(date, emptyCalendar.nextOrSame(date));
+    assertEquals(date.plusDays(1), emptyCalendar.next(date));
+    assertEquals(date, emptyCalendar.previousOrSame(date));
+    assertEquals(date.minusDays(1), emptyCalendar.previous(date));
   }
 
   @Test
@@ -67,8 +69,12 @@ class ConfigurableCalendarTest {
       assertFalse(fullCalendar.isBusinessDay(date));
     }
 
-    assertThrows(DateCalculationException.class, () -> fullCalendar.nextBusinessDay(date));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.previousBusinessDay(date));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.shift(date, 1));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.shift(date, -1));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.next(date));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.nextOrSame(date));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.previous(date));
+    assertThrows(DateCalculationException.class, () -> fullCalendar.previousOrSame(date));
   }
 
   @Test
@@ -84,7 +90,7 @@ class ConfigurableCalendarTest {
     assertTrue(WEEKEND_CALENDAR.isBusinessDay(FRIDAY));
     assertFalse(WEEKEND_CALENDAR.isHoliday(FRIDAY));
     assertEquals(emptySet(), WEEKEND_CALENDAR.getHolidaysFor(FRIDAY));
-    assertEquals(FRIDAY, WEEKEND_CALENDAR.previousBusinessDay(SATURDAY));
+    assertEquals(FRIDAY, WEEKEND_CALENDAR.previous(SATURDAY));
   }
 
   @Test
@@ -102,7 +108,7 @@ class ConfigurableCalendarTest {
     assertTrue(WEEKEND_CALENDAR.isBusinessDay(NEXT_MONDAY));
     assertFalse(WEEKEND_CALENDAR.isHoliday(NEXT_MONDAY));
     assertEquals(emptySet(), WEEKEND_CALENDAR.getHolidaysFor(NEXT_MONDAY));
-    assertEquals(NEXT_MONDAY, WEEKEND_CALENDAR.nextBusinessDay(SATURDAY));
+    assertEquals(NEXT_MONDAY, WEEKEND_CALENDAR.next(SATURDAY));
   }
 
   @Test
