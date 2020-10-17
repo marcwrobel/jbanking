@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This new release includes :
 - serialization support,
 - calendar API improvements (composite calendars),
+- a few fixes (for IsoCurrency).
 
 This new release also includes breaking changes :
 - renaming of IsoCountry and IsoCurrency enums entries,
@@ -27,6 +28,8 @@ This new release also includes breaking changes :
   (#56).
 
 ### Fixed
+
+- Remove Lithuanian litas (LTL) entry from IsoCurrency enum : Lithuania is using Euro since 2015 (#59).
 
 ### Deprecated
 

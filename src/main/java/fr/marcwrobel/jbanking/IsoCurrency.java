@@ -652,7 +652,7 @@ public enum IsoCurrency {
    */
   EUR(
       978, 2, PT, RE, LU, IT, SK, MF, AD, YT, BL, AX, GP, GF, PM, DE, BE, ES, SM, FI, MT, VA, MC,
-      GR, MQ, TF, EE, IE, NL, ME, SI, FR, AT, CY, XK, LV),
+      GR, MQ, TF, EE, IE, NL, ME, SI, FR, AT, CY, XK, LV, LT),
 
   /**
    * Falkland Islands pound.
@@ -884,13 +884,6 @@ public enum IsoCurrency {
    * @see <a href="https://wikipedia.org/wiki/Swazi_lilangeni">wikipedia.org</a>
    */
   SZL(748, 2, SZ),
-
-  /**
-   * Lithuanian litas.
-   *
-   * @see <a href="https://en.wikipedia.org/wiki/Lithuanian_litas">wikipedia.org</a>
-   */
-  LTL(440, 2, LT),
 
   /**
    * Lesotho loti.

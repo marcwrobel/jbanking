@@ -61,7 +61,8 @@ class IsoCurrencyTest {
             CurrencyCode.RUR, // https://wikipedia.org/wiki/Russian_ruble
             CurrencyCode
                 .STD, // https://wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_dobra
-            CurrencyCode.VEF // https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar
+            CurrencyCode.VEF, // https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar
+            CurrencyCode.LTL // https://wikipedia.org/wiki/Lithuanian_litas
             );
 
     List<CurrencyCode> allCurrencies =
