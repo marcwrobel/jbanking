@@ -38,6 +38,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.BY;
 import static fr.marcwrobel.jbanking.IsoCountry.BZ;
 import static fr.marcwrobel.jbanking.IsoCountry.CA;
 import static fr.marcwrobel.jbanking.IsoCountry.CC;
+import static fr.marcwrobel.jbanking.IsoCountry.CD;
 import static fr.marcwrobel.jbanking.IsoCountry.CF;
 import static fr.marcwrobel.jbanking.IsoCountry.CG;
 import static fr.marcwrobel.jbanking.IsoCountry.CH;
@@ -494,7 +495,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Congolese_franc">wikipedia.org</a>
    */
-  CDF(976, 2, CG),
+  CDF(976, 2, CD),
 
   /**
    * Bosnia and Herzegovina convertible mark.

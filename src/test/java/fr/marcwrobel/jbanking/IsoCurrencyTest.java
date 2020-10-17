@@ -4,10 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CurrencyCode;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
@@ -76,6 +81,34 @@ class IsoCurrencyTest {
             .collect(Collectors.toList());
 
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
+  }
+
+  // using nv-i18n helps us keeping the enum up-to-date
+  @Test
+  void ensureCountriesCompleteness() {
+    Multimap<IsoCurrency, IsoCountry> missingCountries = HashMultimap.create();
+    Set<CountryCode> unknownCountryCode = new HashSet<>();
+
+    for (IsoCurrency currency : IsoCurrency.values()) {
+      CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
+
+      for (CountryCode countryCode : currencyCode.getCountryList()) {
+        if (countryCode != CountryCode.EU) {
+          Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(countryCode.getAlpha2());
+
+          if (country.isPresent()) {
+            if (!currency.getCountries().contains(country.get())) {
+              missingCountries.put(currency, country.get());
+            }
+          } else {
+            unknownCountryCode.add(countryCode);
+          }
+        }
+      }
+    }
+
+    assertTrue(missingCountries.isEmpty(), "Missing countries : " + missingCountries);
+    assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
   }
 
   // using nv-i18n helps us keeping the enum up-to-date

@@ -30,6 +30,9 @@ This new release also includes breaking changes :
 ### Fixed
 
 - Remove Lithuanian litas (LTL) entry from IsoCurrency enum : Lithuania is using Euro since 2015 (#59).
+- Fix `IsoCountry.CDF` ([Congolese franc](https://en.wikipedia.org/wiki/Congolese_franc)) enum
+  entry : the entry declared [the Congo (CG)](https://www.iso.org/obp/ui/#iso:code:3166:CG) instead
+  of [the Democratic Republic of the Congo (CD)](https://www.iso.org/obp/ui/#iso:code:3166:CD) (#60).
 
 ### Deprecated
 
