@@ -32,7 +32,12 @@ public final class FixedHoliday implements Holiday {
     this.dates = new HashSet<>(dates);
   }
 
-  /** @see #FixedHoliday(Collection) */
+  /**
+   * Create a new holiday using the given dates.
+   *
+   * @param dates a collection of {@link LocalDate}s
+   * @throws NullPointerException if the given collection is {@code null}
+   */
   public FixedHoliday(LocalDate... dates) {
     this(Arrays.asList(dates));
   }

@@ -31,6 +31,7 @@ public final class DayOfWeekInMonthHoliday implements Holiday {
   /**
    * Create a new holiday using the given {@link DayOfWeek} and {@link Month}
    *
+   * @param weekNumber the week within the month, unbounded but typically from -5 to 5
    * @param dayOfWeek a non-null {@link DayOfWeek}
    * @param month a non-null {@link Month}
    * @throws NullPointerException if the given {@link MonthDay} is {@code null}

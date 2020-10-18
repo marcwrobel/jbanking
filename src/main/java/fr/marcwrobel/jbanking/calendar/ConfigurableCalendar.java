@@ -36,7 +36,13 @@ public final class ConfigurableCalendar implements Calendar {
     this.holidays = unmodifiableSet(copy);
   }
 
-  /** @see ConfigurableCalendar#ConfigurableCalendar(Collection) */
+  /**
+   * Creates a new instance using the given bank {@link Holiday}s.
+   *
+   * @param holidays the {@link Holiday}s that the calendar will be using.
+   * @throws NullPointerException if {@code holidays} is {code null} or if one of the holiday in
+   *     {@code holidays} is {code null}.
+   */
   public ConfigurableCalendar(Holiday... holidays) {
     this(asList(holidays));
   }

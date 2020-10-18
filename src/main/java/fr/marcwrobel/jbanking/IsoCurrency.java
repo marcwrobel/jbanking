@@ -1427,7 +1427,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Unidad_de_Fomento">wikipedia.org</a>
    */
-  CLF(990, 0, CL),
+  CLF(990, 4, CL),
 
   /**
    * Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code).

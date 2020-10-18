@@ -132,6 +132,8 @@ class IsoCurrencyTest {
     List<IsoCurrency> deprecated =
         Arrays.stream(IsoCurrency.values())
             .filter(
+                isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
+            .filter(
                 currency -> {
                   CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
                   if (code != null) {

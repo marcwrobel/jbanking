@@ -34,7 +34,13 @@ public final class CompositeCalendar implements Calendar {
     this.calendars = new ArrayList<>(calendars);
   }
 
-  /** @see CompositeCalendar#CompositeCalendar(Collection) */
+  /**
+   * Creates a new instance using the given {@link Calendar}s.
+   *
+   * @param calendars the {@link Calendar}s to use in this composite calendar
+   * @throws NullPointerException if {@code calendars} is {code null}
+   * @throws IllegalArgumentException if {@code calendars} is empty
+   */
   public CompositeCalendar(Calendar... calendars) {
     this(asList(calendars));
   }

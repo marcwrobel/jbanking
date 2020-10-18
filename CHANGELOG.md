@@ -4,6 +4,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 This new release includes :
+- a review of the ISO 3166 countries, ISO 4217 currencies and BBAN structure enums,
 - `Calendar` API improvements (new methods, composite calendars),
 - a few fixes for `IsoCurrency`,
 - serialization support.
@@ -20,6 +21,7 @@ This new release also includes breaking changes (see details below).
   (included) (#61).
 - Add `Calendar.shift(LocalDate date, int amount)` : shifts the date by the specified number of
   business days (#61).
+- Add support for Libyan (LY) IBAN numbers (#63).
 
 ### Changed
 
@@ -44,6 +46,7 @@ This new release also includes breaking changes (see details below).
 - Fix `IsoCountry.CDF` ([Congolese franc](https://en.wikipedia.org/wiki/Congolese_franc)) enum
   entry : the entry declared [the Congo (CG)](https://www.iso.org/obp/ui/#iso:code:3166:CG) instead
   of [the Democratic Republic of the Congo (CD)](https://www.iso.org/obp/ui/#iso:code:3166:CD) (#60).
+- Fix Unidad de Fomento (CLF) minor unit (#63).
 
 ### Deprecated
 

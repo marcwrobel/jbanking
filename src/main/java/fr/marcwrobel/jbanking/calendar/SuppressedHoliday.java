@@ -38,7 +38,16 @@ public final class SuppressedHoliday implements Holiday {
     this.suppressedYears = new HashSet<>(suppressedYears);
   }
 
-  /** @see #SuppressedHoliday(Holiday, Collection) */
+  /**
+   * Create a new holiday using the given base and suppressed years.
+   *
+   * <p>The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the
+   * original dates dans vn are the replacement.
+   *
+   * @param base a non-null holiday to use as a base.
+   * @param suppressedYears a list of year the holiday has been suppressed
+   * @throws NullPointerException if <code>base</code> is null
+   */
   public SuppressedHoliday(Holiday base, Integer... suppressedYears) {
     this(base, Arrays.asList(suppressedYears));
   }
