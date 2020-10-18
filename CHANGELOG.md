@@ -63,6 +63,7 @@ This new release also includes breaking changes (see details below).
 
 - Upgrade to Strata 2.8.2 (#57).
 - Upgrade to Guava 30.0 (#58).
+- Upgrade to parent 2.3.2 (#65).
 - Make use of lookup tables in `IsoCountry`, `IsoCurrency` and `BbanStructure` (#62).
 
 ### Thanks
