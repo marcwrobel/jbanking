@@ -15,6 +15,7 @@ import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CountryCode.Assignment;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -118,6 +119,30 @@ class IsoCountryTest {
             .collect(Collectors.toList());
 
     assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
+  }
+
+  @Test
+  void ensureAlpha3CodesAreDefinedOnce() {
+    Set<String> codes = new HashSet<>();
+
+    for (IsoCountry country : IsoCountry.values()) {
+      String code = country.getAlpha3Code();
+      assertFalse(codes.contains(code));
+      codes.add(code);
+    }
+  }
+
+  @Test
+  void ensureNumericCodesAreDefinedOnce() {
+    Set<Integer> codes = new HashSet<>();
+
+    for (IsoCountry country : IsoCountry.values()) {
+      Optional<Integer> code = country.getNumericCode();
+      if (code.isPresent()) {
+        assertFalse(codes.contains(code.get()));
+        codes.add(code.get());
+      }
+    }
   }
 
   // using nv-i18n helps us keeping the enum exact

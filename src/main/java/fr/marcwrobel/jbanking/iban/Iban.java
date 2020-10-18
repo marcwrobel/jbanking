@@ -66,11 +66,12 @@ public final class Iban implements Serializable {
     String normalizedBban = normalize(bban);
     String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
-    BbanStructure bbanStructure = BbanStructure.forCountry(country);
-    if (bbanStructure == null) {
+    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country);
+    if (!oBbanStructure.isPresent()) {
       throw IbanFormatException.forNotSupportedCountry(bban, country);
     }
 
+    BbanStructure bbanStructure = oBbanStructure.get();
     if (!bbanStructure.isBbanValid(normalizedBban)) {
       throw IbanFormatException.forInvalidBbanStructure(bban, bbanStructure);
     }
@@ -103,11 +104,12 @@ public final class Iban implements Serializable {
       throw IbanFormatException.forUnknownCountry(iban);
     }
 
-    BbanStructure bbanStructure = BbanStructure.forCountry(country.get());
-    if (bbanStructure == null) {
+    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country.get());
+    if (!oBbanStructure.isPresent()) {
       throw IbanFormatException.forNotSupportedCountry(iban, country.get());
     }
 
+    BbanStructure bbanStructure = oBbanStructure.get();
     if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       throw IbanFormatException.forInvalidBbanStructure(iban, bbanStructure);
     }
@@ -141,11 +143,12 @@ public final class Iban implements Serializable {
       return false;
     }
 
-    BbanStructure bbanStructure = BbanStructure.forCountry(country.get());
-    if (bbanStructure == null) {
+    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country.get());
+    if (!oBbanStructure.isPresent()) {
       return false;
     }
 
+    BbanStructure bbanStructure = oBbanStructure.get();
     if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       return false;
     }

@@ -3,6 +3,8 @@ package fr.marcwrobel.jbanking;
 import static java.util.Objects.requireNonNull;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -1784,6 +1786,22 @@ public enum IsoCountry {
    */
   ZW("ZWE", 716);
 
+  // Enum.valueOf throws Exception on null or not found
+  private static final Map<String, IsoCountry> byAlpha2Code = new HashMap<>();
+  private static final Map<String, IsoCountry> byAlpha3Code = new HashMap<>();
+  private static final Map<Integer, IsoCountry> byNumericCode = new HashMap<>();
+
+  static {
+    for (IsoCountry country : values()) {
+      byAlpha2Code.put(country.getAlpha2Code(), country);
+      byAlpha3Code.put(country.getAlpha3Code(), country);
+
+      if (country.numericCode != null) {
+        byNumericCode.put(country.numericCode, country);
+      }
+    }
+  }
+
   private final String alpha3Code;
   private final Integer numericCode;
 
@@ -1833,7 +1851,7 @@ public enum IsoCountry {
    * Returns this country ISO 3166-1 numeric code.
    *
    * @return a positive integer, or {@link Optional#empty()} if there is no code for the country
-   *     (user-assigned).
+   *     (user-assigned may not have a numeric code).
    * @since 2.1.0
    */
   public Optional<Integer> getNumericCode() {
@@ -1911,17 +1929,8 @@ public enum IsoCountry {
    * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}.
    */
   public static Optional<IsoCountry> fromAlpha2Code(String code) {
-    if (code != null && code.length() == 2) {
-      String upperCasedCode = code.toUpperCase();
-
-      for (IsoCountry country : values()) {
-        if (country.getAlpha2Code().equals(upperCasedCode)) {
-          return Optional.of(country);
-        }
-      }
-    }
-
-    return Optional.empty();
+    String upperCasedCode = (code == null ? null : code.toUpperCase());
+    return Optional.ofNullable(byAlpha2Code.get(upperCasedCode));
   }
 
   /**
@@ -1933,17 +1942,8 @@ public enum IsoCountry {
    * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
    */
   public static Optional<IsoCountry> fromAlpha3Code(String code) {
-    if (code != null && code.length() == 3) {
-      String upperCasedCode = code.toUpperCase();
-
-      for (IsoCountry country : values()) {
-        if (country.getAlpha3Code().equals(upperCasedCode)) {
-          return Optional.of(country);
-        }
-      }
-    }
-
-    return Optional.empty();
+    String upperCasedCode = (code == null ? null : code.toUpperCase());
+    return Optional.ofNullable(byAlpha3Code.get(upperCasedCode));
   }
 
   /**
@@ -1953,13 +1953,6 @@ public enum IsoCountry {
    * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
    */
   public static Optional<IsoCountry> fromNumericCode(int code) {
-    for (IsoCountry country : values()) {
-      Optional<Integer> numericCode = country.getNumericCode();
-      if (numericCode.isPresent() && numericCode.get() == code) {
-        return Optional.of(country);
-      }
-    }
-
-    return Optional.empty();
+    return Optional.ofNullable(byNumericCode.get(code));
   }
 }

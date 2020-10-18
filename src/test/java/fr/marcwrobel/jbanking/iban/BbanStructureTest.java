@@ -1,10 +1,14 @@
 package fr.marcwrobel.jbanking.iban;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import java.util.EnumSet;
+import java.util.Optional;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,19 +19,21 @@ import org.junit.jupiter.api.Test;
 class BbanStructureTest {
 
   @Test
-  void nullReturnsNull() {
-    assertNull(BbanStructure.forCountry(null));
+  void nullReturnsEmpty() {
+    assertFalse(BbanStructure.forCountry(null).isPresent());
   }
 
   @Test
-  void unsupportedCountryReturnsNull() {
-    assertNull(BbanStructure.forCountry(IsoCountry.US));
+  void unsupportedCountryReturnsEmpty() {
+    assertFalse(BbanStructure.forCountry(IsoCountry.US).isPresent());
   }
 
   @Test
   void supportedCountryReturnsCorrespondingBbanDefinition() {
     for (BbanStructure structure : BbanStructure.values()) {
-      assertEquals(structure, BbanStructure.forCountry(structure.getCountry()));
+      Optional<BbanStructure> found = BbanStructure.forCountry(structure.getCountry());
+      assertTrue(found.isPresent());
+      assertEquals(structure, found.get());
     }
   }
 
@@ -35,7 +41,9 @@ class BbanStructureTest {
   void supportedCountrySubdivisionReturnsCorrespondingBbanDefinition() {
     for (BbanStructure structure : BbanStructure.values()) {
       for (IsoCountry country : structure.getSubdivisions()) {
-        assertEquals(structure, BbanStructure.forCountry(country));
+        Optional<BbanStructure> found = BbanStructure.forCountry(country);
+        assertTrue(found.isPresent());
+        assertEquals(structure, found.get());
       }
     }
   }
@@ -43,5 +51,21 @@ class BbanStructureTest {
   @Test
   void isBbanValidCannotBeCalledWithNull() {
     assertThrows(IllegalArgumentException.class, () -> BbanStructure.ALBANIA.isBbanValid(null));
+  }
+
+  @Test
+  void ensureCountriesAreDefinedOnce() {
+    Set<IsoCountry> countries = EnumSet.noneOf(IsoCountry.class);
+
+    for (BbanStructure structure : BbanStructure.values()) {
+      IsoCountry country = structure.getCountry();
+      assertFalse(countries.contains(country));
+      countries.add(country);
+
+      for (IsoCountry subDivision : structure.getSubdivisions()) {
+        assertFalse(countries.contains(subDivision));
+        countries.add(subDivision);
+      }
+    }
   }
 }

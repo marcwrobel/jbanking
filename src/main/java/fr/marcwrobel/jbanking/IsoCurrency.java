@@ -250,6 +250,9 @@ import static fr.marcwrobel.jbanking.IsoCountry.ZW;
 
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -1531,14 +1534,22 @@ public enum IsoCurrency {
    */
   PLN(985, 2, PL);
 
-  private static final int MIN_NUMERIC_CODE = 1;
-  private static final int MAX_NUMERIC_CODE = 999;
+  // Enum.valueOf throws Exception on null or not found
+  private static final Map<String, IsoCurrency> byAlphaCode = new HashMap<>();
+  private static final Map<Integer, IsoCurrency> byNumericCode = new HashMap<>();
 
-  private final Integer numericCode;
+  static {
+    for (IsoCurrency currency : values()) {
+      byAlphaCode.put(currency.getAlphabeticCode(), currency);
+      byNumericCode.put(currency.getNumericCode(), currency);
+    }
+  }
+
+  private final int numericCode;
   private final Integer minorUnit;
   private final Set<IsoCountry> countries;
 
-  IsoCurrency(Integer numericCode, Integer minorUnit, IsoCountry... countries) {
+  IsoCurrency(int numericCode, Integer minorUnit, IsoCountry... countries) {
     this.numericCode = numericCode;
     this.minorUnit = minorUnit;
     this.countries =
@@ -1586,21 +1597,14 @@ public enum IsoCurrency {
   /**
    * Translate the given ISO 4217 alphabetical code to an IsoCurrency.
    *
-   * <p>This method is not case-sensitive not spaces-sensitive.
+   * <p>This method is not case-sensitive.
    *
    * @param code A non null String.
    * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
    */
-  public static IsoCurrency fromAlphabeticCode(String code) {
-    String cleanedCode = (code == null ? null : code.toUpperCase());
-
-    for (IsoCurrency currency : values()) {
-      if (currency.getAlphabeticCode().equals(cleanedCode)) {
-        return currency;
-      }
-    }
-
-    return null;
+  public static Optional<IsoCurrency> fromAlphabeticCode(String code) {
+    String upperCasedCode = (code == null ? null : code.toUpperCase());
+    return Optional.ofNullable(byAlphaCode.get(upperCasedCode));
   }
 
   /**
@@ -1609,17 +1613,7 @@ public enum IsoCurrency {
    * @param code An Integer, null or not.
    * @return the currency having the given ISO 4217 numerical code, or null if it does not exist.
    */
-  public static IsoCurrency fromNumericCode(int code) {
-    if (code < MIN_NUMERIC_CODE || code > MAX_NUMERIC_CODE) {
-      return null;
-    }
-
-    for (IsoCurrency currency : values()) {
-      if (code == currency.getNumericCode()) {
-        return currency;
-      }
-    }
-
-    return null;
+  public static Optional<IsoCurrency> fromNumericCode(int code) {
+    return Optional.ofNullable(byNumericCode.get(code));
   }
 }

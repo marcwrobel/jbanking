@@ -97,7 +97,10 @@ import static fr.marcwrobel.jbanking.IsoCountry.YT;
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.swift.SwiftPattern;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -191,6 +194,17 @@ public enum BbanStructure {
   UNITED_KINGDOM(GB, "4!a6!n8!n", IM, JE, GG),
   VATICAN_CITY_STATE(VA, "3!n15!n");
 
+  private static final Map<IsoCountry, BbanStructure> byCountry = new EnumMap<>(IsoCountry.class);
+
+  static {
+    for (BbanStructure structure : values()) {
+      byCountry.put(structure.getCountry(), structure);
+      for (IsoCountry subDivision : structure.getSubdivisions()) {
+        byCountry.put(subDivision, structure);
+      }
+    }
+  }
+
   private final IsoCountry country;
   private final SwiftPattern bbanPattern;
   private final Set<IsoCountry> subdivisions;
@@ -214,25 +228,8 @@ public enum BbanStructure {
    * @return the given country BBAN definition, or null if IBAN are not in use in this country or if
    *     the argument is {@code null}.
    */
-  public static BbanStructure forCountry(IsoCountry country) {
-    if (country == null) {
-      return null;
-    }
-
-    for (BbanStructure structure : values()) {
-      if (structure.country.equals(country)) {
-        return structure;
-
-      } else {
-        for (IsoCountry subdivision : structure.subdivisions) {
-          if (subdivision.equals(country)) {
-            return structure;
-          }
-        }
-      }
-    }
-
-    return null;
+  public static Optional<BbanStructure> forCountry(IsoCountry country) {
+    return Optional.ofNullable(byCountry.get(country));
   }
 
   /**

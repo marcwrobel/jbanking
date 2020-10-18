@@ -1,7 +1,9 @@
 package fr.marcwrobel.jbanking;
 
+import static fr.marcwrobel.jbanking.IsoCurrency.EUR;
+import static fr.marcwrobel.jbanking.IsoCurrency.fromAlphabeticCode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.HashMultimap;
@@ -26,33 +28,46 @@ class IsoCurrencyTest {
 
   @Test
   void fromAlphaCodeAllowsNull() {
-    assertNull(IsoCurrency.fromAlphabeticCode(null));
+    assertFalse(fromAlphabeticCode(null).isPresent());
   }
 
   @Test
   void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
-    assertNull(IsoCurrency.fromAlphabeticCode("AA"));
+    assertFalse(fromAlphabeticCode("AA").isPresent());
   }
 
   @Test
   void fromAlphaCodeIsNotCaseSensitive() {
-    assertEquals(
-        IsoCurrency.EUR,
-        IsoCurrency.fromAlphabeticCode(IsoCurrency.EUR.getAlphabeticCode().toLowerCase()));
+    Optional<IsoCurrency> currency = fromAlphabeticCode(EUR.getAlphabeticCode().toLowerCase());
+    assertTrue(currency.isPresent());
+    assertEquals(EUR, currency.get());
   }
 
   @Test
   void fromAlphaCodeWorksWithExistingValues() {
     for (IsoCurrency currency : IsoCurrency.values()) {
-      assertEquals(currency, IsoCurrency.fromAlphabeticCode(currency.getAlphabeticCode()));
+      Optional<IsoCurrency> found = fromAlphabeticCode(currency.getAlphabeticCode());
+      assertTrue(found.isPresent());
+      assertEquals(currency, found.get());
     }
   }
 
   @Test
   void fromNumericCodeAllowsUnknownOrInvalidCodes() {
-    assertNull(IsoCurrency.fromNumericCode(-1));
-    assertNull(IsoCurrency.fromNumericCode(1));
-    assertNull(IsoCurrency.fromNumericCode(1000));
+    assertFalse(IsoCurrency.fromNumericCode(-1).isPresent());
+    assertFalse(IsoCurrency.fromNumericCode(1).isPresent());
+    assertFalse(IsoCurrency.fromNumericCode(1000).isPresent());
+  }
+
+  @Test
+  void ensureNumericCodesAreDefinedOnce() {
+    Set<Integer> codes = new HashSet<>();
+
+    for (IsoCurrency currency : IsoCurrency.values()) {
+      Integer code = currency.getNumericCode();
+      assertFalse(codes.contains(code));
+      codes.add(code);
+    }
   }
 
   // using nv-i18n helps us keeping the enum up-to-date
@@ -77,7 +92,7 @@ class IsoCurrencyTest {
 
     List<CurrencyCode> undefinedCurrencies =
         allCurrencies.stream()
-            .filter(c -> IsoCurrency.fromAlphabeticCode(c.name()) == null)
+            .filter(c -> fromAlphabeticCode(c.name()) == null)
             .collect(Collectors.toList());
 
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
