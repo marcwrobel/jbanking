@@ -43,10 +43,10 @@ This new release also includes breaking changes (see details below).
 
 - (breaking change) Remove Lithuanian litas (LTL) entry from `IsoCurrency` enum : Lithuania is using
   Euro since 2015 (#59).
-- Fix `IsoCountry.CDF` ([Congolese franc](https://en.wikipedia.org/wiki/Congolese_franc)) enum
+- Fix `IsoCurrency.CDF` ([Congolese franc](https://en.wikipedia.org/wiki/Congolese_franc)) enum
   entry : the entry declared [the Congo (CG)](https://www.iso.org/obp/ui/#iso:code:3166:CG) instead
   of [the Democratic Republic of the Congo (CD)](https://www.iso.org/obp/ui/#iso:code:3166:CD) (#60).
-- Fix Unidad de Fomento (CLF) minor unit (#63).
+- Fix Unidad de Fomento (`IsoCurrency.CLF`) minor unit (#63).
 
 ### Deprecated
 
@@ -56,13 +56,13 @@ This new release also includes breaking changes (see details below).
   `IsoCountry.getAlpha2Code()` instead (#49).
 - (breaking change) Remove deprecated method `IsoCountry.fromCode(String)` : use
   `IsoCountry.fromAlpha2Code(String)` instead (#49).
-- (breaking change) Remove `IsoCountry.NO_UNIVERSAL_CURRENCY` : this currency has no associated code
-  and could not be retained during `IsoCountry` enum entries renaming (#56).
+- (breaking change) Remove `IsoCurrency.NO_UNIVERSAL_CURRENCY` : this currency has no associated code
+  and could not be retained during `IsoCurrency` enum entries renaming (#56).
 
 ## Internal
 
 - Upgrade to Strata 2.8.2 (#57).
 - Upgrade to Guava 30.0 (#58).
-- Make use of lookup tables in IsoCountry, IsoCurrency and BbanStructure (#62).
+- Make use of lookup tables in `IsoCountry`, `IsoCurrency` and `BbanStructure` (#62).
 
 ### Thanks
