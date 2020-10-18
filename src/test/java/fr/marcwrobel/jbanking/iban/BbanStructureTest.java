@@ -50,7 +50,7 @@ class BbanStructureTest {
 
   @Test
   void isBbanValidCannotBeCalledWithNull() {
-    assertThrows(IllegalArgumentException.class, () -> BbanStructure.ALBANIA.isBbanValid(null));
+    assertThrows(IllegalArgumentException.class, () -> BbanStructure.AL.isBbanValid(null));
   }
 
   @Test
