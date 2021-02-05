@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking;
 
 import static fr.marcwrobel.jbanking.IsoCurrency.EUR;
 import static fr.marcwrobel.jbanking.IsoCurrency.fromAlphabeticCode;
+import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +11,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CurrencyCode;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
@@ -104,23 +104,26 @@ class IsoCurrencyTest {
     Multimap<IsoCurrency, IsoCountry> missingCountries = HashMultimap.create();
     Set<CountryCode> unknownCountryCode = new HashSet<>();
 
-    for (IsoCurrency currency : IsoCurrency.values()) {
-      CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
+    stream(IsoCurrency.values())
+        .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("UYW")) // not in nv-i18n
+        .forEach(
+            currency -> {
+              CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
 
-      for (CountryCode countryCode : currencyCode.getCountryList()) {
-        if (countryCode != CountryCode.EU) {
-          Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(countryCode.getAlpha2());
+              for (CountryCode countryCode : currencyCode.getCountryList()) {
+                if (countryCode != CountryCode.EU) {
+                  Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(countryCode.getAlpha2());
 
-          if (country.isPresent()) {
-            if (!currency.getCountries().contains(country.get())) {
-              missingCountries.put(currency, country.get());
-            }
-          } else {
-            unknownCountryCode.add(countryCode);
-          }
-        }
-      }
-    }
+                  if (country.isPresent()) {
+                    if (!currency.getCountries().contains(country.get())) {
+                      missingCountries.put(currency, country.get());
+                    }
+                  } else {
+                    unknownCountryCode.add(countryCode);
+                  }
+                }
+              }
+            });
 
     assertTrue(missingCountries.isEmpty(), "Missing countries : " + missingCountries);
     assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
@@ -130,9 +133,10 @@ class IsoCurrencyTest {
   @Test
   void ensureNoDeprecated() {
     List<IsoCurrency> deprecated =
-        Arrays.stream(IsoCurrency.values())
+        stream(IsoCurrency.values())
             .filter(
                 isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
+            .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("UYW")) // not in nv-i18n
             .filter(
                 currency -> {
                   CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());

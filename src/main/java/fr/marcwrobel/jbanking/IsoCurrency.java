@@ -1458,6 +1458,14 @@ public enum IsoCurrency {
   USS(998, 2, US),
 
   /**
+   * Uruguayan Unidad Previsional (Fund currency).
+   *
+   * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_169.pdf">ISO
+   *     4217 AMENDMENT NUMBER 169</a>
+   */
+  UYW(927, 4, UY),
+
+  /**
    * Uzbekistani soʻm.
    *
    * @see <a href="https://wikipedia.org/wiki/Uzbekistani_so%CA%BBm">wikipedia.org</a>
