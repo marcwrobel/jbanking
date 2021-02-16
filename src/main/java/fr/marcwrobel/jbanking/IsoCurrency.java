@@ -247,6 +247,12 @@ import static fr.marcwrobel.jbanking.IsoCountry.YT;
 import static fr.marcwrobel.jbanking.IsoCountry.ZA;
 import static fr.marcwrobel.jbanking.IsoCountry.ZM;
 import static fr.marcwrobel.jbanking.IsoCountry.ZW;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.BOND;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.FUND;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.METAL;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.NATIONAL;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.OTHER;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -281,7 +287,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/XUA">wikipedia.org</a>
    */
-  XUA(965, null),
+  XUA(965, null, OTHER),
 
   /**
    * Afghan afghani.
@@ -619,7 +625,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/European_Unit_of_Account">wikipedia.org</a>
    */
-  XBB(956, null),
+  XBB(956, null, BOND),
 
   /**
    * Ethiopian birr.
@@ -633,21 +639,21 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/European_Unit_of_Account">wikipedia.org</a>
    */
-  XBD(958, null),
+  XBD(958, null, BOND),
 
   /**
    * European Unit of Account 9 (E.U.A.-9).
    *
    * @see <a href="https://wikipedia.org/wiki/European_Unit_of_Account">wikipedia.org</a>
    */
-  XBC(957, null),
+  XBC(957, null, BOND),
 
   /**
    * European Composite Unit (EURCO).
    *
    * @see <a href="https://wikipedia.org/wiki/European_Unit_of_Account">wikipedia.org</a>
    */
-  XBA(955, null),
+  XBA(955, null, BOND),
 
   /**
    * Euro.
@@ -698,7 +704,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Gold_as_an_investment">wikipedia.org</a>
    */
-  XAU(959, null),
+  XAU(959, null, METAL),
 
   /**
    * Haitian gourde.
@@ -927,9 +933,14 @@ public enum IsoCurrency {
   /**
    * Mexican unidad de inversión.
    *
+   * <p>The UDI is an inflation adjusted mechanism set by the Central Bank of Mexico according to
+   * the variation in the Mexican Consumer Price Index. The value of the UDI is expressed in terms
+   * of Mexican Pesos per UDI. It is used to denominate mortgage loans, some bank deposits with
+   * maturities of 3 month or more and Government bonds (UDIBONOS).
+   *
    * @see <a href="https://wikipedia.org/wiki/Mexican_unidad_de_inversi%C3%B3n">wikipedia.org</a>
    */
-  MXV(979, 2, MX),
+  MXV(979, 2, FUND, MX),
 
   /**
    * Moldovan leu.
@@ -955,9 +966,13 @@ public enum IsoCurrency {
   /**
    * Bolivian Mvdol (funds code).
    *
+   * <p>For indexation purposes and denomination of certain financial instruments (e.g. treasury
+   * bills). The Mvdol is set daily by the Central Bank of Bolivia based on the official USD/BOB
+   * rate.
+   *
    * @see <a href="https://www.tradinghours.com/currencies/bov-bolivian-mvdol">tradinghours.com</a>
    */
-  BOV(984, 2, BO),
+  BOV(984, 2, FUND, BO),
 
   /**
    * Nigerian naira.
@@ -1055,7 +1070,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  XXX(999, null),
+  XXX(999, null, OTHER),
 
   /**
    * Mauritanian ouguiya.
@@ -1076,7 +1091,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Palladium">wikipedia.org</a>
    */
-  XPD(964, null),
+  XPD(964, null, METAL),
 
   /**
    * Macanese pataca.
@@ -1118,7 +1133,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Platinum">wikipedia.org</a>
    */
-  XPT(962, null),
+  XPT(962, null, METAL),
 
   /**
    * Pound sterling.
@@ -1216,7 +1231,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Special_drawing_rights">wikipedia.org</a>
    */
-  XDR(960, null),
+  XDR(960, null, OTHER),
 
   /**
    * Serbian dinar.
@@ -1237,7 +1252,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Silver">wikipedia.org</a>
    */
-  XAG(961, null),
+  XAG(961, null, METAL),
 
   /**
    * Singapore dollar.
@@ -1294,7 +1309,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/SUCRE">wikipedia.org</a>
    */
-  XSU(994, null),
+  XSU(994, null, OTHER),
 
   /**
    * Sudanese pound.
@@ -1399,7 +1414,7 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  XTS(963, null),
+  XTS(963, null, OTHER),
 
   /**
    * United Arab Emirates dirham.
@@ -1418,23 +1433,38 @@ public enum IsoCurrency {
   /**
    * Unidad de Valor Real (UVR) (funds code).
    *
+   * <p>The UVR is a daily account unit set by the Central Bank of Colombia according to the
+   * variation in the Consumer Price Index of Colombia. The value of UVR is expressed in terms of
+   * Colombian Pesos per UVR. It is used to denominate and update mortgage loans and some public
+   * debt bonds.
+   *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  COU(970, 2, CO),
+  COU(970, 2, FUND, CO),
 
   /**
    * Unidad de Fomento (funds code).
    *
+   * <p>The CLF is a daily economically-financial unit calculated by the Central Bank of Chile
+   * according to inflation (as measured by the Chilean Consumer Price Index of the previous month).
+   * The value of the CLF is expressed in terms of Chilean Pesos per CLF. The use of CLF has been
+   * widely extended to all types of bank loans, financial investments (time deposits, mortgages and
+   * other public or private indexed instruments), contracts and fees in some cases.
+   *
    * @see <a href="https://wikipedia.org/wiki/Unidad_de_Fomento">wikipedia.org</a>
    */
-  CLF(990, 4, CL),
+  CLF(990, 4, FUND, CL),
 
   /**
    * Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code).
    *
-   * @see <a href="XXX">wikipedia.org</a>
+   * <p>The UYI (UI) is used for issuance of debt instruments by the Uruguayan government in the
+   * international global bond market. It is calculated based on an established methodology using
+   * underlying inflationary statistics in the Uruguayan market (introduced in 2002).
+   *
+   * @see <a href="https://en.wikipedia.org/wiki/UYI">wikipedia.org</a>
    */
-  UYI(940, 0, UY),
+  UYI(940, 0, FUND, UY),
 
   /**
    * United States dollar.
@@ -1446,24 +1476,33 @@ public enum IsoCurrency {
   /**
    * United States dollar (next day) (funds code).
    *
+   * <p>”Next day“ funds are immediately available for transfer in like funds, and, subject to
+   * settlement, available the next business day for same day funds transfer or withdrawal in cash.
+   *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  USN(997, 2, US),
+  USN(997, 2, FUND, US),
 
   /**
    * United States dollar (same day) (funds code).
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  USS(998, 2, US),
+  USS(998, 2, FUND, US),
 
   /**
    * Uruguayan Unidad Previsional (Fund currency).
    *
+   * <p>The Unidad Previsional (UP) is a daily accounting unit that tracks changes to the nominal
+   * wage index. The value of UP is expressed in terms of Uruguayan Pesos per UP, with the initial
+   * value of one peso (UYU 1.00) on 04/30/2018. The institution responsible for the calculation and
+   * publication is the Instituto Nacional de Estadística (National Bureau of Statistics) according
+   * to Law 19,608.
+   *
    * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_169.pdf">ISO
    *     4217 AMENDMENT NUMBER 169</a>
    */
-  UYW(927, 4, UY),
+  UYW(927, 4, FUND, UY),
 
   /**
    * Uzbekistani soʻm.
@@ -1482,16 +1521,22 @@ public enum IsoCurrency {
   /**
    * WIR euro (complementary currency).
    *
+   * <p>WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking
+   * Services.
+   *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  CHE(947, 2, CH),
+  CHE(947, 2, FUND, CH),
 
   /**
    * WIR franc (complementary currency).
    *
+   * <p>WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking
+   * Services.
+   *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
-  CHW(948, 2, CH),
+  CHW(948, 2, FUND, CH),
 
   /**
    * South Korean won.
@@ -1555,15 +1600,21 @@ public enum IsoCurrency {
 
   private final int numericCode;
   private final Integer minorUnit;
+  private final Category category;
   private final Set<IsoCountry> countries;
 
-  IsoCurrency(int numericCode, Integer minorUnit, IsoCountry... countries) {
+  IsoCurrency(int numericCode, Integer minorUnit, Category category, IsoCountry... countries) {
     this.numericCode = numericCode;
     this.minorUnit = minorUnit;
+    this.category = requireNonNull(category);
     this.countries =
         countries.length > 0
             ? EnumSet.copyOf(Arrays.asList(countries))
             : EnumSet.noneOf(IsoCountry.class);
+  }
+
+  IsoCurrency(int numericCode, Integer minorUnit, IsoCountry... countries) {
+    this(numericCode, minorUnit, NATIONAL, countries);
   }
 
   /**
@@ -1591,6 +1642,15 @@ public enum IsoCurrency {
    */
   public Integer getMinorUnit() {
     return minorUnit;
+  }
+
+  /**
+   * Returns this currency {@link Category category}.
+   *
+   * @return a non-null {@link Category}.
+   */
+  public Category getCategory() {
+    return category;
   }
 
   /**
@@ -1623,5 +1683,57 @@ public enum IsoCurrency {
    */
   public static Optional<IsoCurrency> fromNumericCode(int code) {
     return Optional.ofNullable(byNumericCode.get(code));
+  }
+
+  /**
+   * Get currencies of the given category.
+   *
+   * @param category a non-null category
+   * @return a non-null set of currencies
+   * @throws NullPointerException if the given category is null
+   */
+  public static Set<IsoCurrency> allOf(Category category) {
+    requireNonNull(category);
+    EnumSet<IsoCurrency> currencies = EnumSet.noneOf(IsoCurrency.class);
+
+    for (IsoCurrency currency : values()) {
+      if (currency.category == category) {
+        currencies.add(currency);
+      }
+    }
+
+    return currencies;
+  }
+
+  public enum Category {
+
+    /**
+     * Bond market unit codes.
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Bond_market">Bond market</a>
+     */
+    BOND,
+
+    /**
+     * Fund codes.
+     *
+     * @see <a href="https://www.currency-iso.org/en/home/tables/table-a2.html">Current funds codes
+     *     list</a>
+     */
+    FUND,
+
+    /**
+     * Precious metals codes.
+     *
+     * <p>These "currency units" are denominated as <a
+     * href="https://en.wikipedia.org/wiki/Troy_weight#Troy_ounce_(oz_t)">one troy ounce</a>.
+     */
+    METAL,
+
+    /** National or supranational currencies codes. */
+    NATIONAL,
+
+    /** Other codes (testing codes, special codes...). */
+    OTHER
   }
 }

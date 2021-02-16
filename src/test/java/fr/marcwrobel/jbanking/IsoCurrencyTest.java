@@ -1,6 +1,11 @@
 package fr.marcwrobel.jbanking;
 
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.FUND;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.METAL;
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.NATIONAL;
 import static fr.marcwrobel.jbanking.IsoCurrency.EUR;
+import static fr.marcwrobel.jbanking.IsoCurrency.USS;
+import static fr.marcwrobel.jbanking.IsoCurrency.XAU;
 import static fr.marcwrobel.jbanking.IsoCurrency.fromAlphabeticCode;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,6 +75,27 @@ class IsoCurrencyTest {
     }
   }
 
+  @Test
+  void euroIsInNationalCategory() {
+    Set<IsoCurrency> currencies = IsoCurrency.allOf(NATIONAL);
+    assertTrue(currencies.contains(EUR));
+    assertEquals(NATIONAL, EUR.getCategory());
+  }
+
+  @Test
+  void goldIsInMetalCategory() {
+    Set<IsoCurrency> currencies = IsoCurrency.allOf(METAL);
+    assertTrue(currencies.contains(XAU));
+    assertEquals(METAL, XAU.getCategory());
+  }
+
+  @Test
+  void usDollarSameDayIsInMetalCategory() {
+    Set<IsoCurrency> currencies = IsoCurrency.allOf(FUND);
+    assertTrue(currencies.contains(USS));
+    assertEquals(FUND, USS.getCategory());
+  }
+
   // using nv-i18n helps us keeping the enum up-to-date
   @Test
   void ensureCompleteness() {
@@ -92,7 +118,7 @@ class IsoCurrencyTest {
 
     List<CurrencyCode> undefinedCurrencies =
         allCurrencies.stream()
-            .filter(c -> fromAlphabeticCode(c.name()) == null)
+            .filter(c -> !fromAlphabeticCode(c.name()).isPresent())
             .collect(Collectors.toList());
 
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
