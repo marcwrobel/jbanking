@@ -41,6 +41,12 @@ import java.util.regex.Pattern;
  *       four consecutive upper case letters
  * </ul>
  *
+ * This class has some limitations in order to prevent stack overflows, as explained in <a
+ * href="https://sonarcloud.io/organizations/marcwrobel/rules?open=java%3AS5998&rule_key=java%3AS5998">Regular
+ * expressions should not overflow the stack</a>. The maximum supported length is set to 999 and the
+ * maximum number of groups (such as {@code 4!n}) is 1000. these limitations are far above anything
+ * that can be seen in SWIFT documents and should be sufficient.
+ *
  * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
  * @author Marc Wrobel
@@ -62,8 +68,9 @@ public final class SwiftPattern implements Serializable {
   private static final String UPPER_AND_LOWER_CASE_ALPHANUMERICS_CLASS = "[A-Za-z0-9]";
   private static final String SPACES_CLASS = "[ ]";
 
-  private static final String GROUP_REGEX = "[0-9]+!?[ance]";
-  private static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + ")+$");
+  private static final String GROUP_REGEX = "[0-9]{1,3}!?[ance]";
+  private static final Pattern SWIFT_FORMAT_PATTERN =
+      Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
   private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
 
   private final String expression;

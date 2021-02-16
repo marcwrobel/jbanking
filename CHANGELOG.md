@@ -14,6 +14,7 @@ This new release includes :
 ### Fixed
 
 - Add missing currency UYW (Unidad Previsional) (#69).
+- Prevent potential stack overflow in `SwiftPattern` (#71).
 
 ### Deprecated
 
