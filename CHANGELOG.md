@@ -22,4 +22,7 @@ This new release includes :
 
 ## Internal
 
+- Use `maven-enforcer-plugin` to prevent the project to be build with incompatible tools (#72).
+- Upgrade to `guava` [30.1](https://github.com/google/guava/releases/tag/v30.1) (#73).
+
 ### Thanks
