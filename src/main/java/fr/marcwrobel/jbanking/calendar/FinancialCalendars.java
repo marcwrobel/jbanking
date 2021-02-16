@@ -128,7 +128,7 @@ public enum FinancialCalendars implements Calendar {
           EASTER_MONDAY,
           new MovedHoliday(Holidays.MAY_DAY, LocalDate.of(2020, 5, 4), LocalDate.of(2020, 5, 8)),
           // https://www.timeanddate.com/holidays/uk/spring-bank-holiday - suppression for jubilees
-          new SuppressedHoliday(new DayOfWeekInMonthHoliday(-1, MONDAY, MAY), 2002, 2012),
+          new SuppressedHoliday(new DayOfWeekInMonthHoliday(-1, MONDAY, MAY), 2002, 2012, 2022),
           // https://www.timeanddate.com/holidays/uk/summer-bank-holiday
           new DayOfWeekInMonthHoliday(-1, MONDAY, AUGUST),
           new ShiftedHoliday(CHRISTMAS_DAY, PLUS_TWO_DAYS),
@@ -138,7 +138,9 @@ public enum FinancialCalendars implements Calendar {
           // royal wedding
           new FixedHoliday(LocalDate.of(2011, 4, 29)),
           // golden jubilee
-          new FixedHoliday(LocalDate.of(2012, 6, 4), LocalDate.of(2012, 6, 5)))),
+          new FixedHoliday(LocalDate.of(2012, 6, 4), LocalDate.of(2012, 6, 5)),
+          // platinum jubilee
+          new FixedHoliday(LocalDate.of(2022, 6, 2), LocalDate.of(2022, 6, 3)))),
 
   /**
    * Federal Reserve Bank of New York holidays.

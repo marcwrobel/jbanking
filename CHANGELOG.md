@@ -11,6 +11,8 @@ This new release includes :
 
 ### Changed
 
+- Add platinium jubilee to London calendar (#75)
+
 ### Fixed
 
 - Add missing currency UYW (Unidad Previsional) (#69).
@@ -24,5 +26,6 @@ This new release includes :
 
 - Use `maven-enforcer-plugin` to prevent the project to be build with incompatible tools (#72).
 - Upgrade to `guava` [30.1](https://github.com/google/guava/releases/tag/v30.1) (#73).
+- Upgrade to `strata` [2.9.0](https://github.com/OpenGamma/Strata/releases/tag/v2.9.0) (#74).
 
 ### Thanks

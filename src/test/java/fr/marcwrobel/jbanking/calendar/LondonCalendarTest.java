@@ -4,6 +4,7 @@ import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
 import static java.time.Month.DECEMBER;
 import static java.time.Month.JANUARY;
+import static java.time.Month.JUNE;
 import static java.time.Month.MARCH;
 import static java.time.Month.MAY;
 import static java.time.MonthDay.of;
@@ -91,7 +92,8 @@ class LondonCalendarTest extends CalendarTestSupport {
         of(APRIL, 15),
         of(APRIL, 18),
         of(MAY, 2),
-        of(MAY, 30),
+        of(JUNE, 2),
+        of(JUNE, 3),
         of(AUGUST, 29),
         of(DECEMBER, 26),
         of(DECEMBER, 27));
