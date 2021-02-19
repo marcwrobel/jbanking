@@ -30,10 +30,10 @@ jbanking is supporting the following features :
   handling and validation.
 * Configurable [holiday](https://wikipedia.org/wiki/Holiday) calendar support with predefined
   calendars for :
-  * Frankfurt, London, Paris and Sydney financial districts,
-  * Federal Reserve Bank of New York (FED),
-  * New York Stock Exchange (NYSE),
-  * European Union TARGET system.
+  * Frankfurt, London, Paris, Sydney, and Tokyo financial districts
+  * Federal Reserve Bank of New York (FED)
+  * New York Stock Exchange (NYSE)
+  * European Union TARGET system
 
 
 ## Requirements

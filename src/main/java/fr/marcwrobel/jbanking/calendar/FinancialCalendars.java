@@ -22,15 +22,19 @@ import static fr.marcwrobel.jbanking.calendar.Holidays.VICTORY_IN_EUROPE_DAY;
 import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.CLOSEST_WEEKDAY;
 import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.PLUS_TWO_DAYS;
 import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.SUNDAY_TO_MONDAY;
+import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.SUNDAY_TO_TUESDAY;
+import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.SUNDAY_TO_WEDNESDAY;
 import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.WEEKEND_TO_MONDAY;
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.THURSDAY;
 import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
+import static java.time.Month.DECEMBER;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JANUARY;
 import static java.time.Month.JULY;
 import static java.time.Month.JUNE;
+import static java.time.Month.MARCH;
 import static java.time.Month.MAY;
 import static java.time.Month.NOVEMBER;
 import static java.time.Month.OCTOBER;
@@ -298,7 +302,145 @@ public enum FinancialCalendars implements Calendar {
           CHRISTMAS_DAY,
           SAINT_STEPHENS_DAY,
           // https://www.ecb.europa.eu/press/pr/date/2000/html/pr000525_2.en.html
-          new FixedHoliday(LocalDate.of(2001, 12, 31))));
+          new FixedHoliday(LocalDate.of(2001, 12, 31)))),
+
+  /**
+   * Tokyo (Japan) financial district holidays.
+   *
+   * <p>This calendar is valid from 2007 until further notice. Last verification occurred on
+   * 2021-02-19.
+   *
+   * @see <a href="https://www.boj.or.jp/en/about/outline/holi.htm/">Holiday Schedule of the Bank of
+   *     Japan</a>
+   */
+  TOKYO(
+      new ConfigurableCalendar(
+          SATURDAY,
+          SUNDAY,
+          new ShiftedHoliday(NEW_YEAR_DAY, SUNDAY_TO_MONDAY),
+          new MonthDayHoliday(MonthDay.of(JANUARY, 2)),
+          new MonthDayHoliday(MonthDay.of(JANUARY, 3)),
+          // https://wikipedia.org/wiki/Coming_of_Age_Day
+          new DayOfWeekInMonthHoliday(2, MONDAY, JANUARY),
+          // https://wikipedia.org/wiki/National_Foundation_Day
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(FEBRUARY, 11)), SUNDAY_TO_MONDAY),
+          // https://www.timeanddate.com/holidays/japan/spring-equinox
+          new ShiftedHoliday(
+              new MovedHoliday(
+                  MonthDay.of(MARCH, 21),
+                  MonthDay.of(MARCH, 20),
+                  2000,
+                  2001,
+                  2004,
+                  2005,
+                  2008,
+                  2009,
+                  2012,
+                  2013,
+                  2016,
+                  2017,
+                  2020,
+                  2021,
+                  2024,
+                  2025,
+                  2026,
+                  2028,
+                  2029,
+                  2030),
+              SUNDAY_TO_MONDAY),
+          // https://wikipedia.org/wiki/Sh%C5%8Dwa_Day
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(APRIL, 29)), SUNDAY_TO_MONDAY),
+          // https://wikipedia.org/wiki/Constitution_Memorial_Day
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MAY, 3)), SUNDAY_TO_MONDAY),
+              ValueRange.of(1950, 2006)),
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MAY, 3)), SUNDAY_TO_WEDNESDAY),
+              ValueRange.of(2007, 2999)),
+          // https://wikipedia.org/wiki/Greenery_Day from 2007, holiday between holidays before
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MAY, 4)), SUNDAY_TO_MONDAY),
+              ValueRange.of(1950, 2006)),
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MAY, 4)), SUNDAY_TO_TUESDAY),
+              ValueRange.of(2007, 2999)),
+          // https://wikipedia.org/wiki/Children's_Day#Japan
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MAY, 5)), SUNDAY_TO_MONDAY),
+          // https://en.wikipedia.org/wiki/Marine_Day
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(JULY, 20)), SUNDAY_TO_MONDAY),
+              ValueRange.of(1950, 2003)),
+          new YearRangeHoliday(
+              new MovedHoliday(
+                  new DayOfWeekInMonthHoliday(3, MONDAY, JULY),
+                  LocalDate.of(2020, 7, 20), // The Olympics
+                  LocalDate.of(2020, 7, 23),
+                  LocalDate.of(2021, 7, 19), // Postponement of the Olympics
+                  LocalDate.of(2021, 7, 22)),
+              ValueRange.of(2003, 2999)),
+          // https://wikipedia.org/wiki/Mountain_Day
+          new YearRangeHoliday(
+              new MovedHoliday(
+                  new ShiftedHoliday(
+                      new MonthDayHoliday(MonthDay.of(AUGUST, 11)), SUNDAY_TO_MONDAY),
+                  LocalDate.of(2020, 8, 11), // The Olympics
+                  LocalDate.of(2020, 8, 10),
+                  LocalDate.of(2021, 8, 11), // Postponement of the Olympics
+                  LocalDate.of(2021, 8, 9)),
+              ValueRange.of(2016, 2999)),
+          // https://wikipedia.org/wiki/Respect_for_the_Aged_Day - before 2003
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(SEPTEMBER, 15)), SUNDAY_TO_MONDAY),
+              ValueRange.of(1966, 2002)),
+          new BridgedHoliday(
+              // https://wikipedia.org/wiki/Respect_for_the_Aged_Day - 2003 onward
+              new YearRangeHoliday(
+                  new DayOfWeekInMonthHoliday(3, MONDAY, SEPTEMBER), ValueRange.of(2003, 2999)),
+              // https://www.timeanddate.com/holidays/japan/autumn-equinox
+              new ShiftedHoliday(
+                  new MovedHoliday(
+                      MonthDay.of(SEPTEMBER, 23),
+                      MonthDay.of(SEPTEMBER, 22),
+                      2012,
+                      2016,
+                      2020,
+                      2024,
+                      2028),
+                  SUNDAY_TO_MONDAY)),
+          // https://wikipedia.org/wiki/Health_and_Sports_Day
+          new MovedHoliday(
+              new DayOfWeekInMonthHoliday(2, MONDAY, OCTOBER),
+              LocalDate.of(2020, 10, 12), // The Olympics
+              LocalDate.of(2020, 7, 24),
+              LocalDate.of(2021, 10, 11), // Postponement of the Olympics
+              LocalDate.of(2021, 7, 23)),
+          // https://en.wikipedia.org/wiki/Culture_Day
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(NOVEMBER, 3)), SUNDAY_TO_MONDAY),
+          // https://www.timeanddate.com/holidays/japan/labor-thanksgiving-day
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(NOVEMBER, 23)), SUNDAY_TO_MONDAY),
+          // new years eve - bank of Japan, but not national holiday
+          new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(DECEMBER, 31)), SUNDAY_TO_MONDAY),
+          // https://en.wikipedia.org/wiki/The_Emperor%27s_Birthday - Akihito
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(DECEMBER, 23)), SUNDAY_TO_MONDAY),
+              ValueRange.of(1990, 2018)),
+          // https://www.timeanddate.com/holidays/japan/2019?hol=9
+          new FixedHoliday(
+              LocalDate.of(
+                  2019, 4,
+                  30), // https://www.timeanddate.com/holidays/japan/coronation-day-holiday-1
+              LocalDate.of(2019, 5, 1), // https://www.timeanddate.com/holidays/japan/coronation-day
+              LocalDate.of(
+                  2019, 5,
+                  2), // https://www.timeanddate.com/holidays/japan/coronation-day-holiday-2
+              LocalDate.of(
+                  2019, 10,
+                  22) // https://www.timeanddate.com/holidays/japan/enthronement-ceremony-day
+              ),
+          // https://en.wikipedia.org/wiki/The_Emperor%27s_Birthday - Naruhito
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(FEBRUARY, 23)), SUNDAY_TO_MONDAY),
+              ValueRange.of(2020, 2999))));
 
   private final ConfigurableCalendar calendar;
 

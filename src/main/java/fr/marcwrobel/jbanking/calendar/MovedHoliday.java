@@ -3,6 +3,7 @@ package fr.marcwrobel.jbanking.calendar;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.MonthDay;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -29,7 +30,7 @@ public final class MovedHoliday implements Holiday {
    * <p>The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the
    * original dates dans vn are the replacement.
    *
-   * @param base a non-null holiday to use as a base.
+   * @param base a non-null holiday to use as a base
    * @param replacements replacements, expressed as key / value
    * @throws NullPointerException if <code>base</code> is null
    */
@@ -41,6 +42,33 @@ public final class MovedHoliday implements Holiday {
     for (int i = 0; i < replacements.length / 2; i++) {
       LocalDate from = replacements[i * 2];
       LocalDate to = replacements[i * 2 + 1];
+
+      if (!from.equals(to)) {
+        this.replacements.put(from, to);
+        this.invertedReplacements.put(to, from);
+      }
+    }
+  }
+
+  /**
+   * Create a new holiday using the given base {@link MonthDayHoliday}, the replacement day {@link
+   * MonthDay} and the years when the replacement must occur.
+   *
+   * <p>This constructor build a {@link MonthDayHoliday} internally.
+   *
+   * @param base a non-null holiday to use as a base.
+   * @param replacement the replacement expressed as a {@link MonthDay}
+   * @param replacedYears the years when the holiday must be replaced
+   * @throws NullPointerException if {@code base} is null
+   */
+  public MovedHoliday(MonthDay base, MonthDay replacement, int... replacedYears) {
+    this.base = new MonthDayHoliday(base);
+    this.replacements = new HashMap<>(0);
+    this.invertedReplacements = new HashMap<>(0);
+
+    for (int year : replacedYears) {
+      LocalDate from = base.atYear(year);
+      LocalDate to = replacement.atYear(year);
 
       if (!from.equals(to)) {
         this.replacements.put(from, to);

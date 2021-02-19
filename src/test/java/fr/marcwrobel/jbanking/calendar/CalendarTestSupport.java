@@ -10,6 +10,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.MonthDay;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -35,20 +36,23 @@ abstract class CalendarTestSupport {
     assertEquals(filterOutWeekends(expected), filterOutWeekends(actual));
   }
 
-  protected void checkWithStrata(String calendarId) {
+  protected void checkWithStrata(String calendarId, LocalDate... excludedDates) {
     HolidayCalendar strataCalendar = HolidayCalendars.of(calendarId);
     LocalDate date = LocalDate.of(2000, 1, 1);
     LocalDate to = LocalDate.of(2099, 12, 31);
+    Set<LocalDate> excluded = new HashSet<>(Arrays.asList(excludedDates));
 
     while (!date.equals(to)) {
-      boolean isHoliday = calendar.isHoliday(date);
-      boolean isStrataHoliday = strataCalendar.isHoliday(date);
-      Set<Holiday> holidays = calendar.getHolidaysFor(date);
-      assertEquals(
-          isStrataHoliday,
-          isHoliday,
-          String.format(
-              "%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays));
+      if (!excluded.contains(date)) {
+        boolean isHoliday = calendar.isHoliday(date);
+        boolean isStrataHoliday = strataCalendar.isHoliday(date);
+        Set<Holiday> holidays = calendar.getHolidaysFor(date);
+        assertEquals(
+            isStrataHoliday,
+            isHoliday,
+            String.format(
+                "%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays));
+      }
 
       date = date.plusDays(1);
     }

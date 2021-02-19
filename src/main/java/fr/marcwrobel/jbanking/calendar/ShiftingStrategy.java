@@ -57,25 +57,18 @@ public enum ShiftingStrategy {
   PLUS_TWO_DAYS {
     @Override
     public LocalDate shift(LocalDate date) {
-      LocalDate d = date;
-
       DayOfWeek dayOfWeek = date.getDayOfWeek();
-      if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) {
-        d = date.plusDays(2);
-      }
-
-      return d;
+      return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY
+          ? date.plusDays(2)
+          : date;
     }
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-
       DayOfWeek dayOfWeek = date.getDayOfWeek();
-      if (dayOfWeek == DayOfWeek.MONDAY || dayOfWeek == DayOfWeek.TUESDAY) {
-        return new LocalDate[] {date, date.minusDays(2)};
-      }
-
-      return new LocalDate[] {date};
+      return dayOfWeek == DayOfWeek.MONDAY || dayOfWeek == DayOfWeek.TUESDAY
+          ? new LocalDate[] {date, date.minusDays(2)}
+          : new LocalDate[] {date};
     }
   },
 
@@ -88,25 +81,54 @@ public enum ShiftingStrategy {
   SUNDAY_TO_MONDAY {
     @Override
     public LocalDate shift(LocalDate date) {
-      LocalDate d = date;
-
-      DayOfWeek dayOfWeek = date.getDayOfWeek();
-      if (dayOfWeek == DayOfWeek.SUNDAY) {
-        d = date.plusDays(1);
-      }
-
-      return d;
+      return date.getDayOfWeek() == DayOfWeek.SUNDAY ? date.plusDays(1) : date;
     }
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-      DayOfWeek dayOfWeek = date.getDayOfWeek();
+      return date.getDayOfWeek() == DayOfWeek.MONDAY
+          ? new LocalDate[] {date, date.minusDays(1)}
+          : new LocalDate[] {date};
+    }
+  },
 
-      if (dayOfWeek == DayOfWeek.MONDAY) {
-        return new LocalDate[] {date, date.minusDays(1)};
-      }
+  /**
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#TUESDAY} when they
+   * fall on {@link DayOfWeek#SUNDAY}.
+   *
+   * <p>This strategy is useful for Japanese holidays.
+   */
+  SUNDAY_TO_TUESDAY {
+    @Override
+    public LocalDate shift(LocalDate date) {
+      return date.getDayOfWeek() == DayOfWeek.SUNDAY ? date.plusDays(2) : date;
+    }
 
-      return new LocalDate[] {date};
+    @Override
+    public LocalDate[] unshift(LocalDate date) {
+      return date.getDayOfWeek() == DayOfWeek.TUESDAY
+          ? new LocalDate[] {date, date.minusDays(2)}
+          : new LocalDate[] {date};
+    }
+  },
+
+  /**
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#WEDNESDAY} when they
+   * fall on {@link DayOfWeek#SUNDAY}.
+   *
+   * <p>This strategy is useful for Japanese holidays.
+   */
+  SUNDAY_TO_WEDNESDAY {
+    @Override
+    public LocalDate shift(LocalDate date) {
+      return date.getDayOfWeek() == DayOfWeek.SUNDAY ? date.plusDays(3) : date;
+    }
+
+    @Override
+    public LocalDate[] unshift(LocalDate date) {
+      return date.getDayOfWeek() == DayOfWeek.WEDNESDAY
+          ? new LocalDate[] {date, date.minusDays(3)}
+          : new LocalDate[] {date};
     }
   },
 
@@ -133,13 +155,9 @@ public enum ShiftingStrategy {
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-      DayOfWeek dayOfWeek = date.getDayOfWeek();
-
-      if (dayOfWeek == DayOfWeek.MONDAY) {
-        return new LocalDate[] {date, date.minusDays(1), date.minusDays(2)};
-      }
-
-      return new LocalDate[] {date};
+      return date.getDayOfWeek() == DayOfWeek.MONDAY
+          ? new LocalDate[] {date, date.minusDays(1), date.minusDays(2)}
+          : new LocalDate[] {date};
     }
   };
 

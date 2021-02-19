@@ -8,10 +8,11 @@ This new release includes :
 ### Added
 
 - Categorize ISO currencies (bond market unit, fund, precious metals, National or supranational and other) (#70).
+- Add a calendar for Tokyo financial district (#77)
 
 ### Changed
 
-- Add platinium jubilee to London calendar (#75).
+- Add platinum jubilee to London calendar (#75).
 
 ### Fixed
 
