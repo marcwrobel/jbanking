@@ -3,6 +3,7 @@ package fr.marcwrobel.jbanking.calendar;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.MonthDay;
 import java.util.Objects;
 
@@ -26,6 +27,18 @@ public final class MonthDayHoliday implements Holiday {
    */
   public MonthDayHoliday(MonthDay monthDay) {
     this.monthDay = requireNonNull(monthDay);
+  }
+
+  /**
+   * Create a new holiday using the given month and day of month.
+   *
+   * @param month the month-of-year to represent, not null
+   * @param dayOfMonth the day-of-month to represent
+   * @throws java.time.DateTimeException if the value of any field is out of range, or if the
+   *     day-of-month is invalid for the month
+   */
+  public MonthDayHoliday(Month month, int dayOfMonth) {
+    this.monthDay = MonthDay.of(month, dayOfMonth);
   }
 
   /** @see Holiday#check(LocalDate) */

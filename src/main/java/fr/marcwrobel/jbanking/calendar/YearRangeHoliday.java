@@ -33,6 +33,20 @@ public final class YearRangeHoliday implements Holiday {
     this.validityRange = requireNonNull(validityRange);
   }
 
+  /**
+   * Create a new holiday using the given base and years of validity.
+   *
+   * @param base a non-null holiday to use as a base.
+   * @param from the minimum year of validity (included)
+   * @param to the maximum year of validity (included)
+   * @throws NullPointerException if {@code base} is {@code null}
+   * @throws IllegalArgumentException if from is greater than to
+   */
+  public YearRangeHoliday(Holiday base, long from, long to) {
+    this.base = requireNonNull(base);
+    this.validityRange = ValueRange.of(from, to);
+  }
+
   /** @see Holiday#check(LocalDate) */
   @Override
   public boolean check(LocalDate date) {

@@ -8,7 +8,9 @@ This new release includes :
 ### Added
 
 - Categorize ISO currencies (bond market unit, fund, precious metals, National or supranational and other) (#70).
-- Add a calendar for Tokyo financial district (#77)
+- Add a calendar for Tokyo financial district (#77).
+- Add a new constructor for YearRangeHoliday: `YearRangeHoliday(Holiday base, long from, long to)` (#78).
+- Add a new constructor for MonthDayHoliday: `MonthDayHoliday(Month month, int dayOfMonth)` (#78).
 
 ### Changed
 
