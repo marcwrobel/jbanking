@@ -55,6 +55,8 @@ import java.util.Set;
  * using the <a href="https://wikipedia.org/wiki/Gregorian_calendar">gregorian calendar</a> are
  * supported.
  *
+ * <p>Those calendars are valid from 2000 until further notice.
+ *
  * @author Marc Wrobel
  * @since 2.1.0
  */
@@ -87,9 +89,6 @@ public enum FinancialCalendars implements Calendar {
    * Reformation. In Germany, the 31st of October was a national holiday that year. More on <a
    * href="https://www.bbc.com/news/world-europe-41817418">this bbc.com article</a>.
    *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
-   *
    * @see <a
    *     href="https://www.tradinghours.com/exchanges/fsx/market-holidays/2020">tradinghours.com</a>
    * @see <a href="https://www.timeanddate.com/holidays/germany/">timeanddate.com</a>
@@ -116,9 +115,6 @@ public enum FinancialCalendars implements Calendar {
 
   /**
    * London (United Kingdom) financial district holidays.
-   *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
    *
    * @see <a href="https://www.timeanddate.com/holidays/uk/">timeanddate.com</a>
    */
@@ -148,9 +144,6 @@ public enum FinancialCalendars implements Calendar {
   /**
    * Federal Reserve Bank of New York holidays.
    *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
-   *
    * @see <a href="https://www.newyorkfed.org/aboutthefed/holiday_schedule.html">newyorkfed.org</a>
    */
   NEW_YORK_FED(
@@ -178,9 +171,6 @@ public enum FinancialCalendars implements Calendar {
 
   /**
    * New York Stock Exchange (NYSE) holidays.
-   *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
    *
    * @see <a href="https://www.nyse.com/markets/hours-calendars">nyse.com</a>
    */
@@ -217,9 +207,6 @@ public enum FinancialCalendars implements Calendar {
   /**
    * Paris (France) financial district holidays.
    *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
-   *
    * @see <a
    *     href="http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902611&cidTexte=LEGITEXT000006072050">legifrance.gouv.fr</a>
    * @see <a href="http://jollyday.sourceforge.net/data/fr.html">jollyday.sourceforge.net</a>
@@ -247,9 +234,6 @@ public enum FinancialCalendars implements Calendar {
 
   /**
    * Sydney (Australia) financial district holidays.
-   *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
    *
    * @see <a href="https://www.timeanddate.com/holidays/australia/">timeanddate.com</a>
    * @see <a href="https://www.rba.gov.au/schedules-events/bank-holidays-2020.html">Reserve Bank of
@@ -279,9 +263,6 @@ public enum FinancialCalendars implements Calendar {
    * The calendar for <a
    * href="https://www.ecb.europa.eu/paym/target/target2/html/index.en.html">Trans-European
    * Automated Real-time Gross settlement Express Transfer (TARGET)</a> closing days.
-   *
-   * <p>This calendar is valid from 2000 until further notice. Last verification occurred on
-   * 2020-08-09.
    *
    * @see <a
    *     href="https://www.ecb.europa.eu/press/pr/date/2000/html/pr001214_4.en.html">ecb.europa.eu</a>.
