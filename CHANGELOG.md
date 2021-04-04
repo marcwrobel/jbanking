@@ -7,30 +7,14 @@ This new release includes :
 
 ### Added
 
-- Categorize ISO currencies (bond market unit, fund, precious metals, National or supranational and other) (#70).
-- Add a calendar for Tokyo financial district (#77).
-- Add a new constructor for YearRangeHoliday: `YearRangeHoliday(Holiday base, long from, long to)` (#78).
-- Add a new constructor for MonthDayHoliday: `MonthDayHoliday(Month month, int dayOfMonth)` (#78).
-
 ### Changed
 
-- Add platinum jubilee to London calendar (#75).
-
 ### Fixed
-
-- Add missing currency UYW (Unidad Previsional) (#69).
-- Prevent potential stack overflow in `SwiftPattern` (#71).
 
 ### Deprecated
 
 ### Removed
 
 ## Internal
-
-- Use `maven-enforcer-plugin` to prevent the project to be build with incompatible tools (#72).
-- Upgrade to `guava` [30.1.1](https://github.com/google/guava/releases/tag/v30.1.1) (#79).
-- Upgrade to `strata` [2.9.4](https://github.com/OpenGamma/Strata/releases/tag/v2.9.4) (#81).
-- Upgrade to `parent` [2.4.0](https://github.com/marcwrobel/parent/releases/tag/v2.4.0) (#76).
-- Upgrade to `nv-i18n` [1.28](https://github.com/TakahikoKawasaki/nv-i18n/blob/master/CHANGES.md#128-2021-03-16) (#80).
 
 ### Thanks
