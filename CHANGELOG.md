@@ -29,7 +29,7 @@ This new release includes :
 
 - Use `maven-enforcer-plugin` to prevent the project to be build with incompatible tools (#72).
 - Upgrade to `guava` [30.1.1](https://github.com/google/guava/releases/tag/v30.1.1) (#79).
-- Upgrade to `strata` [2.9.0](https://github.com/OpenGamma/Strata/releases/tag/v2.9.0) (#74).
+- Upgrade to `strata` [2.9.4](https://github.com/OpenGamma/Strata/releases/tag/v2.9.4) (#81).
 - Upgrade to `parent` [2.4.0](https://github.com/marcwrobel/parent/releases/tag/v2.4.0) (#76).
 - Upgrade to `nv-i18n` [1.28](https://github.com/TakahikoKawasaki/nv-i18n/blob/master/CHANGES.md#128-2021-03-16) (#80).
 

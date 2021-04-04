@@ -22,7 +22,7 @@
 
     <guava.version>30.1.1-jre</guava.version>
     <nv-i18n.version>1.28</nv-i18n.version>
-    <strata.version>2.9.0</strata.version>
+    <strata.version>2.9.4</strata.version>
   </properties>
 
   <dependencies>
