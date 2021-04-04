@@ -109,7 +109,13 @@ class IsoCountryTest {
 
     List<CountryCode> allCountries =
         EnumSet.allOf(CountryCode.class).stream()
-            .filter(c -> c != CountryCode.UNDEFINED)
+            .filter(
+                c ->
+                    !EnumSet.of(
+                            CountryCode.UNDEFINED,
+                            CountryCode.XI // https://github.com/marcwrobel/jbanking/issues/68
+                            )
+                        .contains(c))
             .filter(c -> assignments.contains(c.getAssignment()))
             .collect(Collectors.toList());
 
