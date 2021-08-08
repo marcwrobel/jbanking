@@ -91,6 +91,10 @@ class IbanCheckDigitTest {
           "YY62DRWQ354548673SC833V5AMLYPNNR78",
           "ZZ70JJXD3109729650459XALAO5L68UDTR1");
 
+  private static final Set<String> INVALID_CHECK_DIGIT_IBANS =
+      Sets.newHashSet(
+          "MD006JK24D0RFGDJJPJQHKWN", "MD016JK24D0RFGDJJPJQHKWN", "MD996JK24D0RFGDJJPJQHKWN");
+
   @Test
   void nullIsNotValidForCalculation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate(null));
@@ -109,6 +113,12 @@ class IbanCheckDigitTest {
   @Test
   void ibanSizeLowerThanFourIsIsNotValidForValidation() {
     assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate("123"));
+  }
+
+  @ParameterizedTest
+  @MethodSource("invalidCheckDigitIbans")
+  void invalidCheckDigitRaiseAnException(String iban) {
+    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate(iban));
   }
 
   @ParameterizedTest
@@ -133,5 +143,9 @@ class IbanCheckDigitTest {
 
   private static Stream<Arguments> validIbans() {
     return VALID_IBANS.stream().map(Arguments::of);
+  }
+
+  private static Stream<Arguments> invalidCheckDigitIbans() {
+    return INVALID_CHECK_DIGIT_IBANS.stream().map(Arguments::of);
   }
 }

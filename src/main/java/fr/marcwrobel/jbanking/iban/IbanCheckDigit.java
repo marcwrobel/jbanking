@@ -4,15 +4,17 @@ package fr.marcwrobel.jbanking.iban;
  * Provide ISO 7064 Mod 97,10 IBAN check digit calculation and validation.
  *
  * <p>This class is implementing the singleton pattern by being an enumeration. Algorithm is based
- * on the work in <a
- * href="http://svn.apache.org/viewvc/commons/proper/validator/trunk/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java?view=co">Apache
- * commons validator project</a>.
+ * on the <a
+ * href="https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">Apache
+ * commons-validator's IBANCheckDigit</a>.
  *
  * @author Marc Wrobel
  * @see <a
- *     href="http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>
+ *     href="https://en.wikipedia.org/wiki/ISO/IEC_7064">https://en.wikipedia.org/wiki/ISO/IEC_7064</a>
  * @see <a
- *     href="http://svn.apache.org/viewvc/commons/proper/validator/trunk/src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java?view=co">IBANCheckDigit</a>
+ *     href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">https://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
+ * @see <a
+ *     href="https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD</a>
  * @since 1.0
  */
 public enum IbanCheckDigit {
@@ -33,7 +35,20 @@ public enum IbanCheckDigit {
    *     characters.
    */
   public boolean validate(String iban) {
+    validateString(iban);
+    validateCheckDigit(iban);
     return modulus(iban) == CHECK_DIGITS_REMAINDER;
+  }
+
+  // It is easier to extract the check digit string and compare it with the invalid check digits but
+  // we want to avoid unnecessary objects creation.
+  private void validateCheckDigit(String iban) {
+    char first = iban.charAt(BBAN_INDEX - 2);
+    char second = iban.charAt(BBAN_INDEX - 1);
+
+    if ((first == '0' && (second == '0' || second == '1')) || (first == '9' && second == '9')) {
+      throw new IllegalArgumentException("the check digit cannot be one of 00, 01 or 99");
+    }
   }
 
   /**
@@ -44,22 +59,29 @@ public enum IbanCheckDigit {
    * @return the given IBAN check digit.
    */
   public String calculate(String iban) {
+    validateString(iban);
+
     int modulusResult = modulus(iban);
     int charValue = (98 - modulusResult);
     String checkDigit = Integer.toString(charValue);
+
     return (charValue > 9 ? checkDigit : "0" + checkDigit);
   }
 
-  private int modulus(String iban) {
+  private void validateString(String iban) {
     if (iban == null) {
       throw new IllegalArgumentException("the iban argument cannot be null");
     }
+
     if (iban.length() <= BBAN_INDEX) {
       throw new IllegalArgumentException(
           "the iban argument size must be grater than " + BBAN_INDEX);
     }
+  }
 
+  private int modulus(String iban) {
     String reformattedIban = iban.substring(BBAN_INDEX) + iban.substring(0, BBAN_INDEX);
+
     long total = 0;
     for (int i = 0; i < reformattedIban.length(); i++) {
       int charValue = Character.getNumericValue(reformattedIban.charAt(i));
