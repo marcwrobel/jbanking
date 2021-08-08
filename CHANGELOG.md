@@ -18,5 +18,3 @@ This new release…
 ## Internal
 
 ### Thanks
-
-Many thanks to @edgeofoblivion for his help !
