@@ -75,7 +75,7 @@ public enum IbanCheckDigit {
 
     if (iban.length() <= BBAN_INDEX) {
       throw new IllegalArgumentException(
-          "the iban argument size must be grater than " + BBAN_INDEX);
+          "the iban argument size must be greater than " + BBAN_INDEX);
     }
   }
 

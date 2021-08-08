@@ -14,6 +14,7 @@ This new release fixes issues with IBAN and creditor identifier check digit vali
 - Fix IBAN and creditor identifier check digit validation (#82). Validation of IBANs and creditor identifiers with a check digit equals to `00`, `01` or `99`
   will now raise an `IllegalArgumentException` instead of just being considered invalid. Note that this fix has an impact on both IBANs and creditor identifiers
   validation because they both use the same _ISO 7064 Mod 97,10_ check digit validation.
+- Fix typo in one of the IbanCheckDigit exception messages : grater → greater (#84).
 
 ### Deprecated
 
