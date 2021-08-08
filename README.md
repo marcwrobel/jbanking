@@ -47,7 +47,7 @@ You can download the latest build on [Maven Central](https://search.maven.org/ar
 <dependency>
   <groupId>fr.marcwrobel</groupId>
   <artifactId>jbanking</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1</version>
 </dependency>
 ```
 
