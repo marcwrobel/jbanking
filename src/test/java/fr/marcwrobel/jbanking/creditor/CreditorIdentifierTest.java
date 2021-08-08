@@ -82,7 +82,7 @@ class CreditorIdentifierTest {
       "US" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
 
   private static final String CI_WITH_INVALID_CHECK_DIGIT =
-      VALID_CI_COUNTRY + "01" + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
+      VALID_CI_COUNTRY + "09" + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
 
   @Test
   void nullIsNotAValidCreditorIdentifier() {
