@@ -113,8 +113,13 @@ class IsoCountryTest {
                 c ->
                     !EnumSet.of(
                             CountryCode.UNDEFINED,
-                            CountryCode.XI // https://github.com/marcwrobel/jbanking/issues/68
-                            )
+                            // XI and XU are not official ISO 3166 country codes and are mainly for
+                            // customs declarations (see
+                            // https://www.uktradeinfo.com/news/changes-to-country-and-commodity-codes-in-2022/). They are not
+                            // listed in IBAN registry. So they will not be added to the IsoCountry
+                            // enum.
+                            CountryCode.XI,
+                            CountryCode.XU)
                         .contains(c))
             .filter(c -> assignments.contains(c.getAssignment()))
             .collect(Collectors.toList());

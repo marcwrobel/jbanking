@@ -18,5 +18,6 @@ This new release…
 ## Internal
 
 - Upgrade to guava 31.1-jre (#86).
+- Upgrade to nv-i18n 1.29 (#87).
 
 ### Thanks

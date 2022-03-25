@@ -20,7 +20,7 @@
     <this.java.version>1.8</this.java.version>
 
     <guava.version>31.1-jre</guava.version>
-    <nv-i18n.version>1.28</nv-i18n.version>
+    <nv-i18n.version>1.29</nv-i18n.version>
     <strata.version>2.9.4</strata.version>
   </properties>
 
