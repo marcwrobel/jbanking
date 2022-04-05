@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class CreditCardValidation {
 
-  private static final String REGEX = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
-    "(?<mastercard>5[1-5][0-9]{14}))";
+  private static final String REGEX = "^(?:(4[0-9]{12}(?:[0-9]{3})?)|" +
+    "(5[1-5][0-9]{14}))";
 
   public boolean checkCreditCardNumber(String cardNumber){
     Pattern pattern = Pattern.compile(REGEX);
