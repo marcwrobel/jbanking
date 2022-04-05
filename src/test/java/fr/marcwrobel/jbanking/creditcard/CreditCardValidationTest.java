@@ -93,7 +93,7 @@ public class CreditCardValidationTest {
   @DisplayName("Check valid mastercard")
   void validMastercardCheck() {
     CreditCardValidation validation = new CreditCardValidation();
-    CreditCard validMastercard = new CreditCard(CreditCard.CreditCardType.MASTERCARD, VALID_MASTERCARD);
+    CreditCard validMastercard = new CreditCard(MASTERCARD, VALID_MASTERCARD);
     final String result = validation.check(validMastercard);
 
     assertEquals("Mastercard", result);
@@ -103,7 +103,7 @@ public class CreditCardValidationTest {
   @DisplayName("Check invalid mastercard")
   void invalidMastercardCheck() {
     CreditCardValidation validation = new CreditCardValidation();
-    CreditCard invalidMastercard = new CreditCard(CreditCard.CreditCardType.MASTERCARD, INVALID_MASTERCARD);
+    CreditCard invalidMastercard = new CreditCard(MASTERCARD, INVALID_MASTERCARD);
     final String result = validation.check(invalidMastercard);
 
     assertEquals("Not a valid credit card", result);
@@ -113,7 +113,7 @@ public class CreditCardValidationTest {
   @DisplayName("Check valid visa")
   void validVisaCheck() {
     CreditCardValidation validation = new CreditCardValidation();
-    CreditCard validVisa = new CreditCard(CreditCard.CreditCardType.VISA, VALID_VISA);
+    CreditCard validVisa = new CreditCard(VISA, VALID_VISA);
     final String result = validation.check(validVisa);
 
     assertEquals("Visa", result);
@@ -123,7 +123,7 @@ public class CreditCardValidationTest {
   @DisplayName("Check invalid mastercard")
   void invalidVisaCheck() {
     CreditCardValidation validation = new CreditCardValidation();
-    CreditCard invalidVisa= new CreditCard(CreditCard.CreditCardType.MASTERCARD, INVALID_VISA);
+    CreditCard invalidVisa= new CreditCard(MASTERCARD, INVALID_VISA);
     final String result = validation.check(invalidVisa);
 
     assertEquals("Not a valid credit card", result);
