@@ -9,7 +9,7 @@ public class CreditCard {
       VISA
     }
 
-    public void CreditCard(CreditCardType type, String cardnumber) {
+    public CreditCard(CreditCardType type, String cardnumber) {
         this.cardnumber = cardnumber;
         this.type = type;
     }
