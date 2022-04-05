@@ -1,24 +1,37 @@
 package fr.marcwrobel.jbanking.creditcard;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CreditCardValidation {
 
-  private
-
-  String regex = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
-    "(?<mastercard>5[1-5][0-9]{14})";
+  private static final String REGEX = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
+    "(?<mastercard>5[1-5][0-9]{14}))";
 
   public boolean checkCreditCardNumber(String cardNumber){
-    return true;
+    Pattern pattern = Pattern.compile(REGEX);
+    Matcher matcher = pattern.matcher(cardNumber);
+
+    if(matcher.matches()) {
+      return true;
+    }
+    return false;
   }
 
+  /**
+   * the following code was taken from https://howtodoinjava.com/java/regex/java-regex-validate-credit-card-numbers/
+   * to build a checksum with the card number for further validation.
+   * @param cardNumber credit card number to check
+   * @return true, if checksum is valid, else false
+   */
   public boolean checksumValidation(String cardNumber)
   {
     int sum = 0;
-    boolean alternate = false;
+    boolean multiply = false;
     for (int i = cardNumber.length() - 1; i >= 0; i--)
     {
-      int n = Integer.parseInt(cardNumber.substring(i, i + 1));
-      if (alternate)
+      int n = Character.getNumericValue(cardNumber.charAt(i));
+      if (multiply)
       {
         n *= 2;
         if (n > 9)
@@ -27,7 +40,7 @@ public class CreditCardValidation {
         }
       }
       sum += n;
-      alternate = !alternate;
+      multiply = !multiply;
     }
     return (sum % 10 == 0);
   }
@@ -45,5 +58,4 @@ public class CreditCardValidation {
     }
     return "Not a valid credit card";
   }
-
 }
