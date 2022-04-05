@@ -2,30 +2,41 @@ package fr.marcwrobel.jbanking.creditcard;
 
 public class CreditCard {
     private CreditCardType type;
-    private String cardnumber;
+    private String cardNumber;
 
-    private enum CreditCardType {
+    public enum CreditCardType {
       MASTERCARD,
-      VISA
+      VISA,
+      DISCOVER,
+      JCB
     }
 
-    public CreditCard(CreditCardType type, String cardnumber) {
-        this.cardnumber = cardnumber;
+    public CreditCard(CreditCardType type, String cardNumber) {
+        this.cardNumber = cardNumber;
         this.type = type;
     }
 
-    public String getType() {
+  /**
+   * getter for credit card type
+   * @return String
+   */
+
+  public String getType() {
       switch (type) {
         case MASTERCARD:
           return "Mastercard";
         case VISA:
           return "Visa";
         default:
-          return "None";
+          return "Unsupported Card Type";
       }
     }
 
-    public String getCardnumber() {
-      return this.cardnumber;
+  /**
+   * getter for credit card number
+   * @return String
+   */
+  public String getCardnumber() {
+      return this.cardNumber;
     }
 }
