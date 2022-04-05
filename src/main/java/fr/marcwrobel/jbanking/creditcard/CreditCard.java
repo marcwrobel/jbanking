@@ -4,7 +4,7 @@ public class CreditCard {
   private CreditCardType type;
   private String cardnumber;
 
-  private enum CreditCardType {
+  public enum CreditCardType {
     MASTERCARD,
     VISA
   }

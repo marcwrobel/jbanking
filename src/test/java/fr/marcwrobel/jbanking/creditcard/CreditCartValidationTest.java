@@ -3,8 +3,7 @@ package fr.marcwrobel.jbanking.creditcard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditCartValidationTest {
 
@@ -52,5 +51,43 @@ public class CreditCartValidationTest {
     assertFalse(result);
   }
 
+  @Test
+  @DisplayName("Check valid mastercard")
+  void validMastercardCheck() {
+    CreditCardValidation validation = new CreditCardValidation();
+    CreditCard validMastercard = new CreditCard(CreditCard.CreditCardType.MASTERCARD, VALID_MASTERCARD);
+    final String result = validation.check(validMastercard);
 
+    assertEquals("Mastercard", result);
+  }
+
+  @Test
+  @DisplayName("Check invalid mastercard")
+  void invalidMastercardCheck() {
+    CreditCardValidation validation = new CreditCardValidation();
+    CreditCard invalidMastercard = new CreditCard(CreditCard.CreditCardType.MASTERCARD, INVALID_MASTERCARD);
+    final String result = validation.check(invalidMastercard);
+
+    assertEquals("Not a valid credit card", result);
+  }
+
+  @Test
+  @DisplayName("Check valid visa")
+  void validVisaCheck() {
+    CreditCardValidation validation = new CreditCardValidation();
+    CreditCard validVisa = new CreditCard(CreditCard.CreditCardType.VISA, VALID_MASTERCARD);
+    final String result = validation.check(validVisa);
+
+    assertEquals("Visa", result);
+  }
+
+  @Test
+  @DisplayName("Check invalid mastercard")
+  void invalidVisaCheck() {
+    CreditCardValidation validation = new CreditCardValidation();
+    CreditCard invalidVisa= new CreditCard(CreditCard.CreditCardType.MASTERCARD, INVALID_VISA);
+    final String result = validation.check(invalidVisa);
+
+    assertEquals("Not a valid credit card", result);
+  }
 }
