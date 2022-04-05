@@ -75,7 +75,7 @@ public class CreditCartValidationTest {
   @DisplayName("Check valid visa")
   void validVisaCheck() {
     CreditCardValidation validation = new CreditCardValidation();
-    CreditCard validVisa = new CreditCard(CreditCard.CreditCardType.VISA, VALID_MASTERCARD);
+    CreditCard validVisa = new CreditCard(CreditCard.CreditCardType.VISA, VALID_VISA);
     final String result = validation.check(validVisa);
 
     assertEquals("Visa", result);
