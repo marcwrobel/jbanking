@@ -16,11 +16,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CurrencyCode;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
@@ -132,7 +128,10 @@ class IsoCurrencyTest {
     Set<CountryCode> unknownCountryCode = new HashSet<>();
 
     stream(IsoCurrency.values())
-        .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("UYW")) // not in nv-i18n
+        .filter(
+            isoCurrency ->
+                !Arrays.asList("UYW", "VED")
+                    .contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
         .forEach(
             currency -> {
               CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
@@ -163,7 +162,10 @@ class IsoCurrencyTest {
         stream(IsoCurrency.values())
             .filter(
                 isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
-            .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("UYW")) // not in nv-i18n
+            .filter(
+                isoCurrency ->
+                    !Arrays.asList("UYW", "VED")
+                        .contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
             .filter(
                 currency -> {
                   CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
