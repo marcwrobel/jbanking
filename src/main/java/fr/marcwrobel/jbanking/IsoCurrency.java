@@ -898,6 +898,37 @@ public enum IsoCurrency {
   /**
    * Sierra Leonean leone.
    *
+   * <p>This currency code was introduced by ISO-4217 amendment number 171 and is effective from 1
+   * April 2022 :
+   *
+   * <blockquote>
+   *
+   * The Sierra Leonean LEONE (SLL) is redenominated by removing three (3) zeros from the
+   * denominations. A new currency code SLE/925 representing the new valuation (1’000 times old
+   * SLL/694) is introduced on 1 st April 2022 for any internal needs during the redenomination
+   * process, and is replacing SLL as the official currency code, after the transition period to be
+   * determined.
+   *
+   * <p>During this transition period, both the old Leone and new Leone will be in physical
+   * circulation for at least 90 days.
+   *
+   * <p>The Bank of Sierra Leone will adopt the new code in the local system but SLL/694 shall
+   * remain in use until further notice.
+   *
+   * </blockquote>
+   *
+   * @see <a href="https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar">wikipedia.org</a>
+   * @see <a
+   *     href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_171.pdf">ISO-4217
+   *     amendment number 171</a>
+   * @see <a href="https://wikipedia.org/wiki/Sierra_Leonean_leone">wikipedia.org</a>
+   * @since 3.2.0
+   */
+  SLE(925, 2, SL),
+
+  /**
+   * Sierra Leonean leone.
+   *
    * @see <a href="https://wikipedia.org/wiki/Sierra_Leonean_leone">wikipedia.org</a>
    */
   SLL(694, 2, SL),
