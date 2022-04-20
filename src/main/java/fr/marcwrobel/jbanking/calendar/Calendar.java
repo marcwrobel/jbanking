@@ -21,7 +21,7 @@ public interface Calendar {
   int MAX_ITERATIONS = 3650;
 
   /**
-   * Check whether the given date is a bank holiday.
+   * Check whether the given date is a public holiday.
    *
    * @param date a non-null date.
    * @return {@code true} if the given date is a holiday, {@code false} otherwise.

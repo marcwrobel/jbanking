@@ -35,6 +35,7 @@ class ConfigurableCalendarTest {
 
   @Test
   void holidaysMustNotBeNull() {
+    //noinspection ConstantConditions
     assertThrows(
         NullPointerException.class, () -> new ConfigurableCalendar((Collection<Holiday>) null));
   }

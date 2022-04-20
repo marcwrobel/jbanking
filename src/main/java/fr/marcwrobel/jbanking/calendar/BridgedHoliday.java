@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 /**
- * A {@link Holiday} based on two other holidays that adds an additional holiday when the previous
- * and next days are holidays.
+ * A {@link Holiday} based on two other holidays that adds a holiday when the previous and next days
+ * are holidays.
  *
  * <p>This class is useful for modeling holidays like the bridged japanese holidays.
  *

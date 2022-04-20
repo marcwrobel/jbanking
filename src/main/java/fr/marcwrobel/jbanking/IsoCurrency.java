@@ -268,8 +268,8 @@ import java.util.Set;
  * free on the <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">
  * currency-iso.org</a>.
  *
- * <p>Note that enum entries are named after the ISO 4217 alphabetic code. This choice have been
- * made in version 3.0.0 of jbanking in order to :
+ * <p>Note that enum entries are named after the ISO 4217 alphabetic code. This choice has been made
+ * in version 3.0.0 of jbanking in order to :
  *
  * <ul>
  *   <li>reduce breaking changes in future versions (names change more often than codes),
@@ -1326,7 +1326,7 @@ public enum IsoCurrency {
   SRD(968, 2, SR),
 
   /**
-   * Swedish krona.
+   * Swedish króna.
    *
    * @see <a href="https://wikipedia.org/wiki/Swedish_krona">wikipedia.org</a>
    */
@@ -1620,7 +1620,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency ISO 4217 alphabetical code.
    *
-   * @return a non null and 3 characters length string.
+   * @return a non-null and 3 characters length string.
    */
   public String getAlphabeticCode() {
     return name();
@@ -1656,7 +1656,7 @@ public enum IsoCurrency {
   /**
    * Returns the countries that are using this currency.
    *
-   * @return a non null but may be empty set of countries.
+   * @return a non-null but may be empty set of countries.
    */
   public Set<IsoCountry> getCountries() {
     return countries;
@@ -1667,7 +1667,7 @@ public enum IsoCurrency {
    *
    * <p>This method is not case-sensitive.
    *
-   * @param code A non null String.
+   * @param code A non-null String.
    * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
    */
   public static Optional<IsoCurrency> fromAlphabeticCode(String code) {
@@ -1725,7 +1725,7 @@ public enum IsoCurrency {
     /**
      * Precious metals codes.
      *
-     * <p>These "currency units" are denominated as <a
+     * <p>These “currency units” are denominated as <a
      * href="https://en.wikipedia.org/wiki/Troy_weight#Troy_ounce_(oz_t)">one troy ounce</a>.
      */
     METAL,

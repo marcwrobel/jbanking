@@ -68,7 +68,7 @@ public final class SwiftPattern implements Serializable {
   private static final String UPPER_AND_LOWER_CASE_ALPHANUMERICS_CLASS = "[A-Za-z0-9]";
   private static final String SPACES_CLASS = "[ ]";
 
-  private static final String GROUP_REGEX = "[0-9]{1,3}!?[ance]";
+  private static final String GROUP_REGEX = "\\d{1,3}!?[ance]";
   private static final Pattern SWIFT_FORMAT_PATTERN =
       Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
   private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
@@ -154,7 +154,7 @@ public final class SwiftPattern implements Serializable {
   /**
    * Returns the SWIFT expression from which this pattern was compiled.
    *
-   * @return a non null string.
+   * @return a non-null string.
    */
   public String getExpression() {
     return expression;
@@ -163,7 +163,7 @@ public final class SwiftPattern implements Serializable {
   /**
    * Returns the {@link java.util.regex.Pattern java Pattern} build using the SWIFT expression.
    *
-   * @return a non null pattern.
+   * @return a non-null pattern.
    */
   public Pattern getEquivalentJavaPattern() {
     return equivalentJavaPattern;

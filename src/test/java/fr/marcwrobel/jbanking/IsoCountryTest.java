@@ -102,7 +102,7 @@ class IsoCountryTest {
     }
   }
 
-  // using nv-i18n helps us keeping the enum up-to-date
+  // using nv-i18n helps us to keep the enum up-to-date
   @Test
   void ensureCompleteness() {
     Set<Assignment> assignments = of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
@@ -156,7 +156,7 @@ class IsoCountryTest {
     }
   }
 
-  // using nv-i18n helps us keeping the enum exact
+  // using nv-i18n helps us to keep the enum exact
   @Test
   void ensureExactness() {
     for (IsoCountry country : IsoCountry.values()) {
@@ -171,7 +171,7 @@ class IsoCountryTest {
     }
   }
 
-  // using nv-i18n helps us keeping the enum exact
+  // using nv-i18n helps us to keep the enum exact
   @Test
   void ensureNoDeprecated() {
     List<IsoCountry> deprecated =

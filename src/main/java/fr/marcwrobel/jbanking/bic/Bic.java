@@ -64,7 +64,7 @@ public final class Bic implements Serializable {
    *
    * <p>The given string may be a BIC8 or a BIC11.
    *
-   * @param bic8Or11 A non null String.
+   * @param bic8Or11 A non-null String.
    * @throws IllegalArgumentException if the given string is null
    * @throws BicFormatException if the given BIC8 or BIC11 string does not match {@link #BIC_REGEX}
    *     or if the given BIC8 or BIC11 country code is not known in {@link
@@ -114,7 +114,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the institution code (or bank code) from this BIC.
    *
-   * @return A non null string representing this BIC institution code.
+   * @return A non-null string representing this BIC institution code.
    */
   public String getInstitutionCode() {
     return normalizedBic.substring(
@@ -124,7 +124,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the country code from this BIC.
    *
-   * @return A non null string representing this BIC country code.
+   * @return A non-null string representing this BIC country code.
    */
   public String getCountryCode() {
     return normalizedBic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
@@ -133,7 +133,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the location code from this BIC.
    *
-   * @return A non null string representing this BIC location code.
+   * @return A non-null string representing this BIC location code.
    */
   public String getLocationCode() {
     return normalizedBic.substring(LOCATION_CODE_INDEX, LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH);
@@ -142,7 +142,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the branch code from this BIC.
    *
-   * @return A non null string representing this BIC branch code.
+   * @return A non-null string representing this BIC branch code.
    */
   public String getBranchCode() {
     return normalizedBic.substring(BRANCH_CODE_INDEX, BRANCH_CODE_INDEX + BRANCH_CODE_LENGTH);
@@ -191,9 +191,9 @@ public final class Bic implements Serializable {
   }
 
   /**
-   * Indicates whether some other object is "equal to" this one.
+   * Indicates whether some other object is “equal to” this one.
    *
-   * <p>To be equals to this one an other object must be a {@link Bic} and the BICs normalized form
+   * <p>To be equals to this one the other object must be a {@link Bic} and the BICs normalized form
    * (see {@link #toString()}) must be equal.
    *
    * @param o the object with which to compare.

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * Bank holidays are holidays when banks, and many other businesses, are closed for the day. This
- * interface is representing a bank holiday.
+ * interface is representing a public holiday.
  *
  * <p>Subclasses of this interface are expected to be thread-safe and immutable.
  *

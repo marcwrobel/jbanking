@@ -96,8 +96,9 @@ class IsoCurrencyTest {
     assertEquals(FUND, USS.getCategory());
   }
 
-  // using nv-i18n helps us keeping the enum up-to-date
+  // using nv-i18n helps us to keep the enum up-to-date
   @Test
+  @SuppressWarnings("deprecation")
   void ensureCompleteness() {
     Set<CurrencyCode> exclusion =
         EnumSet.of(
@@ -124,7 +125,7 @@ class IsoCurrencyTest {
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
   }
 
-  // using nv-i18n helps us keeping the enum up-to-date
+  // using nv-i18n helps us to keep the enum up-to-date
   @Test
   void ensureCountriesCompleteness() {
     Multimap<IsoCurrency, IsoCountry> missingCountries = HashMultimap.create();
@@ -155,7 +156,7 @@ class IsoCurrencyTest {
     assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
   }
 
-  // using nv-i18n helps us keeping the enum up-to-date
+  // using nv-i18n helps us to keep the enum up-to-date
   @Test
   void ensureNoDeprecated() {
     List<IsoCurrency> deprecated =

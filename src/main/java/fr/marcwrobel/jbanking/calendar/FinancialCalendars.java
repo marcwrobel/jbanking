@@ -389,7 +389,7 @@ public enum FinancialCalendars implements Calendar {
           new ShiftedHoliday(new MonthDayHoliday(NOVEMBER, 3), SUNDAY_TO_MONDAY),
           // https://www.timeanddate.com/holidays/japan/labor-thanksgiving-day
           new ShiftedHoliday(new MonthDayHoliday(NOVEMBER, 23), SUNDAY_TO_MONDAY),
-          // new years eve - bank of Japan, but not national holiday
+          // new years' eve - bank of Japan, but not national holiday
           new ShiftedHoliday(new MonthDayHoliday(DECEMBER, 31), SUNDAY_TO_MONDAY),
           // https://en.wikipedia.org/wiki/The_Emperor%27s_Birthday - Akihito
           new YearRangeHoliday(

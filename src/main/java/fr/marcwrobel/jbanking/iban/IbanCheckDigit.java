@@ -29,7 +29,7 @@ public enum IbanCheckDigit {
   /**
    * Validate the given IBAN check digit.
    *
-   * @param iban a non null string.
+   * @param iban a non-null string.
    * @return {@code true} if the given IBAN check digit is valid, {@code false} otherwise.
    * @throws IllegalArgumentException if the given IBAN is null or if its size is not at least four
    *     characters.
@@ -40,7 +40,8 @@ public enum IbanCheckDigit {
     return modulus(iban) == CHECK_DIGITS_REMAINDER;
   }
 
-  // It is easier to extract the check digit string and compare it with the invalid check digits but
+  // It is easier to extract the check digit string and compare it with the invalid check digits,
+  // but
   // we want to avoid unnecessary objects creation.
   private void validateCheckDigit(String iban) {
     char first = iban.charAt(BBAN_INDEX - 2);
@@ -55,7 +56,7 @@ public enum IbanCheckDigit {
    * Calculate the given IBAN check digit. For a valid calculation the given IBAN its characters
    * have to be alphanumeric ([a-zA-Z0-9]) and check digit characters have to be set to zero.
    *
-   * @param iban a non null string
+   * @param iban a non-null string
    * @return the given IBAN check digit.
    */
   public String calculate(String iban) {
