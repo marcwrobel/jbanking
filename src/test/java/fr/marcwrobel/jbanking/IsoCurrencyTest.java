@@ -27,6 +27,9 @@ import org.junit.jupiter.api.Test;
  */
 class IsoCurrencyTest {
 
+  private static final Set<String> NOT_IN_NV_I18N =
+      new HashSet<>(Arrays.asList("UYW", "VED", "SLE"));
+
   @Test
   void fromAlphaCodeAllowsNull() {
     assertFalse(fromAlphabeticCode(null).isPresent());
@@ -130,8 +133,7 @@ class IsoCurrencyTest {
     stream(IsoCurrency.values())
         .filter(
             isoCurrency ->
-                !Arrays.asList("UYW", "VED")
-                    .contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
+                !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
         .forEach(
             currency -> {
               CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
@@ -164,8 +166,7 @@ class IsoCurrencyTest {
                 isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
             .filter(
                 isoCurrency ->
-                    !Arrays.asList("UYW", "VED")
-                        .contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
+                    !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
             .filter(
                 currency -> {
                   CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
