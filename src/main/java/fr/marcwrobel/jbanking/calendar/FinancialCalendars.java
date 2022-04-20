@@ -265,7 +265,7 @@ public enum FinancialCalendars implements Calendar {
    * Automated Real-time Gross settlement Express Transfer (TARGET)</a> closing days.
    *
    * @see <a
-   *     href="https://www.ecb.europa.eu/press/pr/date/2000/html/pr001214_4.en.html">ecb.europa.eu</a>.
+   *     href="https://www.ecb.europa.eu/press/pr/date/2000/html/pr001214_4.en.html">ecb.europa.eu</a>
    */
   TARGET(
       new ConfigurableCalendar(
