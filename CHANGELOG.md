@@ -17,8 +17,9 @@ This new release…
 
 ## Internal
 
-- Upgrade to guava 31.1-jre (#86).
-- Upgrade to nv-i18n 1.29 (#87).
-- Upgrade to strata 2.11.6 (#88).
+- Upgrade to guava [31.1-jre](https://github.com/google/guava/releases/tag/v31.1) (#86).
+- Upgrade to nv-i18n [1.29](https://github.com/TakahikoKawasaki/nv-i18n/blob/master/CHANGES.md#129-2021-08-26) (#87).
+- Upgrade to strata [2.11.6](https://github.com/OpenGamma/Strata/releases/tag/v2.11.6) (#88).
+- Upgrade to parent [2.6.0](https://github.com/marcwrobel/parent/releases/tag/v2.6.0) (#91).
 
 ### Thanks
