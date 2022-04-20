@@ -395,7 +395,35 @@ public enum IsoCurrency {
   BMD(60, 2, BM),
 
   /**
-   * Venezuelan bolívar.
+   * Venezuelan bolívar digital (as designated on <a
+   * href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a>).
+   *
+   * <p>This currency code was introduced by ISO-4217 amendment number 170 and is effective from 1
+   * October 2021 :
+   *
+   * <blockquote>
+   *
+   * The Bolívar Soberano (VES) is redenominated by removing six zeros from the denominations. A new
+   * currency code VED/926 representing the new valuation (1,000,000 times old VES/928) is
+   * introduced on 1 October 2021 for any internal needs during the redenomination process, but is
+   * not replacing VES as the official currency code. The Central Bank of Venezuela will not adopt
+   * the new codes in the local system, VES/928 remains in use.
+   *
+   * <p>The actual currency code VES/928 remains the valid code after 1 October 2021 to use in any
+   * future transactions to indicate the redenominated Bolívar Soberano.
+   *
+   * </blockquote>
+   *
+   * @see <a href="https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar">wikipedia.org</a>
+   * @see <a
+   *     href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_170.pdf">ISO-4217
+   *     amendment number 170</a>
+   * @since 3.2.0
+   */
+  VED(926, 2, VE),
+
+  /**
+   * Venezuelan bolívar soberano.
    *
    * @see <a href="https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar">wikipedia.org</a>
    */
