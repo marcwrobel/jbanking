@@ -16,6 +16,7 @@ class CompositeCalendarTest {
 
   @Test
   void cannotInstantiateWithoutCalendars() {
+    //noinspection ConstantConditions
     assertThrows(
         NullPointerException.class, () -> new CompositeCalendar((Collection<Calendar>) null));
 

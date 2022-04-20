@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * A {@link Holiday} occurring at given dates.
  *
- * <p>This class is useful for modeling exceptional holidays like the golden jubilee in United
+ * <p>This class is useful for modeling exceptional holidays like the golden jubilee in the United
  * Kingdom.
  *
  * @author Marc Wrobel

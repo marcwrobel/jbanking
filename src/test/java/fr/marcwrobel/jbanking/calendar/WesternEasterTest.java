@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,20 +19,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class WesternEasterTest {
 
-  private static final int YEAR = 2020;
-  private static final int MONTH = 4;
-  private static final int DAY = 12;
-
-  private static final LocalDate HOLIDAY_2020 = LocalDate.of(YEAR, MONTH, DAY);
-  private static final LocalDate HOLIDAY_2019 = LocalDate.of(YEAR - 1, MONTH, 21);
-  private static final LocalDate HOLIDAY_2021 = LocalDate.of(YEAR + 1, MONTH, 4);
-
   private static final WesternEaster HOLIDAY = WesternEaster.INSTANCE;
 
   private static Stream<Arguments> easter500() {
     InputStream easter500 =
         WesternEasterTest.class.getClassLoader().getResourceAsStream("easter500.txt");
-    return new BufferedReader(new InputStreamReader(easter500))
+    return new BufferedReader(new InputStreamReader(Objects.requireNonNull(easter500)))
         .lines()
         .map(line -> line.trim().replaceAll("\\s+", " "))
         .map(line -> line.split(" "))
@@ -40,6 +33,7 @@ class WesternEasterTest {
 
   @Test
   void checkDoesNotAcceptNull() {
+    //noinspection ConstantConditions
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 

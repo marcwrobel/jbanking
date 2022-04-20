@@ -32,7 +32,7 @@ public final class Iban implements Serializable {
   /** Serialization version. */
   private static final long serialVersionUID = 0;
 
-  private static final String BASIC_REGEX = "[A-Za-z]{2}[0-9]{2}[A-Za-z0-9]+";
+  private static final String BASIC_REGEX = "[A-Za-z]{2}\\d{2}[A-Za-z0-9]+";
   private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);
 
   private static final int COUNTRY_CODE_INDEX = 0;
@@ -48,8 +48,8 @@ public final class Iban implements Serializable {
   /**
    * Create a new IBAN from the given country code and BBAN.
    *
-   * @param country A non null IsoCountry.
-   * @param bban A non null String.
+   * @param country A non-null IsoCountry.
+   * @param bban A non-null String.
    * @throws IllegalArgumentException if either the IsoCountry or BBAN is null
    * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry
    *     and BBAN.
@@ -84,7 +84,7 @@ public final class Iban implements Serializable {
   /**
    * Create a new IBAN from the given string.
    *
-   * @param iban A non null String.
+   * @param iban A non-null String.
    * @throws IllegalArgumentException if the given string is null
    * @throws IbanFormatException if the given string is not a valid IBAN.
    */
@@ -172,7 +172,7 @@ public final class Iban implements Serializable {
   /**
    * Extract the ISO 3166-1-alpha-2 country code from this IBAN.
    *
-   * @return A non null string representing this IBAN ISO 3166-1-alpha-2 country code.
+   * @return A non-null string representing this IBAN ISO 3166-1-alpha-2 country code.
    */
   public String getCountryCode() {
     return normalizedIban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
@@ -181,7 +181,7 @@ public final class Iban implements Serializable {
   /**
    * Extract the check digit from this IBAN.
    *
-   * @return A non null string representing this IBAN check digit.
+   * @return A non-null string representing this IBAN check digit.
    */
   public String getCheckDigit() {
     return normalizedIban.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
@@ -190,7 +190,7 @@ public final class Iban implements Serializable {
   /**
    * Extract the BBAN from this IBAN.
    *
-   * @return A non null string representing this IBAN BBAN.
+   * @return A non-null string representing this IBAN BBAN.
    */
   public String getBban() {
     return normalizedIban.substring(BBAN_INDEX);
@@ -202,7 +202,7 @@ public final class Iban implements Serializable {
    * <p>When printed on paper, the IBAN is expressed in groups of four characters separated by a
    * single space, the last group being of variable length
    *
-   * @return A non null string representing this IBAN formatted for printing.
+   * @return A non-null string representing this IBAN formatted for printing.
    */
   public String toPrintableString() {
     StringBuilder printableIban = new StringBuilder(normalizedIban);

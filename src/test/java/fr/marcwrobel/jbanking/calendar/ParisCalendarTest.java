@@ -8,7 +8,7 @@ class ParisCalendarTest extends CalendarTestSupport {
     super(FinancialCalendars.PARIS);
   }
 
-  // using strata-basics helps us keeping the definition up-to-date
+  // using strata-basics helps us to keep the definition up-to-date
   @Test
   void ensureConsistencyWithStrata() {
     this.checkWithStrata("FRPA");

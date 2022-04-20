@@ -12,8 +12,9 @@ import java.util.Set;
 /**
  * A {@link Holiday} that has been punctually suppressed.
  *
- * <p>This class is useful for modeling holidays like the Spring bank holiday in the united kingdom,
- * that has been exceptionally suppressed in 2002 and 2012 for the golden and diamond jubilee.
+ * <p>This class is useful for modeling holidays like the Spring public holiday in the United
+ * Kingdom, that has been exceptionally suppressed in 2002 and 2012 for the golden and diamond
+ * jubilee.
  *
  * @author Marc Wrobel
  * @since 2.1.0

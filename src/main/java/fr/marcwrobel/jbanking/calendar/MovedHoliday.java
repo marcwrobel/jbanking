@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * A {@link Holiday} that has been punctually moved to another day.
  *
- * <p>This class is useful for modeling holidays like the May Day in the united kingdom, that has
+ * <p>This class is useful for modeling holidays like the May Day in the United Kingdom, that has
  * been exceptionally moved from 2020-05-04 to 2020-05-08 in 2020 to coincide with Victory in Europe
  * Day.
  *

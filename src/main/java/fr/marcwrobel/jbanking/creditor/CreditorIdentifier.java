@@ -35,7 +35,7 @@ public class CreditorIdentifier implements Serializable {
   /** Serialization version. */
   private static final long serialVersionUID = 0;
 
-  private static final String BASIC_REGEX = "[A-Za-z]{2}[0-9]{2}[A-Za-z0-9]{3}[A-Za-z0-9]+";
+  private static final String BASIC_REGEX = "[A-Za-z]{2}\\d{2}[A-Za-z0-9]{3}[A-Za-z0-9]+";
   private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);
 
   private static final int COUNTRY_CODE_INDEX = 0;
@@ -53,9 +53,9 @@ public class CreditorIdentifier implements Serializable {
    * Create a new Creditor Identifier from the given country code, the creditor business code and
    * the creditor national id.
    *
-   * @param country A non null IsoCountry.
-   * @param businessCode A non null String.
-   * @param creditorNationalId A non null String.
+   * @param country A non-null IsoCountry.
+   * @param businessCode A non-null String.
+   * @param creditorNationalId A non-null String.
    * @throws IllegalArgumentException if either the IsoCountry or BBAN is null
    * @throws fr.marcwrobel.jbanking.creditor.CreditorIdentifierFormatException if a valid Creditor
    *     Identifier could not be calculated using the given IsoCountry, business code and creditor
@@ -89,7 +89,7 @@ public class CreditorIdentifier implements Serializable {
   /**
    * Create a new creditor identifier from the given string.
    *
-   * @param creditorId a non null String.
+   * @param creditorId a non-null String.
    */
   public CreditorIdentifier(String creditorId) {
     if (creditorId == null) {
@@ -195,7 +195,7 @@ public class CreditorIdentifier implements Serializable {
   /**
    * Extract the ISO 3166-1-alpha-2 country code from this Creditor Identifier.
    *
-   * @return A non null string representing this Creditor Identifier ISO 3166-1-alpha-2 country
+   * @return A non-null string representing this Creditor Identifier ISO 3166-1-alpha-2 country
    *     code.
    */
   public String getCountryCode() {
@@ -205,7 +205,7 @@ public class CreditorIdentifier implements Serializable {
   /**
    * Extract the check digit from this Creditor Identifier.
    *
-   * @return A non null string representing this Creditor Identifier check digit.
+   * @return A non-null string representing this Creditor Identifier check digit.
    */
   public String getCheckDigit() {
     return creditorId.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
@@ -214,7 +214,7 @@ public class CreditorIdentifier implements Serializable {
   /**
    * Extract the business code from this Creditor Identifier.
    *
-   * @return A non null string representing this Creditor Identifier business code.
+   * @return A non-null string representing this Creditor Identifier business code.
    */
   public String getBusinessCode() {
     return creditorId.substring(
@@ -224,7 +224,7 @@ public class CreditorIdentifier implements Serializable {
   /**
    * Extract the creditor national identifier from this Creditor Identifier.
    *
-   * @return A non null string representing this Creditor Identifier National Id.
+   * @return A non-null string representing this Creditor Identifier National ID.
    */
   public String getNationalIdentifier() {
     return creditorId.substring(CREDITOR_NATIONAL_ID_INDEX);

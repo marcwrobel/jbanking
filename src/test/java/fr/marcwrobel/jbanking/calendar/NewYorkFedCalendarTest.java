@@ -8,7 +8,7 @@ class NewYorkFedCalendarTest extends CalendarTestSupport {
     super(FinancialCalendars.NEW_YORK_FED);
   }
 
-  // using strata-basics helps us keeping the definition up-to-date
+  // using strata-basics helps us to keep the definition up-to-date
   @Test
   void ensureConsistencyWithStrata() {
     this.checkWithStrata("NYFD");

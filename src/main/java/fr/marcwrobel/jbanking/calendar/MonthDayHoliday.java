@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A {@link Holiday} occurring the same day and month every year.
  *
- * <p>This class is useful for modeling holidays like christmas.
+ * <p>This class is useful for modeling holidays like Christmas.
  *
  * @author Marc Wrobel
  * @since 2.1.0

@@ -24,7 +24,7 @@ public final class RelativeHoliday implements Holiday {
    * as the shift.
    *
    * @param base a non-null holiday to use as a base.
-   * @param plusDays a number of days to use as the shift (may be negative)
+   * @param plusDays a number of days to use as the shift (can be negative)
    * @throws NullPointerException if the given base is {@code null}
    */
   public RelativeHoliday(Holiday base, int plusDays) {

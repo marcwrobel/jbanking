@@ -8,7 +8,7 @@ class NewYorkStockExchangeCalendarTest extends CalendarTestSupport {
     super(FinancialCalendars.NEW_YORK_SOCK_EXCHANGE);
   }
 
-  // using strata-basics helps us keeping the definition up-to-date
+  // using strata-basics helps us to keep the definition up-to-date
   @Test
   void ensureConsistencyWithStrata() {
     this.checkWithStrata("NYSE");

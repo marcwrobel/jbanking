@@ -31,6 +31,7 @@ class RelativeHolidayTest {
 
   @Test
   void checkDoesNotAcceptNull() {
+    //noinspection ConstantConditions
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 

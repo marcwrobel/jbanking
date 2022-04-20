@@ -111,8 +111,8 @@ public enum Agreement {
    * agreed to act as one.
    *
    * <p><a
-   * href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">
-   * Special member state territories</a> are not listed in this enum.
+   * href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">Special
+   * member state territories</a> are not listed in this enum.
    *
    * <p>This enum was last updated on 2020-07-31 based on information given on <a
    * href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>.
@@ -129,7 +129,7 @@ public enum Agreement {
       SK, SI, ES, SE),
 
   /**
-   * The French Republic is made up of a "SEPA zone" and a "non-SEPA" zone. In order to ensure the
+   * The French Republic is made up of a “SEPA zone” and a “non-SEPA” zone. In order to ensure the
    * continuity of exchanges in euros between the part of the French Republic which is in the SEPA
    * zone and the part of the French Republic which is outside the SEPA zone, namely French
    * Polynesia, New Caledonia, Wallis and Futuna, the CFONB has defined a solution called SEPA COM
@@ -153,8 +153,8 @@ public enum Agreement {
    * euro payments into a single domestic one.
    *
    * <p>This enum was last updated on 2020-07-30 based on information given in <a
-   * href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">
-   * EPC409-09 - EPC List of SEPA Countries v2.6</a>.
+   * href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09
+   * - EPC List of SEPA Countries v2.6</a>.
    *
    * @see <a
    *     href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09

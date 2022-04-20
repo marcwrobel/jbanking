@@ -724,7 +724,7 @@ enum BbanStructure {
   SM(IsoCountry.SM, "1!a5!n5!n12!c"),
 
   /**
-   * BBAN structure for Sao Tome and Principe as defined by the <a href="http://www.bcstp.st/">Banco
+   * BBAN structure for São Tomé and Príncipe as defined by the <a href="http://www.bcstp.st/">Banco
    * Central de Sao Tome e Principe</a> (BCSTP - Central Bank of São Tomé and Príncipe).
    *
    * <ul>
@@ -942,7 +942,7 @@ enum BbanStructure {
   /**
    * Test whether the given BBAN is valid.
    *
-   * @param bban A non null string.
+   * @param bban A non-null string.
    * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false}
    *     otherwise.
    * @throws IllegalArgumentException if the given BBAN is null.
@@ -958,7 +958,7 @@ enum BbanStructure {
   /**
    * Returns this BBAN definition country.
    *
-   * @return a non null country.
+   * @return a non-null country.
    */
   public IsoCountry getCountry() {
     return country;
@@ -967,7 +967,7 @@ enum BbanStructure {
   /**
    * Returns this BBAN definition pattern.
    *
-   * @return a non null pattern.
+   * @return a non-null pattern.
    */
   public SwiftPattern getBbanPattern() {
     return bbanPattern;
@@ -976,7 +976,7 @@ enum BbanStructure {
   /**
    * Returns this BBAN definition subdivision countries.
    *
-   * @return a non null Set of countries (can be empty).
+   * @return a non-null Set of countries (can be empty).
    */
   public Set<IsoCountry> getSubdivisions() {
     return subdivisions;
