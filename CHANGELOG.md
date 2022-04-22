@@ -15,4 +15,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Internal
 
+- Upgrade to parent [2.6.1](https://github.com/marcwrobel/parent/releases/tag/v2.6.1) (#94).
+
 ### Thanks
