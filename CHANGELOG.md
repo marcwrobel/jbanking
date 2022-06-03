@@ -16,5 +16,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## Internal
 
 - Upgrade to parent [2.6.1](https://github.com/marcwrobel/parent/releases/tag/v2.6.1) (#94).
+- Upgrade to strata [2.12.3](https://strata.opengamma.io/releases/) (#96).
 
 ### Thanks
