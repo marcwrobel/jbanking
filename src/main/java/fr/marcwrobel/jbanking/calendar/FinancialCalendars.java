@@ -157,6 +157,11 @@ public enum FinancialCalendars implements Calendar {
           new DayOfWeekInMonthHoliday(3, MONDAY, FEBRUARY),
           // https://wikipedia.org/wiki/Memorial_Day
           new DayOfWeekInMonthHoliday(-1, MONDAY, MAY),
+          // https://wikipedia.org/wiki/Juneteenth
+          // https://www.officeholidays.com/holidays/usa/new-york/juneteenth
+          // https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(JUNE, 19), CLOSEST_WEEKDAY), 2022, 2999),
           // https://wikipedia.org/wiki/Independence_Day_(United_States)
           new ShiftedHoliday(new MonthDayHoliday(JULY, 4), SUNDAY_TO_MONDAY),
           // https://wikipedia.org/wiki/Labor_Day
@@ -186,6 +191,11 @@ public enum FinancialCalendars implements Calendar {
           GOOD_FRIDAY,
           // https://wikipedia.org/wiki/Memorial_Day
           new DayOfWeekInMonthHoliday(-1, MONDAY, MAY),
+          // https://wikipedia.org/wiki/Juneteenth
+          // https://www.officeholidays.com/holidays/usa/new-york/juneteenth
+          // https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html
+          new YearRangeHoliday(
+              new ShiftedHoliday(new MonthDayHoliday(JUNE, 19), CLOSEST_WEEKDAY), 2022, 2999),
           // https://wikipedia.org/wiki/Independence_Day_(United_States)
           new ShiftedHoliday(new MonthDayHoliday(JULY, 4), CLOSEST_WEEKDAY),
           // https://wikipedia.org/wiki/Labor_Day

@@ -21,7 +21,7 @@
 
     <guava.version>31.1-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
-    <strata.version>2.12.3</strata.version>
+    <strata.version>2.12.4</strata.version>
   </properties>
 
   <dependencies>
