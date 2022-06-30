@@ -20,5 +20,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Upgrade to parent [2.7.0](https://github.com/marcwrobel/parent/releases/tag/v2.7.0) (#100).
 - Upgrade to strata [2.12.4](https://strata.opengamma.io/releases/) (#96, #99).
+- Restrict `GITHUB_TOKEN` permissions in GitHub workflows (#101).
 
 ### Thanks
