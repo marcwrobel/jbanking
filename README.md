@@ -1,4 +1,5 @@
 [![Build](https://github.com/marcwrobel/jbanking/workflows/build/badge.svg)](https://github.com/marcwrobel/jbanking/actions)
+[![Supported JVM Versions](https://img.shields.io/badge/JVM-8--17-brightgreen.svg?logo=openjdk)](https://github.com/marcwrobel/jbanking/actions/workflows/build.yml)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=coverage)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=bugs)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
@@ -38,8 +39,8 @@ jbanking is supporting the following features :
 
 ## Requirements
 
-Any application that uses the jbanking library must use at least [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-No additional dependency required !
+jbanking requires at least [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (build is tested
+against Java 8, 11, 17 and 18). It has no additional dependency !
 
 ## Use it !
 

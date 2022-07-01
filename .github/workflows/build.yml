@@ -11,7 +11,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        java: ['1.8', '11']
+        java: ['1.8', '11', '17', '18']
     steps:
       - name: Checkout repository
         uses: 'actions/checkout@v2'

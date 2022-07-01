@@ -5,6 +5,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Officially support Java 17 and 18 (#102).
+
 ### Changed
 
 - Update NYSE and New York FED calendars following [Juneteenth National Independence Day Act](https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html)
