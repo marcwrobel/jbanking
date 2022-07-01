@@ -52,21 +52,26 @@ as a maven dependency:
 <dependency>
   <groupId>fr.marcwrobel</groupId>
   <artifactId>jbanking</artifactId>
-  <version>3.1.1</version>
+  <version>3.2.0</version>
 </dependency>
 ```
 
 For usage examples take a look at the Javadoc or the tests.
 
-## Releases
+## Releases and changelogs
 
-Take a look at the [changelog on GitHub](https://github.com/marcwrobel/jbanking/releases).
+Take a look at the [changelogs on GitHub](https://github.com/marcwrobel/jbanking/releases).
+
+## Contribute
+
+Take a look at our [contribution guide](CONTRIBUTING.md).
 
 ## Need help ?
 
 Read the [javadoc](src/main/java/fr/marcwrobel/jbanking) and take a look at the [unit tests](src/test/java/fr/marcwrobel/jbanking).
 
 Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open) or contribute
-with [a pull-request](https://github.com/marcwrobel/jbanking/pulls).
+with [a pull-request](https://github.com/marcwrobel/jbanking/pulls). Please have a look at our [contribution guide](CONTRIBUTING.md))
+before.
 
 Email me at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).

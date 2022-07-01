@@ -11,28 +11,23 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+If applicable, add a code snippet that reproduce the bug. If an exception occurs, add also its stacktrace.
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Context (please complete the following information):**
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+- jbanking version: [e.g. 2.3.0]
+- `mvn --version` output:
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+```
+Apache Maven 3.8.5 (3599d3414f046de2324203b78ddcf9b5e4388aa0)
+Maven home: /home/mwrobel/.asdf/installs/maven/3.8.5
+Java version: 11.0.15, vendor: Eclipse Adoptium, runtime: /home/mwrobel/.asdf/installs/java/temurin-11.0.15+10
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.10.0-15-amd64", arch: "amd64", family: "unix"
+```
 
 **Additional context**
 Add any other context about the problem here.
