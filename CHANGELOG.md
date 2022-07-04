@@ -28,5 +28,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Restrict sonar analysis to main (#106).
 - Schedule a sonar analysis every week (#107).
 - Prevent duplicate builds on “push” and “pull_request” simultaneous event (#109).
+- Fix branch name in `codeql-analysis.yml` workflow (#110).
 
 ### Thanks
