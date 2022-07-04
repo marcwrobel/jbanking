@@ -1,7 +1,11 @@
 # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
 name: build
 
-on: ['push', 'pull_request']
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
 
 permissions:
   contents: 'read'

@@ -27,5 +27,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add the OpenSSF Best Practices badge on the project's README (#101).
 - Restrict sonar analysis to main (#106).
 - Schedule a sonar analysis every week (#107).
+- Prevent duplicate builds on “push” and “pull_request” simultaneous event (#109).
 
 ### Thanks
