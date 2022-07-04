@@ -5,6 +5,7 @@
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=bugs)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![Maven Central](https://img.shields.io/maven-central/v/fr.marcwrobel/jbanking.svg?logo=apache-maven&label=Maven%20Central)](https://search.maven.org/search?q=g:%22fr.marcwrobel%22%20AND%20a:%22jbanking%22)
+[![javadoc](https://javadoc.io/badge2/fr.marcwrobel/jbanking/javadoc.svg)](https://javadoc.io/doc/fr.marcwrobel/jbanking)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6217/badge)](https://bestpractices.coreinfrastructure.org/projects/6217)
 
 # jbanking - A Java banking API
@@ -56,7 +57,8 @@ as a maven dependency:
 </dependency>
 ```
 
-For usage examples take a look at the Javadoc or the tests.
+For usage examples, read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the
+[unit tests](src/test/java/fr/marcwrobel/jbanking).
 
 ## Releases and changelogs
 
@@ -64,14 +66,14 @@ Take a look at the [changelogs on GitHub](https://github.com/marcwrobel/jbanking
 
 ## Contribute
 
-Take a look at our [contribution guide](CONTRIBUTING.md).
+Take a look at the [contribution guide](CONTRIBUTING.md).
 
 ## Need help ?
 
-Read the [javadoc](src/main/java/fr/marcwrobel/jbanking) and take a look at the [unit tests](src/test/java/fr/marcwrobel/jbanking).
+Read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the [unit tests](src/test/java/fr/marcwrobel/jbanking).
 
 Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open) or contribute
-with [a pull-request](https://github.com/marcwrobel/jbanking/pulls). Please have a look at our [contribution guide](CONTRIBUTING.md))
-before.
+with [a pull-request](https://github.com/marcwrobel/jbanking/pulls). Please take a look at the
+[contribution guide](CONTRIBUTING.md) before.
 
 Email me at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).

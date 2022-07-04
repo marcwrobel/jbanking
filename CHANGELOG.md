@@ -26,6 +26,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade to strata [2.12.5](https://strata.opengamma.io/releases/) (#96, #99).
 - Restrict `GITHUB_TOKEN` permissions in GitHub workflows (#101).
 - Add a contribution guide (#101).
+- Use [javadoc.io](https://javadoc.io/doc/fr.marcwrobel/jbanking/) as the project documentation (#101).
 - Add the OpenSSF Best Practices badge on the project's README (#101).
 - Restrict sonar analysis to main (#106).
 - Schedule a sonar analysis every week (#107).
