@@ -14,6 +14,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Make `IsoCurrency` and `BbanStructure` immutable (#114).
+
 ### Deprecated
 
 ### Removed

@@ -19,12 +19,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.YT;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.swift.SwiftPattern;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant
@@ -913,18 +908,21 @@ enum BbanStructure {
   }
 
   private final IsoCountry country;
+
+  @SuppressWarnings("ImmutableEnumChecker") // SwiftPattern is immutable
   private final SwiftPattern bbanPattern;
+
+  @SuppressWarnings("ImmutableEnumChecker") // initialized with Collections.unmodifiableSet(...).
   private final Set<IsoCountry> subdivisions;
 
   BbanStructure(IsoCountry country, String bbanSwiftExpression, IsoCountry... subdivisions) {
     this.country = country;
     this.bbanPattern = SwiftPattern.compile(bbanSwiftExpression);
-
-    if (subdivisions.length == 0) {
-      this.subdivisions = EnumSet.noneOf(IsoCountry.class);
-    } else {
-      this.subdivisions = EnumSet.copyOf(Arrays.asList(subdivisions));
-    }
+    this.subdivisions =
+        Collections.unmodifiableSet(
+            subdivisions.length > 0
+                ? EnumSet.copyOf(Arrays.asList(subdivisions))
+                : EnumSet.noneOf(IsoCountry.class));
   }
 
   /**

@@ -420,6 +420,9 @@ public enum FinancialCalendars implements Calendar {
               2020,
               2999)));
 
+  @SuppressWarnings(
+      "ImmutableEnumChecker") // ConfigurableCalendar is thread-safe (given Holidays are
+                              // thread-safe).
   private final ConfigurableCalendar calendar;
 
   private static LocalDate d(int year, int month, int day) {
@@ -430,43 +433,57 @@ public enum FinancialCalendars implements Calendar {
     this.calendar = calendar;
   }
 
-  /** @see Calendar#isHoliday(LocalDate) */
+  /**
+   * @see Calendar#isHoliday(LocalDate)
+   */
   @Override
   public boolean isHoliday(LocalDate date) {
     return calendar.isHoliday(date);
   }
 
-  /** @see Calendar#getHolidaysFor(LocalDate) */
+  /**
+   * @see Calendar#getHolidaysFor(LocalDate)
+   */
   @Override
   public Set<Holiday> getHolidaysFor(LocalDate date) {
     return calendar.getHolidaysFor(date);
   }
 
-  /** @see Calendar#isBusinessDay(LocalDate) */
+  /**
+   * @see Calendar#isBusinessDay(LocalDate)
+   */
   @Override
   public boolean isBusinessDay(LocalDate date) {
     return calendar.isBusinessDay(date);
   }
 
-  /** @see Calendar#previous(LocalDate) */
+  /**
+   * @see Calendar#previous(LocalDate)
+   */
   @Override
   public LocalDate previous(LocalDate date) {
     return calendar.previous(date);
   }
 
-  /** @see Calendar#next(LocalDate) */
+  /**
+   * @see Calendar#next(LocalDate)
+   */
   @Override
   public LocalDate next(LocalDate date) {
     return calendar.next(date);
   }
 
-  /** @see Calendar#holidaysWithin(LocalDate, LocalDate) */
+  /**
+   * @see Calendar#holidaysWithin(LocalDate, LocalDate)
+   */
   @Override
   public List<LocalDate> holidaysWithin(LocalDate from, LocalDate to) {
     return calendar.holidaysWithin(from, to);
   }
 
-  /** @see Calendar#businessDaysWithin(LocalDate, LocalDate) */
+  /**
+   * @see Calendar#businessDaysWithin(LocalDate, LocalDate)
+   */
   @Override
   public List<LocalDate> businessDaysWithin(LocalDate from, LocalDate to) {
     return calendar.businessDaysWithin(from, to);

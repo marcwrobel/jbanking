@@ -1,60 +1,9 @@
 package fr.marcwrobel.jbanking;
 
-import static fr.marcwrobel.jbanking.IsoCountry.AD;
-import static fr.marcwrobel.jbanking.IsoCountry.AT;
-import static fr.marcwrobel.jbanking.IsoCountry.AX;
-import static fr.marcwrobel.jbanking.IsoCountry.BE;
-import static fr.marcwrobel.jbanking.IsoCountry.BG;
-import static fr.marcwrobel.jbanking.IsoCountry.BL;
-import static fr.marcwrobel.jbanking.IsoCountry.CH;
-import static fr.marcwrobel.jbanking.IsoCountry.CY;
-import static fr.marcwrobel.jbanking.IsoCountry.CZ;
-import static fr.marcwrobel.jbanking.IsoCountry.DE;
-import static fr.marcwrobel.jbanking.IsoCountry.DK;
-import static fr.marcwrobel.jbanking.IsoCountry.EE;
-import static fr.marcwrobel.jbanking.IsoCountry.ES;
-import static fr.marcwrobel.jbanking.IsoCountry.FI;
-import static fr.marcwrobel.jbanking.IsoCountry.FR;
-import static fr.marcwrobel.jbanking.IsoCountry.GB;
-import static fr.marcwrobel.jbanking.IsoCountry.GF;
-import static fr.marcwrobel.jbanking.IsoCountry.GG;
-import static fr.marcwrobel.jbanking.IsoCountry.GI;
-import static fr.marcwrobel.jbanking.IsoCountry.GP;
-import static fr.marcwrobel.jbanking.IsoCountry.GR;
-import static fr.marcwrobel.jbanking.IsoCountry.HR;
-import static fr.marcwrobel.jbanking.IsoCountry.HU;
-import static fr.marcwrobel.jbanking.IsoCountry.IE;
-import static fr.marcwrobel.jbanking.IsoCountry.IM;
-import static fr.marcwrobel.jbanking.IsoCountry.IS;
-import static fr.marcwrobel.jbanking.IsoCountry.IT;
-import static fr.marcwrobel.jbanking.IsoCountry.JE;
-import static fr.marcwrobel.jbanking.IsoCountry.LI;
-import static fr.marcwrobel.jbanking.IsoCountry.LT;
-import static fr.marcwrobel.jbanking.IsoCountry.LU;
-import static fr.marcwrobel.jbanking.IsoCountry.LV;
-import static fr.marcwrobel.jbanking.IsoCountry.MC;
-import static fr.marcwrobel.jbanking.IsoCountry.MF;
-import static fr.marcwrobel.jbanking.IsoCountry.MQ;
-import static fr.marcwrobel.jbanking.IsoCountry.MT;
-import static fr.marcwrobel.jbanking.IsoCountry.NC;
-import static fr.marcwrobel.jbanking.IsoCountry.NL;
-import static fr.marcwrobel.jbanking.IsoCountry.NO;
-import static fr.marcwrobel.jbanking.IsoCountry.PF;
-import static fr.marcwrobel.jbanking.IsoCountry.PL;
-import static fr.marcwrobel.jbanking.IsoCountry.PM;
-import static fr.marcwrobel.jbanking.IsoCountry.PT;
-import static fr.marcwrobel.jbanking.IsoCountry.RE;
-import static fr.marcwrobel.jbanking.IsoCountry.RO;
-import static fr.marcwrobel.jbanking.IsoCountry.SE;
-import static fr.marcwrobel.jbanking.IsoCountry.SI;
-import static fr.marcwrobel.jbanking.IsoCountry.SK;
-import static fr.marcwrobel.jbanking.IsoCountry.SM;
-import static fr.marcwrobel.jbanking.IsoCountry.VA;
-import static fr.marcwrobel.jbanking.IsoCountry.WF;
-import static fr.marcwrobel.jbanking.IsoCountry.YT;
+import static fr.marcwrobel.jbanking.IsoCountry.*;
+import static java.util.Collections.unmodifiableSet;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -181,11 +130,12 @@ public enum Agreement {
       IM, // through United Kingdom
       VA);
 
+  @SuppressWarnings("ImmutableEnumChecker") // initialized with Collections.unmodifiableSet(...).
   private final Set<IsoCountry> participants;
 
   Agreement(IsoCountry... participants) {
     // emptiness is checked by EnumSet.copyOf, no need to check it here
-    this.participants = Collections.unmodifiableSet(EnumSet.copyOf(Arrays.asList(participants)));
+    this.participants = unmodifiableSet(EnumSet.copyOf(Arrays.asList(participants)));
   }
 
   /**
