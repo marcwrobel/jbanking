@@ -32,5 +32,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Prevent duplicate builds on “push” and “pull_request” simultaneous event (#109).
 - Fix branch name in `codeql-analysis.yml` workflow (#110).
 - Configure CI for maintenance branches (#112).
+- Fix Sonatype lift `MissingSummary` warnings (#118).
 
 ### Thanks
