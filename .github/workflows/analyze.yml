@@ -1,7 +1,9 @@
 # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
 name: analyze
 
-on: ['push']
+on:
+  push:
+    branches: ['main']
 
 permissions:
   contents: 'read'
