@@ -6,7 +6,6 @@ import java.time.LocalDate;
 /**
  * Holidays shifting strategies.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public enum ShiftingStrategy {

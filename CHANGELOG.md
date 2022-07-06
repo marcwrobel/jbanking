@@ -38,5 +38,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade JDK version in development environment to 17 (#119).
 - Use Maven --strict-checksums option by default (#123).
 - Switch to formatter-maven-plugin for code formatting (#125).
+- Disallow @author tags in the Javadoc (#122).
 
 ### Thanks

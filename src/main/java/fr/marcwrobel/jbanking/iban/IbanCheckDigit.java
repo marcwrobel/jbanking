@@ -8,7 +8,6 @@ package fr.marcwrobel.jbanking.iban;
  * "https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">Apache
  * commons-validator's IBANCheckDigit</a>.
  *
- * @author Marc Wrobel
  * @see <a href="https://en.wikipedia.org/wiki/ISO/IEC_7064">https://en.wikipedia.org/wiki/ISO/IEC_7064</a>
  * @see <a href=
  *      "https://en.wikipedia.org/wiki/International_Bank_Account_Number">https://en.wikipedia.org/wiki/International_Bank_Account_Number</a>

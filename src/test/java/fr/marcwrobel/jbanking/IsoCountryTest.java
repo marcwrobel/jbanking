@@ -24,8 +24,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link IsoCountry} class.
- *
- * @author Marc Wrobel
  */
 class IsoCountryTest {
 

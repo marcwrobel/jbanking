@@ -67,7 +67,6 @@ import java.util.regex.Pattern;
  * <p>
  * Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
- * @author Marc Wrobel
  * @see java.util.regex.Pattern
  * @since 1.0
  */

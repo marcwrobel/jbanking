@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
  * <p>
  * Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
- * @author Marc Wrobel
  * @see BbanStructure
  * @see <a href=
  *      "http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>

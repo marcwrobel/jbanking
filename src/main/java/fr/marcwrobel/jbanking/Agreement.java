@@ -11,7 +11,6 @@ import java.util.Set;
  * A list of <a href="https://en.wikipedia.org/wiki/Economic_integration">economic agreements</a> between countries or
  * territories that may be useful in banking processes (such as file processing).
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public enum Agreement {

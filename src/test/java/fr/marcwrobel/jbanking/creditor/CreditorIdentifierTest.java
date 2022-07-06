@@ -21,8 +21,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link fr.marcwrobel.jbanking.creditor.CreditorIdentifier} class.
- *
- * @author Charles Kayser
  */
 class CreditorIdentifierTest {
 

@@ -28,8 +28,6 @@ import java.util.*;
  * It is based on the document <i>IBAN REGISTRY Release 88</i> issued by SWIFT in September 2020 and was last reviewed on
  * 2020-10-18.
  *
- * @author Marc Wrobel
- * @author Matthias Kay
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */

@@ -13,8 +13,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link BbanStructure} enum.
- *
- * @author Marc Wrobel
  */
 class BbanStructureTest {
 

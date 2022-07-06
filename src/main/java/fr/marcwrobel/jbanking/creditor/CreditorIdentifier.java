@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
  * <p>
  * Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
- * @author Charles Kayser
  * @see <a href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC
  *      Creditor Identifier Overview</a>
  */

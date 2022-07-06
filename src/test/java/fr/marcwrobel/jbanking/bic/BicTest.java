@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link Bic} class.
- *
- * @author Marc Wrobel
  */
 class BicTest {
 

@@ -24,7 +24,6 @@ import java.util.*;
  * <li>prevent accidental duplicates.
  * </ul>
  *
- * @author Marc Wrobel
  * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>
  * @since 1.0
  */

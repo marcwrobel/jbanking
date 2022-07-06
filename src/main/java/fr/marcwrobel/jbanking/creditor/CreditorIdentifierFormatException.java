@@ -4,7 +4,6 @@ package fr.marcwrobel.jbanking.creditor;
  * Thrown to indicate that an attempt has been made to convert a string to a
  * {@link fr.marcwrobel.jbanking.creditor.CreditorIdentifier}, but that the string does not have the appropriate format.
  *
- * @author Charles Kayser
  * @see fr.marcwrobel.jbanking.creditor.CreditorIdentifier#CreditorIdentifier(String)
  */
 public class CreditorIdentifierFormatException extends RuntimeException {

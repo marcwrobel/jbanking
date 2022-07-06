@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for the {@link SwiftPattern} class.
- *
- * @author Marc Wrobel
  */
 class SwiftPatternTest {
 

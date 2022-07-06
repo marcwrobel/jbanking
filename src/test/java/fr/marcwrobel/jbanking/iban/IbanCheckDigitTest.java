@@ -15,8 +15,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link IbanCheckDigit} class.
- *
- * @author Marc Wrobel
  */
 class IbanCheckDigitTest {
 

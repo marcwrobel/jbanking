@@ -31,7 +31,6 @@ import java.util.Set;
  * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
  * <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International Organization for Standardization</a> website.
  *
- * @author Marc Wrobel
  * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country Codes</a>
  * @since 1.0
  */

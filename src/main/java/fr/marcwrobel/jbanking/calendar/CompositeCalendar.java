@@ -12,7 +12,6 @@ import java.util.Set;
 /**
  * A {@link Calendar} that can combine multiple calendars into a single one.
  *
- * @author Marc Wrobel
  * @since 3.0.0
  */
 public final class CompositeCalendar implements Calendar {

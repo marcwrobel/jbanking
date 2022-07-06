@@ -12,7 +12,6 @@ import java.util.Set;
 /**
  * A {@link Calendar} that can be programmatically configured.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class ConfigurableCalendar implements Calendar {

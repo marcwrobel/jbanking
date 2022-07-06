@@ -10,7 +10,6 @@ import java.time.LocalDate;
  * <p>
  * This class is useful for modeling holidays like the bridged japanese holidays.
  *
- * @author Marc Wrobel
  * @since 3.1.0
  */
 public class BridgedHoliday implements Holiday {

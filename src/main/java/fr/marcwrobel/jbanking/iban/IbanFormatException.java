@@ -6,7 +6,6 @@ import fr.marcwrobel.jbanking.IsoCountry;
  * Thrown to indicate that an attempt has been made to convert a string to a {@link Iban}, but that the string does not have the
  * appropriate format.
  *
- * @author Marc Wrobel
  * @see Iban#Iban(String)
  * @since 1.0
  */

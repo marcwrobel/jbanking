@@ -13,7 +13,6 @@ import java.util.Objects;
  * <p>
  * This class is useful for modeling holidays like Christmas.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class MonthDayHoliday implements Holiday {

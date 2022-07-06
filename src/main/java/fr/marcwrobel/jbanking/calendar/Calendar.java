@@ -13,7 +13,6 @@ import java.util.Set;
  * <p>
  * Subclasses of this interface are expected to be thread-safe and immutable.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public interface Calendar {

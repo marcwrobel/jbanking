@@ -12,7 +12,6 @@ import java.util.Objects;
  * This class is modeling holidays like <a href="https://wikipedia.org/wiki/Easter_Monday">easter monday</a> or
  * <a href="https://wikipedia.org/wiki/Good_Friday">good friday</a>.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class RelativeHoliday implements Holiday {

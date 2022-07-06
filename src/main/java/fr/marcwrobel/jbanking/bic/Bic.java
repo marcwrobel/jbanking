@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
  * <p>
  * This class is immutable.
  *
- * @author Marc Wrobel
  * @see <a href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
  * @since 1.0
  */

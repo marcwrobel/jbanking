@@ -88,3 +88,6 @@ automatically execute CI in their forks as part of the process of making changes
 - Tests and documentation are not optional. Don't forget to include tests in your pull requests. Also don't forget the
   documentation (reference documentation, javadoc...).
 - Make sure to launch the full tests suite before creating your pull request.
+- `@author` tags are disallowed in the javadoc: they are hard to maintain, and we use the Git history to track
+  authorship. GitHub also has [this nice page](https://github.com/marcwrobel/jbanking/graphs/contributors) with your
+  contributions.

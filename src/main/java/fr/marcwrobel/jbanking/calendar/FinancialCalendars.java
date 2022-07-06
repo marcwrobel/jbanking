@@ -58,8 +58,6 @@ import java.util.Set;
  * <p>
  * Those calendars are valid from 2000 until further notice.
  *
- * @author Marc Wrobel
- *
  * @since 2.1.0
  */
 public enum FinancialCalendars implements Calendar {
@@ -305,8 +303,7 @@ public enum FinancialCalendars implements Calendar {
       // https://en.wikipedia.org/wiki/The_Emperor%27s_Birthday - Naruhito
       new YearRangeHoliday(new ShiftedHoliday(new MonthDayHoliday(FEBRUARY, 23), SUNDAY_TO_MONDAY), 2020, 2999)));
 
-  @SuppressWarnings("ImmutableEnumChecker") // ConfigurableCalendar is thread-safe (given Holidays are
-                                            // thread-safe).
+  @SuppressWarnings("ImmutableEnumChecker") // ConfigurableCalendar is thread-safe (given Holidays are thread-safe).
   private final ConfigurableCalendar calendar;
 
   private static LocalDate d(int year, int month, int day) {

@@ -4,7 +4,6 @@ package fr.marcwrobel.jbanking.bic;
  * Thrown to indicate that an attempt has been made to convert a string to a {@link Bic}, but that the string does not have the
  * appropriate format.
  *
- * @author Marc Wrobel
  * @see Bic#Bic(String)
  * @since 1.0
  */

@@ -15,7 +15,6 @@ import java.util.Objects;
  * This class is useful for modeling holidays like the May Day in the United Kingdom, that has been exceptionally moved from
  * 2020-05-04 to 2020-05-08 in 2020 to coincide with Victory in Europe Day.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class MovedHoliday implements Holiday {

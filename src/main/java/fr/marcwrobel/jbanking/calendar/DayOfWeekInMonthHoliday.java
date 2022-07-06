@@ -19,7 +19,6 @@ import java.util.Objects;
  * This class is useful for modeling holidays like <a href="https://wikipedia.org/wiki/Martin_Luther_King_Jr._Day">Martin Luther
  * King Jr. Day</a>.
  *
- * @author Marc Wrobel
  * @see TemporalAdjusters#dayOfWeekInMonth(int, DayOfWeek)
  * @since 2.1.0
  */

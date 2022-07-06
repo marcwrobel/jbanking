@@ -15,7 +15,6 @@ import java.util.Set;
  * <p>
  * This class is useful for modeling exceptional holidays like the golden jubilee in the United Kingdom.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class FixedHoliday implements Holiday {

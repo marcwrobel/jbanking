@@ -16,7 +16,6 @@ import java.util.Set;
  * This class is useful for modeling holidays like the Spring public holiday in the United Kingdom, that has been exceptionally
  * suppressed in 2002 and 2012 for the golden and diamond jubilee.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class SuppressedHoliday implements Holiday {

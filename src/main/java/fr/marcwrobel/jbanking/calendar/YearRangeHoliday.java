@@ -13,7 +13,6 @@ import java.util.Objects;
  * This class is useful for modeling holidays like the German reformation day that was exceptionally a national holiday in 2017
  * because of 500 anniversary of the religious reformation in Europe.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public final class YearRangeHoliday implements Holiday {

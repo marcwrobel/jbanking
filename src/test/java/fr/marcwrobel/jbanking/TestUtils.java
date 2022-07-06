@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 
 /**
  * Some test utilities.
- *
- * @author Marc Wrobel
  */
 public class TestUtils {
 

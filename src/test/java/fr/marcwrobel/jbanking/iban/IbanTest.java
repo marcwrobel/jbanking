@@ -20,8 +20,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for the {@link Iban} class.
- *
- * @author Marc Wrobel
  */
 class IbanTest {
 

@@ -3,7 +3,6 @@ package fr.marcwrobel.jbanking.swift;
 /**
  * Thrown to indicate a syntax error in a SWIFT expression pattern.
  *
- * @author Marc Wrobel
  * @see SwiftPattern
  * @since 1.0
  */

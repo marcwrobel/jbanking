@@ -11,7 +11,6 @@ import java.time.LocalDate;
  * <p>
  * This class is useful for modeling <a href="https://wikipedia.org/wiki/Workweek_and_weekend">weekends</a>.
  *
- * @author Marc Wrobel
  * @since 2.1.0
  */
 public enum DayOfWeekHoliday implements Holiday {
