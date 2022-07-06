@@ -11,9 +11,41 @@ import java.util.Set;
  * called business days.
  *
  * <p>
- * Subclasses of this interface are expected to be thread-safe and immutable.
+ * Subclasses of this interface are expected to be immutable and thread-safe.
+ *
+ * <p>
+ * Predefined calendars are available in {@link FinancialCalendars}.
+ *
+ * <p>
+ * Usage :
+ * 
+ * <pre>
+ * // Build a new calendar
+ * Calendar calendar = new ConfigurableCalendar(
+ *     SATURDAY, SUNDAY, NEW_YEAR_DAY,
+ *     new MonthDayHoliday(JULY, 14),
+ *     new RelativeHoliday(WesternEaster.INSTANCE, 1) // easter monday
+ * );
+ *
+ * // Check holidays
+ * Assertion.assertTrue(calendar.isHoliday(LocalDate.of(2022, 1, 1))); // Saturday and New Year's Day
+ * Assertion.assertTrue(calendar.isHoliday(LocalDate.of(2022, 1, 2))); // Sunday
+ * Assertion.assertTrue(calendar.isHoliday(LocalDate.of(2022, 7, 14))); // Bastille day in France
+ *
+ * // Not an holiday
+ * Assertion.assertFalse(calendar.isHoliday(LocalDate.of(2022, 1, 11)));
+ * Assertion.assertTrue(calendar.isBusinessDay(LocalDate.of(2022, 1, 11)));
+ *
+ * // Get business days
+ * Assertion.assertEquals(LocalDate.of(2022, 1, 3), calendar.next(LocalDate.of(2022, 1, 1)));
+ * Assertion.assertEquals(
+ *     Arrays.asList(LocalDate.of(2022, 1, 3), LocalDate.of(2022, 1, 4)),
+ *     calendar.businessDaysWithin(LocalDate.of(2022, 1, 1), LocalDate.of(2022, 1, 4)));
+ * </pre>
  *
  * @since 2.1.0
+ * @see Holidays
+ * @see FinancialCalendars
  */
 public interface Calendar {
 

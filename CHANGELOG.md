@@ -11,6 +11,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Update NYSE and New York FED calendars following [Juneteenth National Independence Day Act](https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html)
   (#98).
+- Improve documentation: add examples, documentation on packages, an overview and fix typos (#121).
 
 ### Fixed
 

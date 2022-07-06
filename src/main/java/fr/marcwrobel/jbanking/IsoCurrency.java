@@ -24,6 +24,19 @@ import java.util.*;
  * <li>prevent accidental duplicates.
  * </ul>
  *
+ * <p>
+ * Usage:
+ * 
+ * <pre>
+ * IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
+ *
+ * Assertion.assertEquals(978, currency.getNumericCode());
+ * Assertion.assertEquals(2, currency.getMinorUnit().get());
+ * Assertion.assertEquals(NATIONAL, currency.getCategory());
+ * Assertion.assertTrue(currency.getCountries().contains(FR));
+ * Assertion.assertTrue(currency.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
+ * </pre>
+ *
  * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>
  * @since 1.0
  */
@@ -1503,6 +1516,9 @@ public enum IsoCurrency {
     return currencies;
   }
 
+  /**
+   * {@link IsoCurrency ISO 4217 currencies} categories.
+   */
   public enum Category {
 
     /**

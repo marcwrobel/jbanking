@@ -17,6 +17,13 @@ public class BridgedHoliday implements Holiday {
   private final Holiday first;
   private final Holiday second;
 
+  /**
+   * Create a new holiday using the given first and second holidays.
+   * 
+   * @param first the first non-null holiday
+   * @param second the second non-null holiday
+   * @throws NullPointerException if one of the given holidays is {@code null}
+   */
   public BridgedHoliday(Holiday first, Holiday second) {
     this.first = requireNonNull(first);
     this.second = requireNonNull(second);

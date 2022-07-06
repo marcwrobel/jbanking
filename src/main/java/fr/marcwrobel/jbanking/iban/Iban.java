@@ -19,7 +19,23 @@ import java.util.regex.Pattern;
  * This class handles validation of the check digit and validation of the {@link BbanStructure BBAN structure}.
  *
  * <p>
- * Instances of this class are immutable and are safe for use by multiple concurrent threads.
+ * Instances of this class are immutable and thread-safe.
+ *
+ * <p>
+ * Usage:
+ * 
+ * <pre>
+ * // Validate an IBAN
+ * Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
+ *
+ * // Retrieve IBAN information
+ * Iban iban = new Iban("fr2531682128768051490609537");
+ * Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
+ * Assertions.assertEquals("FR", iban.getCountryCode());
+ * Assertions.assertEquals("25", iban.getCheckDigit());
+ * Assertions.assertEquals("31682128768051490609537", iban.getBban());
+ * Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
+ * </pre>
  *
  * @see BbanStructure
  * @see <a href=
@@ -45,6 +61,9 @@ public final class Iban implements Serializable {
 
   private static final int GROUP_SIZE_FOR_PRINTABLE_IBAN = 4;
 
+  /**
+   * The normalized form of this IBAN.
+   */
   private final String normalizedIban;
 
   /**

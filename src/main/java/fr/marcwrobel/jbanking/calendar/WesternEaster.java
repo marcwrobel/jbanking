@@ -13,6 +13,9 @@ import java.time.LocalDate;
  * @since 2.1.0
  */
 public enum WesternEaster implements Holiday {
+  /**
+   * The singleton instance for this class.
+   */
   INSTANCE;
 
   /**

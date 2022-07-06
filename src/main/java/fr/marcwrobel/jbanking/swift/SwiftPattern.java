@@ -51,11 +51,11 @@ import java.util.regex.Pattern;
  * Here are some examples of SWIFT expressions that are supported by this SwiftPattern :<br>
  *
  * <ul>
- * <li>{@code 4!n} (corresponding regex [0-9]{4}) : four consecutive digits
- * <li>{@code 4!a3c} (corresponding regex [A-Za-z0-9]{4}[A-Z]{1,3}) : four consecutive upper or lower case alphanumeric
+ * <li>{@code 4!n} (corresponding regex {@code [0-9]{4}}) : four consecutive digits
+ * <li>{@code 4!c3a} (corresponding regex {@code [A-Za-z0-9]{4}[A-Z]{1,3}}) : four consecutive upper or lower case alphanumeric
  * characters followed by one to three upper case letters
- * <li>{@code 2e4!a} (corresponding regex [ ]{1,2}) : one or two consecutive spaces followed by four consecutive upper
- * case letters
+ * <li>{@code 2e4!a} (corresponding regex {@code [ ]{1,2}[A-Z]{4}}) : one or two consecutive spaces followed by four consecutive
+ * upper case letters
  * </ul>
  *
  * <p>
@@ -65,7 +65,7 @@ import java.util.regex.Pattern;
  * {@code 4!n}) is 1000. these limitations are far above anything that can be seen in SWIFT documents and should be sufficient.
  *
  * <p>
- * Instances of this class are immutable and are safe for use by multiple concurrent threads.
+ * Instances of this class are immutable and thread-safe.
  *
  * @see java.util.regex.Pattern
  * @since 1.0
@@ -91,7 +91,14 @@ public final class SwiftPattern implements Serializable {
   private static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
   private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
 
+  /**
+   * The SWIFT pattern.
+   */
   private final String expression;
+
+  /**
+   * The Java pattern constructed from the SWIFT pattern.
+   */
   private final Pattern equivalentJavaPattern;
 
   private SwiftPattern(String expression, Pattern equivalentJavaPattern) {

@@ -17,12 +17,30 @@ import java.util.regex.Pattern;
  * <li>2 letters or digits: location code
  * <li>3 letters or digits (optional): branch code
  * </ul>
+ *
  * <p>
  * Where an 8-digit code is given, it is assumed that it refers to the primary office. The primary office is always designated
  * by the branch code {@value #PRIMARY_OFFICE_BRANCH_CODE}).
  *
  * <p>
- * This class is immutable.
+ * Instances of this class are immutable and thread-safe.
+ *
+ * <p>
+ * Usage:
+ * 
+ * <pre>
+ * // Validate a BIC
+ * Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
+ *
+ * // Retrieve BIC information
+ * Bic bic = new Bic("psstfrppxxx");
+ * Assertions.assertEquals("PSSTFRPPXXX", bic.toString());
+ * Assertions.assertEquals("PSST", bic.getInstitutionCode());
+ * Assertions.assertEquals("FR", bic.getCountryCode());
+ * Assertions.assertEquals("PP", bic.getLocationCode());
+ * Assertions.assertEquals("XXX", bic.getBranchCode());
+ * Assertions.assertTrue(bic.isLiveBic());
+ * </pre>
  *
  * @see <a href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
  * @since 1.0
@@ -64,6 +82,9 @@ public final class Bic implements Serializable {
   private static final int BRANCH_CODE_INDEX = LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH;
   private static final int BRANCH_CODE_LENGTH = 3;
 
+  /**
+   * The normalized form of this BIC.
+   */
   private final String normalizedBic;
 
   /**

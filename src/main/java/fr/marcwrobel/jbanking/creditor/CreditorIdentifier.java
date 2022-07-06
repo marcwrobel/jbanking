@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
- * A Creditor Identifier (CI) Code as specified by the
+ * A Creditor Identifier (CI) code as specified by the
  * <a href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC</a>.
  *
  * <p>
@@ -26,7 +26,23 @@ import java.util.regex.Pattern;
  * going into the validation of the national identifier.
  *
  * <p>
- * Instances of this class are immutable and are safe for use by multiple concurrent threads.
+ * Instances of this class are immutable and thread-safe.
+ *
+ * <p>
+ * Usage:
+ * 
+ * <pre>
+ * // Validate a creditor identifier
+ * Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
+ *
+ * // Retrieve creditor identifier information
+ * CreditorIdentifier ci = new CreditorIdentifier("fr72zzz123456");
+ * Assertions.assertEquals("FR72ZZZ123456", ci.toString());
+ * Assertions.assertEquals("FR", ci.getCountryCode());
+ * Assertions.assertEquals("72", ci.getCheckDigit());
+ * Assertions.assertEquals("ZZZ", ci.getBusinessCode());
+ * Assertions.assertEquals("123456", ci.getNationalIdentifier());
+ * </pre>
  *
  * @see <a href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC
  *      Creditor Identifier Overview</a>
@@ -49,6 +65,9 @@ public class CreditorIdentifier implements Serializable {
   private static final int CREDITOR_BUSINESS_CODE_LENGTH = 3;
   private static final int CREDITOR_NATIONAL_ID_INDEX = CREDITOR_BUSINESS_CODE_INDEX + CREDITOR_BUSINESS_CODE_LENGTH;
 
+  /**
+   * The normalized form of this Creditor Identifier.
+   */
   private final String creditorId;
 
   /**

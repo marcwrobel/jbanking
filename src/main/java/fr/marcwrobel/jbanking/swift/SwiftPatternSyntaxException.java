@@ -13,6 +13,9 @@ public class SwiftPatternSyntaxException extends RuntimeException {
    */
   private static final long serialVersionUID = 0;
 
+  /**
+   * The string that caused the error.
+   */
   private final String expression;
 
   /**

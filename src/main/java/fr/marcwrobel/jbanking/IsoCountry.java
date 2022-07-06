@@ -31,33 +31,45 @@ import java.util.Set;
  * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
  * <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International Organization for Standardization</a> website.
  *
+ * <p>
+ * Usage:
+ * 
+ * <pre>
+ * IsoCountry country = IsoCountry.fromAlpha2Code("FR").get();
+ *
+ * Assertion.assertEquals("FRA", country.getAlpha3Code());
+ * Assertion.assertEquals(250, country.getNumericCode());
+ * Assertion.assertTrue(country.isIndependent());
+ * Assertion.assertTrue(country.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
+ * </pre>
+ *
  * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country Codes</a>
  * @since 1.0
  */
 public enum IsoCountry {
   /**
-   * Afghanistan (a.k.a. the Islamic Republic of Afghanistan).
+   * Afghanistan (aka the Islamic Republic of Afghanistan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AF">www.iso.org</a>
    */
   AF("AFG", 4),
 
   /**
-   * Albania (a.k.a. the Republic of Albania).
+   * Albania (aka the Republic of Albania).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AL">www.iso.org</a>
    */
   AL("ALB", 8),
 
   /**
-   * Algeria (a.k.a. the People's Democratic Republic of Algeria).
+   * Algeria (aka the People's Democratic Republic of Algeria).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:DZ">www.iso.org</a>
    */
   DZ("DZA", 12),
 
   /**
-   * Andorra (a.k.a. the Principality of Andorra).
+   * Andorra (aka the Principality of Andorra).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AD">www.iso.org</a>
    */
@@ -85,14 +97,14 @@ public enum IsoCountry {
   AG("ATG", 28),
 
   /**
-   * Argentina (a.k.a. the Argentine Republic).
+   * Argentina (aka the Argentine Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AR">www.iso.org</a>
    */
   AR("ARG", 32),
 
   /**
-   * Armenia (a.k.a. the Republic of Armenia).
+   * Armenia (aka the Republic of Armenia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AM">www.iso.org</a>
    */
@@ -134,7 +146,7 @@ public enum IsoCountry {
   NF("NFK", 574, AU),
 
   /**
-   * Austria (a.k.a. the Republic of Austria).
+   * Austria (aka the Republic of Austria).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:AT">www.iso.org</a>
    */
@@ -148,21 +160,21 @@ public enum IsoCountry {
   AZ("AZE", 31),
 
   /**
-   * The Bahamas (a.k.a. the Commonwealth of the Bahamas).
+   * The Bahamas (aka the Commonwealth of the Bahamas).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BS">www.iso.org</a>
    */
   BS("BHS", 44),
 
   /**
-   * Bahrain (a.k.a. the Kingdom of Bahrain).
+   * Bahrain (aka the Kingdom of Bahrain).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BH">www.iso.org</a>
    */
   BH("BHR", 48),
 
   /**
-   * Bangladesh (a.k.a. the People's Republic of Bangladesh).
+   * Bangladesh (aka the People's Republic of Bangladesh).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BD">www.iso.org</a>
    */
@@ -176,14 +188,14 @@ public enum IsoCountry {
   BB("BRB", 52),
 
   /**
-   * Belarus (a.k.a. the Republic of Belarus).
+   * Belarus (aka the Republic of Belarus).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BY">www.iso.org</a>
    */
   BY("BLR", 112),
 
   /**
-   * Belgium (a.k.a. the Kingdom of Belgium).
+   * Belgium (aka the Kingdom of Belgium).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BE">www.iso.org</a>
    */
@@ -197,21 +209,21 @@ public enum IsoCountry {
   BZ("BLZ", 84),
 
   /**
-   * Benin (a.k.a. the Republic of Benin).
+   * Benin (aka the Republic of Benin).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BJ">www.iso.org</a>
    */
   BJ("BEN", 204),
 
   /**
-   * Bhutan (a.k.a. the Kingdom of Bhutan).
+   * Bhutan (aka the Kingdom of Bhutan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BT">www.iso.org</a>
    */
   BT("BTN", 64),
 
   /**
-   * Bolivia (a.k.a. the Plurinational State of Bolivia).
+   * Bolivia (aka the Plurinational State of Bolivia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BO">www.iso.org</a>
    */
@@ -225,7 +237,7 @@ public enum IsoCountry {
   BA("BIH", 70),
 
   /**
-   * Botswana (a.k.a. the Republic of Botswana).
+   * Botswana (aka the Republic of Botswana).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BW">www.iso.org</a>
    */
@@ -260,21 +272,21 @@ public enum IsoCountry {
   BF("BFA", 854),
 
   /**
-   * Burundi (a.k.a. the Republic of Burundi).
+   * Burundi (aka the Republic of Burundi).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:BI">www.iso.org</a>
    */
   BI("BDI", 108),
 
   /**
-   * Cambodia (a.k.a. the Kingdom of Cambodia).
+   * Cambodia (aka the Kingdom of Cambodia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KH">www.iso.org</a>
    */
   KH("KHM", 116),
 
   /**
-   * Cameroon (a.k.a. the Republic of Cameroon).
+   * Cameroon (aka the Republic of Cameroon).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CM">www.iso.org</a>
    */
@@ -288,7 +300,7 @@ public enum IsoCountry {
   CA("CAN", 124),
 
   /**
-   * Cabo Verde (a.k.a. the Republic of Cabo Verde).
+   * Cabo Verde (aka the Republic of Cabo Verde).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CV">www.iso.org</a>
    */
@@ -302,28 +314,28 @@ public enum IsoCountry {
   CF("CAF", 140),
 
   /**
-   * Chad (a.k.a. the Republic of Chad).
+   * Chad (aka the Republic of Chad).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TD">www.iso.org</a>
    */
   TD("TCD", 148),
 
   /**
-   * Chile (a.k.a. the Republic of Chile).
+   * Chile (aka the Republic of Chile).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CL">www.iso.org</a>
    */
   CL("CHL", 152),
 
   /**
-   * China (a.k.a. the People's Republic of China).
+   * China (aka the People's Republic of China).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CN">www.iso.org</a>
    */
   CN("CHN", 156),
 
   /**
-   * Hong Kong (a.k.a. the Hong Kong Special Administrative Region of China).
+   * Hong Kong (aka the Hong Kong Special Administrative Region of China).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:HK">www.iso.org</a>
    */
@@ -337,28 +349,28 @@ public enum IsoCountry {
   MO("MAC", 446, CN),
 
   /**
-   * Colombia (a.k.a. the Republic of Colombia).
+   * Colombia (aka the Republic of Colombia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CO">www.iso.org</a>
    */
   CO("COL", 170),
 
   /**
-   * The Comoros (a.k.a. the Union of the Comoros).
+   * The Comoros (aka the Union of the Comoros).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KM">www.iso.org</a>
    */
   KM("COM", 174),
 
   /**
-   * The Congo (a.k.a. the Republic of the Congo).
+   * The Congo (aka the Republic of the Congo).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CG">www.iso.org</a>
    */
   CG("COG", 178),
 
   /**
-   * Costa Rica (a.k.a. the Republic of Costa Rica).
+   * Costa Rica (aka the Republic of Costa Rica).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CR">www.iso.org</a>
    */
@@ -372,35 +384,35 @@ public enum IsoCountry {
   CI("CIV", 384),
 
   /**
-   * Croatia (a.k.a. the Republic of Croatia).
+   * Croatia (aka the Republic of Croatia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:HR">www.iso.org</a>
    */
   HR("HRV", 191),
 
   /**
-   * Cuba (a.k.a. the Republic of Cuba).
+   * Cuba (aka the Republic of Cuba).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CU">www.iso.org</a>
    */
   CU("CUB", 192),
 
   /**
-   * Cyprus (a.k.a. the Republic of Cyprus).
+   * Cyprus (aka the Republic of Cyprus).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CY">www.iso.org</a>
    */
   CY("CYP", 196),
 
   /**
-   * Czechia (a.k.a. the Czech Republic).
+   * Czechia (aka the Czech Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CZ">www.iso.org</a>
    */
   CZ("CZE", 203),
 
   /**
-   * Denmark (a.k.a. the Kingdom of Denmark).
+   * Denmark (aka the Kingdom of Denmark).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:DK">www.iso.org</a>
    */
@@ -421,14 +433,14 @@ public enum IsoCountry {
   GL("GRL", 304, DK),
 
   /**
-   * Djibouti (a.k.a. the Republic of Djibouti).
+   * Djibouti (aka the Republic of Djibouti).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:DJ">www.iso.org</a>
    */
   DJ("DJI", 262),
 
   /**
-   * Dominica (a.k.a. the Commonwealth of Dominica).
+   * Dominica (aka the Commonwealth of Dominica).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:DM">www.iso.org</a>
    */
@@ -442,63 +454,63 @@ public enum IsoCountry {
   DO("DOM", 214),
 
   /**
-   * Ecuador (a.k.a. the Republic of Ecuador).
+   * Ecuador (aka the Republic of Ecuador).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:EC">www.iso.org</a>
    */
   EC("ECU", 218),
 
   /**
-   * Egypt (a.k.a. the Arab Republic of Egypt).
+   * Egypt (aka the Arab Republic of Egypt).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:EG">www.iso.org</a>
    */
   EG("EGY", 818),
 
   /**
-   * El Salvador (a.k.a. the Republic of El Salvador).
+   * El Salvador (aka the Republic of El Salvador).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SV">www.iso.org</a>
    */
   SV("SLV", 222),
 
   /**
-   * Equatorial Guinea (a.k.a. the Republic of Equatorial Guinea).
+   * Equatorial Guinea (aka the Republic of Equatorial Guinea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GQ">www.iso.org</a>
    */
   GQ("GNQ", 226),
 
   /**
-   * Eritrea (a.k.a. the State of Eritrea).
+   * Eritrea (aka the State of Eritrea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ER">www.iso.org</a>
    */
   ER("ERI", 232),
 
   /**
-   * Estonia (a.k.a. the Republic of Estonia).
+   * Estonia (aka the Republic of Estonia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:EE">www.iso.org</a>
    */
   EE("EST", 233),
 
   /**
-   * Ethiopia (a.k.a. the Federal Democratic Republic of Ethiopia).
+   * Ethiopia (aka the Federal Democratic Republic of Ethiopia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ET">www.iso.org</a>
    */
   ET("ETH", 231),
 
   /**
-   * Fiji (a.k.a. the Republic of Fiji).
+   * Fiji (aka the Republic of Fiji).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:FJ">www.iso.org</a>
    */
   FJ("FJI", 242),
 
   /**
-   * Finland (a.k.a. the Republic of Finland).
+   * Finland (aka the Republic of Finland).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:FI">www.iso.org</a>
    */
@@ -512,7 +524,7 @@ public enum IsoCountry {
   AX("ALA", 248, FI),
 
   /**
-   * France (a.k.a. the French Republic).
+   * France (aka the French Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:FR">www.iso.org</a>
    */
@@ -596,21 +608,21 @@ public enum IsoCountry {
   PM("SPM", 666, FR),
 
   /**
-   * Wallis and Futuna (a.k.a. Wallis and Futuna Islands).
+   * Wallis and Futuna (aka Wallis and Futuna Islands).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:WF">www.iso.org</a>
    */
   WF("WLF", 876, FR),
 
   /**
-   * Gabon (a.k.a. the Gabonese Republic).
+   * Gabon (aka the Gabonese Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GA">www.iso.org</a>
    */
   GA("GAB", 266),
 
   /**
-   * The Gambia (a.k.a. the Republic of the Gambia).
+   * The Gambia (aka the Republic of the Gambia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GM">www.iso.org</a>
    */
@@ -624,21 +636,21 @@ public enum IsoCountry {
   GE("GEO", 268),
 
   /**
-   * Germany (a.k.a. the Federal Republic of Germany).
+   * Germany (aka the Federal Republic of Germany).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:DE">www.iso.org</a>
    */
   DE("DEU", 276),
 
   /**
-   * Ghana (a.k.a. the Republic of Ghana).
+   * Ghana (aka the Republic of Ghana).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GH">www.iso.org</a>
    */
   GH("GHA", 288),
 
   /**
-   * Greece (a.k.a. the Hellenic Republic).
+   * Greece (aka the Hellenic Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GR">www.iso.org</a>
    */
@@ -652,42 +664,42 @@ public enum IsoCountry {
   GD("GRD", 308),
 
   /**
-   * Guatemala (a.k.a. the Republic of Guatemala).
+   * Guatemala (aka the Republic of Guatemala).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GT">www.iso.org</a>
    */
   GT("GTM", 320),
 
   /**
-   * Guinea (a.k.a. the Republic of Guinea).
+   * Guinea (aka the Republic of Guinea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GN">www.iso.org</a>
    */
   GN("GIN", 324),
 
   /**
-   * Guinea-Bissau (a.k.a. the Republic of Guinea-Bissau).
+   * Guinea-Bissau (aka the Republic of Guinea-Bissau).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GW">www.iso.org</a>
    */
   GW("GNB", 624),
 
   /**
-   * Guyana (a.k.a. the Co-operative Republic of Guyana).
+   * Guyana (aka the Co-operative Republic of Guyana).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GY">www.iso.org</a>
    */
   GY("GUY", 328),
 
   /**
-   * Haiti (a.k.a. the Republic of Haiti).
+   * Haiti (aka the Republic of Haiti).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:HT">www.iso.org</a>
    */
   HT("HTI", 332),
 
   /**
-   * Honduras (a.k.a. the Republic of Honduras).
+   * Honduras (aka the Republic of Honduras).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:HN">www.iso.org</a>
    */
@@ -701,21 +713,21 @@ public enum IsoCountry {
   HU("HUN", 348),
 
   /**
-   * Iceland (a.k.a. the Republic of Iceland).
+   * Iceland (aka the Republic of Iceland).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:IS">www.iso.org</a>
    */
   IS("ISL", 352),
 
   /**
-   * India (a.k.a. the Republic of India).
+   * India (aka the Republic of India).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:IN">www.iso.org</a>
    */
   IN("IND", 356),
 
   /**
-   * Indonesia (a.k.a. the Republic of Indonesia).
+   * Indonesia (aka the Republic of Indonesia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ID">www.iso.org</a>
    */
@@ -729,7 +741,7 @@ public enum IsoCountry {
   IR("IRN", 364),
 
   /**
-   * Iraq (a.k.a. the Republic of Iraq).
+   * Iraq (aka the Republic of Iraq).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:IQ">www.iso.org</a>
    */
@@ -743,14 +755,14 @@ public enum IsoCountry {
   IE("IRL", 372),
 
   /**
-   * Israel (a.k.a. the State of Israel).
+   * Israel (aka the State of Israel).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:IL">www.iso.org</a>
    */
   IL("ISR", 376),
 
   /**
-   * Italy (a.k.a. the Republic of Italy).
+   * Italy (aka the Republic of Italy).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:IT">www.iso.org</a>
    */
@@ -771,28 +783,28 @@ public enum IsoCountry {
   JP("JPN", 392),
 
   /**
-   * Jordan (a.k.a. the Hashemite Kingdom of Jordan).
+   * Jordan (aka the Hashemite Kingdom of Jordan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:JO">www.iso.org</a>
    */
   JO("JOR", 400),
 
   /**
-   * Kazakhstan (a.k.a. the Republic of Kazakhstan).
+   * Kazakhstan (aka the Republic of Kazakhstan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KZ">www.iso.org</a>
    */
   KZ("KAZ", 398),
 
   /**
-   * Kenya (a.k.a. the Republic of Kenya).
+   * Kenya (aka the Republic of Kenya).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KE">www.iso.org</a>
    */
   KE("KEN", 404),
 
   /**
-   * Kiribati (a.k.a. the Republic of Kiribati).
+   * Kiribati (aka the Republic of Kiribati).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KI">www.iso.org</a>
    */
@@ -809,14 +821,14 @@ public enum IsoCountry {
   XK("XKX", null),
 
   /**
-   * Kuwait (a.k.a. the State of Kuwait).
+   * Kuwait (aka the State of Kuwait).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KW">www.iso.org</a>
    */
   KW("KWT", 414),
 
   /**
-   * Kyrgyzstan (a.k.a. the Kyrgyz Republic).
+   * Kyrgyzstan (aka the Kyrgyz Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KG">www.iso.org</a>
    */
@@ -830,77 +842,77 @@ public enum IsoCountry {
   LA("LAO", 418),
 
   /**
-   * Latvia (a.k.a. the Republic of Latvia).
+   * Latvia (aka the Republic of Latvia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LV">www.iso.org</a>
    */
   LV("LVA", 428),
 
   /**
-   * Lebanon (a.k.a. the Lebanese Republic).
+   * Lebanon (aka the Lebanese Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LB">www.iso.org</a>
    */
   LB("LBN", 422),
 
   /**
-   * Lesotho (a.k.a. the Kingdom of Lesotho).
+   * Lesotho (aka the Kingdom of Lesotho).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LS">www.iso.org</a>
    */
   LS("LSO", 426),
 
   /**
-   * Liberia (a.k.a. the Republic of Liberia).
+   * Liberia (aka the Republic of Liberia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LR">www.iso.org</a>
    */
   LR("LBR", 430),
 
   /**
-   * Libya (a.k.a. the State of Libya).
+   * Libya (aka the State of Libya).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LY">www.iso.org</a>
    */
   LY("LBY", 434),
 
   /**
-   * Liechtenstein (a.k.a. the Principality of Liechtenstein).
+   * Liechtenstein (aka the Principality of Liechtenstein).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LI">www.iso.org</a>
    */
   LI("LIE", 438),
 
   /**
-   * Lithuania (a.k.a. the Republic of Lithuania).
+   * Lithuania (aka the Republic of Lithuania).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LT">www.iso.org</a>
    */
   LT("LTU", 440),
 
   /**
-   * Luxembourg (a.k.a. the Grand Duchy of Luxembourg).
+   * Luxembourg (aka the Grand Duchy of Luxembourg).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LU">www.iso.org</a>
    */
   LU("LUX", 442),
 
   /**
-   * North Macedonia (a.k.a. the Republic of North Macedonia).
+   * North Macedonia (aka the Republic of North Macedonia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MK">www.iso.org</a>
    */
   MK("MKD", 807),
 
   /**
-   * Madagascar (a.k.a. the Republic of Madagascar).
+   * Madagascar (aka the Republic of Madagascar).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MG">www.iso.org</a>
    */
   MG("MDG", 450),
 
   /**
-   * Malawi (a.k.a. the Republic of Malawi).
+   * Malawi (aka the Republic of Malawi).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MW">www.iso.org</a>
    */
@@ -914,49 +926,49 @@ public enum IsoCountry {
   MY("MYS", 458),
 
   /**
-   * Maldives (a.k.a. the Republic of Maldives).
+   * Maldives (aka the Republic of Maldives).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MV">www.iso.org</a>
    */
   MV("MDV", 462),
 
   /**
-   * Mali (a.k.a. the Republic of Mali).
+   * Mali (aka the Republic of Mali).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ML">www.iso.org</a>
    */
   ML("MLI", 466),
 
   /**
-   * Malta (a.k.a. the Republic of Malta).
+   * Malta (aka the Republic of Malta).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MT">www.iso.org</a>
    */
   MT("MLT", 470),
 
   /**
-   * The Marshall Islands (a.k.a. the Republic of the Marshall Islands).
+   * The Marshall Islands (aka the Republic of the Marshall Islands).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MH">www.iso.org</a>
    */
   MH("MHL", 584),
 
   /**
-   * Mauritania (a.k.a. the Islamic Republic of Mauritania).
+   * Mauritania (aka the Islamic Republic of Mauritania).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MR">www.iso.org</a>
    */
   MR("MRT", 478),
 
   /**
-   * Mauritius (a.k.a. the Republic of Mauritius).
+   * Mauritius (aka the Republic of Mauritius).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MU">www.iso.org</a>
    */
   MU("MUS", 480),
 
   /**
-   * Mexico (a.k.a. the United Mexican States).
+   * Mexico (aka the United Mexican States).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MX">www.iso.org</a>
    */
@@ -977,7 +989,7 @@ public enum IsoCountry {
   MD("MDA", 498),
 
   /**
-   * Monaco (a.k.a. the Principality of Monaco).
+   * Monaco (aka the Principality of Monaco).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MC">www.iso.org</a>
    */
@@ -998,49 +1010,49 @@ public enum IsoCountry {
   ME("MNE", 499),
 
   /**
-   * Morocco (a.k.a. the Kingdom of Morocco).
+   * Morocco (aka the Kingdom of Morocco).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MA">www.iso.org</a>
    */
   MA("MAR", 504),
 
   /**
-   * Mozambique (a.k.a. the Republic of Mozambique).
+   * Mozambique (aka the Republic of Mozambique).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MZ">www.iso.org</a>
    */
   MZ("MOZ", 508),
 
   /**
-   * Myanmar (a.k.a. the Republic of the Union of Myanmar).
+   * Myanmar (aka the Republic of the Union of Myanmar).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MM">www.iso.org</a>
    */
   MM("MMR", 104),
 
   /**
-   * Namibia (a.k.a. the Republic of Namibia).
+   * Namibia (aka the Republic of Namibia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NA">www.iso.org</a>
    */
   NA("NAM", 516),
 
   /**
-   * Nauru (a.k.a. the Republic of Nauru).
+   * Nauru (aka the Republic of Nauru).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NR">www.iso.org</a>
    */
   NR("NRU", 520),
 
   /**
-   * Nepal (a.k.a. the Federal Democratic Republic of Nepal).
+   * Nepal (aka the Federal Democratic Republic of Nepal).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NP">www.iso.org</a>
    */
   NP("NPL", 524),
 
   /**
-   * The Netherlands (a.k.a. the Kingdom of the Netherlands).
+   * The Netherlands (aka the Kingdom of the Netherlands).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NL">www.iso.org</a>
    */
@@ -1103,35 +1115,35 @@ public enum IsoCountry {
   TK("TKL", 772, NZ),
 
   /**
-   * Nicaragua (a.k.a. the Republic of Nicaragua).
+   * Nicaragua (aka the Republic of Nicaragua).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NI">www.iso.org</a>
    */
   NI("NIC", 558),
 
   /**
-   * The Niger (a.k.a. the Republic of the Niger).
+   * The Niger (aka the Republic of the Niger).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NE">www.iso.org</a>
    */
   NE("NER", 562),
 
   /**
-   * Nigeria (a.k.a. the Federal Republic of Nigeria).
+   * Nigeria (aka the Federal Republic of Nigeria).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NG">www.iso.org</a>
    */
   NG("NGA", 566),
 
   /**
-   * The Democratic People's Republic of Korea (a.k.a. North Korea).
+   * The Democratic People's Republic of Korea (aka North Korea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KP">www.iso.org</a>
    */
   KP("PRK", 408),
 
   /**
-   * Norway (a.k.a. the Kingdom of Norway).
+   * Norway (aka the Kingdom of Norway).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:NO">www.iso.org</a>
    */
@@ -1152,21 +1164,21 @@ public enum IsoCountry {
   SJ("SJM", 744, NO),
 
   /**
-   * Oman (a.k.a. the Sultanate of Oman).
+   * Oman (aka the Sultanate of Oman).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:OM">www.iso.org</a>
    */
   OM("OMN", 512),
 
   /**
-   * Pakistan (a.k.a. the Islamic Republic of Pakistan).
+   * Pakistan (aka the Islamic Republic of Pakistan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PK">www.iso.org</a>
    */
   PK("PAK", 586),
 
   /**
-   * Palau (a.k.a. the Republic of Palau).
+   * Palau (aka the Republic of Palau).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PW">www.iso.org</a>
    */
@@ -1180,56 +1192,56 @@ public enum IsoCountry {
   PS("PSE", 275, null),
 
   /**
-   * Panama (a.k.a. the Republic of Panama).
+   * Panama (aka the Republic of Panama).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PA">www.iso.org</a>
    */
   PA("PAN", 591),
 
   /**
-   * Papua New Guinea (a.k.a. the Independent State of Papua New Guinea).
+   * Papua New Guinea (aka the Independent State of Papua New Guinea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PG">www.iso.org</a>
    */
   PG("PNG", 598),
 
   /**
-   * Paraguay (a.k.a. the Republic of Paraguay).
+   * Paraguay (aka the Republic of Paraguay).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PY">www.iso.org</a>
    */
   PY("PRY", 600),
 
   /**
-   * Peru (a.k.a. the Republic of Peru).
+   * Peru (aka the Republic of Peru).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PE">www.iso.org</a>
    */
   PE("PER", 604),
 
   /**
-   * The Philippines (a.k.a. the Republic of the Philippines).
+   * The Philippines (aka the Republic of the Philippines).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PH">www.iso.org</a>
    */
   PH("PHL", 608),
 
   /**
-   * Poland (a.k.a. the Republic of Poland).
+   * Poland (aka the Republic of Poland).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PL">www.iso.org</a>
    */
   PL("POL", 616),
 
   /**
-   * Portugal (a.k.a. the Portuguese Republic).
+   * Portugal (aka the Portuguese Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:PT">www.iso.org</a>
    */
   PT("PRT", 620),
 
   /**
-   * Qatar (a.k.a. the State of Qatar).
+   * Qatar (aka the State of Qatar).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:QA">www.iso.org</a>
    */
@@ -1243,14 +1255,14 @@ public enum IsoCountry {
   RO("ROU", 642),
 
   /**
-   * The Russian Federation (a.k.a. Russia).
+   * The Russian Federation (aka Russia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:RU">www.iso.org</a>
    */
   RU("RUS", 643),
 
   /**
-   * Rwanda (a.k.a. the Republic of Rwanda).
+   * Rwanda (aka the Republic of Rwanda).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:RW">www.iso.org</a>
    */
@@ -1278,77 +1290,77 @@ public enum IsoCountry {
   VC("VCT", 670),
 
   /**
-   * Samoa (a.k.a. the Independent State of Samoa).
+   * Samoa (aka the Independent State of Samoa).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:WS">www.iso.org</a>
    */
   WS("WSM", 882),
 
   /**
-   * San Marino (a.k.a. the Republic of San Marino).
+   * San Marino (aka the Republic of San Marino).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SM">www.iso.org</a>
    */
   SM("SMR", 674),
 
   /**
-   * São Tomé and Príncipe (a.k.a. the Democratic Republic of São Tomé and Príncipe).
+   * São Tomé and Príncipe (aka the Democratic Republic of São Tomé and Príncipe).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ST">www.iso.org</a>
    */
   ST("STP", 678),
 
   /**
-   * Saudi Arabia (a.k.a. the Kingdom of Saudi Arabia).
+   * Saudi Arabia (aka the Kingdom of Saudi Arabia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SA">www.iso.org</a>
    */
   SA("SAU", 682),
 
   /**
-   * Senegal (a.k.a. the Republic of Senegal).
+   * Senegal (aka the Republic of Senegal).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SN">www.iso.org</a>
    */
   SN("SEN", 686),
 
   /**
-   * Serbia (a.k.a. the Republic of Serbia).
+   * Serbia (aka the Republic of Serbia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:RS">www.iso.org</a>
    */
   RS("SRB", 688),
 
   /**
-   * Seychelles (a.k.a. the Republic of Seychelles).
+   * Seychelles (aka the Republic of Seychelles).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SC">www.iso.org</a>
    */
   SC("SYC", 690),
 
   /**
-   * Sierra Leone (a.k.a. the Republic of Sierra Leone).
+   * Sierra Leone (aka the Republic of Sierra Leone).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SL">www.iso.org</a>
    */
   SL("SLE", 694),
 
   /**
-   * Singapore (a.k.a. the Republic of Singapore).
+   * Singapore (aka the Republic of Singapore).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SG">www.iso.org</a>
    */
   SG("SGP", 702),
 
   /**
-   * Slovakia (a.k.a. the Slovak Republic).
+   * Slovakia (aka the Slovak Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SK">www.iso.org</a>
    */
   SK("SVK", 703),
 
   /**
-   * Slovenia (a.k.a. the Republic of Slovenia).
+   * Slovenia (aka the Republic of Slovenia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SI">www.iso.org</a>
    */
@@ -1362,77 +1374,77 @@ public enum IsoCountry {
   SB("SLB", 90),
 
   /**
-   * Somalia (a.k.a. the Federal Republic of Somalia).
+   * Somalia (aka the Federal Republic of Somalia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SO">www.iso.org</a>
    */
   SO("SOM", 706),
 
   /**
-   * South Africa (a.k.a. the Republic of South Africa).
+   * South Africa (aka the Republic of South Africa).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ZA">www.iso.org</a>
    */
   ZA("ZAF", 710),
 
   /**
-   * The Republic of Korea (a.k.a. South Korea).
+   * The Republic of Korea (aka South Korea).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:KR">www.iso.org</a>
    */
   KR("KOR", 410),
 
   /**
-   * South Sudan (a.k.a. the Republic of South Sudan).
+   * South Sudan (aka the Republic of South Sudan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SS">www.iso.org</a>
    */
   SS("SSD", 728),
 
   /**
-   * Spain (a.k.a. the Kingdom of Spain).
+   * Spain (aka the Kingdom of Spain).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ES">www.iso.org</a>
    */
   ES("ESP", 724),
 
   /**
-   * Sri Lanka (a.k.a. the Democratic Socialist Republic of Sri Lanka).
+   * Sri Lanka (aka the Democratic Socialist Republic of Sri Lanka).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:LK">www.iso.org</a>
    */
   LK("LKA", 144),
 
   /**
-   * The Sudan (a.k.a. the Republic of the Sudan).
+   * The Sudan (aka the Republic of the Sudan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SD">www.iso.org</a>
    */
   SD("SDN", 729),
 
   /**
-   * Suriname (a.k.a. the Republic of Suriname).
+   * Suriname (aka the Republic of Suriname).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SR">www.iso.org</a>
    */
   SR("SUR", 740),
 
   /**
-   * Eswatini (a.k.a. the Kingdom of Eswatini).
+   * Eswatini (aka the Kingdom of Eswatini).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SZ">www.iso.org</a>
    */
   SZ("SWZ", 748),
 
   /**
-   * Sweden (a.k.a. the Kingdom of Sweden).
+   * Sweden (aka the Kingdom of Sweden).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:SE">www.iso.org</a>
    */
   SE("SWE", 752),
 
   /**
-   * Switzerland (a.k.a. the Swiss Confederation).
+   * Switzerland (aka the Swiss Confederation).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:CH">www.iso.org</a>
    */
@@ -1453,7 +1465,7 @@ public enum IsoCountry {
   TW("TWN", 158, null),
 
   /**
-   * Tajikistan (a.k.a. the Republic of Tajikistan).
+   * Tajikistan (aka the Republic of Tajikistan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TJ">www.iso.org</a>
    */
@@ -1467,7 +1479,7 @@ public enum IsoCountry {
   TZ("TZA", 834),
 
   /**
-   * Thailand (a.k.a. the Kingdom of Thailand).
+   * Thailand (aka the Kingdom of Thailand).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TH">www.iso.org</a>
    */
@@ -1481,42 +1493,42 @@ public enum IsoCountry {
   CD("COD", 180),
 
   /**
-   * Timor-Leste (a.k.a. the Democratic Republic of Timor-Leste).
+   * Timor-Leste (aka the Democratic Republic of Timor-Leste).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TL">www.iso.org</a>
    */
   TL("TLS", 626),
 
   /**
-   * Togo (a.k.a. the Togolese Republic).
+   * Togo (aka the Togolese Republic).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TG">www.iso.org</a>
    */
   TG("TGO", 768),
 
   /**
-   * Tonga (a.k.a. the Kingdom of Tonga).
+   * Tonga (aka the Kingdom of Tonga).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TO">www.iso.org</a>
    */
   TO("TON", 776),
 
   /**
-   * Trinidad and Tobago (a.k.a. the Republic of Trinidad and Tobago).
+   * Trinidad and Tobago (aka the Republic of Trinidad and Tobago).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TT">www.iso.org</a>
    */
   TT("TTO", 780),
 
   /**
-   * Tunisia (a.k.a. the Republic of Tunisia).
+   * Tunisia (aka the Republic of Tunisia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TN">www.iso.org</a>
    */
   TN("TUN", 788),
 
   /**
-   * Turkey (a.k.a. the Republic of Turkey).
+   * Turkey (aka the Republic of Turkey).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TR">www.iso.org</a>
    */
@@ -1537,7 +1549,7 @@ public enum IsoCountry {
   TV("TUV", 798),
 
   /**
-   * Uganda (a.k.a. the Republic of Uganda).
+   * Uganda (aka the Republic of Uganda).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:UG">www.iso.org</a>
    */
@@ -1558,7 +1570,7 @@ public enum IsoCountry {
   AE("ARE", 784),
 
   /**
-   * The United Kingdom of Great Britain and Northern Ireland (a.k.a. the United Kingdom or Britain).
+   * The United Kingdom of Great Britain and Northern Ireland (aka the United Kingdom or Britain).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GB">www.iso.org</a>
    */
@@ -1691,7 +1703,7 @@ public enum IsoCountry {
   GU("GUM", 316, US),
 
   /**
-   * The Northern Mariana Islands (a.k.a. the Commonwealth of the Northern Mariana Islands).
+   * The Northern Mariana Islands (aka the Commonwealth of the Northern Mariana Islands).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MP">www.iso.org</a>
    */
@@ -1712,35 +1724,35 @@ public enum IsoCountry {
   UM("UMI", 581, US),
 
   /**
-   * The U.S. Virgin Islands (a.k.a. the Virgin Islands of the United States).
+   * The US Virgin Islands (aka the Virgin Islands of the United States).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:VI">www.iso.org</a>
    */
   VI("VIR", 850, US),
 
   /**
-   * Uruguay (a.k.a. the Eastern Republic of Uruguay).
+   * Uruguay (aka the Eastern Republic of Uruguay).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:UY">www.iso.org</a>
    */
   UY("URY", 858),
 
   /**
-   * Uzbekistan (a.k.a. the Republic of Uzbekistan).
+   * Uzbekistan (aka the Republic of Uzbekistan).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:UZ">www.iso.org</a>
    */
   UZ("UZB", 860),
 
   /**
-   * Vanuatu (a.k.a. the Republic of Vanuatu).
+   * Vanuatu (aka the Republic of Vanuatu).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:VU">www.iso.org</a>
    */
   VU("VUT", 548),
 
   /**
-   * The Holy See (a.k.a. the Vatican City State).
+   * The Holy See (aka the Vatican City State).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:VA">www.iso.org</a>
    */
@@ -1754,7 +1766,7 @@ public enum IsoCountry {
   VE("VEN", 862),
 
   /**
-   * Viet Nam (a.k.a. the Socialist Republic of Viet Nam).
+   * Viet Nam (aka the Socialist Republic of Viet Nam).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:VN">www.iso.org</a>
    */
@@ -1768,21 +1780,21 @@ public enum IsoCountry {
   EH("ESH", 732, null),
 
   /**
-   * Yemen (a.k.a. the Republic of Yemen).
+   * Yemen (aka the Republic of Yemen).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:YE">www.iso.org</a>
    */
   YE("YEM", 887),
 
   /**
-   * Zambia (a.k.a. the Republic of Zambia).
+   * Zambia (aka the Republic of Zambia).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ZM">www.iso.org</a>
    */
   ZM("ZMB", 894),
 
   /**
-   * Zimbabwe (a.k.a. the Republic of Zimbabwe).
+   * Zimbabwe (aka the Republic of Zimbabwe).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:ZW">www.iso.org</a>
    */
@@ -1914,6 +1926,12 @@ public enum IsoCountry {
     return agreement.getParticipants().contains(this);
   }
 
+  /**
+   * This country participations to {@link Agreement economic agreements}.
+   * 
+   * @return a non-null set
+   * @since 2.1.0
+   */
   public Set<Agreement> participations() {
     Set<Agreement> agreements = EnumSet.noneOf(Agreement.class);
 

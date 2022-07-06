@@ -16,6 +16,9 @@ package fr.marcwrobel.jbanking.iban;
  * @since 1.0
  */
 public enum IbanCheckDigit {
+  /**
+   * The singleton instance for this class.
+   */
   INSTANCE;
 
   private static final int BBAN_INDEX = 4;
