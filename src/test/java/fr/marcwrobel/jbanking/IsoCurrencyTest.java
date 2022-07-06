@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
  */
 class IsoCurrencyTest {
 
-  private static final Set<String> NOT_IN_NV_I18N =
-      new HashSet<>(Arrays.asList("UYW", "VED", "SLE"));
+  private static final Set<String> NOT_IN_NV_I18N = new HashSet<>(Arrays.asList("UYW", "VED", "SLE"));
 
   @Test
   void fromAlphaCodeAllowsNull() {
@@ -99,27 +98,19 @@ class IsoCurrencyTest {
   @Test
   @SuppressWarnings("deprecation")
   void ensureCompleteness() {
-    Set<CurrencyCode> exclusion =
-        EnumSet.of(
-            CurrencyCode.UNDEFINED,
-            CurrencyCode.BYR, // https://wikipedia.org/wiki/Belarusian_ruble
-            CurrencyCode.MRO, // https://wikipedia.org/wiki/Mauritanian_ouguiya
-            CurrencyCode.RUR, // https://wikipedia.org/wiki/Russian_ruble
-            CurrencyCode
-                .STD, // https://wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_dobra
-            CurrencyCode.VEF, // https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar
-            CurrencyCode.LTL // https://wikipedia.org/wiki/Lithuanian_litas
-            );
+    Set<CurrencyCode> exclusion = EnumSet.of(CurrencyCode.UNDEFINED, CurrencyCode.BYR, // https://wikipedia.org/wiki/Belarusian_ruble
+        CurrencyCode.MRO, // https://wikipedia.org/wiki/Mauritanian_ouguiya
+        CurrencyCode.RUR, // https://wikipedia.org/wiki/Russian_ruble
+        CurrencyCode.STD, // https://wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_dobra
+        CurrencyCode.VEF, // https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar
+        CurrencyCode.LTL // https://wikipedia.org/wiki/Lithuanian_litas
+    );
 
-    List<CurrencyCode> allCurrencies =
-        EnumSet.allOf(CurrencyCode.class).stream()
-            .filter(c -> !exclusion.contains(c))
-            .collect(Collectors.toList());
+    List<CurrencyCode> allCurrencies = EnumSet.allOf(CurrencyCode.class).stream()
+        .filter(c -> !exclusion.contains(c)).collect(Collectors.toList());
 
-    List<CurrencyCode> undefinedCurrencies =
-        allCurrencies.stream()
-            .filter(c -> !fromAlphabeticCode(c.name()).isPresent())
-            .collect(Collectors.toList());
+    List<CurrencyCode> undefinedCurrencies = allCurrencies.stream()
+        .filter(c -> !fromAlphabeticCode(c.name()).isPresent()).collect(Collectors.toList());
 
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
   }
@@ -130,28 +121,26 @@ class IsoCurrencyTest {
     Multimap<IsoCurrency, IsoCountry> missingCountries = HashMultimap.create();
     Set<CountryCode> unknownCountryCode = new HashSet<>();
 
-    stream(IsoCurrency.values())
-        .filter(
-            isoCurrency ->
-                !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
-        .forEach(
-            currency -> {
-              CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
+    stream(IsoCurrency.values()).filter(isoCurrency -> !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not
+        // in
+        // nv-i18n
+        .forEach(currency -> {
+          CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
 
-              for (CountryCode countryCode : currencyCode.getCountryList()) {
-                if (countryCode != CountryCode.EU) {
-                  Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(countryCode.getAlpha2());
+          for (CountryCode countryCode : currencyCode.getCountryList()) {
+            if (countryCode != CountryCode.EU) {
+              Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(countryCode.getAlpha2());
 
-                  if (country.isPresent()) {
-                    if (!currency.getCountries().contains(country.get())) {
-                      missingCountries.put(currency, country.get());
-                    }
-                  } else {
-                    unknownCountryCode.add(countryCode);
-                  }
+              if (country.isPresent()) {
+                if (!currency.getCountries().contains(country.get())) {
+                  missingCountries.put(currency, country.get());
                 }
+              } else {
+                unknownCountryCode.add(countryCode);
               }
-            });
+            }
+          }
+        });
 
     assertTrue(missingCountries.isEmpty(), "Missing countries : " + missingCountries);
     assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
@@ -160,30 +149,24 @@ class IsoCurrencyTest {
   // using nv-i18n helps us to keep the enum up-to-date
   @Test
   void ensureNoDeprecated() {
-    List<IsoCurrency> deprecated =
-        stream(IsoCurrency.values())
-            .filter(
-                isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
-            .filter(
-                isoCurrency ->
-                    !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
-            .filter(
-                currency -> {
-                  CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
-                  if (code != null) {
-                    if (currency.getNumericCode() == code.getNumeric()) {
-                      if (currency.getMinorUnit() != null) {
-                        return currency.getMinorUnit() != code.getMinorUnit();
-                      } else {
-                        return code.getMinorUnit() != -1;
-                      }
-                    } else {
-                      return true;
-                    }
-                  }
-                  return true;
-                })
-            .collect(Collectors.toList());
+    List<IsoCurrency> deprecated = stream(IsoCurrency.values())
+        .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
+        .filter(isoCurrency -> !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
+        .filter(currency -> {
+          CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
+          if (code != null) {
+            if (currency.getNumericCode() == code.getNumeric()) {
+              if (currency.getMinorUnit() != null) {
+                return currency.getMinorUnit() != code.getMinorUnit();
+              } else {
+                return code.getMinorUnit() != -1;
+              }
+            } else {
+              return true;
+            }
+          }
+          return true;
+        }).collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
   }

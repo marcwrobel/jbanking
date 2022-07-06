@@ -7,17 +7,20 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * A calendar that handles date calculations, taking bank {@link Holiday}s into account. Days that
- * are not bank holidays are called business days.
+ * A calendar that handles date calculations, taking bank {@link Holiday}s into account. Days that are not bank holidays are
+ * called business days.
  *
- * <p>Subclasses of this interface are expected to be thread-safe and immutable.
+ * <p>
+ * Subclasses of this interface are expected to be thread-safe and immutable.
  *
  * @author Marc Wrobel
  * @since 2.1.0
  */
 public interface Calendar {
 
-  /** Maximum number of iteration for date calculations before giving up. */
+  /**
+   * Maximum number of iteration for date calculations before giving up.
+   */
   int MAX_ITERATIONS = 3650;
 
   /**
@@ -50,9 +53,9 @@ public interface Calendar {
    * Shifts the given date by the specified number of business days. If the given amount is
    *
    * <ul>
-   *   <li>zero, the input date is returned,
-   *   <li>positive, later business days are chosen
-   *   <li>negative, earlier business days are chosen
+   * <li>zero, the input date is returned,
+   * <li>positive, later business days are chosen
+   * <li>negative, earlier business days are chosen
    * </ul>
    *
    * @param date the date to shift
@@ -136,8 +139,7 @@ public interface Calendar {
       next = next.plusDays(1);
 
       if (++c >= MAX_ITERATIONS) {
-        throw new DateCalculationException(
-            "no business day found within the next " + MAX_ITERATIONS + " days");
+        throw new DateCalculationException("no business day found within the next " + MAX_ITERATIONS + " days");
       }
     }
 

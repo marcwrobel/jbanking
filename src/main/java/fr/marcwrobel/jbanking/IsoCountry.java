@@ -9,25 +9,27 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The countries, dependent territories, and special areas of geographical interest having an <a
- * href="http://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially
- * assigned</a> ISO 3166-1 code.
+ * The countries, dependent territories, and special areas of geographical interest having an
+ * <a href="http://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially assigned</a> ISO 3166-1
+ * code.
  *
- * <p>One exception has been made for Kosovo. Kosovo has a user-assigned code, XK, that is being
- * used temporarily by the European Commission, the IMF, and SWIFT.
+ * <p>
+ * One exception has been made for Kosovo. Kosovo has a user-assigned code, XK, that is being used temporarily by the European
+ * Commission, the IMF, and SWIFT.
  *
- * <p>Note that enum entries are named after the ISO 3166-1 alpha-2 code. This choice has been made
- * in version 3.0.0 of jbanking in order to :
+ * <p>
+ * Note that enum entries are named after the ISO 3166-1 alpha-2 code. This choice has been made in version 3.0.0 of jbanking in
+ * order to :
  *
  * <ul>
- *   <li>reduce breaking changes in future versions (names change more often than codes),
- *   <li>make this enum easier to serialize (to JSON, in database...),
- *   <li>prevent accidental duplicates.
+ * <li>reduce breaking changes in future versions (names change more often than codes),
+ * <li>make this enum easier to serialize (to JSON, in database...),
+ * <li>prevent accidental duplicates.
  * </ul>
  *
- * <p>Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found
- * on the <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International
- * Organization for Standardization</a> website.
+ * <p>
+ * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
+ * <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International Organization for Standardization</a> website.
  *
  * @author Marc Wrobel
  * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country Codes</a>
@@ -800,7 +802,8 @@ public enum IsoCountry {
   /**
    * Kosovo.
    *
-   * <p>Temporarily used by the European Commission, the IMF, and SWIFT.
+   * <p>
+   * Temporarily used by the European Commission, the IMF, and SWIFT.
    *
    * @see <a href="https://fr.wikipedia.org/wiki/Kosovo">Wikipedia</a>
    */
@@ -1556,8 +1559,7 @@ public enum IsoCountry {
   AE("ARE", 784),
 
   /**
-   * The United Kingdom of Great Britain and Northern Ireland (a.k.a. the United Kingdom or
-   * Britain).
+   * The United Kingdom of Great Britain and Northern Ireland (a.k.a. the United Kingdom or Britain).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:GB">www.iso.org</a>
    */
@@ -1809,7 +1811,9 @@ public enum IsoCountry {
   private final boolean independent;
   private final IsoCountry dependsOn;
 
-  /** General purpose constructor. */
+  /**
+   * General purpose constructor.
+   */
   IsoCountry(String alpha3Code, Integer numericCode, boolean independent, IsoCountry dependsOn) {
     this.alpha3Code = requireNonNull(alpha3Code);
     this.numericCode = numericCode;
@@ -1818,12 +1822,16 @@ public enum IsoCountry {
     this.dependsOn = dependsOn;
   }
 
-  /** Dependents countries or territories constructor. */
+  /**
+   * Dependents countries or territories constructor.
+   */
   IsoCountry(String alpha3Code, Integer numericCode, IsoCountry dependsOn) {
     this(alpha3Code, numericCode, false, dependsOn);
   }
 
-  /** Independents countries constructor. */
+  /**
+   * Independents countries constructor.
+   */
   IsoCountry(String alpha3Code, Integer numericCode) {
     this(alpha3Code, numericCode, true, null);
   }
@@ -1851,8 +1859,8 @@ public enum IsoCountry {
   /**
    * Returns this country ISO 3166-1 numeric code.
    *
-   * @return a positive integer, or {@link Optional#empty()} if there is no code for the country
-   *     (user-assigned may not have a numeric code).
+   * @return a positive integer, or {@link Optional#empty()} if there is no code for the country (user-assigned may
+   *         not have a numeric code).
    * @since 2.1.0
    */
   public Optional<Integer> getNumericCode() {
@@ -1860,8 +1868,8 @@ public enum IsoCountry {
   }
 
   /**
-   * Whether this country is independent, according to the <a href="https://www.iso.org">
-   * International Organization for Standardization (ISO)</a>.
+   * Whether this country is independent, according to the <a href="https://www.iso.org"> International Organization for
+   * Standardization (ISO)</a>.
    *
    * @return {@code true} if this country is independent, {@code false} otherwise.
    * @since 2.1.0
@@ -1873,16 +1881,15 @@ public enum IsoCountry {
   /**
    * Returns the country on which this country depends.
    *
-   * <p>Note that the dependency link between two countries :
+   * <p>
+   * Note that the dependency link between two countries :
    *
    * <ul>
-   *   <li>is based on information provided by the <a href="https://www.iso.org">International
-   *       Organization for Standardization (ISO)</a>,
-   *   <li>may be unspecified, mainly for political reasons ({@link #AQ}, {@link #PS}, {@link #TW},
-   *       {@link #EH}),
-   *   <li>can take <a href="https://en.wikipedia.org/wiki/List_of_sovereign_states">many forms</a>
-   *       : free association, territory, special administrative region... (this is outside the
-   *       scope of jbanking)
+   * <li>is based on information provided by the <a href="https://www.iso.org">International Organization for Standardization
+   * (ISO)</a>,
+   * <li>may be unspecified, mainly for political reasons ({@link #AQ}, {@link #PS}, {@link #TW}, {@link #EH}),
+   * <li>can take <a href="https://en.wikipedia.org/wiki/List_of_sovereign_states">many forms</a> : free association, territory,
+   * special administrative region... (this is outside the scope of jbanking)
    * </ul>
    *
    * @return an {@link IsoCountry} encapsulated in an {@link Optional}, or {@link Optional#empty()}
@@ -1896,10 +1903,9 @@ public enum IsoCountry {
    * Check whether this country is participating in the given {@link Agreement}.
    *
    * @param agreement a non-null {@link Agreement}
-   * @return {@code true} if this country is participating in the given {@link Agreement}, {@code
-   *     false} otherwise
+   * @return {@code true} if this country is participating in the given {@link Agreement}, {@code false} otherwise
+   * @throws IllegalArgumentException if agreement is {@code null}
    * @since 2.1.0
-   * @throws IllegalArgumentException if agreement is null
    */
   public boolean isParticipatingTo(Agreement agreement) {
     if (agreement == null) {
@@ -1924,7 +1930,8 @@ public enum IsoCountry {
   /**
    * Translate the given ISO 3166-1 alpha-2 code to an IsoCountry.
    *
-   * <p>This method is not case-sensitive.
+   * <p>
+   * This method is not case-sensitive.
    *
    * @param code A string ({@code null} accepted).
    * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}.
@@ -1937,7 +1944,8 @@ public enum IsoCountry {
   /**
    * Translate the given ISO 3166-1 alpha-3 code to an IsoCountry.
    *
-   * <p>This method is not case-sensitive.
+   * <p>
+   * This method is not case-sensitive.
    *
    * @param code A string ({@code null} accepted).
    * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.

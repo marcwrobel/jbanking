@@ -33,22 +33,8 @@ class ShiftedHolidayTest {
   }
 
   @ParameterizedTest
-  @ValueSource(
-      strings = {
-        "2017-07-04",
-        "2018-07-04",
-        "2019-07-04",
-        "2020-07-03",
-        "2021-07-04",
-        "2022-07-04",
-        "2023-07-04",
-        "2024-07-04",
-        "2025-07-04",
-        "2026-07-03",
-        "2027-07-05",
-        "2028-07-04",
-        "2029-07-04"
-      })
+  @ValueSource(strings = { "2017-07-04", "2018-07-04", "2019-07-04", "2020-07-03", "2021-07-04", "2022-07-04",
+      "2023-07-04", "2024-07-04", "2025-07-04", "2026-07-03", "2027-07-05", "2028-07-04", "2029-07-04" })
   void holidayCheckSucceed(String date) {
     assertTrue(HOLIDAY.check(LocalDate.parse(date)));
   }
@@ -57,8 +43,7 @@ class ShiftedHolidayTest {
   void equalsAndHashCodeAndToString() {
     Holiday holiday1 = new ShiftedHoliday(BASE, STRATEGY);
     Holiday holiday2 = new ShiftedHoliday(BASE, STRATEGY);
-    Holiday holiday3 =
-        new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)), STRATEGY);
+    Holiday holiday3 = new ShiftedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)), STRATEGY);
 
     assertEquals(holiday1, holiday2);
     assertEquals(holiday2, holiday1);

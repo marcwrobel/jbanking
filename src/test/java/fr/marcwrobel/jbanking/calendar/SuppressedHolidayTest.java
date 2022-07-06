@@ -30,8 +30,7 @@ class SuppressedHolidayTest {
 
   @Test
   void suppressedYearsCannotBeNull() {
-    assertThrows(
-        NullPointerException.class, () -> new SuppressedHoliday(BASE, (Collection<Integer>) null));
+    assertThrows(NullPointerException.class, () -> new SuppressedHoliday(BASE, (Collection<Integer>) null));
   }
 
   @Test
@@ -41,12 +40,12 @@ class SuppressedHolidayTest {
 
   @Test
   void checkDoesNotAcceptNull() {
-    //noinspection ConstantConditions
+    // noinspection ConstantConditions
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 
   @ParameterizedTest
-  @ValueSource(ints = {1, 100, 1970, 2050, 10000})
+  @ValueSource(ints = { 1, 100, 1970, 2050, 10000 })
   void holidayCheckSucceed(int year) {
     assertTrue(HOLIDAY.check(LocalDate.of(year, MONTH, DAY)));
   }

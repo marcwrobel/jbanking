@@ -10,17 +10,18 @@ import java.util.*;
 /**
  * The currencies having an ISO 4217 code.
  *
- * <p>Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for
- * free on the <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">
- * currency-iso.org</a>.
+ * <p>
+ * Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the
+ * <a href="https://www.currency-iso.org/en/home/tables/table-a1.html"> currency-iso.org</a>.
  *
- * <p>Note that enum entries are named after the ISO 4217 alphabetic code. This choice has been made
- * in version 3.0.0 of jbanking in order to :
+ * <p>
+ * Note that enum entries are named after the ISO 4217 alphabetic code. This choice has been made in version 3.0.0 of jbanking
+ * in order to :
  *
  * <ul>
- *   <li>reduce breaking changes in future versions (names change more often than codes),
- *   <li>make this enum easier to serialize (to JSON, in database...),
- *   <li>prevent accidental duplicates.
+ * <li>reduce breaking changes in future versions (names change more often than codes),
+ * <li>make this enum easier to serialize (to JSON, in database...),
+ * <li>prevent accidental duplicates.
  * </ul>
  *
  * @author Marc Wrobel
@@ -141,29 +142,26 @@ public enum IsoCurrency {
   BMD(60, 2, BM),
 
   /**
-   * Venezuelan bolívar digital (as designated on <a
-   * href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a>).
+   * Venezuelan bolívar digital (as designated on <a href="https://en.wikipedia.org/wiki/ISO_4217">Wikipedia</a>).
    *
-   * <p>This currency code was introduced by ISO-4217 amendment number 170 and is effective from 1
-   * October 2021 :
+   * <p>
+   * This currency code was introduced by ISO-4217 amendment number 170 and is effective from 1 October 2021 :
    *
    * <blockquote>
+   * <p>
+   * The Bolívar Soberano (VES) is redenominated by removing six zeros from the denominations. A new currency code VED/926
+   * representing the new valuation (1,000,000 times old VES/928) is introduced on 1 October 2021 for any internal needs during
+   * the redenomination process, but is not replacing VES as the official currency code. The Central Bank of Venezuela will not
+   * adopt the new codes in the local system, VES/928 remains in use.
    *
-   * The Bolívar Soberano (VES) is redenominated by removing six zeros from the denominations. A new
-   * currency code VED/926 representing the new valuation (1,000,000 times old VES/928) is
-   * introduced on 1 October 2021 for any internal needs during the redenomination process, but is
-   * not replacing VES as the official currency code. The Central Bank of Venezuela will not adopt
-   * the new codes in the local system, VES/928 remains in use.
-   *
-   * <p>The actual currency code VES/928 remains the valid code after 1 October 2021 to use in any
-   * future transactions to indicate the redenominated Bolívar Soberano.
-   *
+   * <p>
+   * The actual currency code VES/928 remains the valid code after 1 October 2021 to use in any future transactions to indicate
+   * the redenominated Bolívar Soberano.
    * </blockquote>
    *
    * @see <a href="https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar">wikipedia.org</a>
-   * @see <a
-   *     href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_170.pdf">ISO-4217
-   *     amendment number 170</a>
+   * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_170.pdf">ISO-4217 amendment number
+   *      170</a>
    * @since 3.2.0
    */
   VED(926, 2, VE),
@@ -283,8 +281,7 @@ public enum IsoCurrency {
   /**
    * Bosnia and Herzegovina convertible mark.
    *
-   * @see <a
-   *     href="https://wikipedia.org/wiki/Bosnia_and_Herzegovina_convertible_mark">wikipedia.org</a>
+   * @see <a href="https://wikipedia.org/wiki/Bosnia_and_Herzegovina_convertible_mark">wikipedia.org</a>
    */
   BAM(977, 2, BA),
 
@@ -354,8 +351,7 @@ public enum IsoCurrency {
   /**
    * São Tomé and Príncipe dobra.
    *
-   * @see <a
-   *     href="https://wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_dobra">wikipedia.org</a>
+   * @see <a href="https://wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_dobra">wikipedia.org</a>
    */
   STN(930, 2, ST),
 
@@ -434,9 +430,8 @@ public enum IsoCurrency {
    *
    * @see <a href="https://wikipedia.org/wiki/Euro">wikipedia.org</a>
    */
-  EUR(
-      978, 2, PT, RE, LU, IT, SK, MF, AD, YT, BL, AX, GP, GF, PM, DE, BE, ES, SM, FI, MT, VA, MC,
-      GR, MQ, TF, EE, IE, NL, ME, SI, FR, AT, CY, XK, LV, LT),
+  EUR(978, 2, PT, RE, LU, IT, SK, MF, AD, YT, BL, AX, GP, GF, PM, DE, BE, ES, SM, FI, MT, VA, MC, GR, MQ, TF, EE, IE,
+      NL, ME, SI, FR, AT, CY, XK, LV, LT),
 
   /**
    * Falkland Islands pound.
@@ -644,29 +639,26 @@ public enum IsoCurrency {
   /**
    * Sierra Leonean leone.
    *
-   * <p>This currency code was introduced by ISO-4217 amendment number 171 and is effective from 1
-   * April 2022 :
+   * <p>
+   * This currency code was introduced by ISO-4217 amendment number 171 and is effective from 1 April 2022 :
    *
    * <blockquote>
-   *
-   * The Sierra Leonean LEONE (SLL) is redenominated by removing three (3) zeros from the
-   * denominations. A new currency code SLE/925 representing the new valuation (1’000 times old
-   * SLL/694) is introduced on 1 st April 2022 for any internal needs during the redenomination
-   * process, and is replacing SLL as the official currency code, after the transition period to be
+   * <p>
+   * The Sierra Leonean LEONE (SLL) is redenominated by removing three (3) zeros from the denominations. A new currency code
+   * SLE/925 representing the new valuation (1’000 times old SLL/694) is introduced on 1 st April 2022 for any internal needs
+   * during the redenomination process, and is replacing SLL as the official currency code, after the transition period to be
    * determined.
    *
-   * <p>During this transition period, both the old Leone and new Leone will be in physical
-   * circulation for at least 90 days.
+   * <p>
+   * During this transition period, both the old Leone and new Leone will be in physical circulation for at least 90 days.
    *
-   * <p>The Bank of Sierra Leone will adopt the new code in the local system but SLL/694 shall
-   * remain in use until further notice.
-   *
+   * <p>
+   * The Bank of Sierra Leone will adopt the new code in the local system but SLL/694 shall remain in use until further notice.
    * </blockquote>
    *
    * @see <a href="https://wikipedia.org/wiki/Venezuelan_bol%C3%ADvar">wikipedia.org</a>
-   * @see <a
-   *     href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_171.pdf">ISO-4217
-   *     amendment number 171</a>
+   * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_171.pdf">ISO-4217 amendment
+   *      number 171</a>
    * @see <a href="https://wikipedia.org/wiki/Sierra_Leonean_leone">wikipedia.org</a>
    * @since 3.2.0
    */
@@ -738,10 +730,10 @@ public enum IsoCurrency {
   /**
    * Mexican unidad de inversión.
    *
-   * <p>The UDI is an inflation adjusted mechanism set by the Central Bank of Mexico according to
-   * the variation in the Mexican Consumer Price Index. The value of the UDI is expressed in terms
-   * of Mexican Pesos per UDI. It is used to denominate mortgage loans, some bank deposits with
-   * maturities of 3 month or more and Government bonds (UDIBONOS).
+   * <p>
+   * The UDI is an inflation adjusted mechanism set by the Central Bank of Mexico according to the variation in the Mexican
+   * Consumer Price Index. The value of the UDI is expressed in terms of Mexican Pesos per UDI. It is used to denominate
+   * mortgage loans, some bank deposits with maturities of 3 month or more and Government bonds (UDIBONOS).
    *
    * @see <a href="https://wikipedia.org/wiki/Mexican_unidad_de_inversi%C3%B3n">wikipedia.org</a>
    */
@@ -771,9 +763,9 @@ public enum IsoCurrency {
   /**
    * Bolivian Mvdol (funds code).
    *
-   * <p>For indexation purposes and denomination of certain financial instruments (e.g. treasury
-   * bills). The Mvdol is set daily by the Central Bank of Bolivia based on the official USD/BOB
-   * rate.
+   * <p>
+   * For indexation purposes and denomination of certain financial instruments (e.g. treasury bills). The Mvdol is set daily by
+   * the Central Bank of Bolivia based on the official USD/BOB rate.
    *
    * @see <a href="https://www.tradinghours.com/currencies/bov-bolivian-mvdol">tradinghours.com</a>
    */
@@ -1109,8 +1101,7 @@ public enum IsoCurrency {
   LKR(144, 2, LK),
 
   /**
-   * The SUCRE (a.k.a Sistema Unitario de Compensación Regional, or Unified System for Regional
-   * Compensation).
+   * The SUCRE (a.k.a Sistema Unitario de Compensación Regional, or Unified System for Regional Compensation).
    *
    * @see <a href="https://wikipedia.org/wiki/SUCRE">wikipedia.org</a>
    */
@@ -1238,10 +1229,10 @@ public enum IsoCurrency {
   /**
    * Unidad de Valor Real (UVR) (funds code).
    *
-   * <p>The UVR is a daily account unit set by the Central Bank of Colombia according to the
-   * variation in the Consumer Price Index of Colombia. The value of UVR is expressed in terms of
-   * Colombian Pesos per UVR. It is used to denominate and update mortgage loans and some public
-   * debt bonds.
+   * <p>
+   * The UVR is a daily account unit set by the Central Bank of Colombia according to the variation in the Consumer Price Index
+   * of Colombia. The value of UVR is expressed in terms of Colombian Pesos per UVR. It is used to denominate and update
+   * mortgage loans and some public debt bonds.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
@@ -1250,11 +1241,11 @@ public enum IsoCurrency {
   /**
    * Unidad de Fomento (funds code).
    *
-   * <p>The CLF is a daily economically-financial unit calculated by the Central Bank of Chile
-   * according to inflation (as measured by the Chilean Consumer Price Index of the previous month).
-   * The value of the CLF is expressed in terms of Chilean Pesos per CLF. The use of CLF has been
-   * widely extended to all types of bank loans, financial investments (time deposits, mortgages and
-   * other public or private indexed instruments), contracts and fees in some cases.
+   * <p>
+   * The CLF is a daily economically-financial unit calculated by the Central Bank of Chile according to inflation (as measured
+   * by the Chilean Consumer Price Index of the previous month). The value of the CLF is expressed in terms of Chilean Pesos per
+   * CLF. The use of CLF has been widely extended to all types of bank loans, financial investments (time deposits, mortgages
+   * and other public or private indexed instruments), contracts and fees in some cases.
    *
    * @see <a href="https://wikipedia.org/wiki/Unidad_de_Fomento">wikipedia.org</a>
    */
@@ -1263,9 +1254,10 @@ public enum IsoCurrency {
   /**
    * Uruguay Peso en Unidades Indexadas (URUIURUI) (funds code).
    *
-   * <p>The UYI (UI) is used for issuance of debt instruments by the Uruguayan government in the
-   * international global bond market. It is calculated based on an established methodology using
-   * underlying inflationary statistics in the Uruguayan market (introduced in 2002).
+   * <p>
+   * The UYI (UI) is used for issuance of debt instruments by the Uruguayan government in the international global bond market.
+   * It is calculated based on an established methodology using underlying inflationary statistics in the Uruguayan market
+   * (introduced in 2002).
    *
    * @see <a href="https://en.wikipedia.org/wiki/UYI">wikipedia.org</a>
    */
@@ -1281,8 +1273,9 @@ public enum IsoCurrency {
   /**
    * United States dollar (next day) (funds code).
    *
-   * <p>”Next day“ funds are immediately available for transfer in like funds, and, subject to
-   * settlement, available the next business day for same day funds transfer or withdrawal in cash.
+   * <p>
+   * ”Next day“ funds are immediately available for transfer in like funds, and, subject to settlement, available the next
+   * business day for same day funds transfer or withdrawal in cash.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
@@ -1298,14 +1291,14 @@ public enum IsoCurrency {
   /**
    * Uruguayan Unidad Previsional (Fund currency).
    *
-   * <p>The Unidad Previsional (UP) is a daily accounting unit that tracks changes to the nominal
-   * wage index. The value of UP is expressed in terms of Uruguayan Pesos per UP, with the initial
-   * value of one peso (UYU 1.00) on 04/30/2018. The institution responsible for the calculation and
-   * publication is the Instituto Nacional de Estadística (National Bureau of Statistics) according
-   * to Law 19,608.
+   * <p>
+   * The Unidad Previsional (UP) is a daily accounting unit that tracks changes to the nominal wage index. The value of UP is
+   * expressed in terms of Uruguayan Pesos per UP, with the initial value of one peso (UYU 1.00) on 04/30/2018. The institution
+   * responsible for the calculation and publication is the Instituto Nacional de Estadística (National Bureau of Statistics)
+   * according to Law 19,608.
    *
-   * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_169.pdf">ISO
-   *     4217 AMENDMENT NUMBER 169</a>
+   * @see <a href="https://www.currency-iso.org/dam/downloads/dl_currency_iso_amendment_169.pdf">ISO 4217 AMENDMENT NUMBER
+   *      169</a>
    */
   UYW(927, 4, FUND, UY),
 
@@ -1326,8 +1319,8 @@ public enum IsoCurrency {
   /**
    * WIR euro (complementary currency).
    *
-   * <p>WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking
-   * Services.
+   * <p>
+   * WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking Services.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
@@ -1336,8 +1329,8 @@ public enum IsoCurrency {
   /**
    * WIR franc (complementary currency).
    *
-   * <p>WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking
-   * Services.
+   * <p>
+   * WIR Bank for use with the EFTPOS system with their own WIR-card and the Electronic Banking Services.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
    */
@@ -1414,11 +1407,8 @@ public enum IsoCurrency {
     this.numericCode = numericCode;
     this.minorUnit = minorUnit;
     this.category = requireNonNull(category);
-    this.countries =
-        unmodifiableSet(
-            countries.length > 0
-                ? EnumSet.copyOf(Arrays.asList(countries))
-                : EnumSet.noneOf(IsoCountry.class));
+    this.countries = unmodifiableSet(
+        countries.length > 0 ? EnumSet.copyOf(Arrays.asList(countries)) : EnumSet.noneOf(IsoCountry.class));
   }
 
   IsoCurrency(int numericCode, Integer minorUnit, IsoCountry... countries) {
@@ -1473,7 +1463,8 @@ public enum IsoCurrency {
   /**
    * Translate the given ISO 4217 alphabetical code to an IsoCurrency.
    *
-   * <p>This method is not case-sensitive.
+   * <p>
+   * This method is not case-sensitive.
    *
    * @param code A non-null String.
    * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
@@ -1498,7 +1489,7 @@ public enum IsoCurrency {
    *
    * @param category a non-null category
    * @return a non-null set of currencies
-   * @throws NullPointerException if the given category is null
+   * @throws NullPointerException if the given category is {@code null}
    */
   public static Set<IsoCurrency> allOf(Category category) {
     requireNonNull(category);
@@ -1525,23 +1516,27 @@ public enum IsoCurrency {
     /**
      * Fund codes.
      *
-     * @see <a href="https://www.currency-iso.org/en/home/tables/table-a2.html">Current funds codes
-     *     list</a>
+     * @see <a href="https://www.currency-iso.org/en/home/tables/table-a2.html">Current funds codes list</a>
      */
     FUND,
 
     /**
      * Precious metals codes.
      *
-     * <p>These “currency units” are denominated as <a
-     * href="https://en.wikipedia.org/wiki/Troy_weight#Troy_ounce_(oz_t)">one troy ounce</a>.
+     * <p>
+     * These “currency units” are denominated as <a href="https://en.wikipedia.org/wiki/Troy_weight#Troy_ounce_(oz_t)">one troy
+     * ounce</a>.
      */
     METAL,
 
-    /** National or supranational currencies codes. */
+    /**
+     * National or supranational currencies codes.
+     */
     NATIONAL,
 
-    /** Other codes (testing codes, special codes...). */
+    /**
+     * Other codes (testing codes, special codes...).
+     */
     OTHER
   }
 }

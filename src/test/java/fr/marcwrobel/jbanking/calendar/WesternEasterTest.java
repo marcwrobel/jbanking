@@ -22,18 +22,14 @@ class WesternEasterTest {
   private static final WesternEaster HOLIDAY = WesternEaster.INSTANCE;
 
   private static Stream<Arguments> easter500() {
-    InputStream easter500 =
-        WesternEasterTest.class.getClassLoader().getResourceAsStream("easter500.txt");
-    return new BufferedReader(new InputStreamReader(Objects.requireNonNull(easter500)))
-        .lines()
-        .map(line -> line.trim().replaceAll("\\s+", " "))
-        .map(line -> line.split(" "))
-        .map(Arguments::of);
+    InputStream easter500 = WesternEasterTest.class.getClassLoader().getResourceAsStream("easter500.txt");
+    return new BufferedReader(new InputStreamReader(Objects.requireNonNull(easter500))).lines()
+        .map(line -> line.trim().replaceAll("\\s+", " ")).map(line -> line.split(" ")).map(Arguments::of);
   }
 
   @Test
   void checkDoesNotAcceptNull() {
-    //noinspection ConstantConditions
+    // noinspection ConstantConditions
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 

@@ -12,14 +12,15 @@ import java.util.Objects;
 /**
  * A {@link Holiday} occurring the same day of the week in a month every year.
  *
- * <p>This class is using {@link java.time.temporal.TemporalAdjusters#dayOfWeekInMonth(int,
- * DayOfWeek)} under the hood.
+ * <p>
+ * This class is using {@link java.time.temporal.TemporalAdjusters#dayOfWeekInMonth(int, DayOfWeek)} under the hood.
  *
- * <p>This class is useful for modeling holidays like <a
- * href="https://wikipedia.org/wiki/Martin_Luther_King_Jr._Day">Martin Luther King Jr. Day</a>.
+ * <p>
+ * This class is useful for modeling holidays like <a href="https://wikipedia.org/wiki/Martin_Luther_King_Jr._Day">Martin Luther
+ * King Jr. Day</a>.
  *
- * @see TemporalAdjusters#dayOfWeekInMonth(int, DayOfWeek)
  * @author Marc Wrobel
+ * @see TemporalAdjusters#dayOfWeekInMonth(int, DayOfWeek)
  * @since 2.1.0
  */
 public final class DayOfWeekInMonthHoliday implements Holiday {
@@ -42,7 +43,9 @@ public final class DayOfWeekInMonthHoliday implements Holiday {
     this.month = requireNonNull(month);
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     LocalDate dateForYear = dateForYear(date.getYear());
@@ -50,8 +53,7 @@ public final class DayOfWeekInMonthHoliday implements Holiday {
   }
 
   private LocalDate dateForYear(int year) {
-    return LocalDate.of(year, month, 1)
-        .with(TemporalAdjusters.dayOfWeekInMonth(weekNumber, dayOfWeek));
+    return LocalDate.of(year, month, 1).with(TemporalAdjusters.dayOfWeekInMonth(weekNumber, dayOfWeek));
   }
 
   @Override
@@ -75,13 +77,7 @@ public final class DayOfWeekInMonthHoliday implements Holiday {
 
   @Override
   public String toString() {
-    return "DayOfWeekInMonthHoliday{"
-        + "weekNumber="
-        + weekNumber
-        + ", dayOfWeek="
-        + dayOfWeek
-        + ", month="
-        + month
+    return "DayOfWeekInMonthHoliday{" + "weekNumber=" + weekNumber + ", dayOfWeek=" + dayOfWeek + ", month=" + month
         + '}';
   }
 }

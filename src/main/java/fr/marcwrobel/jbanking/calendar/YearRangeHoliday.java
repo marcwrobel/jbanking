@@ -9,9 +9,9 @@ import java.util.Objects;
 /**
  * A {@link Holiday} that is valid only for a given range or years.
  *
- * <p>This class is useful for modeling holidays like the German reformation day that was
- * exceptionally a national holiday in 2017 because of 500 anniversary of the religious reformation
- * in Europe.
+ * <p>
+ * This class is useful for modeling holidays like the German reformation day that was exceptionally a national holiday in 2017
+ * because of 500 anniversary of the religious reformation in Europe.
  *
  * @author Marc Wrobel
  * @since 2.1.0
@@ -40,14 +40,16 @@ public final class YearRangeHoliday implements Holiday {
    * @param from the minimum year of validity (included)
    * @param to the maximum year of validity (included)
    * @throws NullPointerException if {@code base} is {@code null}
-   * @throws IllegalArgumentException if from is greater than to
+   * @throws IllegalArgumentException if {@code from} is greater than {@code to}
    */
   public YearRangeHoliday(Holiday base, long from, long to) {
     this.base = requireNonNull(base);
     this.validityRange = ValueRange.of(from, to);
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     if (!validityRange.isValidValue(date.getYear())) {

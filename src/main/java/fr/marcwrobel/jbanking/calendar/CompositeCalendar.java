@@ -45,7 +45,9 @@ public final class CompositeCalendar implements Calendar {
     this(asList(calendars));
   }
 
-  /** @see Calendar#isHoliday(LocalDate) */
+  /**
+   * @see Calendar#isHoliday(LocalDate)
+   */
   @Override
   public boolean isHoliday(LocalDate date) {
     for (Calendar calendar : calendars) {
@@ -57,7 +59,9 @@ public final class CompositeCalendar implements Calendar {
     return false;
   }
 
-  /** @see Calendar#getHolidaysFor(LocalDate) */
+  /**
+   * @see Calendar#getHolidaysFor(LocalDate)
+   */
   @Override
   public Set<Holiday> getHolidaysFor(LocalDate date) {
     Set<Holiday> matchingHolidays = new HashSet<>(0);

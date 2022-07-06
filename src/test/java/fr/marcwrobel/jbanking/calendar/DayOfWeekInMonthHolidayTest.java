@@ -20,43 +20,27 @@ class DayOfWeekInMonthHolidayTest {
   private static final DayOfWeek DAY_OF_WEEK = DayOfWeek.WEDNESDAY;
   private static final Month MONTH = Month.JANUARY;
 
-  private static final DayOfWeekInMonthHoliday HOLIDAY =
-      new DayOfWeekInMonthHoliday(WEEK_NUMBER, DAY_OF_WEEK, MONTH);
+  private static final DayOfWeekInMonthHoliday HOLIDAY = new DayOfWeekInMonthHoliday(WEEK_NUMBER, DAY_OF_WEEK, MONTH);
 
   @Test
   void dayOfWeekCannotBeNull() {
-    assertThrows(
-        NullPointerException.class, () -> new DayOfWeekInMonthHoliday(0, null, Month.MARCH));
+    assertThrows(NullPointerException.class, () -> new DayOfWeekInMonthHoliday(0, null, Month.MARCH));
   }
 
   @Test
   void monthCannotBeNull() {
-    assertThrows(
-        NullPointerException.class, () -> new DayOfWeekInMonthHoliday(0, DayOfWeek.MONDAY, null));
+    assertThrows(NullPointerException.class, () -> new DayOfWeekInMonthHoliday(0, DayOfWeek.MONDAY, null));
   }
 
   @Test
   void checkDoesNotAcceptNull() {
-    //noinspection ConstantConditions
+    // noinspection ConstantConditions
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 
   @ParameterizedTest
-  @ValueSource(
-      strings = {
-        "2010-01-20",
-        "2011-01-19",
-        "2012-01-18",
-        "2013-01-16",
-        "2014-01-15",
-        "2015-01-21",
-        "2016-01-20",
-        "2017-01-18",
-        "2018-01-17",
-        "2019-01-16",
-        "2020-01-15",
-        "2021-01-20"
-      })
+  @ValueSource(strings = { "2010-01-20", "2011-01-19", "2012-01-18", "2013-01-16", "2014-01-15", "2015-01-21",
+      "2016-01-20", "2017-01-18", "2018-01-17", "2019-01-16", "2020-01-15", "2021-01-20" })
   void holidayCheckSucceed(String date) {
     assertTrue(HOLIDAY.check(LocalDate.parse(date)));
   }

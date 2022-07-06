@@ -16,10 +16,8 @@ class BridgedHolidayTest {
 
   private static final LocalDate DATE = LocalDate.of(YEAR, MONTH, DAY);
 
-  private static final BridgedHoliday HOLIDAY =
-      new BridgedHoliday(
-          new MonthDayHoliday(MonthDay.of(MONTH, DAY - 1)),
-          new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)));
+  private static final BridgedHoliday HOLIDAY = new BridgedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY - 1)),
+      new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)));
 
   @Test
   void checkDoesNotAcceptNull1() {

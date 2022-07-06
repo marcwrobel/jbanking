@@ -23,7 +23,7 @@ class SundayToMondayShiftingStrategyTest {
 
   @Test
   void thursdayUnshift() {
-    assertArrayEquals(new LocalDate[] {THURSDAY}, STRATEGY.unshift(THURSDAY));
+    assertArrayEquals(new LocalDate[] { THURSDAY }, STRATEGY.unshift(THURSDAY));
   }
 
   @Test
@@ -33,7 +33,7 @@ class SundayToMondayShiftingStrategyTest {
 
   @Test
   void fridayUnshift() {
-    assertArrayEquals(new LocalDate[] {FRIDAY}, STRATEGY.unshift(FRIDAY));
+    assertArrayEquals(new LocalDate[] { FRIDAY }, STRATEGY.unshift(FRIDAY));
   }
 
   @Test
@@ -43,7 +43,7 @@ class SundayToMondayShiftingStrategyTest {
 
   @Test
   void saturdayUnshift() {
-    assertArrayEquals(new LocalDate[] {SATURDAY}, STRATEGY.unshift(SATURDAY));
+    assertArrayEquals(new LocalDate[] { SATURDAY }, STRATEGY.unshift(SATURDAY));
   }
 
   @Test
@@ -53,7 +53,7 @@ class SundayToMondayShiftingStrategyTest {
 
   @Test
   void sundayUnshift() {
-    assertArrayEquals(new LocalDate[] {SUNDAY}, STRATEGY.unshift(SUNDAY));
+    assertArrayEquals(new LocalDate[] { SUNDAY }, STRATEGY.unshift(SUNDAY));
   }
 
   @Test
@@ -63,6 +63,6 @@ class SundayToMondayShiftingStrategyTest {
 
   @Test
   void mondayUnshift() {
-    assertArrayEquals(new LocalDate[] {MONDAY, SUNDAY}, STRATEGY.unshift(MONDAY));
+    assertArrayEquals(new LocalDate[] { MONDAY, SUNDAY }, STRATEGY.unshift(MONDAY));
   }
 }

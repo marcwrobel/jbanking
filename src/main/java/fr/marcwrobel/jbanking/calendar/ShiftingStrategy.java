@@ -12,11 +12,11 @@ import java.time.LocalDate;
 public enum ShiftingStrategy {
 
   /**
-   * For {@link Holiday}s that are observed on the preceding {@link DayOfWeek#FRIDAY} when they fall
-   * on {@link DayOfWeek#SATURDAY}, or on the following {@link DayOfWeek#MONDAY} when they fall on
-   * {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the preceding {@link DayOfWeek#FRIDAY} when they fall on
+   * {@link DayOfWeek#SATURDAY}, or on the following {@link DayOfWeek#MONDAY} when they fall on {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for American holidays.
+   * <p>
+   * This strategy is useful for American holidays.
    */
   CLOSEST_WEEKDAY {
     @Override
@@ -38,45 +38,44 @@ public enum ShiftingStrategy {
       DayOfWeek dayOfWeek = date.getDayOfWeek();
 
       if (dayOfWeek == DayOfWeek.MONDAY) {
-        return new LocalDate[] {date, date.minusDays(1)};
+        return new LocalDate[] { date, date.minusDays(1) };
       } else if (dayOfWeek == DayOfWeek.FRIDAY) {
-        return new LocalDate[] {date, date.plusDays(1)};
+        return new LocalDate[] { date, date.plusDays(1) };
       }
 
-      return new LocalDate[] {date};
+      return new LocalDate[] { date };
     }
   },
 
   /**
-   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall
-   * on {@link DayOfWeek#SATURDAY}, or on the following {@link DayOfWeek#TUESDAY} when they fall on
-   * {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall on
+   * {@link DayOfWeek#SATURDAY}, or on the following {@link DayOfWeek#TUESDAY} when they fall on {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for United Kingdom holidays.
+   * <p>
+   * This strategy is useful for United Kingdom holidays.
    */
   PLUS_TWO_DAYS {
     @Override
     public LocalDate shift(LocalDate date) {
       DayOfWeek dayOfWeek = date.getDayOfWeek();
-      return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY
-          ? date.plusDays(2)
-          : date;
+      return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY ? date.plusDays(2) : date;
     }
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
       DayOfWeek dayOfWeek = date.getDayOfWeek();
       return dayOfWeek == DayOfWeek.MONDAY || dayOfWeek == DayOfWeek.TUESDAY
-          ? new LocalDate[] {date, date.minusDays(2)}
-          : new LocalDate[] {date};
+          ? new LocalDate[] { date, date.minusDays(2) }
+          : new LocalDate[] { date };
     }
   },
 
   /**
-   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall
-   * on {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall on
+   * {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for US holidays.
+   * <p>
+   * This strategy is useful for US holidays.
    */
   SUNDAY_TO_MONDAY {
     @Override
@@ -86,17 +85,17 @@ public enum ShiftingStrategy {
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-      return date.getDayOfWeek() == DayOfWeek.MONDAY
-          ? new LocalDate[] {date, date.minusDays(1)}
-          : new LocalDate[] {date};
+      return date.getDayOfWeek() == DayOfWeek.MONDAY ? new LocalDate[] { date, date.minusDays(1) }
+          : new LocalDate[] { date };
     }
   },
 
   /**
-   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#TUESDAY} when they
-   * fall on {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#TUESDAY} when they fall on
+   * {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for Japanese holidays.
+   * <p>
+   * This strategy is useful for Japanese holidays.
    */
   SUNDAY_TO_TUESDAY {
     @Override
@@ -106,17 +105,17 @@ public enum ShiftingStrategy {
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-      return date.getDayOfWeek() == DayOfWeek.TUESDAY
-          ? new LocalDate[] {date, date.minusDays(2)}
-          : new LocalDate[] {date};
+      return date.getDayOfWeek() == DayOfWeek.TUESDAY ? new LocalDate[] { date, date.minusDays(2) }
+          : new LocalDate[] { date };
     }
   },
 
   /**
-   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#WEDNESDAY} when they
-   * fall on {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#WEDNESDAY} when they fall on
+   * {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for Japanese holidays.
+   * <p>
+   * This strategy is useful for Japanese holidays.
    */
   SUNDAY_TO_WEDNESDAY {
     @Override
@@ -126,17 +125,17 @@ public enum ShiftingStrategy {
 
     @Override
     public LocalDate[] unshift(LocalDate date) {
-      return date.getDayOfWeek() == DayOfWeek.WEDNESDAY
-          ? new LocalDate[] {date, date.minusDays(3)}
-          : new LocalDate[] {date};
+      return date.getDayOfWeek() == DayOfWeek.WEDNESDAY ? new LocalDate[] { date, date.minusDays(3) }
+          : new LocalDate[] { date };
     }
   },
 
   /**
-   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall
-   * on {@link DayOfWeek#SATURDAY} or {@link DayOfWeek#SUNDAY}.
+   * For {@link Holiday}s that are observed on the following {@link DayOfWeek#MONDAY} when they fall on
+   * {@link DayOfWeek#SATURDAY} or {@link DayOfWeek#SUNDAY}.
    *
-   * <p>This strategy is useful for Australian holidays.
+   * <p>
+   * This strategy is useful for Australian holidays.
    */
   WEEKEND_TO_MONDAY {
     @Override
@@ -156,8 +155,8 @@ public enum ShiftingStrategy {
     @Override
     public LocalDate[] unshift(LocalDate date) {
       return date.getDayOfWeek() == DayOfWeek.MONDAY
-          ? new LocalDate[] {date, date.minusDays(1), date.minusDays(2)}
-          : new LocalDate[] {date};
+          ? new LocalDate[] { date, date.minusDays(1), date.minusDays(2) }
+          : new LocalDate[] { date };
     }
   };
 

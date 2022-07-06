@@ -23,7 +23,7 @@ class FollowingWeekShiftingStrategyTest {
 
   @Test
   void fridayUnshift() {
-    assertArrayEquals(new LocalDate[] {FRIDAY}, STRATEGY.unshift(FRIDAY));
+    assertArrayEquals(new LocalDate[] { FRIDAY }, STRATEGY.unshift(FRIDAY));
   }
 
   @Test
@@ -33,7 +33,7 @@ class FollowingWeekShiftingStrategyTest {
 
   @Test
   void saturdayUnshift() {
-    assertArrayEquals(new LocalDate[] {SATURDAY}, STRATEGY.unshift(SATURDAY));
+    assertArrayEquals(new LocalDate[] { SATURDAY }, STRATEGY.unshift(SATURDAY));
   }
 
   @Test
@@ -43,7 +43,7 @@ class FollowingWeekShiftingStrategyTest {
 
   @Test
   void sundayUnshift() {
-    assertArrayEquals(new LocalDate[] {SUNDAY}, STRATEGY.unshift(SUNDAY));
+    assertArrayEquals(new LocalDate[] { SUNDAY }, STRATEGY.unshift(SUNDAY));
   }
 
   @Test
@@ -53,7 +53,7 @@ class FollowingWeekShiftingStrategyTest {
 
   @Test
   void mondayUnshift() {
-    assertArrayEquals(new LocalDate[] {MONDAY, SATURDAY}, STRATEGY.unshift(MONDAY));
+    assertArrayEquals(new LocalDate[] { MONDAY, SATURDAY }, STRATEGY.unshift(MONDAY));
   }
 
   @Test
@@ -63,6 +63,6 @@ class FollowingWeekShiftingStrategyTest {
 
   @Test
   void tuesdayUnshift() {
-    assertArrayEquals(new LocalDate[] {TUESDAY, SUNDAY}, STRATEGY.unshift(TUESDAY));
+    assertArrayEquals(new LocalDate[] { TUESDAY, SUNDAY }, STRATEGY.unshift(TUESDAY));
   }
 }

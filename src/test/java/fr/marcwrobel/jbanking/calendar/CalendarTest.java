@@ -90,8 +90,7 @@ class CalendarTest {
   @Test
   void holidaysWithin() {
     Calendar calendar = new OddCalendar();
-    assertEquals(
-        Arrays.asList(ODD.minusDays(2), ODD, ODD.plusDays(2)),
+    assertEquals(Arrays.asList(ODD.minusDays(2), ODD, ODD.plusDays(2)),
         calendar.holidaysWithin(ODD.minusDays(2), ODD.plusDays(2)));
   }
 
@@ -104,8 +103,7 @@ class CalendarTest {
   @Test
   void businessDaysWithin() {
     Calendar calendar = new OddCalendar();
-    assertEquals(
-        Arrays.asList(ODD.minusDays(1), ODD.plusDays(1)),
+    assertEquals(Arrays.asList(ODD.minusDays(1), ODD.plusDays(1)),
         calendar.businessDaysWithin(ODD.minusDays(2), ODD.plusDays(2)));
   }
 }

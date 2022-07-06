@@ -23,8 +23,8 @@ public final class ConfigurableCalendar implements Calendar {
    * Creates a new instance using the given bank {@link Holiday}s.
    *
    * @param holidays the {@link Holiday}s that the calendar will be using.
-   * @throws NullPointerException if {@code holidays} is {code null} or if one of the holiday in
-   *     {@code holidays} is {code null}.
+   * @throws NullPointerException if {@code holidays} is {code null} or if one of the holiday in {@code holidays} is {code
+   *         null}.
    */
   public ConfigurableCalendar(Collection<Holiday> holidays) {
     Set<Holiday> copy = new HashSet<>(holidays.size());
@@ -40,14 +40,16 @@ public final class ConfigurableCalendar implements Calendar {
    * Creates a new instance using the given bank {@link Holiday}s.
    *
    * @param holidays the {@link Holiday}s that the calendar will be using.
-   * @throws NullPointerException if {@code holidays} is {code null} or if one of the holiday in
-   *     {@code holidays} is {code null}.
+   * @throws NullPointerException if {@code holidays} is {code null} or if one of the holiday in {@code holidays} is {code
+   *         null}.
    */
   public ConfigurableCalendar(Holiday... holidays) {
     this(asList(holidays));
   }
 
-  /** @see Calendar#isHoliday(LocalDate) */
+  /**
+   * @see Calendar#isHoliday(LocalDate)
+   */
   @Override
   public boolean isHoliday(LocalDate date) {
     for (Holiday holiday : holidays) {
@@ -59,7 +61,9 @@ public final class ConfigurableCalendar implements Calendar {
     return false;
   }
 
-  /** @see Calendar#getHolidaysFor(LocalDate) */
+  /**
+   * @see Calendar#getHolidaysFor(LocalDate)
+   */
   @Override
   public Set<Holiday> getHolidaysFor(LocalDate date) {
     Set<Holiday> matchingHolidays = new HashSet<>(0);

@@ -5,18 +5,20 @@ import java.time.LocalDate;
 /**
  * This class is modeling the <a href="https://wikipedia.org/wiki/Easter">western easter sunday</a>.
  *
- * <p>The date of Easter Sunday is computed with the Meeus/Jones/Butcher Gregorian algorithm.
+ * <p>
+ * The date of Easter Sunday is computed with the Meeus/Jones/Butcher Gregorian algorithm.
  *
- * @see <a
- *     href="http://wikipedia.org/wiki/Computus#Meeus.2FJones.2FButcher_Gregorian_algorithm">Meeus/Jones/Butcher
- *     Gregorian algorithm</a>
  * @author Marc Wrobel
+ * @see <a href="http://wikipedia.org/wiki/Computus#Meeus.2FJones.2FButcher_Gregorian_algorithm">Meeus/Jones/Butcher Gregorian
+ *      algorithm</a>
  * @since 2.1.0
  */
 public enum WesternEaster implements Holiday {
   INSTANCE;
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     return meeusJonesButcherComputus(date.getYear()).equals(date);

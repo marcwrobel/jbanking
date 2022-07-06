@@ -32,8 +32,7 @@ class YearRangeHolidayTest {
   void equalsAndHashCodeAndToString() {
     Holiday holiday1 = HOLIDAY;
     Holiday holiday2 = HOLIDAY;
-    Holiday holiday3 =
-        new YearRangeHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)), RANGE);
+    Holiday holiday3 = new YearRangeHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY + 1)), RANGE);
     Holiday holiday4 = new YearRangeHoliday(BASE, ValueRange.of(YEAR, YEAR));
 
     assertEquals(holiday1, holiday2);

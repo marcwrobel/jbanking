@@ -37,5 +37,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Fix Sonatype lift `MissingSummary` warnings (#118).
 - Upgrade JDK version in development environment to 17 (#119).
 - Use Maven --strict-checksums option by default (#123).
+- Switch to formatter-maven-plugin for code formatting (#125).
 
 ### Thanks

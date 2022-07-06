@@ -20,8 +20,7 @@ class AgreementTest {
       Set<Agreement> participations = country.participations();
 
       for (Agreement agreement : Agreement.values()) {
-        assertEquals(
-            agreement.getParticipants().contains(country), country.isParticipatingTo(agreement));
+        assertEquals(agreement.getParticipants().contains(country), country.isParticipatingTo(agreement));
         assertEquals(country.isParticipatingTo(agreement), participations.contains(agreement));
       }
     }

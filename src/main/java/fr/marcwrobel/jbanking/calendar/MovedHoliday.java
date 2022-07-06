@@ -11,9 +11,9 @@ import java.util.Objects;
 /**
  * A {@link Holiday} that has been punctually moved to another day.
  *
- * <p>This class is useful for modeling holidays like the May Day in the United Kingdom, that has
- * been exceptionally moved from 2020-05-04 to 2020-05-08 in 2020 to coincide with Victory in Europe
- * Day.
+ * <p>
+ * This class is useful for modeling holidays like the May Day in the United Kingdom, that has been exceptionally moved from
+ * 2020-05-04 to 2020-05-08 in 2020 to coincide with Victory in Europe Day.
  *
  * @author Marc Wrobel
  * @since 2.1.0
@@ -27,12 +27,13 @@ public final class MovedHoliday implements Holiday {
   /**
    * Create a new holiday using the given base and replacements {@link Map}.
    *
-   * <p>The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the
-   * original dates dans vn are the replacement.
+   * <p>
+   * The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the original dates dans vn are the
+   * replacement.
    *
    * @param base a non-null holiday to use as a base
    * @param replacements replacements, expressed as key / value
-   * @throws NullPointerException if <code>base</code> is null
+   * @throws NullPointerException if {@code base} is {@code null}
    */
   public MovedHoliday(Holiday base, LocalDate... replacements) {
     this.base = requireNonNull(base);
@@ -51,15 +52,16 @@ public final class MovedHoliday implements Holiday {
   }
 
   /**
-   * Create a new holiday using the given base {@link MonthDayHoliday}, the replacement day {@link
-   * MonthDay} and the years when the replacement must occur.
+   * Create a new holiday using the given base {@link MonthDayHoliday}, the replacement day {@link MonthDay} and the years when
+   * the replacement must occur.
    *
-   * <p>This constructor build a {@link MonthDayHoliday} internally.
+   * <p>
+   * This constructor build a {@link MonthDayHoliday} internally.
    *
    * @param base a non-null holiday to use as a base.
    * @param replacement the replacement expressed as a {@link MonthDay}
    * @param replacedYears the years when the holiday must be replaced
-   * @throws NullPointerException if {@code base} is null
+   * @throws NullPointerException if {@code base} is {@code null}
    */
   public MovedHoliday(MonthDay base, MonthDay replacement, int... replacedYears) {
     this.base = new MonthDayHoliday(base);
@@ -77,7 +79,9 @@ public final class MovedHoliday implements Holiday {
     }
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     if (replacements.containsKey(date)) {

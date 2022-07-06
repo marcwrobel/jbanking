@@ -26,63 +26,35 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 class CreditorIdentifierTest {
 
-  private static final List<String> VALID_CREDITOR_IDENTIFIERS =
-      Arrays.asList(
-          "HR04ZZZ01234567890",
-          "SK19ZZZ70000000022",
-          "NO38ZZZ123456785",
-          "ES59ZZZX1234567L",
-          "CY54ZZZ003A",
-          "CZ56ZZZ12345",
-          "IE84ZZZ123456",
-          "FR72ZZZ123456",
-          "PL18ZZZ0123456789",
-          "DK95ZZZ999912345678",
-          "DE51ZZZ12345678901",
-          "LT30ZZZ123456789",
-          "MC54ZZZ123456",
-          "GB23ZZZSDDBARC000000ABCD1234",
-          "SE41ZZZ1234567890",
-          "ES04ZZZ52840790N",
-          "NL42ZZZ123456780001",
-          "AT61ZZZ01234567890",
-          "LV21ZZZ40003000010",
-          "BE68ZZZ0123456789",
-          "GR44ZZZ12345",
-          "IT66ZZZA1B2C3D4E5F6G7H8",
-          "PT73ZZZ123456",
-          "SI02ZZZ12345678",
-          "HU56ZZZE12345676",
-          "BE69ZZZ050D000000008",
-          "HU74111A12345676",
-          "BG07ZZZ100064095",
-          "FI22BBB12345678",
-          "SM94ZZZA1B2C3D4E5F6G7H8",
-          "ES50ZZZM23456789",
-          "LU27ZZZ0000000000123456789",
-          "CH1312300000012345",
-          "MT31ZZZ123456789X",
-          "EE49ZZZEE00012345678");
+  private static final List<String> VALID_CREDITOR_IDENTIFIERS = Arrays.asList("HR04ZZZ01234567890",
+      "SK19ZZZ70000000022", "NO38ZZZ123456785", "ES59ZZZX1234567L", "CY54ZZZ003A", "CZ56ZZZ12345",
+      "IE84ZZZ123456", "FR72ZZZ123456", "PL18ZZZ0123456789", "DK95ZZZ999912345678", "DE51ZZZ12345678901",
+      "LT30ZZZ123456789", "MC54ZZZ123456", "GB23ZZZSDDBARC000000ABCD1234", "SE41ZZZ1234567890",
+      "ES04ZZZ52840790N", "NL42ZZZ123456780001", "AT61ZZZ01234567890", "LV21ZZZ40003000010", "BE68ZZZ0123456789",
+      "GR44ZZZ12345", "IT66ZZZA1B2C3D4E5F6G7H8", "PT73ZZZ123456", "SI02ZZZ12345678", "HU56ZZZE12345676",
+      "BE69ZZZ050D000000008", "HU74111A12345676", "BG07ZZZ100064095", "FI22BBB12345678",
+      "SM94ZZZA1B2C3D4E5F6G7H8", "ES50ZZZM23456789", "LU27ZZZ0000000000123456789", "CH1312300000012345",
+      "MT31ZZZ123456789X", "EE49ZZZEE00012345678");
 
   private static final String VALID_CI_COUNTRY = "FR";
   private static final String VALID_CI_CHECKDIGIT = "72";
   private static final String VALID_CI_BUSINESS_CODE = "ZZZ";
   private static final String VALID_CI_NATIONAL_ID = "123456";
-  private static final String VALID_CI =
-      VALID_CI_COUNTRY + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
+  private static final String VALID_CI = VALID_CI_COUNTRY + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
+      + VALID_CI_NATIONAL_ID;
   private static final String VALID_CI2 = "BE69ZZZ050D000000008";
 
   private static final String INVALID_CI_NATIONAL_ID = "132!";
 
-  private static final String CI_WITH_INVALID_FORMAT =
-      VALID_CI_COUNTRY + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE + INVALID_CI_NATIONAL_ID;
-  private static final String CI_WITH_UNKNOWN_COUNTRY =
-      "ZZ" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
-  private static final String CI_WITH_UNSUPPORTED_COUNTRY =
-      "US" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
+  private static final String CI_WITH_INVALID_FORMAT = VALID_CI_COUNTRY + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
+      + INVALID_CI_NATIONAL_ID;
+  private static final String CI_WITH_UNKNOWN_COUNTRY = "ZZ" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
+      + VALID_CI_NATIONAL_ID;
+  private static final String CI_WITH_UNSUPPORTED_COUNTRY = "US" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
+      + VALID_CI_NATIONAL_ID;
 
-  private static final String CI_WITH_INVALID_CHECK_DIGIT =
-      VALID_CI_COUNTRY + "09" + VALID_CI_BUSINESS_CODE + VALID_CI_NATIONAL_ID;
+  private static final String CI_WITH_INVALID_CHECK_DIGIT = VALID_CI_COUNTRY + "09" + VALID_CI_BUSINESS_CODE
+      + VALID_CI_NATIONAL_ID;
 
   @Test
   void nullIsNotAValidCreditorIdentifier() {
@@ -96,22 +68,18 @@ class CreditorIdentifierTest {
 
   @Test
   void aCreditorIdentifierCountryCannotBeNull() {
-    assertThrows(
-        IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> new CreditorIdentifier(null, VALID_CI_BUSINESS_CODE, "123456"));
   }
 
   @Test
   void aCreditorIdentifierBusinessCodeCannotBeNull() {
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> new CreditorIdentifier(IsoCountry.FR, null, "123456"));
+    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(IsoCountry.FR, null, "123456"));
   }
 
   @Test
   void aCreditorNationalIdCannotBeNull() {
-    assertThrows(
-        IllegalArgumentException.class,
+    assertThrows(IllegalArgumentException.class,
         () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, null));
   }
 
@@ -122,14 +90,12 @@ class CreditorIdentifierTest {
 
   @Test
   void aCreditorIdentifierCannotBeBlank() {
-    assertThrows(
-        CreditorIdentifierFormatException.class, () -> new CreditorIdentifier(TestUtils.BLANK));
+    assertThrows(CreditorIdentifierFormatException.class, () -> new CreditorIdentifier(TestUtils.BLANK));
   }
 
   @Test
   void aCreditorNationalIdCannotBeBlank() {
-    assertThrows(
-        CreditorIdentifierFormatException.class,
+    assertThrows(CreditorIdentifierFormatException.class,
         () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, TestUtils.BLANK));
   }
 
@@ -140,10 +106,8 @@ class CreditorIdentifierTest {
 
   @Test
   void aCreditorIdMustBeFromAKnownCountry() {
-    CreditorIdentifierFormatException e =
-        assertThrows(
-            CreditorIdentifierFormatException.class,
-            () -> new CreditorIdentifier(CI_WITH_UNKNOWN_COUNTRY));
+    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
+        () -> new CreditorIdentifier(CI_WITH_UNKNOWN_COUNTRY));
     assertEquals(CI_WITH_UNKNOWN_COUNTRY, e.getInputString());
     assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
   }
@@ -215,11 +179,9 @@ class CreditorIdentifierTest {
     String countryCode = value.substring(0, 2);
     String businessCode = value.substring(4, 7);
     String nationalId = value.substring(7);
-    assertEquals(
-        creditorId,
+    assertEquals(creditorId,
         new CreditorIdentifier(
-            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
-            businessCode,
+            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new), businessCode,
             nationalId));
   }
 
@@ -242,13 +204,10 @@ class CreditorIdentifierTest {
     String countryCode = value.substring(0, 2);
     String businessCode = value.substring(4, 7);
     String nationalId = value.substring(7);
-    assertEquals(
-        value,
+    assertEquals(value,
         new CreditorIdentifier(
-                IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new),
-                businessCode,
-                nationalId.toLowerCase())
-            .toString());
+            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new), businessCode,
+            nationalId.toLowerCase()).toString());
   }
 
   @Test

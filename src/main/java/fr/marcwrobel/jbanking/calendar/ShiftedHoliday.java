@@ -8,9 +8,9 @@ import java.util.Objects;
 /**
  * A {@link Holiday} relative to another {@link Holiday} with a fixed day shift.
  *
- * <p>This class is modeling holidays like <a
- * href="https://wikipedia.org/wiki/Independence_Day_%28United_States%29">the Independence Day</a>
- * in the United States.
+ * <p>
+ * This class is modeling holidays like <a href="https://wikipedia.org/wiki/Independence_Day_%28United_States%29">the
+ * Independence Day</a> in the United States.
  *
  * @author Marc Wrobel
  * @since 2.1.0
@@ -32,7 +32,9 @@ public final class ShiftedHoliday implements Holiday {
     this.strategy = requireNonNull(strategy);
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     for (LocalDate candidate : strategy.unshift(date)) {

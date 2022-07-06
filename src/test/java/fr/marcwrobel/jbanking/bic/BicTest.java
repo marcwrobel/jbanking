@@ -26,13 +26,10 @@ class BicTest {
   private static final String BRANCH_CODE = Bic.PRIMARY_OFFICE_BRANCH_CODE;
 
   private static final String BIC_WITH_INVALID_FORMAT = INSTITUTION_CODE + COUNTRY_CODE;
-  private static final String BIC_WITH_INVALID_COUNTRY_CODE =
-      INSTITUTION_CODE + "OO" + LOCATION_CODE;
+  private static final String BIC_WITH_INVALID_COUNTRY_CODE = INSTITUTION_CODE + "OO" + LOCATION_CODE;
   private static final String VALID_BIC8 = INSTITUTION_CODE + COUNTRY_CODE + LOCATION_CODE;
-  private static final String VALID_BIC11 =
-      INSTITUTION_CODE + COUNTRY_CODE + LOCATION_CODE + BRANCH_CODE;
-  private static final String VALID_BIC11_TEST =
-      INSTITUTION_CODE + COUNTRY_CODE + LOCATION_CODE_TEST + BRANCH_CODE;
+  private static final String VALID_BIC11 = INSTITUTION_CODE + COUNTRY_CODE + LOCATION_CODE + BRANCH_CODE;
+  private static final String VALID_BIC11_TEST = INSTITUTION_CODE + COUNTRY_CODE + LOCATION_CODE_TEST + BRANCH_CODE;
   private static final String VALID_BIC8_LOWERCASE = VALID_BIC8.toLowerCase();
   private static final String VALID_BIC11_LOWERCASE = VALID_BIC11.toLowerCase();
 
@@ -58,8 +55,7 @@ class BicTest {
 
   @Test
   void aBicMustBeProperlyFormatted() {
-    BicFormatException e =
-        assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_FORMAT));
+    BicFormatException e = assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_FORMAT));
     assertEquals(BIC_WITH_INVALID_FORMAT, e.getInputString());
     assertTrue(e.getMessage().contains("format"));
   }
@@ -71,8 +67,7 @@ class BicTest {
 
   @Test
   void aBicCountryCodeMustBeKnown() {
-    BicFormatException e =
-        assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_COUNTRY_CODE));
+    BicFormatException e = assertThrows(BicFormatException.class, () -> new Bic(BIC_WITH_INVALID_COUNTRY_CODE));
     assertEquals(BIC_WITH_INVALID_COUNTRY_CODE, e.getInputString());
     assertTrue(e.getMessage().contains("country"));
   }

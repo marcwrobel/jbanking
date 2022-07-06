@@ -13,7 +13,8 @@ import java.time.MonthDay;
 /**
  * A set of {@link Holiday}s that relates to common holidays.
  *
- * <p>This class is for internal use only.
+ * <p>
+ * This class is for internal use only.
  */
 enum Holidays implements Holiday {
 
@@ -143,8 +144,7 @@ enum Holidays implements Holiday {
    */
   VICTORY_IN_EUROPE_DAY(new MonthDayHoliday(MonthDay.of(MAY, 8)));
 
-  @SuppressWarnings(
-      "ImmutableEnumChecker") // Holidays is thread-safe (given Holiday is thread-safe).
+  @SuppressWarnings("ImmutableEnumChecker") // Holidays is thread-safe (given Holiday is thread-safe).
   private final Holiday holiday;
 
   Holidays(Holiday holiday) {

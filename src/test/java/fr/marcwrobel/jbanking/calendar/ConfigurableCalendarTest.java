@@ -30,20 +30,18 @@ class ConfigurableCalendarTest {
   private static final Holiday SATURDAY_HOLIDAY = DayOfWeekHoliday.SATURDAY;
   private static final Holiday SUNDAY_HOLIDAY1 = DayOfWeekHoliday.SUNDAY;
   private static final Holiday SUNDAY_HOLIDAY2 = new MonthDayHoliday(MonthDay.from(SUNDAY));
-  private static final Calendar WEEKEND_CALENDAR =
-      new ConfigurableCalendar(SATURDAY_HOLIDAY, SUNDAY_HOLIDAY1, SUNDAY_HOLIDAY2);
+  private static final Calendar WEEKEND_CALENDAR = new ConfigurableCalendar(SATURDAY_HOLIDAY, SUNDAY_HOLIDAY1,
+      SUNDAY_HOLIDAY2);
 
   @Test
   void holidaysMustNotBeNull() {
-    //noinspection ConstantConditions
-    assertThrows(
-        NullPointerException.class, () -> new ConfigurableCalendar((Collection<Holiday>) null));
+    // noinspection ConstantConditions
+    assertThrows(NullPointerException.class, () -> new ConfigurableCalendar((Collection<Holiday>) null));
   }
 
   @Test
   void oneHolidayMustNotBeNull() {
-    assertThrows(
-        NullPointerException.class,
+    assertThrows(NullPointerException.class,
         () -> new ConfigurableCalendar(SUNDAY_HOLIDAY1, null, SUNDAY_HOLIDAY2));
   }
 
@@ -82,8 +80,7 @@ class ConfigurableCalendarTest {
   void saturdayCalculation() {
     assertFalse(WEEKEND_CALENDAR.isBusinessDay(SATURDAY));
     assertTrue(WEEKEND_CALENDAR.isHoliday(SATURDAY));
-    assertEquals(
-        new HashSet<>(singletonList(SATURDAY_HOLIDAY)), WEEKEND_CALENDAR.getHolidaysFor(SATURDAY));
+    assertEquals(new HashSet<>(singletonList(SATURDAY_HOLIDAY)), WEEKEND_CALENDAR.getHolidaysFor(SATURDAY));
   }
 
   @Test
@@ -99,9 +96,7 @@ class ConfigurableCalendarTest {
     assertFalse(WEEKEND_CALENDAR.isBusinessDay(SUNDAY));
     assertTrue(WEEKEND_CALENDAR.isHoliday(SUNDAY));
     assertTrue(WEEKEND_CALENDAR.isHoliday(SUNDAY));
-    assertEquals(
-        new HashSet<>(asList(SUNDAY_HOLIDAY1, SUNDAY_HOLIDAY2)),
-        WEEKEND_CALENDAR.getHolidaysFor(SUNDAY));
+    assertEquals(new HashSet<>(asList(SUNDAY_HOLIDAY1, SUNDAY_HOLIDAY2)), WEEKEND_CALENDAR.getHolidaysFor(SUNDAY));
   }
 
   @Test
@@ -114,8 +109,7 @@ class ConfigurableCalendarTest {
 
   @Test
   void fromCannotBeAfterToForHolidaysComputation() {
-    assertThrows(
-        IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
+    assertThrows(IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
   }
 
   @Test
@@ -133,8 +127,7 @@ class ConfigurableCalendarTest {
 
   @Test
   void fromCannotBeAfterToForBusinessDaysComputation() {
-    assertThrows(
-        IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
+    assertThrows(IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
   }
 
   @Test

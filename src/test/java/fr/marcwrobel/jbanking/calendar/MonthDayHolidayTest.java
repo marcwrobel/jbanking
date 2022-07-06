@@ -33,7 +33,7 @@ class MonthDayHolidayTest {
   }
 
   @ParameterizedTest
-  @ValueSource(ints = {1, 100, 1970, YEAR, 2050, 10000})
+  @ValueSource(ints = { 1, 100, 1970, YEAR, 2050, 10000 })
   void holidayCheckSucceed(int year) {
     assertTrue(HOLIDAY.check(LocalDate.of(year, MONTH, DAY)));
   }

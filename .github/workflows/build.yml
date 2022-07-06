@@ -26,4 +26,4 @@ jobs:
           java-version: ${{ matrix.java }}
 
       - name: Build
-        run: 'mvn -B verify javadoc:jar'
+        run: 'mvn -B formatter:validate verify javadoc:jar'

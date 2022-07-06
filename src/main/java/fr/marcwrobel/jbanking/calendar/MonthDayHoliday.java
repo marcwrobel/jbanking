@@ -10,7 +10,8 @@ import java.util.Objects;
 /**
  * A {@link Holiday} occurring the same day and month every year.
  *
- * <p>This class is useful for modeling holidays like Christmas.
+ * <p>
+ * This class is useful for modeling holidays like Christmas.
  *
  * @author Marc Wrobel
  * @since 2.1.0
@@ -34,14 +35,16 @@ public final class MonthDayHoliday implements Holiday {
    *
    * @param month the month-of-year to represent, not null
    * @param dayOfMonth the day-of-month to represent
-   * @throws java.time.DateTimeException if the value of any field is out of range, or if the
-   *     day-of-month is invalid for the month
+   * @throws java.time.DateTimeException if the value of any field is out of range, or if the day-of-month is invalid for the
+   *         month
    */
   public MonthDayHoliday(Month month, int dayOfMonth) {
     this.monthDay = MonthDay.of(month, dayOfMonth);
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     return monthDay.equals(MonthDay.from(date));

@@ -8,8 +8,9 @@ import java.util.Objects;
 /**
  * A {@link Holiday} relative to another {@link Holiday} with a fixed day shift.
  *
- * <p>This class is modeling holidays like <a href="https://wikipedia.org/wiki/Easter_Monday">easter
- * monday</a> or <a href="https://wikipedia.org/wiki/Good_Friday">good friday</a>.
+ * <p>
+ * This class is modeling holidays like <a href="https://wikipedia.org/wiki/Easter_Monday">easter monday</a> or
+ * <a href="https://wikipedia.org/wiki/Good_Friday">good friday</a>.
  *
  * @author Marc Wrobel
  * @since 2.1.0
@@ -20,8 +21,7 @@ public final class RelativeHoliday implements Holiday {
   private final int plusDays;
 
   /**
-   * Create a new holiday using the given {@link Holiday base holiday} and the given number of days
-   * as the shift.
+   * Create a new holiday using the given {@link Holiday base holiday} and the given number of days as the shift.
    *
    * @param base a non-null holiday to use as a base.
    * @param plusDays a number of days to use as the shift (can be negative)
@@ -32,7 +32,9 @@ public final class RelativeHoliday implements Holiday {
     this.plusDays = plusDays;
   }
 
-  /** @see Holiday#check(LocalDate) */
+  /**
+   * @see Holiday#check(LocalDate)
+   */
   @Override
   public boolean check(LocalDate date) {
     return base.check(date.minusDays(plusDays));

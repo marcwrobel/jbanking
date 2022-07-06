@@ -9,14 +9,15 @@ package fr.marcwrobel.jbanking.swift;
  */
 public class SwiftPatternSyntaxException extends RuntimeException {
 
-  /** Serialization version. */
+  /**
+   * Serialization version.
+   */
   private static final long serialVersionUID = 0;
 
   private final String expression;
 
   /**
-   * Constructs a {@code SwiftPatternSyntaxException} with the expression that caused the error and
-   * the given detail message.
+   * Constructs a {@code SwiftPatternSyntaxException} with the expression that caused the error and the given detail message.
    *
    * @param expression a string
    */

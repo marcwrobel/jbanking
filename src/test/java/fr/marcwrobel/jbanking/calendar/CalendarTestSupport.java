@@ -28,10 +28,8 @@ abstract class CalendarTestSupport {
     LocalDate to = LocalDate.of(year, DECEMBER, 31);
     List<LocalDate> actual = calendar.holidaysWithin(from, to);
 
-    List<LocalDate> expected =
-        Arrays.stream(expectedDatesForYear)
-            .map(d -> LocalDate.of(year, d.getMonth(), d.getDayOfMonth()))
-            .collect(Collectors.toList());
+    List<LocalDate> expected = Arrays.stream(expectedDatesForYear)
+        .map(d -> LocalDate.of(year, d.getMonth(), d.getDayOfMonth())).collect(Collectors.toList());
 
     assertEquals(filterOutWeekends(expected), filterOutWeekends(actual));
   }
@@ -47,11 +45,8 @@ abstract class CalendarTestSupport {
         boolean isHoliday = calendar.isHoliday(date);
         boolean isStrataHoliday = strataCalendar.isHoliday(date);
         Set<Holiday> holidays = calendar.getHolidaysFor(date);
-        assertEquals(
-            isStrataHoliday,
-            isHoliday,
-            String.format(
-                "%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays));
+        assertEquals(isStrataHoliday, isHoliday,
+            String.format("%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays));
       }
 
       date = date.plusDays(1);

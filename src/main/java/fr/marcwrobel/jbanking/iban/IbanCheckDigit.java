@@ -3,18 +3,17 @@ package fr.marcwrobel.jbanking.iban;
 /**
  * Provide ISO 7064 Mod 97,10 IBAN check digit calculation and validation.
  *
- * <p>This class is implementing the singleton pattern by being an enumeration. Algorithm is based
- * on the <a
- * href="https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">Apache
+ * <p>
+ * This class is implementing the singleton pattern by being an enumeration. Algorithm is based on the <a href=
+ * "https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">Apache
  * commons-validator's IBANCheckDigit</a>.
  *
  * @author Marc Wrobel
- * @see <a
- *     href="https://en.wikipedia.org/wiki/ISO/IEC_7064">https://en.wikipedia.org/wiki/ISO/IEC_7064</a>
- * @see <a
- *     href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">https://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
- * @see <a
- *     href="https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD</a>
+ * @see <a href="https://en.wikipedia.org/wiki/ISO/IEC_7064">https://en.wikipedia.org/wiki/ISO/IEC_7064</a>
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/International_Bank_Account_Number">https://en.wikipedia.org/wiki/International_Bank_Account_Number</a>
+ * @see <a href=
+ *      "https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD</a>
  * @since 1.0
  */
 public enum IbanCheckDigit {
@@ -31,8 +30,7 @@ public enum IbanCheckDigit {
    *
    * @param iban a non-null string.
    * @return {@code true} if the given IBAN check digit is valid, {@code false} otherwise.
-   * @throws IllegalArgumentException if the given IBAN is null or if its size is not at least four
-   *     characters.
+   * @throws IllegalArgumentException if the given IBAN is {@code null} or if its size is not at least four characters.
    */
   public boolean validate(String iban) {
     validateString(iban);
@@ -53,8 +51,8 @@ public enum IbanCheckDigit {
   }
 
   /**
-   * Calculate the given IBAN check digit. For a valid calculation the given IBAN its characters
-   * have to be alphanumeric ([a-zA-Z0-9]) and check digit characters have to be set to zero.
+   * Calculate the given IBAN check digit. For a valid calculation the given IBAN its characters have to be alphanumeric
+   * ([a-zA-Z0-9]) and check digit characters have to be set to zero.
    *
    * @param iban a non-null string
    * @return the given IBAN check digit.
@@ -75,8 +73,7 @@ public enum IbanCheckDigit {
     }
 
     if (iban.length() <= BBAN_INDEX) {
-      throw new IllegalArgumentException(
-          "the iban argument size must be greater than " + BBAN_INDEX);
+      throw new IllegalArgumentException("the iban argument size must be greater than " + BBAN_INDEX);
     }
   }
 

@@ -56,8 +56,7 @@ class IsoCountryTest {
 
   @Test
   void fromAlpha2CodeIsNotCaseSensitive() {
-    Optional<IsoCountry> country =
-        IsoCountry.fromAlpha2Code(IsoCountry.FR.getAlpha2Code().toLowerCase());
+    Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(IsoCountry.FR.getAlpha2Code().toLowerCase());
 
     assertTrue(country.isPresent());
     assertEquals(FR, country.get());
@@ -65,8 +64,7 @@ class IsoCountryTest {
 
   @Test
   void fromAlpha3CodeIsNotCaseSensitive() {
-    Optional<IsoCountry> country =
-        IsoCountry.fromAlpha3Code(IsoCountry.FR.getAlpha3Code().toLowerCase());
+    Optional<IsoCountry> country = IsoCountry.fromAlpha3Code(IsoCountry.FR.getAlpha3Code().toLowerCase());
 
     assertTrue(country.isPresent());
     assertEquals(FR, country.get());
@@ -107,27 +105,19 @@ class IsoCountryTest {
   void ensureCompleteness() {
     Set<Assignment> assignments = of(Assignment.OFFICIALLY_ASSIGNED, Assignment.USER_ASSIGNED);
 
-    List<CountryCode> allCountries =
-        EnumSet.allOf(CountryCode.class).stream()
-            .filter(
-                c ->
-                    !EnumSet.of(
-                            CountryCode.UNDEFINED,
-                            // XI and XU are not official ISO 3166 country codes and are mainly for
-                            // customs declarations (see
-                            // https://www.uktradeinfo.com/news/changes-to-country-and-commodity-codes-in-2022/). They are not
-                            // listed in IBAN registry. So they will not be added to the IsoCountry
-                            // enum.
-                            CountryCode.XI,
-                            CountryCode.XU)
-                        .contains(c))
-            .filter(c -> assignments.contains(c.getAssignment()))
-            .collect(Collectors.toList());
+    List<CountryCode> allCountries = EnumSet.allOf(CountryCode.class).stream()
+        .filter(c -> !EnumSet.of(CountryCode.UNDEFINED,
+            // XI and XU are not official ISO 3166 country codes and are mainly for
+            // customs declarations (see
+            // https://www.uktradeinfo.com/news/changes-to-country-and-commodity-codes-in-2022/). They are
+            // not
+            // listed in IBAN registry. So they will not be added to the IsoCountry
+            // enum.
+            CountryCode.XI, CountryCode.XU).contains(c))
+        .filter(c -> assignments.contains(c.getAssignment())).collect(Collectors.toList());
 
-    List<CountryCode> undefinedCountries =
-        allCountries.stream()
-            .filter(c -> !IsoCountry.fromAlpha2Code(c.getAlpha2()).isPresent())
-            .collect(Collectors.toList());
+    List<CountryCode> undefinedCountries = allCountries.stream()
+        .filter(c -> !IsoCountry.fromAlpha2Code(c.getAlpha2()).isPresent()).collect(Collectors.toList());
 
     assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
   }
@@ -174,10 +164,8 @@ class IsoCountryTest {
   // using nv-i18n helps us to keep the enum exact
   @Test
   void ensureNoDeprecated() {
-    List<IsoCountry> deprecated =
-        Arrays.stream(IsoCountry.values())
-            .filter(c -> CountryCode.getByCode(c.getAlpha2Code()) == null)
-            .collect(Collectors.toList());
+    List<IsoCountry> deprecated = Arrays.stream(IsoCountry.values())
+        .filter(c -> CountryCode.getByCode(c.getAlpha2Code()) == null).collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
   }

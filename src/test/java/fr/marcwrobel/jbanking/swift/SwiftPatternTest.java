@@ -25,8 +25,8 @@ class SwiftPatternTest {
   void aSwiftPatternMustBeWellFormed() {
     String invalidPattern = "2!n3d";
 
-    SwiftPatternSyntaxException e =
-        assertThrows(SwiftPatternSyntaxException.class, () -> SwiftPattern.compile(invalidPattern));
+    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class,
+        () -> SwiftPattern.compile(invalidPattern));
     assertEquals(invalidPattern, e.getExpression());
   }
 

@@ -6,30 +6,33 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
- * An International Bank Account Number (IBAN) Code as specified by the <a
- * href="https://www.iso13616.org">ISO 13616:2007 standard</a>.
+ * An International Bank Account Number (IBAN) Code as specified by the <a href="https://www.iso13616.org">ISO 13616:2007
+ * standard</a>.
  *
- * <p>An IBAN consists of a two-letter ISO 3166-1 country code, followed by two check digits and up
- * to thirty alphanumeric characters for a BBAN (Basic Bank Account Number) which has a fixed length
- * per country and, included within it, a bank identifier with a fixed position and a fixed length
- * per country. The check digits are calculated based on the scheme defined in ISO/IEC 7064
- * (MOD97-10). Note that an IBAN is case-insensitive.
+ * <p>
+ * An IBAN consists of a two-letter ISO 3166-1 country code, followed by two check digits and up to thirty alphanumeric
+ * characters for a BBAN (Basic Bank Account Number) which has a fixed length per country and, included within it, a bank
+ * identifier with a fixed position and a fixed length per country. The check digits are calculated based on the scheme defined
+ * in ISO/IEC 7064 (MOD97-10). Note that an IBAN is case-insensitive.
  *
- * <p>This class handles validation of the check digit and validation of the {@link BbanStructure
- * BBAN structure}.
+ * <p>
+ * This class handles validation of the check digit and validation of the {@link BbanStructure BBAN structure}.
  *
- * <p>Instances of this class are immutable and are safe for use by multiple concurrent threads.
+ * <p>
+ * Instances of this class are immutable and are safe for use by multiple concurrent threads.
  *
  * @author Marc Wrobel
  * @see BbanStructure
- * @see <a
- *     href="http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>
+ * @see <a href=
+ *      "http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */
 public final class Iban implements Serializable {
 
-  /** Serialization version. */
+  /**
+   * Serialization version.
+   */
   private static final long serialVersionUID = 0;
 
   private static final String BASIC_REGEX = "[A-Za-z]{2}\\d{2}[A-Za-z0-9]+";
@@ -50,9 +53,8 @@ public final class Iban implements Serializable {
    *
    * @param country A non-null IsoCountry.
    * @param bban A non-null String.
-   * @throws IllegalArgumentException if either the IsoCountry or BBAN is null
-   * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry
-   *     and BBAN.
+   * @throws IllegalArgumentException if either the IsoCountry or BBAN is {@code null}
+   * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry and BBAN.
    */
   public Iban(IsoCountry country, String bban) {
     if (country == null) {
@@ -85,7 +87,7 @@ public final class Iban implements Serializable {
    * Create a new IBAN from the given string.
    *
    * @param iban A non-null String.
-   * @throws IllegalArgumentException if the given string is null
+   * @throws IllegalArgumentException if the given string is {@code null}
    * @throws IbanFormatException if the given string is not a valid IBAN.
    */
   public Iban(String iban) {
@@ -165,8 +167,7 @@ public final class Iban implements Serializable {
   }
 
   private static Optional<IsoCountry> findCountryFor(String s) {
-    return IsoCountry.fromAlpha2Code(
-        s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
+    return IsoCountry.fromAlpha2Code(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
   /**
@@ -199,8 +200,9 @@ public final class Iban implements Serializable {
   /**
    * Gets the printable version of this IBAN.
    *
-   * <p>When printed on paper, the IBAN is expressed in groups of four characters separated by a
-   * single space, the last group being of variable length
+   * <p>
+   * When printed on paper, the IBAN is expressed in groups of four characters separated by a single space, the last group being
+   * of variable length
    *
    * @return A non-null string representing this IBAN formatted for printing.
    */
@@ -237,11 +239,12 @@ public final class Iban implements Serializable {
   /**
    * Returns a normalized string representation of this IBAN.
    *
-   * <p>Normalized means the string is:
+   * <p>
+   * Normalized means the string is:
    *
    * <ul>
-   *   <li>made of uppercase characters
-   *   <li>contains no spaces
+   * <li>made of uppercase characters
+   * <li>contains no spaces
    * </ul>
    *
    * @return a normalized string representation of this IBAN
