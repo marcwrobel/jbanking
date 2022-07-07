@@ -24,7 +24,7 @@
     <strata.version>2.12.5</strata.version>
 
     <!-- 2.17+ requires java 11+ -->
-    <formatter-maven-plugin.version>2.16.0</formatter-maven-plugin.version>
+    <formatter-maven-plugin.version>2.19.0</formatter-maven-plugin.version>
   </properties>
 
   <dependencies>
