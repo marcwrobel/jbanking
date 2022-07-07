@@ -23,6 +23,9 @@
     <guava.version>31.1-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
     <strata.version>2.12.5</strata.version>
+
+    <!-- 2.17+ requires java 11+ -->
+    <formatter-maven-plugin.version>2.16.0</formatter-maven-plugin.version>
   </properties>
 
   <dependencies>
@@ -80,7 +83,7 @@
       <plugin>
         <groupId>net.revelc.code.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>
-        <version>2.16.0</version> <!-- 2.17+ requires java 11+ -->
+        <version>${formatter-maven-plugin.version}</version>
         <configuration>
           <configFile>${project.basedir}/eclipse-formatter-config.xml</configFile>
           <lineEnding>LF</lineEnding>
