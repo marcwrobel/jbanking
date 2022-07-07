@@ -131,3 +131,13 @@ is followed for every pull request.
 - `@author` tags are disallowed in the javadoc: they are hard to maintain, and we use the Git history to track
   authorship. GitHub also has [this nice page](https://github.com/marcwrobel/jbanking/graphs/contributors) with your
   contributions.
+- Do not add runtime dependencies to jbanking.
+
+## Security
+
+jbanking does not have any runtime dependency. But it relies on some external libraries for testing purpose (such as
+[guava](https://github.com/google/guava), [nv-i18n](https://github.com/TakahikoKawasaki/nv-i18n) and
+[OpenGamma Strata](https://github.com/OpenGamma/Strata)). In order to keep those libraries up-to-date we are using
+[Dependabot](https://docs.github.com/en/code-security/dependabot).
+
+jbanking is also following the [OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/en/projects/6217).
