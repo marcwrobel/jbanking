@@ -18,7 +18,7 @@
   <servers>
     <server>
       <id>github</id>
-      <username>marcwrobel</username>
+      <username>${GITHUB_REPOSITORY_OWNER}</username>
       <password>${GITHUB_TOKEN}</password>
     </server>
   </servers>

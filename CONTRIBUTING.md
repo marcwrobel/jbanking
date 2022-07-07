@@ -69,6 +69,26 @@ mvn verify
 
 Wait for a bit and you're done.
 
+## Releasing
+
+In order to publish a release to Maven Central, you :
+
+- must have an account on the [Sonatype Jira issue tracker](https://issues.sonatype.org),
+- must be a listed collaboration on [`marcwrobel/jbanking`](https://github.com/marcwrobel/jbanking),
+- need to declare, in your Maven `settings.xml`, the `oss.sonatype.org` profile and the `sonatype-nexus-staging` server
+  (you can find those declarations in [this sample settings.xml](/.mvn/build-settings.xml)),
+
+Then you can start the release process. First execute the following commands:
+
+```shell
+cd jbanking
+mvn release:prepare -Prelease
+mvn release:perform -Prelease
+```
+
+If everything went fine, go to [oss.sonatype.org](https://oss.sonatype.org/) and close/release the staging repository.
+Details are available on the [OSSRH publish guide](https://central.sonatype.org/publish/publish-guide/).
+
 ## Contribution rules
 
 To contribute, use a GitHub pull requests from your own fork. You can find more information on GitHub's
