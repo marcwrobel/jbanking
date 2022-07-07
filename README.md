@@ -18,7 +18,8 @@ limited to, European banking.
 jbanking is supporting the following features :
 
 * [ISO 3166-1 countries](http://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and status,
-  e.g. independent or dependent (according to the [International Organization for Standardization](https://www.iso.org)).
+  e.g. independent or dependent (according to the [International Organization for Standardization](https://www.iso.org))
+  .
 * Countries or territories participation to economic agreements :
   * [European Economic Area (EEA)](https://wikipedia.org/wiki/European_Economic_Area),
   * [European Free Trade Association (EFTA)](https://wikipedia.org/wiki/European_Free_Trade_Association),
@@ -57,12 +58,10 @@ as a maven dependency:
 </dependency>
 ```
 
-For usage examples, read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the
-[unit tests](src/test/java/fr/marcwrobel/jbanking).
+For documentation and examples, read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the
+[unit tests](/src/test/java/fr/marcwrobel/jbanking).
 
-## Releases and changelogs
-
-Take a look at the [changelogs on GitHub](https://github.com/marcwrobel/jbanking/releases).
+Releases and changelogs are available on [GitHub](https://github.com/marcwrobel/jbanking/releases).
 
 ## Contribute
 
@@ -70,10 +69,10 @@ Take a look at the [contribution guide](CONTRIBUTING.md).
 
 ## Need help ?
 
-Read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the [unit tests](src/test/java/fr/marcwrobel/jbanking).
+Start a [discussion](https://github.com/marcwrobel/jbanking/discussions),
+raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open)
+or contribute with [a pull-request](https://github.com/marcwrobel/jbanking/pulls) (please take a look at the
+[contribution guide](CONTRIBUTING.md) before).
 
-Raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open) or contribute
-with [a pull-request](https://github.com/marcwrobel/jbanking/pulls). Please take a look at the
-[contribution guide](CONTRIBUTING.md) before.
-
-Email me at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).
+And for the things that must be kept private (**only** !), such as [security issues](/SECURITY.md), email me at
+[marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).
