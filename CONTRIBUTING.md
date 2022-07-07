@@ -44,19 +44,24 @@ git config --global user.email your.email@example.com
 ## Code Style
 
 jbanking has a strictly enforced code style. Code formatting is done by the
-[`git-code-format-maven-plugin`](https://github.com/Cosium/git-code-format-maven-plugin), a maven plugin that
-automatically deploys [google-java-format](https://github.com/google/google-java-format) code formatter as a pre-commit
-git hook.
+[`formatter-maven-plugin`](https://github.com/revelc/formatter-maven-plugin). This maven plugin formats code using the
+Eclipse code formatter.
 
-If possible, you are encouraged to configure your IDE to format files with
-[Google Java Style](https://google.github.io/styleguide/javaguide.html). Instruction for Eclipse and Intellij IDEA can
-be found on [google/google-java-format](https://github.com/google/google-java-format).
+Code is automatically formatted each time you run `mvn`. You can also run it manually :
 
-## Building and testing main
+```shell
+mvn formatter:validate # Validate code format
+mvn formatter:format # Reformat code
+```
 
-Just do the following:
+If possible, you are encouraged to configure your IDE to format files with the
+project [eclipse-formatter-config.xml](/eclipse-formatter-config.xml).
 
-```bash
+## Building and testing
+
+Just execute the following commands:
+
+```shell
 git clone git@github.com:marcwrobel/jbanking.git
 cd jbanking
 mvn verify
@@ -85,6 +90,7 @@ automatically execute CI in their forks as part of the process of making changes
 
 - Commits should be atomic and semantic. Please properly squash your pull requests before submitting them. Fixup commits
   can be used temporarily during the review process but things should be squashed at the end to have meaningful commits.
+- Git authorship (i.e. git `user.name` and `user.email`) must be properly set.
 - Tests and documentation are not optional. Don't forget to include tests in your pull requests. Also don't forget the
   documentation (reference documentation, javadoc...).
 - Make sure to launch the full tests suite before creating your pull request.
