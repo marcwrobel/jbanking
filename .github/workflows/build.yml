@@ -6,6 +6,8 @@ on:
     branches: ['main', 'maintenance/*']
   pull_request:
     branches: ['main', 'maintenance/*']
+  schedule:
+    - cron: '0 0 * * 6'
 
 permissions:
   contents: 'read'

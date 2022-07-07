@@ -31,7 +31,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Use [javadoc.io](https://javadoc.io/doc/fr.marcwrobel/jbanking/) as the project documentation (#101).
 - Add the OpenSSF Best Practices badge on the project's README (#101).
 - Restrict sonar analysis to main (#106).
-- Schedule a sonar analysis every week (#107).
+- Automatically trigger all workflows weekly (#107).
 - Prevent duplicate builds on “push” and “pull_request” simultaneous event (#109).
 - Fix branch name in `codeql-analysis.yml` workflow (#110).
 - Configure CI for maintenance branches (#112).
