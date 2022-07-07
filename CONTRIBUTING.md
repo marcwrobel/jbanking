@@ -89,6 +89,26 @@ mvn release:perform -Prelease
 If everything went fine, go to [oss.sonatype.org](https://oss.sonatype.org/) and close/release the staging repository.
 Details are available on the [OSSRH publish guide](https://central.sonatype.org/publish/publish-guide/).
 
+## Continuous Integration
+
+Because we are all humans, and to ensure jbanking is stable for everyone, all changes must go through jbanking
+continuous integration. jbanking CI is based on GitHub Actions, which means that everyone has the ability to
+automatically execute CI in their forks as part of the process of making changes (except maybe the Sonarcloud and
+Sonatype lift analysis).
+
+jbanking CI checks are:
+
+1. code is properly formatted,
+2. project builds,
+3. project test suite is passing,
+4. javadoc can be generated,
+5. [SonarCloud](https://sonarcloud.io/project/overview?id=fr.marcwrobel:jbanking) analysis,
+6. [GitHub CodeQL](https://codeql.github.com/) analysis,
+7. [Sonatype lift](https://lift.sonatype.com/) analysis.
+
+CI checks are automatically triggered on PR and on push on master or maintenance branches. All workflows are also
+automatically triggered weekly.
+
 ## Contribution rules
 
 To contribute, use a GitHub pull requests from your own fork. You can find more information on GitHub's
@@ -99,12 +119,6 @@ documentation [Contributing to projects](https://docs.github.com/en/get-started/
 All submissions need to be reviewed by at least one jbanking committer before being merged.
 [GitHub Pull Request Review Process](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews)
 is followed for every pull request.
-
-### Continuous Integration
-
-Because we are all humans, and to ensure jbanking is stable for everyone, all changes must go through jbanking
-continuous integration. jbanking CI is based on GitHub Actions, which means that everyone has the ability to
-automatically execute CI in their forks as part of the process of making changes.
 
 ### Coding Guidelines
 
