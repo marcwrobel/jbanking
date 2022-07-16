@@ -759,6 +759,16 @@ enum BbanStructure {
   SC(IsoCountry.SC, "4!a2!n2!n16!n3!a"),
 
   /**
+   * BBAN structure for Sudan as defined by the <a href="http://www.cbs.sc/">Central Bank of Sudan</a> (CBOS).
+   *
+   * <ul>
+   * <li>BBAN example : 29010501234001
+   * <li>IBAN example : SD21 2901 0501 2340 01
+   * </ul>
+   */
+  SD(IsoCountry.SD, "2!n12!n"),
+
+  /**
    * BBAN structure for Slovakia as defined by the <a href="https://www.nbs.sk">Národná banka Slovenska</a> (NBS - National Bank
    * of Slovakia).
    *
