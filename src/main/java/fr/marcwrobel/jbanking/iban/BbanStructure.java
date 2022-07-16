@@ -25,8 +25,8 @@ import java.util.*;
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant national IBAN formats.
  *
  * <p>
- * It is based on the document <i>IBAN REGISTRY Release 88</i> issued by SWIFT in September 2020 and was last reviewed on
- * 2020-10-18.
+ * It is based on the document <i>IBAN REGISTRY Release 92</i> issued by SWIFT in May 2022 and was last reviewed on
+ * 2022-07-17.
  *
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
@@ -85,6 +85,16 @@ enum BbanStructure {
    * </ul>
    */
   BH(IsoCountry.BH, "4!a14!c"),
+
+  /**
+   * BBAN structure for Burundi as defined by the <a href="https://brb.bi/">Banque de la République du Burundi</a> (BRB).
+   *
+   * <ul>
+   * <li>BBAN example : 10000100010000332045181
+   * <li>IBAN example : BI42 1000 0100 0100 0033 2045 181
+   * </ul>
+   */
+  BI(IsoCountry.BI, "5!n5!n11!n2!n"),
 
   /**
    * BBAN structure for the Republic of Belarus as defined by the <a href="http://www.nbrb.by">National Bank of the Republic of
