@@ -739,6 +739,16 @@ enum BbanStructure {
   RS(IsoCountry.RS, "3!n13!n2!n"),
 
   /**
+   * BBAN structure for Russia as defined by the <a href="https://cbr.ru/">Central Bank of the Russian Federation</a> (CBR).
+   *
+   * <ul>
+   * <li>BBAN example : 044525225 40817 810 5 3809 1310419
+   * <li>IBAN example : RU17 0445 2522 5408 1781 0538 0913 1041 9
+   * </ul>
+   */
+  RU(IsoCountry.RU, "9!n5!n15!c"),
+
+  /**
    * BBAN structure for Seychelles as defined by the <a href="http://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
    *
    * <ul>
