@@ -206,6 +206,16 @@ enum BbanStructure {
   CZ(IsoCountry.CZ, "4!n6!n10!n"),
 
   /**
+   * BBAN structure for Djibouti as defined by the <a href="https://banque-centrale.dj/">Banque Centrale de Djibouti</a>.
+   *
+   * <ul>
+   * <li>BBAN example : 00010000000154000100186
+   * <li>IBAN example : DJ21 0001 0000 0001 5400 0100 186
+   * </ul>
+   */
+  DJ(IsoCountry.DJ, "5!n5!n11!n2!n"),
+
+  /**
    * BBAN structure for Denmark as defined by <a href="https://finansdanmark.dk/">Finance Denmark</a>.
    *
    * <ul>
