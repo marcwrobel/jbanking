@@ -26,7 +26,7 @@ import java.util.*;
  *
  * <p>
  * Usage:
- * 
+ *
  * <pre>
  * IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
  *
@@ -1286,7 +1286,7 @@ public enum IsoCurrency {
    * United States dollar (next day) (funds code).
    *
    * <p>
-   * ”Next day“ funds are immediately available for transfer in like funds, and, subject to settlement, available the next
+   * "Next day" funds are immediately available for transfer in like funds, and, subject to settlement, available the next
    * business day for same day funds transfer or withdrawal in cash.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>
