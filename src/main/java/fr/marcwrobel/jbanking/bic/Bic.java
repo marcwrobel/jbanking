@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * Usage:
- * 
+ *
  * <pre>
  * // Validate a BIC
  * Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
  * Assertions.assertTrue(bic.isLiveBic());
  * </pre>
  *
- * @see <a href="http://wikipedia.org/wiki/Bank_Identifier_Code">http://wikipedia.org/wiki/Bank_Identifier_Code</a>
+ * @see <a href="https://wikipedia.org/wiki/Bank_Identifier_Code">https://wikipedia.org/wiki/Bank_Identifier_Code</a>
  * @since 1.0
  */
 public final class Bic implements Serializable {

@@ -14,10 +14,14 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Fix some links in documentation (#129).
+
 ### Deprecated
 
 ### Removed
 
-## Internal
+### Internal
+
+- Add a simple script to help to verify links in Javadoc (#129).
 
 ### Thanks

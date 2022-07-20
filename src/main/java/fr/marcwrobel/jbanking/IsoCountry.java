@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * The countries, dependent territories, and special areas of geographical interest having an
- * <a href="http://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially assigned</a> ISO 3166-1
+ * <a href="https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially assigned</a> ISO 3166-1
  * code.
  *
  * <p>
@@ -29,11 +29,11 @@ import java.util.Set;
  *
  * <p>
  * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
- * <a href="http://www.iso.org/iso/home/standards/country_codes.htm">International Organization for Standardization</a> website.
+ * <a href="https://www.iso.org/iso-3166-country-codes.html">International Organization for Standardization</a> website.
  *
  * <p>
  * Usage:
- * 
+ *
  * <pre>
  * IsoCountry country = IsoCountry.fromAlpha2Code("FR").get();
  *
@@ -43,7 +43,7 @@ import java.util.Set;
  * Assertion.assertTrue(country.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
  * </pre>
  *
- * @see <a href="http://www.iso.org/iso/home/standards/country_codes.htm">ISO 3166 Country Codes</a>
+ * @see <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166 Country Codes</a>
  * @since 1.0
  */
 public enum IsoCountry {
@@ -1928,7 +1928,7 @@ public enum IsoCountry {
 
   /**
    * This country participations to {@link Agreement economic agreements}.
-   * 
+   *
    * @return a non-null set
    * @since 2.1.0
    */

@@ -17,7 +17,7 @@ limited to, European banking.
 
 jbanking is supporting the following features :
 
-* [ISO 3166-1 countries](http://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and status,
+* [ISO 3166-1 countries](https://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and status,
   e.g. independent or dependent (according to the [International Organization for Standardization](https://www.iso.org))
   .
 * Countries or territories participation to economic agreements :
@@ -26,10 +26,10 @@ jbanking is supporting the following features :
   * [European Union (EU)](https://en.wikipedia.org/wiki/European_Union),
   * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239),
   * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area).
-* [ISO 4217 currencies](http://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code, minor unit and
+* [ISO 4217 currencies](https://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code, minor unit and
   countries using it).
-* [ISO 9362:2009 BIC](http://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
-* [ISO 13616:2007 IBAN](http://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
+* [ISO 9362:2009 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
+* [ISO 13616:2007 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
   check digit and national bank account number structure).
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
@@ -41,8 +41,8 @@ jbanking is supporting the following features :
 
 ## Requirements
 
-jbanking requires at least [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (build is tested
-against Java 8, 11, 17 and 18). It has no additional dependency !
+jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 18). It has no
+additional dependency !
 
 ## Use it !
 

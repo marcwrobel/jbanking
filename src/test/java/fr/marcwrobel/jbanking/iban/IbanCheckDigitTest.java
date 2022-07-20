@@ -19,7 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class IbanCheckDigitTest {
 
   // Generated using
-  // http://www.mobilefish.com/services/random_iban_generator/random_iban_generator.php
+  // https://www.mobilefish.com/services/random_iban_generator/random_iban_generator.php
   private static final Set<String> VALID_IBANS = Sets.newHashSet("AL42500951008263YMBNVJQPG592",
       "AD8068037409EYVLENCKM36B", "AT569679968878262587", "AZ41WCPC09WWE5Z357DC0H5M4V5O",
       "BH09BKGN31K7RRNKX6BX3Y", "BE11247435144852", "BA801060410664917763", "BR0544704519170100945405853ZK",

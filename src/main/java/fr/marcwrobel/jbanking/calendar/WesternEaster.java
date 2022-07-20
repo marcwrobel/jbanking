@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * <p>
  * The date of Easter Sunday is computed with the Meeus/Jones/Butcher Gregorian algorithm.
  *
- * @see <a href="http://wikipedia.org/wiki/Computus#Meeus.2FJones.2FButcher_Gregorian_algorithm">Meeus/Jones/Butcher Gregorian
+ * @see <a href="https://wikipedia.org/wiki/Computus#Meeus.2FJones.2FButcher_Gregorian_algorithm">Meeus/Jones/Butcher Gregorian
  *      algorithm</a>
  * @since 2.1.0
  */

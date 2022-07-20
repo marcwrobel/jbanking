@@ -24,7 +24,8 @@ public enum Agreement {
    * This enum was last updated on 2020-08-03 based on information given on
    * <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>.
    *
-   * @see <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:European_Economic_Area_(EEA)">europa.eu
+   * @see <a href=
+   *      "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu
    *      - European Economic Area (EEA)</a>
    * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>
    * @since 2.1.0
@@ -77,9 +78,9 @@ public enum Agreement {
    *
    * <p>
    * This enum was last updated on 2020-07-31 based on information given in the CFONB article
-   * <a href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les territoires du Pacifique</a>.
+   * <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>.
    *
-   * @see <a href="https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239">L'Euro et les territoires du Pacifique</a>
+   * @see <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */

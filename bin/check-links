@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+USER_AGENT='Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'
+TIMEOUT=30 # seconds
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+NC='\033[0m' # No Color
+
+[ ! -d "$1" ] && echo "'$1'  is not a directory" && exit 1
+
+for url in $(grep -RioEh 'https?://[^ "<)]+' | sort | uniq); do
+  # we could use --head, but it is not always supported...
+  status=$(curl -o /dev/null --silent --connect-timeout "$TIMEOUT" --user-agent "$USER_AGENT" --location --write-out '%{http_code}' "$url")
+
+  if [ "$status" = "200" ]; then
+    if [[ $url =~ "http://" ]]; then
+      echo -e "${ORANGE}$url ($status)${NC}"
+    else
+      echo -e "${GREEN}$url ($status)${NC}"
+    fi
+  else
+    echo -e "${RED}$url ($status)${NC}"
+  fi
+done

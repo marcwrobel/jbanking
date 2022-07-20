@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * Usage:
- * 
+ *
  * <pre>
  * // Validate an IBAN
  * Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
  *
  * @see BbanStructure
  * @see <a href=
- *      "http://wikipedia.org/wiki/International_Bank_Account_Number">http://wikipedia.org/wiki/International_Bank_Account_Number</a>
+ *      "https://wikipedia.org/wiki/International_Bank_Account_Number">https://wikipedia.org/wiki/International_Bank_Account_Number</a>
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
  */
