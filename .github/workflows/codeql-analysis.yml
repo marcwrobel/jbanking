@@ -27,7 +27,7 @@ jobs:
     - name: Checkout repository
       uses: 'actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b' # v3.0.2
       with:
-        # We must fetch at least the immediate parents so that if this is a pull request then we can checkout the head.
+        # We must fetch at least the immediate parents so that if this is a pull request then we can check out the head.
         fetch-depth: 2
 
     - name: Initialize CodeQL

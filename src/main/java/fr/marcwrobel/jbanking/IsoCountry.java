@@ -35,8 +35,8 @@ import java.util.Set;
  * Usage:
  *
  * <pre>
+ * // Get ISO country information
  * IsoCountry country = IsoCountry.fromAlpha2Code("FR").get();
- *
  * Assertion.assertEquals("FRA", country.getAlpha3Code());
  * Assertion.assertEquals(250, country.getNumericCode());
  * Assertion.assertTrue(country.isIndependent());

@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * // Validate an IBAN
  * Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
  *
- * // Retrieve IBAN information
+ * // Get IBAN information
  * Iban iban = new Iban("fr2531682128768051490609537");
  * Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
  * Assertions.assertEquals("FR", iban.getCountryCode());

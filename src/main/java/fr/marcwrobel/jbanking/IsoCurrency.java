@@ -26,15 +26,14 @@ import java.util.*;
  *
  * <p>
  * Usage:
- * 
- * <pre>
- * IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
  *
+ * <pre>
+ * // Get ISO currency information
+ * IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
  * Assertion.assertEquals(978, currency.getNumericCode());
  * Assertion.assertEquals(2, currency.getMinorUnit().get());
  * Assertion.assertEquals(NATIONAL, currency.getCategory());
  * Assertion.assertTrue(currency.getCountries().contains(FR));
- * Assertion.assertTrue(currency.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
  * </pre>
  *
  * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>
@@ -1286,7 +1285,7 @@ public enum IsoCurrency {
    * United States dollar (next day) (funds code).
    *
    * <p>
-   * ”Next day“ funds are immediately available for transfer in like funds, and, subject to settlement, available the next
+   * "Next day" funds are immediately available for transfer in like funds, and, subject to settlement, available the next
    * business day for same day funds transfer or withdrawal in cash.
    *
    * @see <a href="https://wikipedia.org/wiki/ISO_4217">wikipedia.org</a>

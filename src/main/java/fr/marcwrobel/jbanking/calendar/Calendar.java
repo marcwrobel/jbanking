@@ -17,8 +17,8 @@ import java.util.Set;
  * Predefined calendars are available in {@link FinancialCalendars}.
  *
  * <p>
- * Usage :
- * 
+ * Usage:
+ *
  * <pre>
  * // Build a new calendar
  * Calendar calendar = new ConfigurableCalendar(
