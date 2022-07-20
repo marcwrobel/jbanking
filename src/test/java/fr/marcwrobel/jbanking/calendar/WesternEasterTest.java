@@ -33,7 +33,7 @@ class WesternEasterTest {
     assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
   }
 
-  // Data from https://www.census.gov/srd/www/genhol/easter500.html
+  // Data from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
   @ParameterizedTest
   @MethodSource("easter500")
   void easter500(int month, int dayOfMonth, int year) {

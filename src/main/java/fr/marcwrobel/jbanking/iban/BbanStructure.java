@@ -66,7 +66,7 @@ enum BbanStructure {
   AT(IsoCountry.AT, "5!n11!n"),
 
   /**
-   * BBAN structure for Azerbaijan as defined by the <a href="http://www.cbar.az/">Azərbaycan Respublikasının Mərkəzi Bankı</a>
+   * BBAN structure for Azerbaijan as defined by the <a href="https://www.cbar.az/">Azərbaycan Respublikasının Mərkəzi Bankı</a>
    * (CBA - Central Bank of the Republic of Azerbaijan).
    *
    * <ul>
@@ -97,7 +97,7 @@ enum BbanStructure {
   BI(IsoCountry.BI, "5!n5!n11!n2!n"),
 
   /**
-   * BBAN structure for the Republic of Belarus as defined by the <a href="http://www.nbrb.by">National Bank of the Republic of
+   * BBAN structure for the Republic of Belarus as defined by the <a href="https://www.nbrb.by">National Bank of the Republic of
    * Belarus</a>.
    *
    * <ul>
@@ -119,8 +119,8 @@ enum BbanStructure {
   BE(IsoCountry.BE, "3!n7!n2!n"),
 
   /**
-   * BBAN structure for Bosnia and Herzegovina as defined by the <a href="https://www.cbbh.ba/">Centralna banka Bosne I
-   * Hercegovine</a> (Central Bank of Bosnia and Herzegovina).
+   * BBAN structure for Bosnia and Herzegovina as defined by the <a href="https://www.cbbh.ba/?lang=en">Centralna banka I
+   * Bosne Hercegovine</a> (Central Bank of Bosnia and Herzegovina - CBBH).
    *
    * <ul>
    * <li>BBAN example : 1990440001200279
@@ -151,7 +151,7 @@ enum BbanStructure {
   VG(IsoCountry.VG, "4!a16!n"),
 
   /**
-   * BBAN structure for Bulgaria as defined by the <a href="http://www.bnb.bg">Balgarska narodna banka</a> (Bulgarian National
+   * BBAN structure for Bulgaria as defined by the <a href="https://www.bnb.bg/">Balgarska narodna banka</a> (Bulgarian National
    * Bank).
    *
    * <ul>
@@ -195,8 +195,8 @@ enum BbanStructure {
   CY(IsoCountry.CY, "3!n5!n16!c"),
 
   /**
-   * BBAN structure for the Czech Republic as defined by the <a href="http://www.cnb.cz">Česká národní banka</a> (Czech National
-   * Bank).
+   * BBAN structure for the Czech Republic as defined by the <a href="https://www.cnb.cz/">Česká národní banka</a> (Czech
+   * National Bank).
    *
    * <ul>
    * <li>BBAN example : 08000000192000145399
@@ -237,7 +237,7 @@ enum BbanStructure {
   SV(IsoCountry.SV, "4!a20!n"),
 
   /**
-   * BBAN structure for Faroe Islands as defined by <a href="http://financedenmark.dk">Finance Denmark</a>.
+   * BBAN structure for Faroe Islands as defined by <a href="https://financedenmark.dk/">Finance Denmark</a>.
    *
    * <ul>
    * <li>BBAN example : 64600001631634
@@ -247,7 +247,7 @@ enum BbanStructure {
   FO(IsoCountry.FO, "4!n9!n1!n"),
 
   /**
-   * BBAN structure for Greenland as defined by the <a href="http://financedenmark.dk/">Finance Denmark</a>.
+   * BBAN structure for Greenland as defined by the <a href="https://financedenmark.dk/">Finance Denmark</a>.
    *
    * <ul>
    * <li>BBAN example : 64710001000206
@@ -352,7 +352,7 @@ enum BbanStructure {
   GR(IsoCountry.GR, "3!n4!n16!c"),
 
   /**
-   * BBAN structure for Guatemala as defined by the <a href="http://www.banguat.gob.gt">Banco de Guatemala</a> (Bank of
+   * BBAN structure for Guatemala as defined by the <a href="https://www.banguat.gob.gt">Banco de Guatemala</a> (Bank of
    * Guatemala).
    *
    * <ul>
@@ -363,7 +363,7 @@ enum BbanStructure {
   GT(IsoCountry.GT, "4!c20!c"),
 
   /**
-   * BBAN structure for Hungary as defined by the <a href="http://bankszovetseg.hu">Magyar Bankszövetség</a> (Hungarian Banking
+   * BBAN structure for Hungary as defined by the <a href="https://bankszovetseg.hu">Magyar Bankszövetség</a> (Hungarian Banking
    * Association).
    *
    * <ul>
@@ -394,7 +394,7 @@ enum BbanStructure {
   IE(IsoCountry.IE, "4!a6!n8!n"),
 
   /**
-   * BBAN structure for Israel as defined by the <a href="http://www.boi.org.il">Bank of Israel</a>.
+   * BBAN structure for Israel as defined by the <a href="https://www.boi.org.il">Bank of Israel</a>.
    *
    * <ul>
    * <li>BBAN example : 010800000099999999
@@ -424,7 +424,7 @@ enum BbanStructure {
   IT(IsoCountry.IT, "1!a5!n5!n12!c"),
 
   /**
-   * BBAN structure for Jordan as defined by the <a href="http://www.cbj.gov.jo">Central Bank of Jordan</a>.
+   * BBAN structure for Jordan as defined by the <a href="https://www.cbj.gov.jo/">Central Bank of Jordan</a>.
    *
    * <ul>
    * <li>BBAN example : CBJO0010000000000131000302
@@ -528,7 +528,7 @@ enum BbanStructure {
   LY(IsoCountry.LY, "3!n3!n15!n"),
 
   /**
-   * BBAN structure for Macedonia as defined by the <a href="http://www.nbrm.mk">Narodna Banka na Republika Severna
+   * BBAN structure for Macedonia as defined by the <a href="https://www.nbrm.mk/">Narodna Banka na Republika Severna
    * Makedonija</a> (NBRSM - National Bank of the Republic of North Macedonia).
    *
    * <ul>
@@ -592,7 +592,7 @@ enum BbanStructure {
   MC(IsoCountry.MC, "5!n5!n11!c2!n"),
 
   /**
-   * BBAN structure for Montenegro as defined by the <a href="http://t-com.me/">Association of Montenegrin Banks</a>.
+   * BBAN structure for Montenegro as defined by the Association of Montenegrin Banks.
    *
    * <ul>
    * <li>BBAN example : 505000012345678951
@@ -623,7 +623,7 @@ enum BbanStructure {
   NO(IsoCountry.NO, "4!n6!n1!n"),
 
   /**
-   * BBAN structure for Pakistan as defined by the <a href="http://www.sbp.org.pk">State Bank of Pakistan (SBP)</a>.
+   * BBAN structure for Pakistan as defined by the <a href="https://www.sbp.org.pk/">State Bank of Pakistan (SBP)</a>.
    *
    * <ul>
    * <li>BBAN example : SCBL0000001123456702
@@ -644,7 +644,7 @@ enum BbanStructure {
   PS(IsoCountry.PS, "4!a21!c"),
 
   /**
-   * BBAN structure for Poland as defined by the <a href="http://www.nbp.pl">Narodowy Bank Polski</a> (NBP - National Bank of
+   * BBAN structure for Poland as defined by the <a href="https://www.nbp.pl/">Narodowy Bank Polski</a> (NBP - National Bank of
    * Poland).
    *
    * <ul>
@@ -665,7 +665,7 @@ enum BbanStructure {
   PT(IsoCountry.PT, "4!n4!n11!n2!n"),
 
   /**
-   * BBAN structure for Qatar as defined by the <a href="http://www.qcb.gov.qa">Qatar Central Bank</a>.
+   * BBAN structure for Qatar as defined by the <a href="https://www.qcb.gov.qa">Qatar Central Bank</a>.
    *
    * <ul>
    * <li>BBAN example : DOHB00001234567890ABCDEFG
@@ -686,7 +686,7 @@ enum BbanStructure {
   RO(IsoCountry.RO, "4!a16!c"),
 
   /**
-   * BBAN structure for Saint Lucia as defined by the <a href="https://www.slbs.org">Saint Lucia Bureau of Standards</a> (SLBS).
+   * BBAN structure for Saint Lucia as defined by the <a href="https://slbs.dev/en/">Saint Lucia Bureau of Standards</a> (SLBS).
    *
    * <ul>
    * <li>BBAN example : HEMM000100010012001200023015
@@ -707,7 +707,7 @@ enum BbanStructure {
   SM(IsoCountry.SM, "1!a5!n5!n12!c"),
 
   /**
-   * BBAN structure for São Tomé and Príncipe as defined by the <a href="http://www.bcstp.st/">Banco Central de Sao Tome e
+   * BBAN structure for São Tomé and Príncipe as defined by the <a href="https://bcstp.st/">Banco Central de Sao Tome e
    * Principe</a> (BCSTP - Central Bank of São Tomé and Príncipe).
    *
    * <ul>
@@ -718,7 +718,7 @@ enum BbanStructure {
   ST(IsoCountry.ST, "8!n11!n2!n"),
 
   /**
-   * BBAN structure for Saudi Arabia as defined by the <a href="http://www.sama.gov.sa">Saudi Arabian Monetary Authority</a>
+   * BBAN structure for Saudi Arabia as defined by the <a href="https://sama.gov.sa">Saudi Arabian Monetary Authority</a>
    * (SAMA).
    *
    * <ul>
@@ -749,7 +749,7 @@ enum BbanStructure {
   RU(IsoCountry.RU, "9!n5!n15!c"),
 
   /**
-   * BBAN structure for Seychelles as defined by the <a href="http://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
+   * BBAN structure for Seychelles as defined by the <a href="https://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
    *
    * <ul>
    * <li>BBAN example : SSCB11010000000000001497USD
@@ -759,7 +759,7 @@ enum BbanStructure {
   SC(IsoCountry.SC, "4!a2!n2!n16!n3!a"),
 
   /**
-   * BBAN structure for Sudan as defined by the <a href="http://www.cbs.sc/">Central Bank of Sudan</a> (CBOS).
+   * BBAN structure for Sudan as defined by the <a href="https://cbos.gov.sd/">Central Bank of Sudan</a> (CBOS).
    *
    * <ul>
    * <li>BBAN example : 29010501234001
@@ -832,7 +832,7 @@ enum BbanStructure {
   TL(IsoCountry.TL, "3!n14!n2!n"),
 
   /**
-   * BBAN structure for Tunisia as defined by the <a href="https://apbt.org.tn/">Association Professionnelle Tunisienne des
+   * BBAN structure for Tunisia as defined by the <a href="https://www.apbt.org.tn/">Association Professionnelle Tunisienne des
    * Banques et des Etablissements Financiers</a> (APTBEF - Tunisia’s Professional Association for Banks and Financial
    * Institutions).
    *

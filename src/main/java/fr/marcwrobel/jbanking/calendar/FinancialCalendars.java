@@ -92,7 +92,7 @@ public enum FinancialCalendars implements Calendar {
    * October was a national holiday that year. More on <a href="https://www.bbc.com/news/world-europe-41817418">this bbc.com
    * article</a>.
    *
-   * @see <a href="https://www.tradinghours.com/exchanges/fsx/market-holidays/2020">tradinghours.com</a>
+   * @see <a href="https://www.tradinghours.com/markets/fsx/holidays">tradinghours.com</a>
    * @see <a href="https://www.timeanddate.com/holidays/germany/">timeanddate.com</a>
    */
   FRANKFURT(new ConfigurableCalendar(SATURDAY, SUNDAY, NEW_YEAR_DAY, GOOD_FRIDAY, EASTER_MONDAY,
@@ -140,7 +140,7 @@ public enum FinancialCalendars implements Calendar {
       // https://www.officeholidays.com/holidays/usa/new-york/juneteenth
       // https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html
       new YearRangeHoliday(new ShiftedHoliday(new MonthDayHoliday(JUNE, 19), CLOSEST_WEEKDAY), 2022, 2999),
-      // https://wikipedia.org/wiki/Independence_Day_(United_States)
+      // https://wikipedia.org/wiki/Independence_Day_%28United_States%29
       new ShiftedHoliday(new MonthDayHoliday(JULY, 4), SUNDAY_TO_MONDAY),
       // https://wikipedia.org/wiki/Labor_Day
       new DayOfWeekInMonthHoliday(1, MONDAY, SEPTEMBER),
@@ -168,7 +168,7 @@ public enum FinancialCalendars implements Calendar {
       // https://www.officeholidays.com/holidays/usa/new-york/juneteenth
       // https://www.cnbc.com/2021/06/17/juneteenth-federal-holiday-biden-signs-bill.html
       new YearRangeHoliday(new ShiftedHoliday(new MonthDayHoliday(JUNE, 19), CLOSEST_WEEKDAY), 2022, 2999),
-      // https://wikipedia.org/wiki/Independence_Day_(United_States)
+      // https://wikipedia.org/wiki/Independence_Day_%28United_States%29
       new ShiftedHoliday(new MonthDayHoliday(JULY, 4), CLOSEST_WEEKDAY),
       // https://wikipedia.org/wiki/Labor_Day
       new DayOfWeekInMonthHoliday(1, MONDAY, SEPTEMBER),
@@ -188,8 +188,7 @@ public enum FinancialCalendars implements Calendar {
   /**
    * Paris (France) financial district holidays.
    *
-   * @see <a href=
-   *      "http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902611&cidTexte=LEGITEXT000006072050">legifrance.gouv.fr</a>
+   * @see <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020901/">legifrance.gouv.fr</a>
    * @see <a href="http://jollyday.sourceforge.net/data/fr.html">jollyday.sourceforge.net</a>
    * @see <a href="https://www.timeanddate.com/holidays/france/">timeanddate.com</a>
    */
@@ -205,7 +204,7 @@ public enum FinancialCalendars implements Calendar {
    * Sydney (Australia) financial district holidays.
    *
    * @see <a href="https://www.timeanddate.com/holidays/australia/">timeanddate.com</a>
-   * @see <a href="https://www.rba.gov.au/schedules-events/bank-holidays-2020.html">Reserve Bank of Australia</a>
+   * @see <a href="https://www.rba.gov.au/schedules-events/bank-holidays/">Reserve Bank of Australia</a>
    */
   SYDNEY(new ConfigurableCalendar(SATURDAY, SUNDAY, new ShiftedHoliday(NEW_YEAR_DAY, WEEKEND_TO_MONDAY),
       // https://wikipedia.org/wiki/Australia_Day

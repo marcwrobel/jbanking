@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * A Creditor Identifier (CI) code as specified by the
- * <a href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC</a>.
+ * <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">EPC</a>.
  *
  * <p>
  * CI structure:
@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * Usage:
- * 
+ *
  * <pre>
  * // Validate a creditor identifier
  * Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
  * Assertions.assertEquals("123456", ci.getNationalIdentifier());
  * </pre>
  *
- * @see <a href="http://www.europeanpaymentscouncil.eu/index.cfm/knowledge-bank/epc-documents/creditor-identifier-overview/">EPC
+ * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">EPC
  *      Creditor Identifier Overview</a>
  */
 public class CreditorIdentifier implements Serializable {
