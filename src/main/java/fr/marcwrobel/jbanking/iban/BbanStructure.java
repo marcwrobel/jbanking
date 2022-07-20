@@ -25,8 +25,8 @@ import java.util.*;
  * Provides BBAN (also known as basic bank account number) structure for each ISO 13616-compliant national IBAN formats.
  *
  * <p>
- * It is based on the document <i>IBAN REGISTRY Release 88</i> issued by SWIFT in September 2020 and was last reviewed on
- * 2020-10-18.
+ * It is based on the document <i>IBAN REGISTRY Release 92</i> issued by SWIFT in May 2022 and was last reviewed on
+ * 2022-07-17.
  *
  * @see <a href="https://www.iso13616.org">https://www.iso13616.org</a>
  * @since 1.0
@@ -85,6 +85,16 @@ enum BbanStructure {
    * </ul>
    */
   BH(IsoCountry.BH, "4!a14!c"),
+
+  /**
+   * BBAN structure for Burundi as defined by the <a href="https://brb.bi/">Banque de la République du Burundi</a> (BRB).
+   *
+   * <ul>
+   * <li>BBAN example : 10000100010000332045181
+   * <li>IBAN example : BI42 1000 0100 0100 0033 2045 181
+   * </ul>
+   */
+  BI(IsoCountry.BI, "5!n5!n11!n2!n"),
 
   /**
    * BBAN structure for the Republic of Belarus as defined by the <a href="http://www.nbrb.by">National Bank of the Republic of
@@ -194,6 +204,16 @@ enum BbanStructure {
    * </ul>
    */
   CZ(IsoCountry.CZ, "4!n6!n10!n"),
+
+  /**
+   * BBAN structure for Djibouti as defined by the <a href="https://banque-centrale.dj/">Banque Centrale de Djibouti</a>.
+   *
+   * <ul>
+   * <li>BBAN example : 00010000000154000100186
+   * <li>IBAN example : DJ21 0001 0000 0001 5400 0100 186
+   * </ul>
+   */
+  DJ(IsoCountry.DJ, "5!n5!n11!n2!n"),
 
   /**
    * BBAN structure for Denmark as defined by <a href="https://finansdanmark.dk/">Finance Denmark</a>.
@@ -719,6 +739,16 @@ enum BbanStructure {
   RS(IsoCountry.RS, "3!n13!n2!n"),
 
   /**
+   * BBAN structure for Russia as defined by the <a href="https://cbr.ru/">Central Bank of the Russian Federation</a> (CBR).
+   *
+   * <ul>
+   * <li>BBAN example : 044525225 40817 810 5 3809 1310419
+   * <li>IBAN example : RU17 0445 2522 5408 1781 0538 0913 1041 9
+   * </ul>
+   */
+  RU(IsoCountry.RU, "9!n5!n15!c"),
+
+  /**
    * BBAN structure for Seychelles as defined by the <a href="http://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
    *
    * <ul>
@@ -727,6 +757,16 @@ enum BbanStructure {
    * </ul>
    */
   SC(IsoCountry.SC, "4!a2!n2!n16!n3!a"),
+
+  /**
+   * BBAN structure for Sudan as defined by the <a href="http://www.cbs.sc/">Central Bank of Sudan</a> (CBOS).
+   *
+   * <ul>
+   * <li>BBAN example : 29010501234001
+   * <li>IBAN example : SD21 2901 0501 2340 01
+   * </ul>
+   */
+  SD(IsoCountry.SD, "2!n12!n"),
 
   /**
    * BBAN structure for Slovakia as defined by the <a href="https://www.nbs.sk">Národná banka Slovenska</a> (NBS - National Bank
