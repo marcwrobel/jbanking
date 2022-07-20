@@ -28,7 +28,7 @@ import java.util.Set;
  * </ul>
  *
  * <p>
- * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
+ * This enum was last updated on 2022-07-20 based on information given in
  * <a href="https://www.iso.org/iso-3166-country-codes.html">International Organization for Standardization</a> website.
  *
  * <p>

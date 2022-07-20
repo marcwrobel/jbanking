@@ -21,12 +21,14 @@ public enum Agreement {
    * Association.
    *
    * <p>
-   * This enum was last updated on 2020-08-03 based on information given on
-   * <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>.
+   * This enum was last updated on 2022-07-20 based on information given on
+   * <a href=
+   * "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu -
+   * European Economic Area (EEA)</a>.
    *
    * @see <a href=
-   *      "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu
-   *      - European Economic Area (EEA)</a>
+   *      "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu -
+   *      European Economic Area (EEA)</a>
    * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>
    * @since 2.1.0
    */
@@ -39,7 +41,7 @@ public enum Agreement {
    * the Schengen Area. They are not, however, party to the European Union Customs Union.
    *
    * <p>
-   * This enum was last updated on 2020-08-03 based on information given on :
+   * This enum was last updated on 2022-07-20 based on information given on
    * <a href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>.
    *
    * @see <a href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>
@@ -58,7 +60,7 @@ public enum Agreement {
    * territories</a> are not listed in this enum.
    *
    * <p>
-   * This enum was last updated on 2020-07-31 based on information given on
+   * This enum was last updated on 2022-07-20 based on information given on
    * <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>.
    *
    * @see <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>
@@ -77,7 +79,7 @@ public enum Agreement {
    * SEPA COM PACIFIQUE.
    *
    * <p>
-   * This enum was last updated on 2020-07-31 based on information given in the CFONB article
+   * This enum was last updated on 2022-07-20 based on information given in the CFONB article
    * <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>.
    *
    * @see <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>
@@ -92,24 +94,29 @@ public enum Agreement {
    * previously fragmented national markets for euro payments into a single domestic one.
    *
    * <p>
-   * This enum was last updated on 2020-07-30 based on information given in
+   * This enum was last updated on 2022-07-20 based on information given in
    * <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09 - EPC List
    * of SEPA Countries v2.6</a>.
    *
    * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09 EPC
-   *      List of SEPA Countries v2.6 - January 2020</a>
-   * @see <a href="https://www.iso13616.org/">IBAN registry release 87</a>
+   *      List of SEPA Countries v4.0 - February 2021</a>
+   * @see <a href="https://www.iso13616.org/">IBAN registry</a>
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
   SINGLE_EURO_PAYMENTS_AREA(
-      AD, AT, BE, BG, HR, CY, CZ, DE, DK, EE, FI, FR, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, MC, NL, NO, PL, PT, RO, SM, SK,
-      SI, ES, SE, CH, VA,
-      AX, // through Finland
-      GF, GP, MQ, YT, RE, BL, MF, PM, // through France
-      GB, // under a transitional period until 31 December 2020
-      GI, GG, JE, IM // through United Kingdom
-  );
+      // EU countries
+      AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE,
+      // + EEA countries
+      IS, LI, NO,
+      // + Non-EEA Countries
+      AD, MC, SM, CH, GB, VA,
+      // + through Finland
+      AX,
+      // + through France
+      GF, GP, MQ, YT, RE, BL, MF, PM,
+      // + through The United Kingdom
+      GI, GG, JE, IM);
 
   @SuppressWarnings("ImmutableEnumChecker") // initialized with Collections.unmodifiableSet(...).
   private final Set<IsoCountry> participants;
