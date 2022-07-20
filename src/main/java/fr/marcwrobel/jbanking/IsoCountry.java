@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking;
 
 import static java.util.Objects.requireNonNull;
 
+import fr.marcwrobel.jbanking.internal.LastVerification;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,8 @@ import java.util.Set;
 /**
  * The countries, dependent territories, and special areas of geographical interest having an
  * <a href="https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Officially assigned</a> ISO 3166-1
- * code.
+ * code, <a href="https://www.iso.org/iso-3166-country-codes.html">as defined by International Organization for
+ * Standardization</a>.
  *
  * <p>
  * One exception has been made for Kosovo. Kosovo has a user-assigned code, XK, that is being used temporarily by the European
@@ -28,8 +30,7 @@ import java.util.Set;
  * </ul>
  *
  * <p>
- * Please be advised that this list is current as of 2020-08-03. An up-to-date list can be found on the
- * <a href="https://www.iso.org/iso-3166-country-codes.html">International Organization for Standardization</a> website.
+ * Last verification date of this list can be seen in the {@code @LastVerification} value.
  *
  * <p>
  * Usage:
@@ -46,6 +47,7 @@ import java.util.Set;
  * @see <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166 Country Codes</a>
  * @since 1.0
  */
+@LastVerification("2022-07-20")
 public enum IsoCountry {
   /**
    * Afghanistan (aka the Islamic Republic of Afghanistan).

@@ -34,5 +34,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Enable experimental alerts for CodeQL (#145).
 - Set up Maven dependencies caching (#143).
 - Add a [`CODEOWNERS`](/CODEOWNERS) (#142).
+- Add `@LastVerification` to document the last verification date of a list (#152).
 
 ### Thanks
