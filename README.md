@@ -58,10 +58,68 @@ as a maven dependency:
 </dependency>
 ```
 
-For documentation and examples, read the [javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and take a look at the
-[unit tests](/src/test/java/fr/marcwrobel/jbanking).
+Then you just have to use the jbanking API.
 
-Releases and changelogs are available on [GitHub](https://github.com/marcwrobel/jbanking/releases).
+```java
+// Get ISO country information
+IsoCountry country = IsoCountry.fromAlpha2Code("FR").get();
+Assertion.assertEquals("FRA", country.getAlpha3Code());
+Assertion.assertEquals(250, country.getNumericCode());
+Assertion.assertTrue(country.isIndependent());
+Assertion.assertTrue(country.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
+
+// Get ISO currency information
+IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
+Assertion.assertEquals(978, currency.getNumericCode());
+Assertion.assertEquals(2, currency.getMinorUnit().get());
+Assertion.assertEquals(NATIONAL, currency.getCategory());
+Assertion.assertTrue(currency.getCountries().contains(FR));
+
+// Validate an IBAN
+Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
+
+// Get IBAN information
+Iban iban = new Iban("fr2531682128768051490609537");
+Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
+Assertions.assertEquals("FR", iban.getCountryCode());
+Assertions.assertEquals("25", iban.getCheckDigit());
+Assertions.assertEquals("31682128768051490609537", iban.getBban());
+Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
+
+// Validate a BIC
+Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
+
+// Get BIC information
+Bic bic = new Bic("psstfrppxxx");
+Assertions.assertEquals("PSSTFRPPXXX", bic.toString());
+Assertions.assertEquals("PSST", bic.getInstitutionCode());
+Assertions.assertEquals("FR", bic.getCountryCode());
+Assertions.assertEquals("PP", bic.getLocationCode());
+Assertions.assertEquals("XXX", bic.getBranchCode());
+Assertions.assertTrue(bic.isLiveBic());
+
+// Validate a creditor identifier
+Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
+
+// Get creditor identifier information
+CreditorIdentifier ci = new CreditorIdentifier("fr72zzz123456");
+Assertions.assertEquals("FR72ZZZ123456", ci.toString());
+Assertions.assertEquals("FR", ci.getCountryCode());
+Assertions.assertEquals("72", ci.getCheckDigit());
+Assertions.assertEquals("ZZZ", ci.getBusinessCode());
+Assertions.assertEquals("123456", ci.getNationalIdentifier());
+
+// Using predefined calendars
+Calendar calendar = FinancialCalendars.PARIS;
+Assertion.assertTrue(calendar.isHoliday(LocalDate.of(2022, 1, 1)));
+Assertion.assertFalse(calendar.isBusinessDay(LocalDate.of(2022, 1, 1)));
+Assertion.assertEquals(LocalDate.of(2022, 1, 3), calendar.next(LocalDate.of(2022, 1, 1)));
+Assertion.assertEquals(Arrays.asList(LocalDate.of(2022, 1, 3), LocalDate.of(2022, 1, 4)), calendar.businessDaysWithin(LocalDate.of(2022, 1, 1), LocalDate.of(2022, 1, 4)));
+```
+
+For more information take a look at [the javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and
+[the unit tests](/src/test/java/fr/marcwrobel/jbanking). Changelogs are available on
+[GitHub Releases](https://github.com/marcwrobel/jbanking/releases).
 
 ## Contribute
 

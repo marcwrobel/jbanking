@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * // Validate a BIC
  * Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
  *
- * // Retrieve BIC information
+ * // Get BIC information
  * Bic bic = new Bic("psstfrppxxx");
  * Assertions.assertEquals("PSSTFRPPXXX", bic.toString());
  * Assertions.assertEquals("PSST", bic.getInstitutionCode());

@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  * // Validate a creditor identifier
  * Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
  *
- * // Retrieve creditor identifier information
+ * // Get creditor identifier information
  * CreditorIdentifier ci = new CreditorIdentifier("fr72zzz123456");
  * Assertions.assertEquals("FR72ZZZ123456", ci.toString());
  * Assertions.assertEquals("FR", ci.getCountryCode());
