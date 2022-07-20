@@ -27,6 +27,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
+          cache: 'maven'
 
       - name: Build
         run: 'mvn -B formatter:validate verify javadoc:jar'

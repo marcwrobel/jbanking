@@ -28,5 +28,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade to github/codeql-action [v2.1.16](https://github.com/github/codeql-action/releases/tag/v2.1.16) (#140).
 - Pin actions to a full length commit SHA (#141).
 - Enable experimental alerts for CodeQL (#145).
+- Set up Maven dependencies caching (#143).
 
 ### Thanks
