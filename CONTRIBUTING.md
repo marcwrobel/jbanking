@@ -93,7 +93,9 @@ And finally:
 
 1. declare the release on GitHub (copy the [changelog content](/CHANGELOG.md) in the release notes and create the
    related [discussion](https://github.com/marcwrobel/jbanking/discussions)),
-2. empty the README for the next release.
+2. empty the [changelog](/CHANGELOG.md) for the next release,
+3. update jbanking version in [README.md](/README.md),
+4. lock the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous version.
 
 ## Continuous Integration
 
