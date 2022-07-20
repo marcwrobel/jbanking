@@ -5,14 +5,11 @@ import static fr.marcwrobel.jbanking.IsoCurrency.Category.*;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
+import fr.marcwrobel.jbanking.internal.LastVerification;
 import java.util.*;
 
 /**
  * The currencies having an ISO 4217 code.
- *
- * <p>
- * Please be advised that this list is current as of 2013/05/26. Up-to-date list can be found for free on the
- * <a href="https://www.currency-iso.org/en/home/tables/table-a1.html"> currency-iso.org</a>.
  *
  * <p>
  * Note that enum entries are named after the ISO 4217 alphabetic code. This choice has been made in version 3.0.0 of jbanking
@@ -23,6 +20,9 @@ import java.util.*;
  * <li>make this enum easier to serialize (to JSON, in database...),
  * <li>prevent accidental duplicates.
  * </ul>
+ *
+ * <p>
+ * Last verification date of this list can be seen in the {@code @LastVerification} value.
  *
  * <p>
  * Usage:
@@ -36,9 +36,11 @@ import java.util.*;
  * Assertion.assertTrue(currency.getCountries().contains(FR));
  * </pre>
  *
- * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">currency-iso.org</a>
+ * @see <a href="https://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 - Currency Code Maintenance - Current
+ *      Currency &amp; Funds - List One</a>
  * @since 1.0
  */
+@LastVerification("2022-04-20")
 public enum IsoCurrency {
   /**
    * ADB (African Development Bank) Unit of Account.

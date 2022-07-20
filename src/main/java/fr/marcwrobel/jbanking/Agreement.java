@@ -3,6 +3,7 @@ package fr.marcwrobel.jbanking;
 import static fr.marcwrobel.jbanking.IsoCountry.*;
 import static java.util.Collections.unmodifiableSet;
 
+import fr.marcwrobel.jbanking.internal.LastVerification;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
@@ -21,10 +22,7 @@ public enum Agreement {
    * Association.
    *
    * <p>
-   * This enum was last updated on 2022-07-20 based on information given on
-   * <a href=
-   * "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu -
-   * European Economic Area (EEA)</a>.
+   * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * @see <a href=
    *      "https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary%3AEuropean_Economic_Area_%28EEA%29">europa.eu -
@@ -32,6 +30,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>
    * @since 2.1.0
    */
+  @LastVerification("2022-07-20")
   EUROPEAN_ECONOMIC_AREA(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, NL, NO,
       PL, PT, RO, SK, SI, ES, SE, CH),
 
@@ -41,13 +40,13 @@ public enum Agreement {
    * the Schengen Area. They are not, however, party to the European Union Customs Union.
    *
    * <p>
-   * This enum was last updated on 2022-07-20 based on information given on
-   * <a href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>.
+   * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * @see <a href="https://www.efta.int/about-efta/the-efta-states">efta.int - The EFTA States</a>
    * @see <a href="https://wikipedia.org/wiki/European_Free_Trade_Association">Wikipedia - European Free Trade Association</a>
    * @since 2.1.0
    */
+  @LastVerification("2022-07-20")
   EUROPEAN_FREE_TRADE_ASSOCIATION(IS, LI, NO, CH),
 
   /**
@@ -56,12 +55,11 @@ public enum Agreement {
    * and only those matters, where members have agreed to act as one.
    *
    * <p>
-   * <a href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">Special member state
-   * territories</a> are not listed in this enum.
+   * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * <p>
-   * This enum was last updated on 2022-07-20 based on information given on
-   * <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>.
+   * <a href="https://wikipedia.org/wiki/Special_member_state_territories_and_the_European_Union">Special member state
+   * territories</a> are not listed in this enum.
    *
    * @see <a href="https://europa.eu/european-union/about-eu/countries_en">europa.eu - Countries</a>
    * @see <a href="https://wikipedia.org/wiki/European_Union">Wikipedia - European Union</a>
@@ -69,6 +67,7 @@ public enum Agreement {
    *      member state territories and the European Union</a>
    * @since 2.1.0
    */
+  @LastVerification("2022-07-20")
   EUROPEAN_UNION(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI,
       ES, SE),
 
@@ -79,13 +78,13 @@ public enum Agreement {
    * SEPA COM PACIFIQUE.
    *
    * <p>
-   * This enum was last updated on 2022-07-20 based on information given in the CFONB article
-   * <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>.
+   * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * @see <a href="https://www.cfonb.org/sepa/leuro-et-les-territoires-du-pacifique">Le SEPA et les territoires du Pacifique</a>
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
+  @LastVerification("2022-07-20")
   SEPA_COM_PACIFIQUE(PF, NC, WF),
 
   /**
@@ -94,9 +93,7 @@ public enum Agreement {
    * previously fragmented national markets for euro payments into a single domestic one.
    *
    * <p>
-   * This enum was last updated on 2022-07-20 based on information given in
-   * <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09 - EPC List
-   * of SEPA Countries v2.6</a>.
+   * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09 EPC
    *      List of SEPA Countries v4.0 - February 2021</a>
@@ -104,6 +101,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
+  @LastVerification("2022-07-20")
   SINGLE_EURO_PAYMENTS_AREA(
       // EU countries
       AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE,

@@ -1,12 +1,9 @@
 package fr.marcwrobel.jbanking;
 
+import static fr.marcwrobel.jbanking.IsoCurrency.*;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.FUND;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.METAL;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.NATIONAL;
-import static fr.marcwrobel.jbanking.IsoCurrency.EUR;
-import static fr.marcwrobel.jbanking.IsoCurrency.USS;
-import static fr.marcwrobel.jbanking.IsoCurrency.XAU;
-import static fr.marcwrobel.jbanking.IsoCurrency.fromAlphabeticCode;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
