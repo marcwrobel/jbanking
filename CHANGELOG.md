@@ -29,5 +29,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Pin actions to a full length commit SHA (#141).
 - Enable experimental alerts for CodeQL (#145).
 - Set up Maven dependencies caching (#143).
+- Add a [`CODEOWNERS`](/CODEOWNERS) (#142).
 
 ### Thanks
