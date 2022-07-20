@@ -23,5 +23,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Internal
 
 - Add a simple script to help to verify links in Javadoc (#129).
+- Upgrade to actions/checkout v3.0.2 (#138).
 
 ### Thanks
