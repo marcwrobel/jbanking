@@ -27,5 +27,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Upgrade to actions/setup-java [v3.4.1](https://github.com/actions/setup-java/releases/tag/v3.4.1) (#139).
 - Upgrade to github/codeql-action [v2.1.16](https://github.com/github/codeql-action/releases/tag/v2.1.16) (#140).
 - Pin actions to a full length commit SHA (#141).
+- Enable experimental alerts for CodeQL (#145).
 
 ### Thanks
