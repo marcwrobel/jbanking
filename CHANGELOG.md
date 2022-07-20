@@ -10,6 +10,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add support for Russian (RU) IBAN numbers (#133).
 - Add support for Sudanese (SD) IBAN numbers (#133).
 - Add code samples in the project's readme (#137).
+- Add a new `Bic#getCountry()` method that return an `IsoCountry` (#149).
+- Add a new `CreditorIdentifier#getCountry()` method that return an `IsoCountry` (#149).
+- Add a new `Iban#getCountry()` method that return an `IsoCountry` (#149).
 
 ### Changed
 

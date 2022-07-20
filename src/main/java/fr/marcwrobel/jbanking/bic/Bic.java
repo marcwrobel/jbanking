@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking.bic;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import java.io.Serializable;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -107,7 +108,7 @@ public final class Bic implements Serializable {
       throw BicFormatException.forNotProperlyFormattedInput(bic8Or11);
     }
 
-    if (!hasKnownCountryCode(bic8Or11)) {
+    if (!findCountryFor(bic8Or11).isPresent()) {
       throw BicFormatException.forUnknownCountryCode(bic8Or11);
     }
 
@@ -126,15 +127,15 @@ public final class Bic implements Serializable {
    * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
    */
   public static boolean isValid(String bic) {
-    return bic != null && isWellFormatted(bic) && hasKnownCountryCode(bic);
+    return bic != null && isWellFormatted(bic) && findCountryFor(bic).isPresent();
   }
 
   private static boolean isWellFormatted(String s) {
     return BIC_PATTERN.matcher(s).matches();
   }
 
-  private static boolean hasKnownCountryCode(String s) {
-    return IsoCountry.fromAlpha2Code(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH)).isPresent();
+  private static Optional<IsoCountry> findCountryFor(String s) {
+    return IsoCountry.fromAlpha2Code(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
   /**
@@ -152,7 +153,16 @@ public final class Bic implements Serializable {
    * @return A non-null string representing this BIC country code.
    */
   public String getCountryCode() {
-    return normalizedBic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
+    return getCountry().getAlpha2Code();
+  }
+
+  /**
+   * Gets this BIC {@link IsoCountry}.
+   *
+   * @return A non-null {@link IsoCountry}.
+   */
+  public IsoCountry getCountry() {
+    return findCountryFor(normalizedBic).orElseThrow(() -> new IllegalStateException("a valid Bic should have a country code"));
   }
 
   /**

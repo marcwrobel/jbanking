@@ -49,19 +49,19 @@ class IbanTest {
       "TR330006100519786457841326", "TR888859050625760496700846", "UA213223130000026007233566001",
       "VA59001123000012345678", "VG14NDUM4605555206975725", "XK051212012345678906");
 
-  private static final String VALID_IBAN_COUNTRY = "FR";
+  private static final IsoCountry VALID_IBAN_COUNTRY = IsoCountry.FR;
   private static final String VALID_IBAN_CHECKDIGIT = "14";
   private static final String VALID_IBAN_BBAN = "20041010050500013M02606";
-  private static final String VALID_IBAN = VALID_IBAN_COUNTRY + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
+  private static final String VALID_IBAN = VALID_IBAN_COUNTRY.getAlpha2Code() + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
   private static final String VALID_IBAN2 = "AL36442788709271283994894168";
 
   private static final String BBAN_WITH_INVALID_FORMAT = "132!";
-  private static final String IBAN_WITH_INVALID_FORMAT = VALID_IBAN_COUNTRY + VALID_IBAN_CHECKDIGIT
+  private static final String IBAN_WITH_INVALID_FORMAT = VALID_IBAN_COUNTRY.getAlpha2Code() + VALID_IBAN_CHECKDIGIT
       + BBAN_WITH_INVALID_FORMAT;
 
   private static final String IBAN_WITH_UNKNOWN_COUNTRY = "ZZ" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
   private static final String IBAN_WITH_UNSUPPORTED_COUNTRY = "US" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-  private static final String IBAN_WITH_INVALID_CHECK_DIGIT = VALID_IBAN_COUNTRY + "09" + VALID_IBAN_BBAN;
+  private static final String IBAN_WITH_INVALID_CHECK_DIGIT = VALID_IBAN_COUNTRY.getAlpha2Code() + "09" + VALID_IBAN_BBAN;
 
   private static final String IBAN_WITH_INVALID_BBAN_STRUCTURE = "GB72MIDLA0051539024150";
 
@@ -206,7 +206,8 @@ class IbanTest {
   void validIbanDecomposition() {
     assertTrue(Iban.isValid(VALID_IBAN));
     Iban iban = new Iban(VALID_IBAN);
-    assertEquals(VALID_IBAN_COUNTRY, iban.getCountryCode());
+    assertEquals(VALID_IBAN_COUNTRY, iban.getCountry());
+    assertEquals(VALID_IBAN_COUNTRY.getAlpha2Code(), iban.getCountryCode());
     assertEquals(VALID_IBAN_CHECKDIGIT, iban.getCheckDigit());
     assertEquals(VALID_IBAN_BBAN, iban.getBban());
   }
