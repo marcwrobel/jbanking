@@ -194,7 +194,17 @@ public final class Iban implements Serializable {
    * @return A non-null string representing this IBAN ISO 3166-1-alpha-2 country code.
    */
   public String getCountryCode() {
-    return normalizedIban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH);
+    return getCountry().getAlpha2Code();
+  }
+
+  /**
+   * Gets this IBAN {@link IsoCountry}.
+   *
+   * @return A non-null {@link IsoCountry}.
+   */
+  public IsoCountry getCountry() {
+    return findCountryFor(normalizedIban)
+        .orElseThrow(() -> new IllegalStateException("a valid Iban should have a country code"));
   }
 
   /**

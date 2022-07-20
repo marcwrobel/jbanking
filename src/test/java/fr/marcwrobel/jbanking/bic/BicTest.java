@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class BicTest {
 
   private static final String INSTITUTION_CODE = "BNPA";
-  private static final String COUNTRY_CODE = IsoCountry.FR.getAlpha2Code();
+  private static final IsoCountry COUNTRY_CODE = IsoCountry.FR;
   private static final String LOCATION_CODE = "PP";
   private static final String LOCATION_CODE_TEST = "P0";
   private static final String BRANCH_CODE = Bic.PRIMARY_OFFICE_BRANCH_CODE;
@@ -104,7 +104,8 @@ class BicTest {
   void bicDecompositionTest() {
     Bic bic = new Bic(VALID_BIC8);
     assertEquals(INSTITUTION_CODE, bic.getInstitutionCode());
-    assertEquals(COUNTRY_CODE, bic.getCountryCode());
+    assertEquals(COUNTRY_CODE, bic.getCountry());
+    assertEquals(COUNTRY_CODE.getAlpha2Code(), bic.getCountryCode());
     assertEquals(LOCATION_CODE, bic.getLocationCode());
     assertEquals(BRANCH_CODE, bic.getBranchCode());
   }
