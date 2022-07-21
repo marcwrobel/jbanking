@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- (breaking change) Make `CreditorIdentifier` final (#116).
+
 ### Fixed
 
 ### Deprecated

@@ -47,7 +47,7 @@ import java.util.regex.Pattern;
  * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">EPC
  *      Creditor Identifier Overview</a>
  */
-public class CreditorIdentifier implements Serializable {
+public final class CreditorIdentifier implements Serializable {
 
   /**
    * Serialization version.
