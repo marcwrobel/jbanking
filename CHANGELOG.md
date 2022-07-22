@@ -17,4 +17,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
+- Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
+
 ### Thanks
