@@ -18,5 +18,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Internal
 
 - Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
+- Bump strata-basics from 2.12.5 to 2.12.6 (#165).
 
 ### Thanks
