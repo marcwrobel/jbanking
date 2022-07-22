@@ -45,6 +45,17 @@ enum BbanStructure {
   AD(IsoCountry.AD, "4!n4!n12!c"),
 
   /**
+   * BBAN structure for the United Arab Emirates as defined by the <a href="https://www.centralbank.ae">Central Bank of the
+   * United Arab Emirates</a>.
+   *
+   * <ul>
+   * <li>BBAN example : 0331234567890123456
+   * <li>IBAN example : AE07 0331 2345 6789 0123 456
+   * </ul>
+   */
+  AE(IsoCountry.AE, "3!n16!n"),
+
+  /**
    * BBAN structure for Albania as defined by the <a href="https://www.bankofalbania.org">Banka e Shqipërisë</a> (Bank of
    * Albania).
    *
@@ -77,6 +88,39 @@ enum BbanStructure {
   AZ(IsoCountry.AZ, "4!a20!c"),
 
   /**
+   * BBAN structure for Bosnia and Herzegovina as defined by the <a href="https://www.cbbh.ba/?lang=en">Centralna banka I
+   * Bosne Hercegovine</a> (Central Bank of Bosnia and Herzegovina - CBBH).
+   *
+   * <ul>
+   * <li>BBAN example : 1990440001200279
+   * <li>IBAN example : BA39 1290 0794 0102 8494
+   * </ul>
+   */
+  BA(IsoCountry.BA, "3!n3!n8!n2!n"),
+
+  /**
+   * BBAN structure for Belgium as defined by the <a href="https://www.febelfin.be">Fédération belge du secteur financier</a>
+   * (Febelfin).
+   *
+   * <ul>
+   * <li>BBAN example : 539007547034
+   * <li>IBAN example : BE68 5390 0754 7034
+   * </ul>
+   */
+  BE(IsoCountry.BE, "3!n7!n2!n"),
+
+  /**
+   * BBAN structure for Bulgaria as defined by the <a href="https://www.bnb.bg/">Balgarska narodna banka</a> (Bulgarian National
+   * Bank).
+   *
+   * <ul>
+   * <li>BBAN example : BNBG96611020345678
+   * <li>IBAN example : BG80 BNBG 9661 1020 3456 78
+   * </ul>
+   */
+  BG(IsoCountry.BG, "4!a4!n2!n8!c"),
+
+  /**
    * BBAN structure for Bahrain as defined by the <a href="https://www.cbb.gov.bh/">Central Bank of Bahrain</a> (CBB).
    *
    * <ul>
@@ -97,39 +141,6 @@ enum BbanStructure {
   BI(IsoCountry.BI, "5!n5!n11!n2!n"),
 
   /**
-   * BBAN structure for the Republic of Belarus as defined by the <a href="https://www.nbrb.by">National Bank of the Republic of
-   * Belarus</a>.
-   *
-   * <ul>
-   * <li>BBAN example : NBRB 3600 0000 0000 0Z00 AB00
-   * <li>IBAN example : BY13 NBRB 3600 9000 0000 2Z00 AB00
-   * </ul>
-   */
-  BY(IsoCountry.BY, "4!c4!n16!c"),
-
-  /**
-   * BBAN structure for Belgium as defined by the <a href="https://www.febelfin.be">Fédération belge du secteur financier</a>
-   * (Febelfin).
-   *
-   * <ul>
-   * <li>BBAN example : 539007547034
-   * <li>IBAN example : BE68 5390 0754 7034
-   * </ul>
-   */
-  BE(IsoCountry.BE, "3!n7!n2!n"),
-
-  /**
-   * BBAN structure for Bosnia and Herzegovina as defined by the <a href="https://www.cbbh.ba/?lang=en">Centralna banka I
-   * Bosne Hercegovine</a> (Central Bank of Bosnia and Herzegovina - CBBH).
-   *
-   * <ul>
-   * <li>BBAN example : 1990440001200279
-   * <li>IBAN example : BA39 1290 0794 0102 8494
-   * </ul>
-   */
-  BA(IsoCountry.BA, "3!n3!n8!n2!n"),
-
-  /**
    * BBAN structure for Brazil as defined by the <a href="https://www.bcb.gov.br/">Banco Central do Brasil</a> (Central Bank of
    * Brazil).
    *
@@ -141,25 +152,25 @@ enum BbanStructure {
   BR(IsoCountry.BR, "8!n5!n10!n1!a1!c"),
 
   /**
-   * BBAN structure for the british Virgin Islands as defined by the <a href="https://vg.vpbank.com">VP Bank House</a>.
+   * BBAN structure for the Republic of Belarus as defined by the <a href="https://www.nbrb.by">National Bank of the Republic of
+   * Belarus</a>.
    *
    * <ul>
-   * <li>BBAN example : VPVG0000012345678901
-   * <li>IBAN example : VG96 VPVG 0000 0123 4567 8901
+   * <li>BBAN example : NBRB 3600 0000 0000 0Z00 AB00
+   * <li>IBAN example : BY13 NBRB 3600 9000 0000 2Z00 AB00
    * </ul>
    */
-  VG(IsoCountry.VG, "4!a16!n"),
+  BY(IsoCountry.BY, "4!c4!n16!c"),
 
   /**
-   * BBAN structure for Bulgaria as defined by the <a href="https://www.bnb.bg/">Balgarska narodna banka</a> (Bulgarian National
-   * Bank).
+   * BBAN structure for Switzerland as defined by <a href="https://www.six-group.com">SIX Interbank Clearing</a>.
    *
    * <ul>
-   * <li>BBAN example : BNBG96611020345678
-   * <li>IBAN example : BG80 BNBG 9661 1020 3456 78
+   * <li>BBAN example : 00762011623852957
+   * <li>IBAN example : CH93 0076 2011 6238 5295 7
    * </ul>
    */
-  BG(IsoCountry.BG, "4!a4!n2!n8!c"),
+  CH(IsoCountry.CH, "5!n12!c"),
 
   /**
    * BBAN structure for Costa Rica as defined by the <a href="https://www.bccr.fi.cr/">Banco Central de Costa Rica</a> (Central
@@ -171,17 +182,6 @@ enum BbanStructure {
    * </ul>
    */
   CR(IsoCountry.CR, "4!n14!n"),
-
-  /**
-   * BBAN structure for Croatia as defined by the <a href="https://www.hnb.hr">Hrvatska narodna banka</a> (Croatian National
-   * Bank).
-   *
-   * <ul>
-   * <li>BBAN example : 10010051863000160
-   * <li>IBAN example : HR12 1001 0051 8630 0016 0
-   * </ul>
-   */
-  HR(IsoCountry.HR, "7!n10!n"),
 
   /**
    * BBAN structure for Cyprus as defined by the <a href="https://www.centralbank.cy/">Kıbrıs Merkez Bankası</a> (Central Bank
@@ -206,6 +206,17 @@ enum BbanStructure {
   CZ(IsoCountry.CZ, "4!n6!n10!n"),
 
   /**
+   * BBAN structure for Germany as defined by the <a href="https://bankenverband.de">Bundesverband deutscher Banken</a>
+   * (Association of German Banks).
+   *
+   * <ul>
+   * <li>BBAN example : 370400440532013000
+   * <li>IBAN example : DE89 3704 0044 0532 0130 00
+   * </ul>
+   */
+  DE(IsoCountry.DE, "8!n10!n"),
+
+  /**
    * BBAN structure for Djibouti as defined by the <a href="https://banque-centrale.dj/">Banque Centrale de Djibouti</a>.
    *
    * <ul>
@@ -224,37 +235,6 @@ enum BbanStructure {
    * </ul>
    */
   DK(IsoCountry.DK, "4!n9!n1!n"),
-
-  /**
-   * BBAN structure for El Salvador as defined by the <a href="https://www.bcr.gob.sv/">Banco Central de Reserva de El
-   * Salvador</a> (Central Reserve Bank of El Salvador).
-   *
-   * <ul>
-   * <li>BBAN example : CENR00000000000000700025
-   * <li>IBAN example : SV62 CENR 0000 0000 0000 0070 0025
-   * </ul>
-   */
-  SV(IsoCountry.SV, "4!a20!n"),
-
-  /**
-   * BBAN structure for Faroe Islands as defined by <a href="https://financedenmark.dk/">Finance Denmark</a>.
-   *
-   * <ul>
-   * <li>BBAN example : 64600001631634
-   * <li>IBAN example : FO62 6460 0001 6316 34
-   * </ul>
-   */
-  FO(IsoCountry.FO, "4!n9!n1!n"),
-
-  /**
-   * BBAN structure for Greenland as defined by the <a href="https://financedenmark.dk/">Finance Denmark</a>.
-   *
-   * <ul>
-   * <li>BBAN example : 64710001000206
-   * <li>IBAN example : GL89 6471 0001 0002 06
-   * </ul>
-   */
-  GL(IsoCountry.GL, "4!n9!n1!n"),
 
   /**
    * BBAN structure for the Dominican Republic as defined by the <a href="https://www.bancentral.gov.do">Banco Central de la
@@ -289,6 +269,16 @@ enum BbanStructure {
   EG(IsoCountry.EG, "4!n4!n17!n"),
 
   /**
+   * BBAN structure for Spain as defined by the <a href="https://www.aebanca.es">Asociación Española de Banca</a> (AEB).
+   *
+   * <ul>
+   * <li>BBAN example : 21000418450200051332
+   * <li>IBAN example : ES91 2100 0418 4502 0005 1332
+   * </ul>
+   */
+  ES(IsoCountry.ES, "4!n4!n1!n1!n10!n"),
+
+  /**
    * BBAN structure for Finland as defined by the <a href="https://www.finanssiala.fi">Finanssiala ry</a> (Federation of Finnish
    * Financial Services - FA).
    *
@@ -298,6 +288,16 @@ enum BbanStructure {
    * </ul>
    */
   FI(IsoCountry.FI, "3!n11!n", AX),
+
+  /**
+   * BBAN structure for Faroe Islands as defined by <a href="https://financedenmark.dk/">Finance Denmark</a>.
+   *
+   * <ul>
+   * <li>BBAN example : 64600001631634
+   * <li>IBAN example : FO62 6460 0001 6316 34
+   * </ul>
+   */
+  FO(IsoCountry.FO, "4!n9!n1!n"),
 
   /**
    * BBAN structure for France as defined by the <a href="https://www.cfonb.org/">Comité Français d'Organisation et de
@@ -311,6 +311,16 @@ enum BbanStructure {
   FR(IsoCountry.FR, "5!n5!n11!c2!n", GF, GP, MQ, RE, PF, TF, YT, NC, BL, MF, PM, WF),
 
   /**
+   * BBAN structure for the United Kingdom as defined by <a href="https://www.ukpayments.org.uk">Payments UK Management Ltd</a>.
+   *
+   * <ul>
+   * <li>BBAN example : NWBK60161331926819
+   * <li>IBAN example : GB29 NWBK 6016 1331 9268 19
+   * </ul>
+   */
+  GB(IsoCountry.GB, "4!a6!n8!n", IM, JE, GG),
+
+  /**
    * BBAN structure for Georgia as defined by the <a href="https://www.nbg.gov.ge">National Bank of Georgia</a>.
    *
    * <ul>
@@ -321,17 +331,6 @@ enum BbanStructure {
   GE(IsoCountry.GE, "2!a16!n"),
 
   /**
-   * BBAN structure for Germany as defined by the <a href="https://bankenverband.de">Bundesverband deutscher Banken</a>
-   * (Association of German Banks).
-   *
-   * <ul>
-   * <li>BBAN example : 370400440532013000
-   * <li>IBAN example : DE89 3704 0044 0532 0130 00
-   * </ul>
-   */
-  DE(IsoCountry.DE, "8!n10!n"),
-
-  /**
    * BBAN structure for Gibraltar as defined by the <a href="https://fsc.gi">Gibraltar Financial Services Commission</a>.
    *
    * <ul>
@@ -340,6 +339,16 @@ enum BbanStructure {
    * </ul>
    */
   GI(IsoCountry.GI, "4!a15!c"),
+
+  /**
+   * BBAN structure for Greenland as defined by the <a href="https://financedenmark.dk/">Finance Denmark</a>.
+   *
+   * <ul>
+   * <li>BBAN example : 64710001000206
+   * <li>IBAN example : GL89 6471 0001 0002 06
+   * </ul>
+   */
+  GL(IsoCountry.GL, "4!n9!n1!n"),
 
   /**
    * BBAN structure for Greece as defined by the <a href="https://www.hba.gr">Hellenic Bank Association</a> (HBA).
@@ -363,6 +372,17 @@ enum BbanStructure {
   GT(IsoCountry.GT, "4!c20!c"),
 
   /**
+   * BBAN structure for Croatia as defined by the <a href="https://www.hnb.hr">Hrvatska narodna banka</a> (Croatian National
+   * Bank).
+   *
+   * <ul>
+   * <li>BBAN example : 10010051863000160
+   * <li>IBAN example : HR12 1001 0051 8630 0016 0
+   * </ul>
+   */
+  HR(IsoCountry.HR, "7!n10!n"),
+
+  /**
    * BBAN structure for Hungary as defined by the <a href="https://bankszovetseg.hu">Magyar Bankszövetség</a> (Hungarian Banking
    * Association).
    *
@@ -372,16 +392,6 @@ enum BbanStructure {
    * </ul>
    */
   HU(IsoCountry.HU, "3!n4!n1!n15!n1!n"),
-
-  /**
-   * BBAN structure for Iceland as defined by the <a href="https://www.rb.is">Reiknistofa Bankanna</a> (RB).
-   *
-   * <ul>
-   * <li>BBAN example : 0159260076545510730339
-   * <li>IBAN example : IS14 0159 2600 7654 5510 7303 39
-   * </ul>
-   */
-  IS(IsoCountry.IS, "4!n2!n6!n10!n"),
 
   /**
    * BBAN structure for Ireland as defined by the <a href="https://www.bpfi.ie">Banking and Payments Federation Ireland</a>.
@@ -414,6 +424,16 @@ enum BbanStructure {
   IQ(IsoCountry.IQ, "4!a3!n12!n"),
 
   /**
+   * BBAN structure for Iceland as defined by the <a href="https://www.rb.is">Reiknistofa Bankanna</a> (RB).
+   *
+   * <ul>
+   * <li>BBAN example : 0159260076545510730339
+   * <li>IBAN example : IS14 0159 2600 7654 5510 7303 39
+   * </ul>
+   */
+  IS(IsoCountry.IS, "4!n2!n6!n10!n"),
+
+  /**
    * BBAN structure for Italy as defined by the <a href="https://www.abi.it">Associazione Bancaria Italiana</a>.
    *
    * <ul>
@@ -434,6 +454,16 @@ enum BbanStructure {
   JO(IsoCountry.JO, "4!a4!n18!c"),
 
   /**
+   * BBAN structure for Kuwait as defined by the <a href="https://www.cbk.gov.kw/">Central Bank of Kuwait</a> (CBK).
+   *
+   * <ul>
+   * <li>BBAN example : CBKU0000000000001234560101
+   * <li>IBAN example : KW81 CBKU 0000 0000 0000 1234 5601 01
+   * </ul>
+   */
+  KW(IsoCountry.KW, "4!a22!c"),
+
+  /**
    * BBAN structure for Kazakhstan as defined by the <a href="https://nationalbank.kz">Qazaqstan Ulttyq Banki</a> (National Bank
    * of Kazakhstan).
    *
@@ -445,37 +475,6 @@ enum BbanStructure {
   KZ(IsoCountry.KZ, "3!n13!c"),
 
   /**
-   * BBAN structure for Kosovo as defined by the <a href="https://www.bqk-kos.org/">Banka Qendrore e Kosovës</a> (Central Bank
-   * of the Republic of Kosovo).
-   *
-   * <ul>
-   * <li>BBAN example : 1212012345678906
-   * <li>IBAN example : XK05 1212 0123 4567 8906
-   * </ul>
-   */
-  XK(IsoCountry.XK, "4!n10!n2!n"),
-
-  /**
-   * BBAN structure for Kuwait as defined by the <a href="https://www.cbk.gov.kw/">Central Bank of Kuwait</a> (CBK).
-   *
-   * <ul>
-   * <li>BBAN example : CBKU0000000000001234560101
-   * <li>IBAN example : KW81 CBKU 0000 0000 0000 1234 5601 01
-   * </ul>
-   */
-  KW(IsoCountry.KW, "4!a22!c"),
-
-  /**
-   * BBAN structure for Latvia as defined by the <a href="https://www.bank.lv">Latvijas Banka</a> (Bank of Latvia).
-   *
-   * <ul>
-   * <li>BBAN example : BANK0000435195001
-   * <li>IBAN example : LV80 BANK 0000 4351 9500 1
-   * </ul>
-   */
-  LV(IsoCountry.LV, "4!a13!c"),
-
-  /**
    * BBAN structure for Lebanon as defined by the <a href="https://bdl.gov.lb">Banque du Liban</a> (BDL - Bank of Lebanon).
    *
    * <ul>
@@ -484,6 +483,16 @@ enum BbanStructure {
    * </ul>
    */
   LB(IsoCountry.LB, "4!n20!c"),
+
+  /**
+   * BBAN structure for Saint Lucia as defined by the <a href="https://slbs.dev/en/">Saint Lucia Bureau of Standards</a> (SLBS).
+   *
+   * <ul>
+   * <li>BBAN example : HEMM000100010012001200023015
+   * <li>IBAN example : LC55 HEMM 0001 0001 0012 0012 0002 3015
+   * </ul>
+   */
+  LC(IsoCountry.LC, "4!a24!c"),
 
   /**
    * BBAN structure for Liechtenstein as defined by the <a href="https://www.bankenverband.li">Liechtensteinischer
@@ -518,6 +527,16 @@ enum BbanStructure {
   LU(IsoCountry.LU, "3!n13!c"),
 
   /**
+   * BBAN structure for Latvia as defined by the <a href="https://www.bank.lv">Latvijas Banka</a> (Bank of Latvia).
+   *
+   * <ul>
+   * <li>BBAN example : BANK0000435195001
+   * <li>IBAN example : LV80 BANK 0000 4351 9500 1
+   * </ul>
+   */
+  LV(IsoCountry.LV, "4!a13!c"),
+
+  /**
    * BBAN structure for Libya as defined by the <a href="https://cbl.gov.ly">Central Bank of Libya</a> (CBL).
    *
    * <ul>
@@ -526,59 +545,6 @@ enum BbanStructure {
    * </ul>
    */
   LY(IsoCountry.LY, "3!n3!n15!n"),
-
-  /**
-   * BBAN structure for Macedonia as defined by the <a href="https://www.nbrm.mk/">Narodna Banka na Republika Severna
-   * Makedonija</a> (NBRSM - National Bank of the Republic of North Macedonia).
-   *
-   * <ul>
-   * <li>BBAN example : 250120000058984
-   * <li>IBAN example : MK07 2501 2000 0058 984
-   * </ul>
-   */
-  MK(IsoCountry.MK, "3!n10!c2!n"),
-
-  /**
-   * BBAN structure for Malta as defined by the <a href="https://www.maltabankers.org">Malta Bankers’ Association</a> (MBA).
-   *
-   * <ul>
-   * <li>BBAN example : MALT011000012345MTLCAST001S
-   * <li>IBAN example : MT84 MALT 0110 0001 2345 MTLC AST0 01S
-   * </ul>
-   */
-  MT(IsoCountry.MT, "4!a5!n18!c"),
-
-  /**
-   * BBAN structure for Mauritania as defined by the <a href="https://www.bcm.mr/">Banque Centrale de Mauritanie</a> (BCM -
-   * Central Bank of Mauritania).
-   *
-   * <ul>
-   * <li>BBAN example : 00020001010000123456753
-   * <li>IBAN example : MR13 0002 0001 0100 0012 3456 753
-   * </ul>
-   */
-  MR(IsoCountry.MR, "5!n5!n11!n2!n"),
-
-  /**
-   * BBAN structure for Mauritius as defined by the <a href="https://www.bom.mu/">Bank of Mauritius</a>.
-   *
-   * <ul>
-   * <li>BBAN example : BOMM0101101030300200000MUR
-   * <li>IBAN example : MU17 BOMM 0101 1010 3030 0200 000M UR
-   * </ul>
-   */
-  MU(IsoCountry.MU, "4!a2!n2!n12!n3!n3!a"),
-
-  /**
-   * BBAN structure for Moldova as defined by the <a href="https://www.bnm.md">Banca Naţională a Moldovei</a> (National Bank of
-   * Moldova).
-   *
-   * <ul>
-   * <li>BBAN example : AG000225100013104168
-   * <li>IBAN example : MD24 AG00 0225 1000 1310 4168
-   * </ul>
-   */
-  MD(IsoCountry.MD, "2!c18!c"),
 
   /**
    * BBAN structure for Monaco as defined by the <a href="https://www.amaf.mc">Association Monégasque des Activités
@@ -592,6 +558,17 @@ enum BbanStructure {
   MC(IsoCountry.MC, "5!n5!n11!c2!n"),
 
   /**
+   * BBAN structure for Moldova as defined by the <a href="https://www.bnm.md">Banca Naţională a Moldovei</a> (National Bank of
+   * Moldova).
+   *
+   * <ul>
+   * <li>BBAN example : AG000225100013104168
+   * <li>IBAN example : MD24 AG00 0225 1000 1310 4168
+   * </ul>
+   */
+  MD(IsoCountry.MD, "2!c18!c"),
+
+  /**
    * BBAN structure for Montenegro as defined by the Association of Montenegrin Banks.
    *
    * <ul>
@@ -600,6 +577,48 @@ enum BbanStructure {
    * </ul>
    */
   ME(IsoCountry.ME, "3!n13!n2!n"),
+
+  /**
+   * BBAN structure for Macedonia as defined by the <a href="https://www.nbrm.mk/">Narodna Banka na Republika Severna
+   * Makedonija</a> (NBRSM - National Bank of the Republic of North Macedonia).
+   *
+   * <ul>
+   * <li>BBAN example : 250120000058984
+   * <li>IBAN example : MK07 2501 2000 0058 984
+   * </ul>
+   */
+  MK(IsoCountry.MK, "3!n10!c2!n"),
+
+  /**
+   * BBAN structure for Mauritania as defined by the <a href="https://www.bcm.mr/">Banque Centrale de Mauritanie</a> (BCM -
+   * Central Bank of Mauritania).
+   *
+   * <ul>
+   * <li>BBAN example : 00020001010000123456753
+   * <li>IBAN example : MR13 0002 0001 0100 0012 3456 753
+   * </ul>
+   */
+  MR(IsoCountry.MR, "5!n5!n11!n2!n"),
+
+  /**
+   * BBAN structure for Malta as defined by the <a href="https://www.maltabankers.org">Malta Bankers’ Association</a> (MBA).
+   *
+   * <ul>
+   * <li>BBAN example : MALT011000012345MTLCAST001S
+   * <li>IBAN example : MT84 MALT 0110 0001 2345 MTLC AST0 01S
+   * </ul>
+   */
+  MT(IsoCountry.MT, "4!a5!n18!c"),
+
+  /**
+   * BBAN structure for Mauritius as defined by the <a href="https://www.bom.mu/">Bank of Mauritius</a>.
+   *
+   * <ul>
+   * <li>BBAN example : BOMM0101101030300200000MUR
+   * <li>IBAN example : MU17 BOMM 0101 1010 3030 0200 000M UR
+   * </ul>
+   */
+  MU(IsoCountry.MU, "4!a2!n2!n12!n3!n3!a"),
 
   /**
    * BBAN structure for the Netherlands as defined by the <a href="https://www.betaalvereniging.nl">Betaalvereniging
@@ -633,17 +652,6 @@ enum BbanStructure {
   PK(IsoCountry.PK, "4!a16!c"),
 
   /**
-   * BBAN structure for the State of Palestine as defined by the <a href="https://www.pma.ps">Palestine Monetary Authority</a>
-   * (PMA).
-   *
-   * <ul>
-   * <li>BBAN example : PALS000000000400123456702
-   * <li>IBAN example : PS92 PALS 0000 0000 0400 1234 5670 2
-   * </ul>
-   */
-  PS(IsoCountry.PS, "4!a21!c"),
-
-  /**
    * BBAN structure for Poland as defined by the <a href="https://www.nbp.pl/">Narodowy Bank Polski</a> (NBP - National Bank of
    * Poland).
    *
@@ -653,6 +661,17 @@ enum BbanStructure {
    * </ul>
    */
   PL(IsoCountry.PL, "8!n16!n"),
+
+  /**
+   * BBAN structure for the State of Palestine as defined by the <a href="https://www.pma.ps">Palestine Monetary Authority</a>
+   * (PMA).
+   *
+   * <ul>
+   * <li>BBAN example : PALS000000000400123456702
+   * <li>IBAN example : PS92 PALS 0000 0000 0400 1234 5670 2
+   * </ul>
+   */
+  PS(IsoCountry.PS, "4!a21!c"),
 
   /**
    * BBAN structure for Portugal as defined by <a href="https://www.sibs.com/">SIBS</a>.
@@ -686,14 +705,87 @@ enum BbanStructure {
   RO(IsoCountry.RO, "4!a16!c"),
 
   /**
-   * BBAN structure for Saint Lucia as defined by the <a href="https://slbs.dev/en/">Saint Lucia Bureau of Standards</a> (SLBS).
+   * BBAN structure for Serbia as defined by the <a href="https://nbs.rs">Narodna banka Srbije</a> (National bank of Serbia).
    *
    * <ul>
-   * <li>BBAN example : HEMM000100010012001200023015
-   * <li>IBAN example : LC55 HEMM 0001 0001 0012 0012 0002 3015
+   * <li>BBAN example : 260005601001611379
+   * <li>IBAN example : RS35 2600 0560 1001 6113 79
    * </ul>
    */
-  LC(IsoCountry.LC, "4!a24!c"),
+  RS(IsoCountry.RS, "3!n13!n2!n"),
+
+  /**
+   * BBAN structure for Russia as defined by the <a href="https://cbr.ru/">Central Bank of the Russian Federation</a> (CBR).
+   *
+   * <ul>
+   * <li>BBAN example : 044525225 40817 810 5 3809 1310419
+   * <li>IBAN example : RU17 0445 2522 5408 1781 0538 0913 1041 9
+   * </ul>
+   */
+  RU(IsoCountry.RU, "9!n5!n15!c"),
+
+  /**
+   * BBAN structure for Saudi Arabia as defined by the <a href="https://sama.gov.sa">Saudi Arabian Monetary Authority</a>
+   * (SAMA).
+   *
+   * <ul>
+   * <li>BBAN example : 80000000608010167519
+   * <li>IBAN example : SA03 8000 0000 6080 1016 7519
+   * </ul>
+   */
+  SA(IsoCountry.SA, "2!n18!c"),
+
+  /**
+   * BBAN structure for Seychelles as defined by the <a href="https://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
+   *
+   * <ul>
+   * <li>BBAN example : SSCB11010000000000001497USD
+   * <li>IBAN example : SC18 SSCB 1101 0000 0000 0000 1497 USD
+   * </ul>
+   */
+  SC(IsoCountry.SC, "4!a2!n2!n16!n3!a"),
+
+  /**
+   * BBAN structure for Sudan as defined by the <a href="https://cbos.gov.sd/">Central Bank of Sudan</a> (CBOS).
+   *
+   * <ul>
+   * <li>BBAN example : 29010501234001
+   * <li>IBAN example : SD21 2901 0501 2340 01
+   * </ul>
+   */
+  SD(IsoCountry.SD, "2!n12!n"),
+
+  /**
+   * BBAN structure for Sweden as defined by the <a href="https://www.swedishbankers.se">Svenska Bankföreningen</a> (Swedish
+   * Bankers’ Association).
+   *
+   * <ul>
+   * <li>BBAN example : 50000000058398257466
+   * <li>IBAN example : SE45 5000 0000 0583 9825 7466
+   * </ul>
+   */
+  SE(IsoCountry.SE, "3!n16!n1!n"),
+
+  /**
+   * BBAN structure for Slovenia as defined by the <a href="https://www.bsi.si">Banka Slovenije</a> (Bank of Slovenia).
+   *
+   * <ul>
+   * <li>BBAN example : 263300012039086
+   * <li>IBAN example : SI56 2633 0001 2039 086
+   * </ul>
+   */
+  SI(IsoCountry.SI, "5!n8!n2!n"),
+
+  /**
+   * BBAN structure for Slovakia as defined by the <a href="https://www.nbs.sk">Národná banka Slovenska</a> (NBS - National Bank
+   * of Slovakia).
+   *
+   * <ul>
+   * <li>BBAN example : 12000000198742637541
+   * <li>IBAN example : SK31 1200 0000 1987 4263 7541
+   * </ul>
+   */
+  SK(IsoCountry.SK, "4!n6!n10!n"),
 
   /**
    * BBAN structure for San Marino as defined by the <a href="https://www.bcsm.sm/">Banca Centrale della Repubblica di San
@@ -718,107 +810,15 @@ enum BbanStructure {
   ST(IsoCountry.ST, "8!n11!n2!n"),
 
   /**
-   * BBAN structure for Saudi Arabia as defined by the <a href="https://sama.gov.sa">Saudi Arabian Monetary Authority</a>
-   * (SAMA).
+   * BBAN structure for El Salvador as defined by the <a href="https://www.bcr.gob.sv/">Banco Central de Reserva de El
+   * Salvador</a> (Central Reserve Bank of El Salvador).
    *
    * <ul>
-   * <li>BBAN example : 80000000608010167519
-   * <li>IBAN example : SA03 8000 0000 6080 1016 7519
+   * <li>BBAN example : CENR00000000000000700025
+   * <li>IBAN example : SV62 CENR 0000 0000 0000 0070 0025
    * </ul>
    */
-  SA(IsoCountry.SA, "2!n18!c"),
-
-  /**
-   * BBAN structure for Serbia as defined by the <a href="https://nbs.rs">Narodna banka Srbije</a> (National bank of Serbia).
-   *
-   * <ul>
-   * <li>BBAN example : 260005601001611379
-   * <li>IBAN example : RS35 2600 0560 1001 6113 79
-   * </ul>
-   */
-  RS(IsoCountry.RS, "3!n13!n2!n"),
-
-  /**
-   * BBAN structure for Russia as defined by the <a href="https://cbr.ru/">Central Bank of the Russian Federation</a> (CBR).
-   *
-   * <ul>
-   * <li>BBAN example : 044525225 40817 810 5 3809 1310419
-   * <li>IBAN example : RU17 0445 2522 5408 1781 0538 0913 1041 9
-   * </ul>
-   */
-  RU(IsoCountry.RU, "9!n5!n15!c"),
-
-  /**
-   * BBAN structure for Seychelles as defined by the <a href="https://www.cbs.sc/">Central Bank of Seychelles</a> (CBS).
-   *
-   * <ul>
-   * <li>BBAN example : SSCB11010000000000001497USD
-   * <li>IBAN example : SC18 SSCB 1101 0000 0000 0000 1497 USD
-   * </ul>
-   */
-  SC(IsoCountry.SC, "4!a2!n2!n16!n3!a"),
-
-  /**
-   * BBAN structure for Sudan as defined by the <a href="https://cbos.gov.sd/">Central Bank of Sudan</a> (CBOS).
-   *
-   * <ul>
-   * <li>BBAN example : 29010501234001
-   * <li>IBAN example : SD21 2901 0501 2340 01
-   * </ul>
-   */
-  SD(IsoCountry.SD, "2!n12!n"),
-
-  /**
-   * BBAN structure for Slovakia as defined by the <a href="https://www.nbs.sk">Národná banka Slovenska</a> (NBS - National Bank
-   * of Slovakia).
-   *
-   * <ul>
-   * <li>BBAN example : 12000000198742637541
-   * <li>IBAN example : SK31 1200 0000 1987 4263 7541
-   * </ul>
-   */
-  SK(IsoCountry.SK, "4!n6!n10!n"),
-
-  /**
-   * BBAN structure for Slovenia as defined by the <a href="https://www.bsi.si">Banka Slovenije</a> (Bank of Slovenia).
-   *
-   * <ul>
-   * <li>BBAN example : 263300012039086
-   * <li>IBAN example : SI56 2633 0001 2039 086
-   * </ul>
-   */
-  SI(IsoCountry.SI, "5!n8!n2!n"),
-
-  /**
-   * BBAN structure for Spain as defined by the <a href="https://www.aebanca.es">Asociación Española de Banca</a> (AEB).
-   *
-   * <ul>
-   * <li>BBAN example : 21000418450200051332
-   * <li>IBAN example : ES91 2100 0418 4502 0005 1332
-   * </ul>
-   */
-  ES(IsoCountry.ES, "4!n4!n1!n1!n10!n"),
-
-  /**
-   * BBAN structure for Sweden as defined by the <a href="https://www.swedishbankers.se">Svenska Bankföreningen</a> (Swedish
-   * Bankers’ Association).
-   *
-   * <ul>
-   * <li>BBAN example : 50000000058398257466
-   * <li>IBAN example : SE45 5000 0000 0583 9825 7466
-   * </ul>
-   */
-  SE(IsoCountry.SE, "3!n16!n1!n"),
-
-  /**
-   * BBAN structure for Switzerland as defined by <a href="https://www.six-group.com">SIX Interbank Clearing</a>.
-   *
-   * <ul>
-   * <li>BBAN example : 00762011623852957
-   * <li>IBAN example : CH93 0076 2011 6238 5295 7
-   * </ul>
-   */
-  CH(IsoCountry.CH, "5!n12!c"),
+  SV(IsoCountry.SV, "4!a20!n"),
 
   /**
    * BBAN structure for Timor-Leste as defined by the <a href="https://www.bancocentral.tl">Banco Central de Timor-Leste</a>
@@ -865,27 +865,6 @@ enum BbanStructure {
   UA(IsoCountry.UA, "6!n19!c"),
 
   /**
-   * BBAN structure for the United Arab Emirates as defined by the <a href="https://www.centralbank.ae">Central Bank of the
-   * United Arab Emirates</a>.
-   *
-   * <ul>
-   * <li>BBAN example : 0331234567890123456
-   * <li>IBAN example : AE07 0331 2345 6789 0123 456
-   * </ul>
-   */
-  AE(IsoCountry.AE, "3!n16!n"),
-
-  /**
-   * BBAN structure for the United Kingdom as defined by <a href="https://www.ukpayments.org.uk">Payments UK Management Ltd</a>.
-   *
-   * <ul>
-   * <li>BBAN example : NWBK60161331926819
-   * <li>IBAN example : GB29 NWBK 6016 1331 9268 19
-   * </ul>
-   */
-  GB(IsoCountry.GB, "4!a6!n8!n", IM, JE, GG),
-
-  /**
    * BBAN structure for the Vatican City State as defined by the <a href="https://www.aif.va">Autorita di Informazione
    * Finanziaria</a> (AIF - Financial Information Authority).
    *
@@ -894,7 +873,28 @@ enum BbanStructure {
    * <li>IBAN example : VA59 001 1230 0001 2345 678
    * </ul>
    */
-  VA(IsoCountry.VA, "3!n15!n");
+  VA(IsoCountry.VA, "3!n15!n"),
+
+  /**
+   * BBAN structure for the british Virgin Islands as defined by the <a href="https://vg.vpbank.com">VP Bank House</a>.
+   *
+   * <ul>
+   * <li>BBAN example : VPVG0000012345678901
+   * <li>IBAN example : VG96 VPVG 0000 0123 4567 8901
+   * </ul>
+   */
+  VG(IsoCountry.VG, "4!a16!n"),
+
+  /**
+   * BBAN structure for Kosovo as defined by the <a href="https://www.bqk-kos.org/">Banka Qendrore e Kosovës</a> (Central Bank
+   * of the Republic of Kosovo).
+   *
+   * <ul>
+   * <li>BBAN example : 1212012345678906
+   * <li>IBAN example : XK05 1212 0123 4567 8906
+   * </ul>
+   */
+  XK(IsoCountry.XK, "4!n10!n2!n");
 
   private static final Map<IsoCountry, BbanStructure> byCountry = new EnumMap<>(IsoCountry.class);
 

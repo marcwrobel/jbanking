@@ -26,6 +26,13 @@ enum Holidays implements Holiday {
   ALL_SAINTS_DAY(new MonthDayHoliday(MonthDay.of(NOVEMBER, 1))),
 
   /**
+   * Armistice Day.
+   *
+   * @see <a href="https://wikipedia.org/wiki/Armistice_Day">Wikipedia</a>
+   */
+  ARMISTICE_DAY(new MonthDayHoliday(MonthDay.of(NOVEMBER, 11))),
+
+  /**
    * Ascension Day, aka Feast of the Ascension.
    *
    * @see <a href="https://en.wikipedia.org/wiki/Feast_of_the_Ascension"Wikipedia</a>
@@ -38,13 +45,6 @@ enum Holidays implements Holiday {
    * @see <a href="https://wikipedia.org/wiki/Assumption_of_Mary">Wikipedia</a>
    */
   ASSUMPTION_OF_MARY(new MonthDayHoliday(MonthDay.of(AUGUST, 15))),
-
-  /**
-   * Armistice Day.
-   *
-   * @see <a href="https://wikipedia.org/wiki/Armistice_Day">Wikipedia</a>
-   */
-  ARMISTICE_DAY(new MonthDayHoliday(MonthDay.of(NOVEMBER, 11))),
 
   /**
    * Boxing Day.
