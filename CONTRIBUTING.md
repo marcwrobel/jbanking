@@ -69,6 +69,11 @@ mvn verify
 
 Wait for a bit and you're done.
 
+## Benchmarking
+
+In order to track the evolution of jbanking performances from version to version, some benchmarks
+[are available here](/benchmarks/README.md).
+
 ## Releasing
 
 In order to publish a release to Maven Central, you :

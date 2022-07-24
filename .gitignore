@@ -8,6 +8,7 @@
 # Maven
 target
 .flattened-pom.xml
+dependency-reduced-pom.xml
 
 # IDEs
 *.classpath
