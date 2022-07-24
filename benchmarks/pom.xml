@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>parent</artifactId>
+    <groupId>fr.marcwrobel</groupId>
+    <version>2.7.0</version>
+    <relativePath/>
+  </parent>
+
+  <artifactId>jbanking-benchmarks</artifactId>
+  <version>0.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>jbanking JMH benchmark</name>
+
+  <properties>
+    <start-class>org.openjdk.jmh.Main</start-class>
+    <this.java.version>1.8</this.java.version>
+
+    <jbanking.version>3.4.0</jbanking.version>
+    <jmh.version>1.35</jmh.version>
+
+    <exclusion1>/does/not/exist</exclusion1>
+    <exclusion2>/does/not/exist</exclusion2>
+    <exclusion3>/does/not/exist</exclusion3>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>fr.marcwrobel</groupId>
+      <artifactId>jbanking</artifactId>
+      <version>${jbanking.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-core</artifactId>
+      <version>${jmh.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-generator-annprocess</artifactId>
+      <version>${jmh.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <finalName>${project.artifactId}-${jbanking.version}</finalName>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/MANIFEST.MF</exclude>
+              </excludes>
+            </filter>
+          </filters>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ITERATION=3
+WARMUP_ITERATION=$ITERATION
+TIME=10
+BENCHMARK_DIR='src/main/java/b'
+BASE_RESULTS_DIR=$(mktemp -d '/tmp/jbanking-benchmarks.XXXXXXXXXX')
+RESULTS_FILE_JSON="$BASE_RESULTS_DIR/jbanking-benchmarks.json"
+RESULTS_FILE_MD="$BASE_RESULTS_DIR/jbanking-benchmarks.md"
+
+# Ant-style pattern to exclude benchmarks for features that did not exists in some versions
+declare -A EXCLUSIONS
+EXCLUSIONS['1.0']="$BENCHMARK_DIR/CalendarBenchmark.java $BENCHMARK_DIR/CreditorIdentifierBenchmark.java"
+EXCLUSIONS['2.1.0']="$BENCHMARK_DIR/CreditorIdentifierBenchmark.java"
+EXCLUSIONS['3.4.0']=''
+EXCLUSIONS['4.0.0-SNAPSHOT']=''
+VERSIONS='1.0 2.1.0 3.4.0 4.0.0-SNAPSHOT'
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+  -f | --fast)
+    ITERATION=1
+    WARMUP_ITERATION=0
+    TIME=1
+    shift
+    ;;
+  *)
+    echo "Unknown option $1"
+    exit 1
+    ;;
+  esac
+done
+
+[ -z "$VERSIONS" ] && echo "Missing versions parameters, run with '$0 <version1> <version2>...<versionN>'" && exit 1
+
+cd "$(dirname "$0")"
+for version in $VERSIONS; do
+  (
+    RESULTS_DIR="$BASE_RESULTS_DIR/$version"
+    JAR="jbanking-benchmarks-$version.jar"
+
+    # Maven must be offline for SNAPSHOT versions.
+    # Excluded files will be temporarily removed during compilation
+    # Do not quote unquoted vars, word splitting is required.
+    [[ -n ${EXCLUSIONS[$version]} ]] && mv -v ${EXCLUSIONS[$version]} "$BASE_RESULTS_DIR"
+    [[ $version =~ ^.+-SNAPSHOT$ ]] && MVN_OPTIONS='--offline' || MVN_OPTIONS=''
+    mvn clean package $MVN_OPTIONS "-Djbanking.version=$version"
+    [[ -n "${EXCLUSIONS[$version]}" ]] && mv -v "$BASE_RESULTS_DIR"/*.java $BENCHMARK_DIR/
+
+    mkdir "$RESULTS_DIR"
+    mv "target/$JAR" "$RESULTS_DIR"
+    cp .tool-versions "$RESULTS_DIR"
+    cd "$RESULTS_DIR"
+
+    OUT="jbanking-benchmarks-$version.json"
+    java -jar "$JAR" -prof jfr -f 1 -bm Throughput -foe true \
+      -i "$ITERATION" -wi "$WARMUP_ITERATION" \
+      -r "$TIME" -w "$TIME" \
+      -rf JSON -rff "$OUT" \
+      -jvmArgs '-Xms128m' -jvmArgs '-Xmx128m'
+
+    jq "[.[] | { name: .benchmark, parameter: .params.value, version: \"$version\", throughput: .primaryMetric.score }]" \
+      <"$OUT" >"jbanking-benchmarks.json"
+  )
+done
+
+jq -s add "$BASE_RESULTS_DIR"/*/jbanking-benchmarks.json >"$RESULTS_FILE_JSON"
+
+FIELDS_ORDER='.name, .parameter, .throughput, .version'
+echo "| $(echo "$FIELDS_ORDER" | sed 's/\.//g' | sed 's/, / | /g') |" >"$RESULTS_FILE_MD"
+echo "| ----- | ----- | ----- | ----- |" >>"$RESULTS_FILE_MD"
+jq -r "sort_by($FIELDS_ORDER) | .[] | [$FIELDS_ORDER] | @csv" <"$RESULTS_FILE_JSON" |
+  sed -r 's/[",]+/ | /g' | sed 's/^ //' >>"$RESULTS_FILE_MD" # if throughput is last, add an additional pipe at the end
+
+echo "Benchmark finished, results can be found in $BASE_RESULTS_DIR"
