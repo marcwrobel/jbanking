@@ -12,22 +12,17 @@ Here are the benchmarks that are available :
 
 # Run the benchmarks
 
-First install the current SNAPSHOT version of jbanking in you local Maven repository. Then use the [`run`](/run) script
-with the targeted versions:
+First install the current SNAPSHOT version of jbanking in you local Maven repository. Then use the [`run`](/run)
+script: `./run`.
 
-```shell
-./run
-```
-
-The script run the benchmarks against the latest of each major version and produces, in a temporary directory (e.g.
-`/tmp/jbanking-benchmarks.85iJgvVVOc`), two files :
-
-- `jbanking-benchmarks.json`, with the raw results for all versions,
-- `jbanking-benchmarks.md`, with the same data as `jbanking-benchmarks.json`, but sorted and formatted to a Markdown
-  table.
+By default, the script run the benchmarks against the latest of each major version and produces, in a temporary
+directory (e.g. `/tmp/jbanking-benchmarks.85iJgvVVOc`), a file named `jbanking-benchmarks.md`. This files contains the
+aggregated results of all the benchmarks processed, sorted and formatted as a Markdown table.
 
 The JFR files for each version and each test can be found in subdirectories
-(e.g. `2.1.0/b.BicBenchmark.isValid-Throughput-value-AECFFR21/profile.jfr`).
+(e.g. `2.1.0/b.BicBenchmark.isValid-Throughput-value-AECFFR21/profile.jfr`) of the temporary directory.
+
+Options are available to target only specific versions or benchmarks. See `./run --help` for more information.
 
 # Latest results
 
@@ -42,66 +37,69 @@ All test were run with in the following conditions :
 - 1 thread,
 - blackhole mode: full + dont-inline hint.
 
-| name                                     | parameter                       | throughput (ops/s) | version        |
-|------------------------------------------|---------------------------------|--------------------|----------------|
-| b.BicBenchmark.creation                  | AECFFR21                        | 2458425.3893140806 | 1.0            |
-| b.BicBenchmark.creation                  | AECFFR21                        | 2530410.4957453604 | 2.1.0          |
-| b.BicBenchmark.creation                  | AECFFR21                        | 6854009.90896896   | 3.4.0          |
-| b.BicBenchmark.creation                  | AECFFR21                        | 7190349.453608278  | 4.0.0-SNAPSHOT |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 2473169.8704783493 | 1.0            |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 2500515.832375454  | 2.1.0          |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 5890216.802319315  | 4.0.0-SNAPSHOT |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 7718496.250356044  | 3.4.0          |
-| b.BicBenchmark.validation                | AECFFR21                        | 2688566.1794009567 | 1.0            |
-| b.BicBenchmark.validation                | AECFFR21                        | 2689057.7059752233 | 2.1.0          |
-| b.BicBenchmark.validation                | AECFFR21                        | 9101923.709667956  | 3.4.0          |
-| b.BicBenchmark.validation                | AECFFR21                        | 9135348.456472605  | 4.0.0-SNAPSHOT |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 2534206.1831777333 | 1.0            |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 2572414.9971009106 | 2.1.0          |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 7063151.569808416  | 4.0.0-SNAPSHOT |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 7622818.14566424   | 3.4.0          |
-| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 1504555.5300917418 | 3.4.0          |
-| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 1534339.7479736202 | 4.0.0-SNAPSHOT |
-| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 1692413.5557553722 | 2.1.0          |
-| b.CalendarBenchmark.validation           | PARIS                           | 2675125.3337022555 | 4.0.0-SNAPSHOT |
-| b.CalendarBenchmark.validation           | PARIS                           | 2728133.4505634275 | 2.1.0          |
-| b.CalendarBenchmark.validation           | PARIS                           | 2763490.475512153  | 3.4.0          |
-| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 19962832.700334243 | 2.1.0          |
-| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 20714400.236055505 | 4.0.0-SNAPSHOT |
-| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 21136042.62783764  | 3.4.0          |
-| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 1460316.290385738  | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 1497765.9790729887 | 3.4.0          |
-| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 1889137.5787130364 | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 1979223.0826955668 | 3.4.0          |
-| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 1225656.425420342  | 3.4.0          |
-| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 1278560.7573129258 | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 1394813.4451051683 | 3.4.0          |
-| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 1401998.860281951  | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 1946655.844030205  | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 2032682.6850879835 | 3.4.0          |
-| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 1255077.6876865244 | 4.0.0-SNAPSHOT |
-| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 1277956.7236680975 | 3.4.0          |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 496015.7954783158  | 2.1.0          |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 512315.2743234933  | 1.0            |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 1088855.9919270808 | 3.4.0          |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 1183039.8313794248 | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 521457.4869068836  | 2.1.0          |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 540858.9902576734  | 1.0            |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 902359.7751483739  | 3.4.0          |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 903372.8744631289  | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 641355.2057275715  | 2.1.0          |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 650302.3766157505  | 1.0            |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 1459558.6377279593 | 3.4.0          |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 1493278.4903499328 | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 503625.82105215156 | 2.1.0          |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 540863.0679029879  | 1.0            |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 1139805.7382518833 | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 1145318.412868684  | 3.4.0          |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 532389.3457544685  | 2.1.0          |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 545268.5773725305  | 1.0            |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 898952.3281776108  | 3.4.0          |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 983117.6554380748  | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 628418.7206489729  | 2.1.0          |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 677235.2470151491  | 1.0            |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 1360595.1393715353 | 4.0.0-SNAPSHOT |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 1366976.878310357  | 3.4.0          |
+| Name                                     | Parameter                       | Version        |      Ops/s | Increase |
+|------------------------------------------|---------------------------------|----------------|-----------:|---------:|
+| b.BicBenchmark.creation                  | AECFFR21                        | 1.0            |  2,444,715 |      N/A |
+| b.BicBenchmark.creation                  | AECFFR21                        | 2.1.0          |  2,481,546 |   +1.48% |
+| b.BicBenchmark.creation                  | AECFFR21                        | 3.4.0          |  6,649,405 |  +62.68% |
+| b.BicBenchmark.creation                  | AECFFR21                        | 4.0.0-SNAPSHOT |  7,629,868 |  +12.85% |
+| b.BicBenchmark.creation                  | AECFFR21XXX                     | 1.0            |  2,512,454 |      N/A |
+| b.BicBenchmark.creation                  | AECFFR21XXX                     | 2.1.0          |  2,550,922 |   +1.51% |
+| b.BicBenchmark.creation                  | AECFFR21XXX                     | 4.0.0-SNAPSHOT |  7,746,081 |  +67.07% |
+| b.BicBenchmark.creation                  | AECFFR21XXX                     | 3.4.0          |  8,066,353 |   +3.97% |
+| b.BicBenchmark.validation                | AECFFR21                        | 1.0            |  2,701,550 |      N/A |
+| b.BicBenchmark.validation                | AECFFR21                        | 2.1.0          |  2,831,007 |   +4.57% |
+| b.BicBenchmark.validation                | AECFFR21                        | 3.4.0          |  8,874,888 |  +68.10% |
+| b.BicBenchmark.validation                | AECFFR21                        | 4.0.0-SNAPSHOT |  9,334,088 |   +4.92% |
+| b.BicBenchmark.validation                | AECFFR21XXX                     | 2.1.0          |  2,527,600 |      N/A |
+| b.BicBenchmark.validation                | AECFFR21XXX                     | 1.0            |  2,676,293 |   +5.56% |
+| b.BicBenchmark.validation                | AECFFR21XXX                     | 4.0.0-SNAPSHOT |  7,663,691 |  +65.08% |
+| b.BicBenchmark.validation                | AECFFR21XXX                     | 3.4.0          |  7,797,982 |   +1.72% |
+| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 4.0.0-SNAPSHOT |  1,464,062 |      N/A |
+| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 3.4.0          |  1,508,236 |   +2.93% |
+| b.CalendarBenchmark.validation           | PARIS                           | 3.4.0          |  2,703,850 |      N/A |
+| b.CalendarBenchmark.validation           | PARIS                           | 4.0.0-SNAPSHOT |  2,710,297 |   +0.24% |
+| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 3.4.0          | 20,365,368 |      N/A |
+| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 4.0.0-SNAPSHOT | 21,186,208 |   +3.87% |
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 2.1.0          |  1,179,963 |      N/A |
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 4.0.0-SNAPSHOT |  1,339,117 |  +11.89% |
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 3.4.0          |  1,473,817 |   +9.14% |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 2.1.0          |  1,353,862 |      N/A |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 4.0.0-SNAPSHOT |  1,982,338 |  +31.70% |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 3.4.0          |  2,006,483 |   +1.20% |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 2.1.0          |    650,804 |      N/A |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 4.0.0-SNAPSHOT |  1,269,066 |  +48.72% |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 3.4.0          |  1,293,270 |   +1.87% |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 2.1.0          |  1,171,900 |      N/A |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 3.4.0          |  1,485,479 |  +21.11% |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 4.0.0-SNAPSHOT |  1,525,590 |   +2.63% |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 2.1.0          |    1359341 |      N/A |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 4.0.0-SNAPSHOT |  2,022,577 |  +32.79% |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 3.4.0          |  2,044,620 |   +1.08% |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 2.1.0          |    647,807 |      N/A |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 4.0.0-SNAPSHOT |  1,242,825 |  +47.88% |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 3.4.0          |  1,283,238 |   +3.15% |
+| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 2.1.0          |    503,185 |      N/A |
+| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 1.0            |    537,262 |   +6.34% |
+| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 4.0.0-SNAPSHOT |  1,106,781 |  +51.46% |
+| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 3.4.0          |  1,130,385 |   +2.09% |
+| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 2.1.0          |    515,480 |      N/A |
+| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 1.0            |    533,216 |   +3.33% |
+| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 3.4.0          |    897,188 |  +40.57% |
+| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 4.0.0-SNAPSHOT |    956,700 |   +6.22% |
+| b.IbanBenchmark.creation                 | NO2451742753161                 | 2.1.0          |    628,450 |      N/A |
+| b.IbanBenchmark.creation                 | NO2451742753161                 | 1.0            |    655,568 |   +4.14% |
+| b.IbanBenchmark.creation                 | NO2451742753161                 | 3.4.0          |  1,388,082 |  +52.77% |
+| b.IbanBenchmark.creation                 | NO2451742753161                 | 4.0.0-SNAPSHOT |  1,468,227 |   +5.46% |
+| b.IbanBenchmark.validation               | ES2837832292261368335005        | 2.1.0          |    502,608 |      N/A |
+| b.IbanBenchmark.validation               | ES2837832292261368335005        | 1.0            |    511,613 |   +1.76% |
+| b.IbanBenchmark.validation               | ES2837832292261368335005        | 3.4.0          |  1,064,568 |  +51.94% |
+| b.IbanBenchmark.validation               | ES2837832292261368335005        | 4.0.0-SNAPSHOT |  1,108,403 |   +3.95% |
+| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 2.1.0          |    523,769 |      N/A |
+| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 1.0            |    532,346 |   +1.61% |
+| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 4.0.0-SNAPSHOT |    879,841 |  +39.50% |
+| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 3.4.0          |    902,781 |   +2.54% |
+| b.IbanBenchmark.validation               | NO2451742753161                 | 2.1.0          |    622,808 |      N/A |
+| b.IbanBenchmark.validation               | NO2451742753161                 | 1.0            |    670,624 |   +7.13% |
+| b.IbanBenchmark.validation               | NO2451742753161                 | 3.4.0          |  1,448,533 |  +53.70% |
+| b.IbanBenchmark.validation               | NO2451742753161                 | 4.0.0-SNAPSHOT |  1,484,615 |   +2.43% |
