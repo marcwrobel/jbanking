@@ -17,9 +17,9 @@ limited to, European banking.
 
 jbanking is supporting the following features :
 
-* [ISO 3166-1 countries](https://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and status,
-  e.g. independent or dependent (according to the [International Organization for Standardization](https://www.iso.org))
-  .
+* [ISO 3166-1 countries](https://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and
+  status, e.g. independent or dependent (according to the
+  [International Organization for Standardization](https://www.iso.org)).
 * Countries or territories participation to economic agreements :
   * [European Economic Area (EEA)](https://wikipedia.org/wiki/European_Economic_Area),
   * [European Free Trade Association (EFTA)](https://wikipedia.org/wiki/European_Free_Trade_Association),
@@ -120,6 +120,21 @@ Assertion.assertEquals(Arrays.asList(LocalDate.of(2022, 1, 3), LocalDate.of(2022
 For more information take a look at [the javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and
 [the unit tests](/src/test/java/fr/marcwrobel/jbanking). Changelogs are available on
 [GitHub Releases](https://github.com/marcwrobel/jbanking/releases).
+
+## Alternatives
+
+There is no alternatives to jbanking with all its features. But here are some _partial_ alternatives :
+
+- Java itself for [ISO 3166 countries](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html)
+  and [ISO 4217 currencies](https://docs.oracle.com/javase/8/docs/api/java/util/Currency.html).
+- [OpenGamma Strata](https://github.com/OpenGamma/Strata), an open source analytics and market risk library from
+  OpenGamma (especially [strata-basics](https://github.com/OpenGamma/Strata/tree/main/modules/basics)).
+- [TakahikoKawasaki/nv-i18n](https://github.com/TakahikoKawasaki/nv-i18n), a package to support internationalization,
+  containing ISO 3166-1 country code enum, ISO 639-1 language code enum, etc.
+- [arturmkrtchyan/iban4j](https://github.com/arturmkrtchyan/iban4j) (or its fork
+  [NaluKit/iban4g](https://github.com/NaluKit/iban4g)), a java library for generating and validating IBANs and BICs.
+- [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/), a java library for validating a lot
+  of things, including IBANs.
 
 ## Contribute
 
