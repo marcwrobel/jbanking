@@ -1,77 +1,138 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-set -euo pipefail
+import argparse
+import json
+import os
+import shutil
+import tempfile
 
-ITERATION=3
-WARMUP_ITERATION=$ITERATION
-TIME=10
-BENCHMARK_DIR='src/main/java/b'
-BASE_RESULTS_DIR=$(mktemp -d '/tmp/jbanking-benchmarks.XXXXXXXXXX')
-RESULTS_FILE_JSON="$BASE_RESULTS_DIR/jbanking-benchmarks.json"
-RESULTS_FILE_MD="$BASE_RESULTS_DIR/jbanking-benchmarks.md"
 
-# Ant-style pattern to exclude benchmarks for features that did not exists in some versions
-declare -A EXCLUSIONS
-EXCLUSIONS['1.0']="$BENCHMARK_DIR/CalendarBenchmark.java $BENCHMARK_DIR/CreditorIdentifierBenchmark.java"
-EXCLUSIONS['2.1.0']="$BENCHMARK_DIR/CreditorIdentifierBenchmark.java"
-EXCLUSIONS['3.4.0']=''
-EXCLUSIONS['4.0.0-SNAPSHOT']=''
-VERSIONS='1.0 2.1.0 3.4.0 4.0.0-SNAPSHOT'
+class Result:
+    def __init__(self, name, parameter, version, throughput):
+        self.name = name
+        self.parameter = parameter
+        self.version = version
+        self.throughput = throughput
+        self.increase = None
 
-while [[ $# -gt 0 ]]; do
-  case $1 in
-  -f | --fast)
-    ITERATION=1
-    WARMUP_ITERATION=0
-    TIME=1
-    shift
-    ;;
-  *)
-    echo "Unknown option $1"
-    exit 1
-    ;;
-  esac
-done
+    @classmethod
+    def from_json(cls, json, version):
+        return cls(json["benchmark"], json["params"]["value"], version, json["primaryMetric"]["score"])
 
-[ -z "$VERSIONS" ] && echo "Missing versions parameters, run with '$0 <version1> <version2>...<versionN>'" && exit 1
+    def set_increase(self, other):
+        if other is not None and self.name == other.name and self.parameter == other.parameter:
+            self.increase = ((self.throughput - other.throughput) / self.throughput)
 
-cd "$(dirname "$0")"
-for version in $VERSIONS; do
-  (
-    RESULTS_DIR="$BASE_RESULTS_DIR/$version"
-    JAR="jbanking-benchmarks-$version.jar"
 
-    # Maven must be offline for SNAPSHOT versions.
-    # Excluded files will be temporarily removed during compilation
-    # Do not quote unquoted vars, word splitting is required.
-    [[ -n ${EXCLUSIONS[$version]} ]] && mv -v ${EXCLUSIONS[$version]} "$BASE_RESULTS_DIR"
-    [[ $version =~ ^.+-SNAPSHOT$ ]] && MVN_OPTIONS='--offline' || MVN_OPTIONS=''
-    mvn clean package $MVN_OPTIONS "-Djbanking.version=$version"
-    [[ -n "${EXCLUSIONS[$version]}" ]] && mv -v "$BASE_RESULTS_DIR"/*.java $BENCHMARK_DIR/
+BENCHMARKS = {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
+VERSIONS = {
+    "1.0": {
+        "benchmarks": {"Iban", "Bic"}
+    },
+    "2.1.0": {
+        "benchmarks": {"Iban", "Bic", "CreditorIdentifier"}
+    },
+    "3.4.0": {
+        "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
+    },
+    "4.0.0-SNAPSHOT": {
+        "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
+    }
+}
 
-    mkdir "$RESULTS_DIR"
-    mv "target/$JAR" "$RESULTS_DIR"
-    cp .tool-versions "$RESULTS_DIR"
-    cd "$RESULTS_DIR"
+project_dir = os.path.dirname(__file__)
+source_dir = project_dir + '/src/main/java/b'
+exclusion_dir = project_dir + '/src'
 
-    OUT="jbanking-benchmarks-$version.json"
-    java -jar "$JAR" -prof jfr -f 1 -bm Throughput -foe true \
-      -i "$ITERATION" -wi "$WARMUP_ITERATION" \
-      -r "$TIME" -w "$TIME" \
-      -rf JSON -rff "$OUT" \
-      -jvmArgs '-Xms128m' -jvmArgs '-Xmx128m'
+os.chdir(project_dir)
+parser = argparse.ArgumentParser(description="Run jbanking benchmarks")
+parser.add_argument("-f", "--fast", action="store_true",
+                    help="activate fast run mode (for test purpose only)")
+parser.add_argument("-v", "--version", type=str, nargs="*",
+                    help="limit to only some versions")
+parser.add_argument("-e", "--exclude", type=str, nargs="*",
+                    help="exclude some benchmarks (must be on of " + ", ".join(BENCHMARKS) + ")")
+args = parser.parse_args()
 
-    jq "[.[] | { name: .benchmark, parameter: .params.value, version: \"$version\", throughput: .primaryMetric.score }]" \
-      <"$OUT" >"jbanking-benchmarks.json"
-  )
-done
+versions = set(args.version) if args.version else set(VERSIONS.keys())
+iteration = 1 if args.fast else 3
+warmup_iteration = 0 if args.fast else 3
+time = 1 if args.fast else 10
+globalExclusions = set(args.exclude) if args.exclude else set()
 
-jq -s add "$BASE_RESULTS_DIR"/*/jbanking-benchmarks.json >"$RESULTS_FILE_JSON"
 
-FIELDS_ORDER='.name, .parameter, .throughput, .version'
-echo "| $(echo "$FIELDS_ORDER" | sed 's/\.//g' | sed 's/, / | /g') |" >"$RESULTS_FILE_MD"
-echo "| ----- | ----- | ----- | ----- |" >>"$RESULTS_FILE_MD"
-jq -r "sort_by($FIELDS_ORDER) | .[] | [$FIELDS_ORDER] | @csv" <"$RESULTS_FILE_JSON" |
-  sed -r 's/[",]+/ | /g' | sed 's/^ //' >>"$RESULTS_FILE_MD" # if throughput is last, add an additional pipe at the end
+def exclude_benchmarks(benchmarks):
+    for benchmark in benchmarks:
+        class_file = source_dir + '/' + benchmark + 'Benchmark.java'
+        shutil.move(class_file, exclusion_dir)
 
-echo "Benchmark finished, results can be found in $BASE_RESULTS_DIR"
+
+def restore_benchmarks(benchmarks):
+    for benchmark in benchmarks:
+        class_file = exclusion_dir + '/' + benchmark + 'Benchmark.java'
+        shutil.move(class_file, source_dir)
+
+
+def execute(command):
+    failed = os.system(command)
+    if failed:
+        exit(1)
+
+
+base_dir = tempfile.mkdtemp(prefix="jbanking-benchmarks.", dir="/tmp")
+for version in sorted(versions):
+    excludedBenchmarks = BENCHMARKS.difference(
+        VERSIONS[version]['benchmarks']).union(globalExclusions)
+
+    exclude_benchmarks(excludedBenchmarks)
+    maven_args = "--offline" if version.__contains__("SNAPSHOT") else ""
+    execute(
+        "mvn clean package {args} -Djbanking.version={version}"
+        .format(version=version, args=maven_args)
+    )
+    restore_benchmarks(excludedBenchmarks)
+
+    version_dir = base_dir + "/" + version
+    version_jar = "jbanking-benchmarks-{version}.jar".format(version=version)
+
+    os.mkdir(version_dir)
+    shutil.move("target/" + version_jar, version_dir)
+    shutil.copy(".tool-versions", version_dir)
+
+    os.chdir(version_dir)
+    execute(
+        "java -jar {jar} -prof jfr -f 1 -bm Throughput -foe true -i {i} -wi {wi} -r {r} -w {w} -rf JSON -rff {rff} -jvmArgs -Xms128m -jvmArgs -Xmx128m"
+        .format(jar=version_jar, i=iteration, wi=warmup_iteration, r=time, w=time, rff="jbanking-benchmarks.json")
+    )
+
+    os.chdir(project_dir)
+
+results = []
+for version in sorted(versions):
+    with open("{dir}/{version}/jbanking-benchmarks.json".format(dir=base_dir, version=version), "r") as json_file:
+        version_results = json.load(json_file)
+        for version_result in version_results:
+            results.append(Result.from_json(version_result, version))
+results.sort(key=lambda r: (r.name, r.parameter, r.throughput))
+
+previous = None
+for current in results:
+    current.set_increase(previous)
+    previous = current
+
+
+with open("{dir}/jbanking-benchmarks.md".format(dir=base_dir), "w") as f:
+    f.writelines([
+        "| Name | Parameter | Version | Ops/s | Increase |\n",
+        "| ---- | --------- | ------- | ----- | -------- |\n"
+    ])
+
+    for current in results:
+        f.writelines([
+            "| {n} | {p} | {v} | {t} | {i} |\n"
+            .format(n=current.name, p=current.parameter, v=current.version,
+                    t="{:,.0f}".format(current.throughput),
+                    i='N/A' if current.increase is None else "{:,.2}%".format(current.increase))
+        ])
+
+print("Benchmark finished, results can be found in " + base_dir)
