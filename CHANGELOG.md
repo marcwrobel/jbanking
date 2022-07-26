@@ -10,7 +10,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - (**breaking change**) Make `CreditorIdentifier` final (#116).
-- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` (as part of #170).
+- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and change it to not accept lower-case characters anymore
+  (as part of #170).
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (x3) and
   creation (x4).
 
