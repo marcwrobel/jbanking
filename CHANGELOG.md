@@ -6,13 +6,18 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Document alternatives to jbanking (#164).
+- Make `CreditorIdentifier#REGEX` public (as part of #172).
 
 ### Changed
 
 - (**breaking change**) Make `CreditorIdentifier` final (#116).
-- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` (as part of #170).
-- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (x3) and
-  creation (x4).
+- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and change it to not accept lower-case characters anymore
+  (as part of #170).
+- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (+200%)
+  and creation (+300%).
+- Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
+  Creditor Identifiers validation (+30-40%) and creation (+30-50%).
+- Improve javadoc (as part of #170 and #172).
 
 ### Fixed
 
@@ -27,6 +32,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
 - Bump strata-basics from 2.12.5 to 2.12.6 (#165).
-- Add benchmarks that track the evolution of jbanking performances from version to version (#166).
+- Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
+  seen [here](benchmarks/README.md).
 
 ### Thanks

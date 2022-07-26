@@ -54,10 +54,10 @@ public final class Bic implements Serializable {
   private static final long serialVersionUID = 0;
 
   /**
-   * A simple regex that validate well-formed BIC.
+   * A simple regex that validate well-formed BICs.
    */
   @SuppressWarnings("unused") // kept for compatibility and documentation purposes
-  public static final String REGEX = "[A-Za-z]{4}[A-Za-z]{2}[A-Za-z0-9]{2}([A-Za-z0-9]{3})?";
+  public static final String REGEX = "[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?";
 
   /**
    * The branch code for primary offices.
@@ -93,8 +93,8 @@ public final class Bic implements Serializable {
    *
    * @param bic8Or11 A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
-   * @throws BicFormatException if the given BIC8 or BIC11 string does not match {@value #REGEX} or if the given BIC8 or
-   *         BIC11 country code is not known in {@link fr.marcwrobel.jbanking.IsoCountry}.
+   * @throws BicFormatException if the given string does not match {@value #REGEX} or if its country code is not known in
+   *         {@link fr.marcwrobel.jbanking.IsoCountry}
    */
   public Bic(final String bic8Or11) {
     if (bic8Or11 == null) {

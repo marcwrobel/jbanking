@@ -2,9 +2,9 @@ package fr.marcwrobel.jbanking.creditor;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.iban.IbanCheckDigit;
+import fr.marcwrobel.jbanking.internal.AsciiCharacters;
 import java.io.Serializable;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 /**
  * A Creditor Identifier (CI) code as specified by the
@@ -54,9 +54,13 @@ public final class CreditorIdentifier implements Serializable {
    */
   private static final long serialVersionUID = 0;
 
-  private static final String BASIC_REGEX = "[A-Za-z]{2}\\d{2}[A-Za-z0-9]{3}[A-Za-z0-9]+";
-  private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);
+  /**
+   * A simple regex that validate well-formed Creditor Identifiers.
+   */
+  @SuppressWarnings("unused") // kept for documentation purposes
+  public static final String REGEX = "[A-Z]{2}[0-9]{2}[A-Z0-9]{3}[A-Z0-9]+";
 
+  private static final int CREDITOR_IDENTIFIER_MIN_LENGTH = 8;
   private static final int COUNTRY_CODE_INDEX = 0;
   private static final int COUNTRY_CODE_LENGTH = 2;
   private static final int CHECK_DIGITS_INDEX = COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH;
@@ -68,18 +72,51 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * The normalized form of this Creditor Identifier.
    */
-  private final String creditorId;
+  private final String normalizedCi;
+
+  /**
+   * Create a new Creditor Identifier from the given string.
+   *
+   * @param creditorId A non-null String.
+   * @throws IllegalArgumentException if the given string is {@code null}
+   * @throws CreditorIdentifierFormatException if the given string does not match {@value #REGEX} or if its country code is not
+   *         known in {@link fr.marcwrobel.jbanking.IsoCountry} or if its check digit is wrong
+   */
+  public CreditorIdentifier(String creditorId) {
+    if (creditorId == null) {
+      throw new IllegalArgumentException("the creditor identifier argument cannot be null");
+    }
+
+    String normalizedCreditorId = normalize(creditorId);
+
+    if (!isWellFormatted(normalizedCreditorId)) {
+      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorId);
+    }
+
+    Optional<IsoCountry> country = findCountryFor(normalizedCreditorId);
+    if (!country.isPresent()) {
+      throw CreditorIdentifierFormatException.forUnknownCountry(creditorId);
+    }
+
+    String normalizedCreditorIdWithoutBusinessCode = removeBusinessCode(normalizedCreditorId);
+    if (!IbanCheckDigit.INSTANCE.validate(normalizedCreditorIdWithoutBusinessCode)) {
+      throw CreditorIdentifierFormatException.forIncorrectCheckDigits(creditorId);
+    }
+
+    this.normalizedCi = normalizedCreditorId;
+  }
 
   /**
    * Create a new Creditor Identifier from the given country code, the creditor business code and the creditor national id.
    *
+   * <p>
+   * The check digit is automatically calculated.
+   *
    * @param country A non-null IsoCountry.
    * @param businessCode A non-null String.
    * @param creditorNationalId A non-null String.
-   * @throws IllegalArgumentException if either the IsoCountry or BBAN is {@code null}
-   * @throws fr.marcwrobel.jbanking.creditor.CreditorIdentifierFormatException if a valid Creditor Identifier could not be
-   *         calculated using the given IsoCountry, business code and
-   *         creditor national id
+   * @throws IllegalArgumentException if either of the given strings is null
+   * @throws CreditorIdentifierFormatException if the resulting creditor identifier does not match {@value #REGEX}.
    */
   public CreditorIdentifier(IsoCountry country, String businessCode, String creditorNationalId) {
     if (country == null) {
@@ -97,90 +134,51 @@ public final class CreditorIdentifier implements Serializable {
     String normalizedNationalId = normalize(creditorNationalId);
     String normalizedCreditorId = country.getAlpha2Code() + "00" + normalizedNationalId;
 
-    if (isNotWellFormatted(normalizedCreditorId)) {
+    if (!isWellFormatted(normalizedCreditorId)) {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(creditorNationalId);
     }
 
     String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalizedCreditorId);
 
-    this.creditorId = country.getAlpha2Code() + checkDigits + businessCode + normalizedNationalId;
+    this.normalizedCi = country.getAlpha2Code() + checkDigits + businessCode + normalizedNationalId;
   }
 
-  /**
-   * Create a new creditor identifier from the given string.
-   *
-   * @param creditorId a non-null String.
-   */
-  public CreditorIdentifier(String creditorId) {
-    if (creditorId == null) {
-      throw new IllegalArgumentException("the creditor identifier argument cannot be null");
-    }
-
-    String normalizedCreditorId = normalize(creditorId);
-
-    if (isNotWellFormatted(normalizedCreditorId)) {
-      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorId);
-    }
-
-    Optional<IsoCountry> country = findCountryFor(normalizedCreditorId);
-    if (!country.isPresent()) {
-      throw CreditorIdentifierFormatException.forUnknownCountry(creditorId);
-    }
-
-    String normalizedCreditorIdWithoutBusinessCode = removeBusinessCode(normalizedCreditorId);
-    if (!IbanCheckDigit.INSTANCE.validate(normalizedCreditorIdWithoutBusinessCode)) {
-      throw CreditorIdentifierFormatException.forIncorrectCheckDigits(creditorId);
-    }
-
-    this.creditorId = normalizedCreditorId;
-  }
-
-  /**
-   * Returns a normalized string representation of the given Creditor Identifier.
-   *
-   * <p>
-   * Normalized means the string is:
-   *
-   * <ul>
-   * <li>made of uppercase characters
-   * <li>contains no spaces
-   * </ul>
-   */
   private static String normalize(String creditorIdentifier) {
     return creditorIdentifier.replaceAll("\\s+", "").toUpperCase();
   }
 
-  /**
-   * Check if the given string matches the basic format of a Creditor Identifier.
-   *
-   * <p>
-   * Returns {@code true} if the given strings matches the following pattern:
-   *
-   * <ul>
-   * <li>Position 1-2 filled with alphabetic values (the ISO country code).
-   * <li>Position 3-4 filled with numeric values (the check digits).
-   * <li>Position 5-7 filled with alpha-numeric values (the Creditor Business Code).
-   * <li>Position 8 onwards filled with alpha-numeric values (a national identifier of the Creditor).
-   * </ul>
-   */
-  private static boolean isNotWellFormatted(String creditorIdentifier) {
-    return !BASIC_PATTERN.matcher(creditorIdentifier).matches();
+  private static boolean isWellFormatted(String s) {
+    int length = s.length();
+    if (length < CREDITOR_IDENTIFIER_MIN_LENGTH) {
+      return false;
+    }
+
+    for (int i = COUNTRY_CODE_INDEX; i < COUNTRY_CODE_LENGTH; i++) {
+      if (!AsciiCharacters.isAlphabetic(s.charAt(i))) {
+        return false;
+      }
+    }
+
+    for (int i = CHECK_DIGITS_INDEX; i < CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH; i++) {
+      if (!AsciiCharacters.isNumeric(s.charAt(i))) {
+        return false;
+      }
+    }
+
+    for (int i = CREDITOR_BUSINESS_CODE_INDEX; i < length; i++) {
+      if (!AsciiCharacters.isAlphanumeric(s.charAt(i))) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
-  /**
-   * Returns the {@code Country} reference from the given Creditor Identifier string.
-   *
-   * <p>
-   * Returns null if not found.
-   */
   private static Optional<IsoCountry> findCountryFor(String creditorIdentifier) {
     return IsoCountry.fromAlpha2Code(
         creditorIdentifier.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
-  /**
-   * Removes the business code part from the given Creditor Identifier string.
-   */
   private static String removeBusinessCode(String creditorIdentifier) {
     return creditorIdentifier.substring(COUNTRY_CODE_INDEX, CREDITOR_BUSINESS_CODE_INDEX)
         + creditorIdentifier.substring(CREDITOR_NATIONAL_ID_INDEX);
@@ -199,7 +197,7 @@ public final class CreditorIdentifier implements Serializable {
 
     String normalizedCreditorId = normalize(creditorIdentifier);
 
-    if (isNotWellFormatted(normalizedCreditorId)) {
+    if (!isWellFormatted(normalizedCreditorId)) {
       return false;
     }
 
@@ -228,7 +226,7 @@ public final class CreditorIdentifier implements Serializable {
    * @return A non-null {@link IsoCountry}.
    */
   public IsoCountry getCountry() {
-    return findCountryFor(creditorId).orElseThrow(() -> new IllegalStateException("a valid CI should have a country code"));
+    return findCountryFor(normalizedCi).orElseThrow(() -> new IllegalStateException("a valid CI should have a country code"));
   }
 
   /**
@@ -237,7 +235,7 @@ public final class CreditorIdentifier implements Serializable {
    * @return A non-null string representing this Creditor Identifier check digit.
    */
   public String getCheckDigit() {
-    return creditorId.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
+    return normalizedCi.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
   }
 
   /**
@@ -246,7 +244,7 @@ public final class CreditorIdentifier implements Serializable {
    * @return A non-null string representing this Creditor Identifier business code.
    */
   public String getBusinessCode() {
-    return creditorId.substring(CREDITOR_BUSINESS_CODE_INDEX,
+    return normalizedCi.substring(CREDITOR_BUSINESS_CODE_INDEX,
         CREDITOR_BUSINESS_CODE_INDEX + CREDITOR_BUSINESS_CODE_LENGTH);
   }
 
@@ -256,12 +254,12 @@ public final class CreditorIdentifier implements Serializable {
    * @return A non-null string representing this Creditor Identifier National ID.
    */
   public String getNationalIdentifier() {
-    return creditorId.substring(CREDITOR_NATIONAL_ID_INDEX);
+    return normalizedCi.substring(CREDITOR_NATIONAL_ID_INDEX);
   }
 
   @Override
   public String toString() {
-    return creditorId;
+    return normalizedCi;
   }
 
   @Override
@@ -276,11 +274,11 @@ public final class CreditorIdentifier implements Serializable {
 
     CreditorIdentifier other = (CreditorIdentifier) o;
 
-    return creditorId.equals(other.creditorId);
+    return normalizedCi.equals(other.normalizedCi);
   }
 
   @Override
   public int hashCode() {
-    return creditorId.hashCode();
+    return normalizedCi.hashCode();
   }
 }
