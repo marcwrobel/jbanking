@@ -7,9 +7,6 @@ import java.lang.annotation.*;
 
 /**
  * Document the last verification date of a list (of countries, of currencies...).
- *
- * <p>
- * This enum is for jbanking internal use only : do not use it in your code !
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -18,7 +15,7 @@ public @interface LastVerification {
 
   /**
    * Returns the last verification date of the annotated element.
-   * 
+   *
    * @return a non null date formatted as {@code yyyy-MM-dd} (e.g. 2022-07-20).
    */
   String value();

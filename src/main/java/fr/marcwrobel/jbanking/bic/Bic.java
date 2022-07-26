@@ -1,9 +1,9 @@
 package fr.marcwrobel.jbanking.bic;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.internal.AsciiCharacters;
 import java.io.Serializable;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 /**
  * A Business Identifier Code (also known as BIC, SWIFT-BIC, BIC code, SWIFT ID or SWIFT code, Business Entity Identifier or
@@ -56,12 +56,8 @@ public final class Bic implements Serializable {
   /**
    * A simple regex that validate well-formed BIC.
    */
-  public static final String BIC_REGEX = "[A-Za-z]{4}[A-Za-z]{2}[A-Za-z0-9]{2}([A-Za-z0-9]{3})?";
-
-  /**
-   * A pre-compiled Pattern for {@link #BIC_REGEX}.
-   */
-  public static final Pattern BIC_PATTERN = Pattern.compile(BIC_REGEX);
+  @SuppressWarnings("unused") // kept for compatibility and documentation purposes
+  public static final String REGEX = "[A-Za-z]{4}[A-Za-z]{2}[A-Za-z0-9]{2}([A-Za-z0-9]{3})?";
 
   /**
    * The branch code for primary offices.
@@ -74,6 +70,7 @@ public final class Bic implements Serializable {
   public static final char TEST_BIC_INDICATOR = '0';
 
   private static final int BIC8_LENGTH = 8;
+  private static final int BIC11_LENGTH = 11;
   private static final int INSTITUTION_CODE_INDEX = 0;
   private static final int INSTITUTION_CODE_LENGTH = 4;
   private static final int COUNTRY_CODE_INDEX = INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH;
@@ -96,7 +93,7 @@ public final class Bic implements Serializable {
    *
    * @param bic8Or11 A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
-   * @throws BicFormatException if the given BIC8 or BIC11 string does not match {@link #BIC_REGEX} or if the given BIC8 or
+   * @throws BicFormatException if the given BIC8 or BIC11 string does not match {@value #REGEX} or if the given BIC8 or
    *         BIC11 country code is not known in {@link fr.marcwrobel.jbanking.IsoCountry}.
    */
   public Bic(final String bic8Or11) {
@@ -131,7 +128,24 @@ public final class Bic implements Serializable {
   }
 
   private static boolean isWellFormatted(String s) {
-    return BIC_PATTERN.matcher(s).matches();
+    int length = s.length();
+    if (length != BIC8_LENGTH && length != BIC11_LENGTH) {
+      return false;
+    }
+
+    for (int i = 0; i < INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH + COUNTRY_CODE_LENGTH; i++) {
+      if (!AsciiCharacters.isAlphabetic(s.charAt(i))) {
+        return false;
+      }
+    }
+
+    for (int i = LOCATION_CODE_INDEX; i < length; i++) {
+      if (!AsciiCharacters.isAlphanumeric(s.charAt(i))) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private static Optional<IsoCountry> findCountryFor(String s) {
