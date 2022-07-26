@@ -32,6 +32,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
 - Bump strata-basics from 2.12.5 to 2.12.6 (#165).
-- Add benchmarks that track the evolution of jbanking performances from version to version (#166).
+- Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
+  seen [here](benchmarks/README.md).
 
 ### Thanks
