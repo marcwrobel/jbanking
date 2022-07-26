@@ -21,7 +21,7 @@ class Result:
 
     def set_increase(self, other):
         if other is not None and self.name == other.name and self.parameter == other.parameter:
-            self.increase = ((self.throughput - other.throughput) / self.throughput)
+            self.increase = ((self.throughput - other.throughput) / other.throughput) * 100.0
 
 
 BENCHMARKS = {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
@@ -132,7 +132,7 @@ with open("{dir}/jbanking-benchmarks.md".format(dir=base_dir), "w") as f:
             "| {n} | {p} | {v} | {t} | {i} |\n"
             .format(n=current.name, p=current.parameter, v=current.version,
                     t="{:,.0f}".format(current.throughput),
-                    i='N/A' if current.increase is None else "{:,.2}%".format(current.increase))
+                    i='N/A' if current.increase is None else "{:,.2f}%".format(current.increase))
         ])
 
 print("Benchmark finished, results can be found in " + base_dir)
