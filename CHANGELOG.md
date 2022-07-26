@@ -9,13 +9,19 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- (breaking change) Make `CreditorIdentifier` final (#116).
+- (**breaking change**) Make `CreditorIdentifier` final (#116).
+- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` (as part of #170).
+- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (x3) and
+  creation (x4).
 
 ### Fixed
 
 ### Deprecated
 
 ### Removed
+
+- (**breaking change**) Remove `Bic#BIC_PATTERN` (as part of #170). If you still need to use the BIC regex, you may compile
+  the pattern from `Bic#REGEX`, which has been kept for compatibility and documentation purposes.
 
 ### Internal
 
