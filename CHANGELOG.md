@@ -35,5 +35,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
   seen [here](benchmarks/README.md).
 - Increase JVM memory for Maven (#184). Sonar analysis fails with `OutOfMemoryError`.
+- Remove bin/check-links (#129). The script has been moved to https://github.com/marcwrobel/checklinks.
 
 ### Thanks
