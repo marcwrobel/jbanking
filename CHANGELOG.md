@@ -34,5 +34,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump strata-basics from 2.12.5 to 2.12.7 (#179).
 - Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
   seen [here](benchmarks/README.md).
+- Increase JVM memory for Maven (#184). Sonar analysis fails with `OutOfMemoryError`.
 
 ### Thanks
