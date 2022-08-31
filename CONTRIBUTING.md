@@ -106,7 +106,7 @@ And finally:
 
 Because we are all humans, and to ensure jbanking is stable for everyone, all changes must go through jbanking
 continuous integration. jbanking CI is based on GitHub Actions, which means that everyone has the ability to
-automatically execute CI in their forks as part of the process of making changes (except maybe the Sonarcloud and
+automatically execute CI in their forks as part of the process of making changes (except maybe the SonarCloud and
 Sonatype lift analysis).
 
 jbanking CI checks are:
@@ -119,7 +119,7 @@ jbanking CI checks are:
 6. [GitHub CodeQL](https://codeql.github.com/) analysis,
 7. [Sonatype lift](https://lift.sonatype.com/) analysis.
 
-CI checks are automatically triggered on PR and on push on master or maintenance branches. All workflows are also
+CI checks are automatically triggered on PR and on push on main or maintenance branches. All workflows are also
 automatically triggered weekly.
 
 ## Contribution rules
@@ -135,8 +135,9 @@ is followed for every pull request.
 
 ### Coding Guidelines
 
-- Commits should be atomic and semantic. Please properly squash your pull requests before submitting them. Fixup commits
-  can be used temporarily during the review process but things should be squashed at the end to have meaningful commits.
+- Commits should be atomic and semantic. Please properly squash your pull requests before submitting them. Fix up
+  commits can be used temporarily during the review process but things should be squashed at the end to have meaningful
+  commits.
 - Git authorship (i.e. git `user.name` and `user.email`) must be properly set.
 - Tests and documentation are not optional. Don't forget to include tests in your pull requests. Also don't forget the
   documentation (reference documentation, javadoc...).

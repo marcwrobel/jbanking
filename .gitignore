@@ -25,3 +25,7 @@ dependency-reduced-pom.xml
 *.springBeans
 *.swp
 .DS_Store
+
+# We want to ignore our StylesPath *except* for our local `Vocab/Base` folder.
+.github/styles/*
+!.github/styles/Vocab/Base

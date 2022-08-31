@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-If applicable, add a code snippet that reproduce the bug. If an exception occurs, add also its stacktrace.
+If applicable, add a code snippet that reproduce the bug. If an exception occurs, add also its stack trace.
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.

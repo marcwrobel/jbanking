@@ -13,10 +13,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - (**breaking change**) Make `CreditorIdentifier` final (#116).
 - (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and change it to not accept lower-case characters anymore
   (as part of #170).
-- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (+200%)
-  and creation (+300%).
-- Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
-  Creditor Identifiers validation (+30-40%) and creation (+30-50%).
+- Get rid of regular expressions to validate BICs (#170). This significantly increased the performances of BIC
+  validation (+200%) and creation (+300%).
+- Get rid of regular expressions to validate Creditor Identifiers (#172). This significantly increased the performances
+  of Creditor Identifiers validation (+30-40%) and creation (+30-50%).
 - Improve javadoc (as part of #170 and #172).
 
 ### Fixed
@@ -25,7 +25,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Removed
 
-- (**breaking change**) Remove `Bic#BIC_PATTERN` (as part of #170). If you still need to use the BIC regex, you may compile
+- (**breaking change**) Remove `Bic#BIC_PATTERN` (as part of #170). If you still need to use the BIC regex, you may
+  compile
   the pattern from `Bic#REGEX`, which has been kept for compatibility and documentation purposes.
 
 ### Internal
