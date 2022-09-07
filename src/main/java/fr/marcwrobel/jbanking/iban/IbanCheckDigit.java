@@ -29,6 +29,9 @@ public enum IbanCheckDigit {
 
   /**
    * Validate the given IBAN check digit.
+   * <p>
+   * The behavior of this method changed in 4.0.0: prior to this version this method raised an exception on invalid
+   * check digits. Now it is returning {@code false} instead.
    *
    * @param iban a non-null string.
    * @return {@code true} if the given IBAN check digit is valid, {@code false} otherwise.
@@ -36,20 +39,16 @@ public enum IbanCheckDigit {
    */
   public boolean validate(String iban) {
     validateString(iban);
-    validateCheckDigit(iban);
-    return modulus(iban) == CHECK_DIGITS_REMAINDER;
-  }
 
-  // It is easier to extract the check digit string and compare it with the invalid check digits,
-  // but
-  // we want to avoid unnecessary objects creation.
-  private void validateCheckDigit(String iban) {
-    char first = iban.charAt(BBAN_INDEX - 2);
-    char second = iban.charAt(BBAN_INDEX - 1);
-
-    if ((first == '0' && (second == '0' || second == '1')) || (first == '9' && second == '9')) {
-      throw new IllegalArgumentException("the check digit cannot be one of 00, 01 or 99");
+    // It is easier to extract the check digit string and compare it with the invalid check digits, but we want to avoid
+    // unnecessary objects creation.
+    char firstChar = iban.charAt(BBAN_INDEX - 2);
+    char secondChar = iban.charAt(BBAN_INDEX - 1);
+    if ((firstChar == '0' && (secondChar == '0' || secondChar == '1')) || (firstChar == '9' && secondChar == '9')) {
+      return false;
     }
+
+    return modulus(iban) == CHECK_DIGITS_REMAINDER;
   }
 
   /**

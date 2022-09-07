@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Tests for the {@link Iban} class.
@@ -61,7 +62,8 @@ class IbanTest {
 
   private static final String IBAN_WITH_UNKNOWN_COUNTRY = "ZZ" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
   private static final String IBAN_WITH_UNSUPPORTED_COUNTRY = "US" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-  private static final String IBAN_WITH_INVALID_CHECK_DIGIT = VALID_IBAN_COUNTRY.getAlpha2Code() + "09" + VALID_IBAN_BBAN;
+  private static final String IBAN_WITH_INVALID_CHECK_DIGIT = "FR0920041010050500013M02606";
+  private static final String IBAN_WITH_INVALID_CHECK_DIGIT_2 = "BY00NBRB3600000000000Z00AB00";
 
   private static final String IBAN_WITH_INVALID_BBAN_STRUCTURE = "GB72MIDLA0051539024150";
 
@@ -186,18 +188,20 @@ class IbanTest {
     }
   }
 
-  @Test
-  void anIbanWithInvalidCheckDigitsIsNotValid() {
-    assertFalse(Iban.isValid(IBAN_WITH_INVALID_CHECK_DIGIT));
+  @ParameterizedTest
+  @ValueSource(strings = { IBAN_WITH_INVALID_CHECK_DIGIT, IBAN_WITH_INVALID_CHECK_DIGIT_2 })
+  void anIbanWithInvalidCheckDigitsIsNotValid(String iban) {
+    assertFalse(Iban.isValid(iban));
   }
 
-  @Test
-  void anIbanMustHaveCorrectCheckDigit() {
+  @ParameterizedTest
+  @ValueSource(strings = { IBAN_WITH_INVALID_CHECK_DIGIT, IBAN_WITH_INVALID_CHECK_DIGIT_2 })
+  void anIbanMustHaveCorrectCheckDigit(String iban) {
     try {
-      new Iban(IBAN_WITH_INVALID_CHECK_DIGIT);
+      new Iban(iban);
       shouldHaveThrown(IbanFormatException.class);
     } catch (IbanFormatException e) {
-      assertEquals(IBAN_WITH_INVALID_CHECK_DIGIT, e.getInputString());
+      assertEquals(iban, e.getInputString());
       assertTrue(e.getMessage().contains("check digits"));
     }
   }

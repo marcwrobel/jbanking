@@ -42,7 +42,7 @@ class IbanCheckDigitTest {
       "YY62DRWQ354548673SC833V5AMLYPNNR78", "ZZ70JJXD3109729650459XALAO5L68UDTR1");
 
   private static final Set<String> INVALID_CHECK_DIGIT_IBANS = Sets.newHashSet("MD006JK24D0RFGDJJPJQHKWN",
-      "MD016JK24D0RFGDJJPJQHKWN", "MD996JK24D0RFGDJJPJQHKWN");
+      "MD016JK24D0RFGDJJPJQHKWN", "MD996JK24D0RFGDJJPJQHKWN", "BY00NBRB3600000000000Z00AB00");
 
   @Test
   void nullIsNotValidForCalculation() {
@@ -66,8 +66,8 @@ class IbanCheckDigitTest {
 
   @ParameterizedTest
   @MethodSource("invalidCheckDigitIbans")
-  void invalidCheckDigitRaiseAnException(String iban) {
-    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate(iban));
+  void invalidCheckDigitAreNotValid(String iban) {
+    assertFalse(IbanCheckDigit.INSTANCE.validate(iban));
   }
 
   @ParameterizedTest
