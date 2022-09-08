@@ -41,5 +41,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Remove bin/check-links (#129). The script has been moved to https://github.com/marcwrobel/checklinks.
 - Configure dependabot to check for update of GitHub actions versions (#189).
 - Bump github/codeql-action from 2.1.16 to 2.1.22 (#192).
+- Add OpenSSF scorecard badge to the README (#193).
 
 ### Thanks
