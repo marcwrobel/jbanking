@@ -39,5 +39,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   seen [here](benchmarks/README.md).
 - Increase JVM memory for Maven (#184). Sonar analysis fails with `OutOfMemoryError`.
 - Remove bin/check-links (#129). The script has been moved to https://github.com/marcwrobel/checklinks.
+- Configure dependabot to check for update of GitHub actions versions (#189).
 
 ### Thanks
