@@ -36,6 +36,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump strata-basics from 2.12.5 to 2.12.7 (#179).
 - Bump github/codeql-action from 2.1.16 to 2.1.22 (#192).
 - Bump actions/setup-java from 3.4.1 to 3.5.0 (#195).
+- Bump actions/checkout from 3.0.2 to 3.1.0 (#205).
 - Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
 - Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
   seen [here](benchmarks/README.md).
