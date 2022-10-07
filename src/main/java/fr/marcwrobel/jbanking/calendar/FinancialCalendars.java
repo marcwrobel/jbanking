@@ -122,7 +122,9 @@ public enum FinancialCalendars implements Calendar {
       // golden jubilee
       new FixedHoliday(d(2012, 6, 4), d(2012, 6, 5)),
       // platinum jubilee
-      new FixedHoliday(d(2022, 6, 2), d(2022, 6, 3)))),
+      new FixedHoliday(d(2022, 6, 2), d(2022, 6, 3)),
+      // state Funeral of Queen Elizabeth II
+      new FixedHoliday(d(2022, 9, 19)))),
 
   /**
    * Federal Reserve Bank of New York holidays.
@@ -217,7 +219,9 @@ public enum FinancialCalendars implements Calendar {
       new DayOfWeekInMonthHoliday(1, MONDAY, AUGUST),
       // https://wikipedia.org/wiki/Labour_Day
       new DayOfWeekInMonthHoliday(1, MONDAY, OCTOBER), new ShiftedHoliday(CHRISTMAS_DAY, PLUS_TWO_DAYS),
-      new ShiftedHoliday(BOXING_DAY, PLUS_TWO_DAYS))),
+      new ShiftedHoliday(BOXING_DAY, PLUS_TWO_DAYS),
+      // National Day of Mourning for Her Majesty The Queen
+      new FixedHoliday(d(2022, 9, 22)))),
 
   /**
    * The calendar for <a href="https://www.ecb.europa.eu/paym/target/target2/html/index.en.html">Trans-European Automated

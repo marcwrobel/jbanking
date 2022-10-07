@@ -18,6 +18,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
   Creditor Identifiers validation (+30-40%) and creation (+30-50%).
 - Improve javadoc (as part of #170 and #172).
+- Add the _state funeral of Queen Elizabeth II_ day to London calendar (#204).
+- Add the _national day of mourning for Her Majesty The Queen_ day to Sydney calendar (#204).
 
 ### Fixed
 
@@ -33,7 +35,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
-- Bump strata-basics from 2.12.5 to 2.12.7 (#179).
+- Bump strata-basics from 2.12.5 to 2.12.14 (#179, #204).
 - Bump github/codeql-action from 2.1.16 to 2.1.27 (#192, #206).
 - Bump actions/setup-java from 3.4.1 to 3.5.1 (#195, #202).
 - Bump actions/checkout from 3.0.2 to 3.1.0 (#205).
