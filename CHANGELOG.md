@@ -46,5 +46,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Remove bin/check-links (#129). The script has been moved to https://github.com/marcwrobel/checklinks.
 - Configure dependabot to check for update of GitHub actions versions (#189).
 - Add OpenSSF scorecard badge to the README (#193).
+- Update build workflow to use Java 19 instead of Java 18 (#191).
 
 ### Thanks

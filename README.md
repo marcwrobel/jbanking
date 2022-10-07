@@ -42,7 +42,7 @@ jbanking is supporting the following features :
 
 ## Requirements
 
-jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 18). It has no
+jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 19). It has no
 additional dependency !
 
 ## Use it !
