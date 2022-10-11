@@ -946,7 +946,7 @@ enum BbanStructure {
       throw new IllegalArgumentException("the bban argument cannot be null");
     }
 
-    return bbanPattern.matcher(bban).matches();
+    return bbanPattern.matches(bban);
   }
 
   /**
