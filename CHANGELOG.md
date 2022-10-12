@@ -47,7 +47,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
-- Bump strata-basics from 2.12.5 to 2.12.14 (#179, #204).
+- Bump strata-basics from 2.12.5 to 2.12.15 (#179, #204, #210).
 - Bump github/codeql-action from 2.1.16 to 2.1.27 (#192, #206).
 - Bump actions/setup-java from 3.4.1 to 3.5.1 (#195, #202).
 - Bump actions/checkout from 3.0.2 to 3.1.0 (#205).
