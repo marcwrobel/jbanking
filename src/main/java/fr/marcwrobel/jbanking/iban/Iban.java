@@ -3,7 +3,6 @@ package fr.marcwrobel.jbanking.iban;
 import fr.marcwrobel.jbanking.IsoCountry;
 import java.io.Serializable;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 /**
  * An International Bank Account Number (IBAN) Code as specified by the <a href="https://www.iso13616.org">ISO 13616:2007
@@ -50,8 +49,11 @@ public final class Iban implements Serializable {
    */
   private static final long serialVersionUID = 0;
 
-  private static final String BASIC_REGEX = "[A-Za-z]{2}\\d{2}[A-Za-z0-9]+";
-  private static final Pattern BASIC_PATTERN = Pattern.compile(BASIC_REGEX);
+  /**
+   * A simple regex that validate well-formed BICs.
+   */
+  @SuppressWarnings("unused") // kept for documentation purposes
+  public static final String REGEX = "[A-Z]{2}\\d{2}[A-Z0-9]+";
 
   private static final int COUNTRY_CODE_INDEX = 0;
   private static final int COUNTRY_CODE_LENGTH = 2;
@@ -83,7 +85,7 @@ public final class Iban implements Serializable {
       throw new IllegalArgumentException("the bban argument cannot be null");
     }
 
-    String normalizedBban = normalize(bban);
+    String normalizedBban = bban.toUpperCase();
     String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
     Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country);
@@ -113,12 +115,7 @@ public final class Iban implements Serializable {
       throw new IllegalArgumentException("the iban argument cannot be null");
     }
 
-    String normalized = normalize(iban);
-
-    if (isNotWellFormatted(normalized)) {
-      throw IbanFormatException.forNotProperlyFormattedInput(normalized);
-    }
-
+    String normalized = iban.toUpperCase();
     Optional<IsoCountry> country = findCountryFor(normalized);
     if (!country.isPresent()) {
       throw IbanFormatException.forUnknownCountry(iban);
@@ -152,12 +149,7 @@ public final class Iban implements Serializable {
       return false;
     }
 
-    String normalized = normalize(iban);
-
-    if (isNotWellFormatted(normalized)) {
-      return false;
-    }
-
+    String normalized = iban.toUpperCase();
     Optional<IsoCountry> country = findCountryFor(normalized);
     if (!country.isPresent()) {
       return false;
@@ -174,14 +166,6 @@ public final class Iban implements Serializable {
     }
 
     return IbanCheckDigit.INSTANCE.validate(normalized);
-  }
-
-  private static String normalize(String iban) {
-    return iban.replaceAll("\\s+", "").toUpperCase();
-  }
-
-  private static boolean isNotWellFormatted(String s) {
-    return !BASIC_PATTERN.matcher(s).matches();
   }
 
   private static Optional<IsoCountry> findCountryFor(String s) {

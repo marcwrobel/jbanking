@@ -26,9 +26,6 @@ class Result:
 
 BENCHMARKS = {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
 VERSIONS = {
-    "1.0": {
-        "benchmarks": {"Iban", "Bic"}
-    },
     "2.1.0": {
         "benchmarks": {"Iban", "Bic", "CreditorIdentifier"}
     },

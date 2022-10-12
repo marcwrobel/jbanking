@@ -146,22 +146,6 @@ class IbanTest {
   }
 
   @Test
-  void notProperlyFormattedIbanIsNotValid() {
-    assertFalse(Iban.isValid(IBAN_WITH_INVALID_FORMAT));
-  }
-
-  @Test
-  void anIbanMustBeProperlyFormatted() {
-    try {
-      new Iban(IBAN_WITH_INVALID_FORMAT);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(IBAN_WITH_INVALID_FORMAT, e.getInputString());
-      assertTrue(e.getMessage().contains("format"));
-    }
-  }
-
-  @Test
   void notProperlyStructuredIbanIsNotValid() {
     assertFalse(Iban.isValid(IBAN_WITH_INVALID_BBAN_STRUCTURE));
   }
@@ -251,32 +235,16 @@ class IbanTest {
   }
 
   @Test
-  void printableIbansAreValid() {
-    Iban iban = new Iban(VALID_IBAN);
-    String printableIban = iban.toPrintableString();
-
-    assertTrue(Iban.isValid(printableIban));
-    assertEquals(iban, new Iban(printableIban));
-  }
-
-  @Test
   void equalityTest() {
     Iban iban1 = new Iban(VALID_IBAN);
-    Iban iban2 = new Iban(iban1.toPrintableString());
-    Iban iban3 = new Iban(VALID_IBAN.toLowerCase());
+    Iban iban2 = new Iban(VALID_IBAN.toLowerCase());
 
     assertEquals(iban1, iban1);
     assertEquals(iban2, iban2);
-    assertEquals(iban3, iban3);
 
     assertEquals(iban1, iban2);
     assertEquals(iban2, iban1);
-    assertEquals(iban2, iban3);
-    assertEquals(iban3, iban2);
-    assertEquals(iban1, iban3);
-    assertEquals(iban3, iban1);
     assertEquals(iban1.hashCode(), iban2.hashCode());
-    assertEquals(iban2.hashCode(), iban3.hashCode());
 
     assertNotEquals(null, iban1);
     assertNotEquals(iban1, new Object());

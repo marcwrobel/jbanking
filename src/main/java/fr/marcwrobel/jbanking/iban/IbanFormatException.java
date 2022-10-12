@@ -32,10 +32,6 @@ public final class IbanFormatException extends RuntimeException {
     this.inputString = input;
   }
 
-  static IbanFormatException forNotProperlyFormattedInput(String input) {
-    return new IbanFormatException(input, String.format("'%s' format is not appropriate for an IBAN", input));
-  }
-
   static IbanFormatException forIncorrectCheckDigits(String input) {
     return new IbanFormatException(input, String.format("'%s' check digits are incorrect", input));
   }

@@ -92,7 +92,7 @@ public class AsciiCharacters {
 
   /**
    * <p>
-   * Checks whether the character is ASCII 7 bit numeric.
+   * Checks whether the character is ASCII 7 bit alphabetic or numeric.
    * </p>
    *
    * <pre>
@@ -110,4 +110,5 @@ public class AsciiCharacters {
   public static boolean isAlphanumeric(final char c) {
     return isAlphabetic(c) || isNumeric(c);
   }
+
 }

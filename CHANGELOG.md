@@ -7,12 +7,15 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Document alternatives to jbanking (#164).
 - Make `CreditorIdentifier#REGEX` public (as part of #172).
+- Make `Iban#REGEX` public (as part of #171).
 
 ### Changed
 
 - (**breaking change**) Make `CreditorIdentifier` final (#116).
 - (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and change it to not accept lower-case characters anymore
   (as part of #170).
+- (**breaking change**) Make `Iban` not accepting values containing spaces anymore (as part of #116). This means
+  printable or untrimmed IBANs are not considered valid values anymore. Note that this feature was not documented.
 - (**breaking change**) Modify `SwiftPattern` API to not use regexes anymore (as part of #171). You will have to update
   your code accordingly (from `pattern.matcher(s).matches()` to `pattern.matches(s)`).
 - (**breaking change**) Remove support of _variable length indication_ (such as `4n`) in `SwiftPattern` (during #171).
@@ -20,12 +23,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   the `SwiftPattern` rewrite. And because this feature is probably not used outside of jbanking code, we choose to drop
   it. But if you were using it, please let us know by [raising an issue](https://github.com/marcwrobel/jbanking/issues),
   so we can add it back.
-- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation (+200%)
-  and creation (+300%).
+- Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
+  creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
-  Creditor Identifiers validation (+30-40%) and creation (+30-50%).
-- Get rid of regexes to validate IBANs (#171). This significantly increased the performances of IBAN validation
-  (+XX-XX%) and creation (+XX-XX%).
+  Creditor Identifiers validation and creation (+30-50%).
+- Get rid of regexes to validate IBANs (#171). This significantly increased the performances of IBAN validation and
+  creation (+250-400%).
 - Improve javadoc (as part of #170 and #172).
 - Add the _state funeral of Queen Elizabeth II_ day to London calendar (#204).
 - Add the _national day of mourning for Her Majesty The Queen_ day to Sydney calendar (#204).
