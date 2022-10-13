@@ -6,6 +6,10 @@ package fr.marcwrobel.jbanking.internal;
  */
 public class AsciiCharacters {
 
+  private AsciiCharacters() {
+    // prevent instantiation
+  }
+
   /**
    * <p>
    * Checks whether the character is ASCII 7 bit alphabetic.
