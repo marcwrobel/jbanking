@@ -50,8 +50,8 @@ class IbanCheckDigitTest {
   }
 
   @Test
-  void nullIsNotValidForValidation() {
-    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate(null));
+  void nullIsNotValid() {
+    assertFalse(IbanCheckDigit.INSTANCE.validate(null));
   }
 
   @Test
@@ -60,8 +60,8 @@ class IbanCheckDigitTest {
   }
 
   @Test
-  void ibanSizeLowerThanFourIsIsNotValidForValidation() {
-    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.validate("123"));
+  void ibanSizeLowerThanFourIsNotValid() {
+    assertFalse(IbanCheckDigit.INSTANCE.validate("123"));
   }
 
   @ParameterizedTest

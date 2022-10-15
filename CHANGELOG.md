@@ -23,6 +23,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   the `SwiftPattern` rewrite. And because this feature is probably not used outside of jbanking code, we choose to drop
   it. But if you were using it, please let us know by [raising an issue](https://github.com/marcwrobel/jbanking/issues),
   so we can add it back.
+- (**breaking change**) Make `IbanCheckDigit#validate` return `false` for `null` or less than 5 characters strings
+  (#188).
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
   creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of

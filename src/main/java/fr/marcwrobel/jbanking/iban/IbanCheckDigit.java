@@ -38,7 +38,9 @@ public enum IbanCheckDigit {
    * @throws IllegalArgumentException if the given IBAN is {@code null} or if its size is not at least four characters.
    */
   public boolean validate(String iban) {
-    validateString(iban);
+    if (iban == null || iban.length() <= BBAN_INDEX) {
+      return false;
+    }
 
     // It is easier to extract the check digit string and compare it with the invalid check digits, but we want to avoid
     // unnecessary objects creation.
@@ -59,16 +61,6 @@ public enum IbanCheckDigit {
    * @return the given IBAN check digit.
    */
   public String calculate(String iban) {
-    validateString(iban);
-
-    int modulusResult = modulus(iban);
-    int charValue = (98 - modulusResult);
-    String checkDigit = Integer.toString(charValue);
-
-    return (charValue > 9 ? checkDigit : "0" + checkDigit);
-  }
-
-  private void validateString(String iban) {
     if (iban == null) {
       throw new IllegalArgumentException("the iban argument cannot be null");
     }
@@ -76,6 +68,12 @@ public enum IbanCheckDigit {
     if (iban.length() <= BBAN_INDEX) {
       throw new IllegalArgumentException("the iban argument size must be greater than " + BBAN_INDEX);
     }
+
+    int modulusResult = modulus(iban);
+    int charValue = (98 - modulusResult);
+    String checkDigit = Integer.toString(charValue);
+
+    return (charValue > 9 ? checkDigit : "0" + checkDigit);
   }
 
   private int modulus(String iban) {
