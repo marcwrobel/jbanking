@@ -62,5 +62,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Configure dependabot to check for update of GitHub actions versions (#189).
 - Add OpenSSF scorecard badge to the README (#193).
 - Update build workflow to use Java 19 instead of Java 18 (#191).
+- Use `Character.digit` instead of `Character.getNumericValue` in `IbanCheckDigit` as recommended in
+  [Error Prone#CharacterGetNumericValue](https://errorprone.info/bugpattern/CharacterGetNumericValue) (closes #117).
 
 ### Thanks

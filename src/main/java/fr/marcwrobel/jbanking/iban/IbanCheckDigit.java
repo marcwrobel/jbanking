@@ -83,7 +83,7 @@ public enum IbanCheckDigit {
 
     long total = 0;
     for (int i = 0; i < reformattedIban.length(); i++) {
-      int charValue = Character.getNumericValue(reformattedIban.charAt(i));
+      int charValue = Character.digit(reformattedIban.charAt(i), 36);
       total = (charValue > 9 ? total * 100 : total * 10) + charValue;
       if (total > CHECK_DIGITS_MAX) {
         total = total % CHECK_DIGITS_MODULUS;
