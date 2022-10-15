@@ -33,7 +33,7 @@ public class AsciiCharacters {
 
   /**
    * <p>
-   * Checks whether the character is ASCII 7 bit alphabetic upper case.
+   * Checks whether the character is ASCII 7 bit alphabetic uppercase.
    * </p>
    *
    * <pre>
@@ -54,7 +54,7 @@ public class AsciiCharacters {
 
   /**
    * <p>
-   * Checks whether the character is ASCII 7 bit alphabetic lower case.
+   * Checks whether the character is ASCII 7 bit alphabetic lowercase.
    * </p>
    *
    * <pre>

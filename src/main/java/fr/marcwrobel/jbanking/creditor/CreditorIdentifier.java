@@ -8,22 +8,23 @@ import java.util.Optional;
 
 /**
  * A Creditor Identifier (CI) code as specified by the
- * <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">EPC</a>.
+ * <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">
+ * EPC</a>.
  *
  * <p>
- * CI structure:
+ * The CI structure is:
  *
  * <ul>
  * <li>Position 1-2 filled with the ISO country code.
  * <li>Position 3-4 filled with the check digit according to ISO 7064 Mod 97-10.
  * <li>Position 5-7 filled with the Creditor Business Code, if not used then filled with ZZZ.
- * <li>Position 8 onwards filled with the country specific part of the identifier being a national identifier of the Creditor,
- * as defined by the National Community.
+ * <li>Position 8 onwards filled with the country specific part of the identifier being a national identifier of the
+ * Creditor, as defined by the National Community.
  * </ul>
  *
  * <p>
- * This class handles validation of the check digit and validation of the Creditor Identifier Structure described above without
- * going into the validation of the national identifier.
+ * This class handles validation of the check digit and validation of the Creditor Identifier Structure described above
+ * without going into the validation of the national identifier.
  *
  * <p>
  * Instances of this class are immutable and thread-safe.
@@ -44,8 +45,8 @@ import java.util.Optional;
  * Assertions.assertEquals("123456", ci.getNationalIdentifier());
  * </pre>
  *
- * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">EPC
- *      Creditor Identifier Overview</a>
+ * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview">
+ *      EPC Creditor Identifier Overview</a>
  */
 public final class CreditorIdentifier implements Serializable {
 
@@ -77,10 +78,13 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Create a new Creditor Identifier from the given string.
    *
+   * <p>
+   * Uppercase and lowercase characters are accepted.
+   *
    * @param creditorId A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
-   * @throws CreditorIdentifierFormatException if the given string does not match {@value #REGEX} or if its country code is not
-   *         known in {@link fr.marcwrobel.jbanking.IsoCountry} or if its check digit is wrong
+   * @throws CreditorIdentifierFormatException if the given string does not match {@value #REGEX} or if its country code
+   *         is not known in {@link fr.marcwrobel.jbanking.IsoCountry} or if its check digit is wrong
    */
   public CreditorIdentifier(String creditorId) {
     if (creditorId == null) {
@@ -107,10 +111,11 @@ public final class CreditorIdentifier implements Serializable {
   }
 
   /**
-   * Create a new Creditor Identifier from the given country code, the creditor business code and the creditor national id.
+   * Create a new Creditor Identifier from the given country code, the creditor business code and the creditor national
+   * identifier.
    *
    * <p>
-   * The check digit is automatically calculated.
+   * The check digit is automatically calculated. Uppercase and lowercase characters are accepted.
    *
    * @param country A non-null IsoCountry.
    * @param businessCode A non-null String.
@@ -185,9 +190,12 @@ public final class CreditorIdentifier implements Serializable {
   }
 
   /**
-   * Validates the given Creditor Identifier String.
+   * Check whether the given string is a valid creditor identifier.
    *
-   * @param creditorIdentifier A String.
+   * <p>
+   * Uppercase and lowercase characters are considered valid.
+   *
+   * @param creditorIdentifier a String.
    * @return {@code true} if the given String is a valid Creditor Identifier, {@code false} otherwise.
    */
   public static boolean isValid(String creditorIdentifier) {
@@ -196,7 +204,6 @@ public final class CreditorIdentifier implements Serializable {
     }
 
     String normalizedCreditorId = normalize(creditorIdentifier);
-
     if (!isWellFormatted(normalizedCreditorId)) {
       return false;
     }

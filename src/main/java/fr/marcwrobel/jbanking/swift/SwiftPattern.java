@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * </tr>
  * <tr>
  * <td>c</td>
- * <td>upper and lower case alphanumeric characters (A-Z, a-z and 0-9)</td>
+ * <td>uppercase and lowercase alphanumeric characters (A-Z, a-z and 0-9)</td>
  * </tr>
  * <tr>
  * <td>e</td>
@@ -58,7 +58,7 @@ import java.util.regex.Pattern;
  *
  * <ul>
  * <li>{@code 4!n} : four digits
- * <li>{@code 4!c3!a} : four upper or lower case alphanumeric characters followed by three upper case
+ * <li>{@code 4!c3!a} : four uppercase or lowercase alphanumeric characters followed by three upper case
  * letters
  * <li>{@code 2!e4!a} : two spaces followed by four upper case letters
  * </ul>

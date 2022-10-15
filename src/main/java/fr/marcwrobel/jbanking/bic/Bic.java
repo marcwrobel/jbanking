@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * A Business Identifier Code (also known as BIC, SWIFT-BIC, BIC code, SWIFT ID or SWIFT code, Business Entity Identifier or
- * BEI) as specified by ISO 9362:2009.
+ * A Business Identifier Code (also known as BIC, SWIFT-BIC, BIC code, SWIFT ID or SWIFT code, Business Entity
+ * Identifier or BEI) as specified by ISO 9362:2009.
  *
  * <p>
  * A BIC is either eight (BIC8) or eleven (BIC11) characters made up of :
@@ -20,8 +20,8 @@ import java.util.Optional;
  * </ul>
  *
  * <p>
- * Where an 8-digit code is given, it is assumed that it refers to the primary office. The primary office is always designated
- * by the branch code {@value #PRIMARY_OFFICE_BRANCH_CODE}).
+ * Where an 8-digit code is given, it is assumed that it refers to the primary office. The primary office is always
+ * designated by the branch code {@value #PRIMARY_OFFICE_BRANCH_CODE}).
  *
  * <p>
  * Instances of this class are immutable and thread-safe.
@@ -86,10 +86,10 @@ public final class Bic implements Serializable {
   private final String normalizedBic;
 
   /**
-   * Create a new bic from the given string.
+   * Create a new BIC from the given string.
    *
    * <p>
-   * The given string may be a BIC8 or a BIC11.
+   * The given string may be a BIC8 or a BIC11. Uppercase and lowercase characters are accepted.
    *
    * @param bic8Or11 A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
@@ -118,7 +118,10 @@ public final class Bic implements Serializable {
   }
 
   /**
-   * Check whether the given string is valid BIC.
+   * Check whether the given string is a valid BIC.
+   *
+   * <p>
+   * The given string may be a BIC8 or a BIC11. Uppercase and lowercase characters are considered valid.
    *
    * @param bic A String.
    * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
@@ -242,8 +245,8 @@ public final class Bic implements Serializable {
    * Indicates whether some other object is “equal to” this one.
    *
    * <p>
-   * To be equals to this one the other object must be a {@link Bic} and the BICs normalized form (see {@link #toString()}) must
-   * be equal.
+   * To be equals to this one the other object must be a {@link Bic} and the BICs normalized form (see
+   * {@link #toString()}) must be equal.
    *
    * @param o the object with which to compare.
    * @return {@code true} if this object is the same as the obj argument or {@code false} otherwise.

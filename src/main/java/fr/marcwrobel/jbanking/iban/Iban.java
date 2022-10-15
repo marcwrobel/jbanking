@@ -71,6 +71,9 @@ public final class Iban implements Serializable {
   /**
    * Create a new IBAN from the given country code and BBAN.
    *
+   * <p>
+   * Uppercase and lowercase characters are accepted.
+   *
    * @param country A non-null IsoCountry.
    * @param bban A non-null String.
    * @throws IllegalArgumentException if either the IsoCountry or BBAN is {@code null}
@@ -106,6 +109,9 @@ public final class Iban implements Serializable {
   /**
    * Create a new IBAN from the given string.
    *
+   * <p>
+   * Uppercase and lowercase characters are accepted.
+   *
    * @param iban A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws IbanFormatException if the given string is not a valid IBAN.
@@ -140,6 +146,9 @@ public final class Iban implements Serializable {
 
   /**
    * Validates the given IBAN String.
+   *
+   * <p>
+   * Uppercase and lowercase characters are considered valid.
    *
    * @param iban A String.
    * @return {@code true} if the given String is a valid IBAN, {@code false} otherwise.

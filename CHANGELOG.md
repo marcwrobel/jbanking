@@ -37,6 +37,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - (**breaking change**) `Iban.isValid(String)` or `IbanCheckDigit.validate(String)` return `false` instead of raising an
   `IllegalArgumentException` with invalid IBAN check digit (e.g. `00`, `01`, or `99`).
+- Fix `Bic`, `CreditorIdentifier` and `Iban` documentation (#209). It was not explicit that lowercase characters were
+  accepted.
 
 ### Deprecated
 
