@@ -25,7 +25,7 @@ public class AsciiCharacters {
    * </pre>
    *
    * @param c the character to check
-   * @return true if between 65 and 90 or 97 and 122 inclusive
+   * @return {@code true} if between 65 and 90 or 97 and 122 inclusive, {@code false} otherwise
    */
   public static boolean isAlphabetic(final char c) {
     return isUpperAlphabetic(c) || isLowerAlphabetic(c);
@@ -46,7 +46,7 @@ public class AsciiCharacters {
    * </pre>
    *
    * @param c the character to check
-   * @return true if between 65 and 90 inclusive
+   * @return {@code true} if between 65 and 90 inclusive, {@code false} otherwise
    */
   public static boolean isUpperAlphabetic(final char c) {
     return c >= 'A' && c <= 'Z';
@@ -67,7 +67,7 @@ public class AsciiCharacters {
    * </pre>
    *
    * @param c the character to check
-   * @return true if between 97 and 122 inclusive
+   * @return {@code true} if between 97 and 122 inclusive, {@code false} otherwise
    */
   public static boolean isLowerAlphabetic(final char c) {
     return c >= 'a' && c <= 'z';
@@ -88,7 +88,7 @@ public class AsciiCharacters {
    * </pre>
    *
    * @param c the character to check
-   * @return true if between 48 and 57 inclusive
+   * @return {@code true} if between 48 and 57 inclusive, {@code false} otherwise
    */
   public static boolean isNumeric(final char c) {
     return c >= '0' && c <= '9';
@@ -109,10 +109,30 @@ public class AsciiCharacters {
    * </pre>
    *
    * @param c the character to check
-   * @return true if between 48 and 57 or 65 and 90 or 97 and 122 inclusive
+   * @return {@code true} if between 48 and 57 or 65 and 90 or 97 and 122 inclusive, {@code false} otherwise
    */
   public static boolean isAlphanumeric(final char c) {
     return isAlphabetic(c) || isNumeric(c);
   }
 
+  /**
+   * <p>
+   * Checks whether the character is ASCII 7 bit space.
+   * </p>
+   *
+   * <pre>
+   *   CharUtils.isAsciiAlphanumeric(' ')  = true
+   *   CharUtils.isAsciiAlphanumeric('A')  = false
+   *   CharUtils.isAsciiAlphanumeric('3')  = false
+   *   CharUtils.isAsciiAlphanumeric('-')  = false
+   *   CharUtils.isAsciiAlphanumeric('\n') = false
+   *   CharUtils.isAsciiAlphanumeric('&copy;') = false
+   * </pre>
+   *
+   * @param c the character to check
+   * @return {@code true} if equal to 32, {@code false} otherwise
+   */
+  public static boolean isSpace(final char c) {
+    return c == ' ';
+  }
 }

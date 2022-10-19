@@ -3,6 +3,7 @@ package fr.marcwrobel.jbanking.swift;
 import static java.util.Objects.requireNonNull;
 
 import fr.marcwrobel.jbanking.internal.AsciiCharacters;
+import fr.marcwrobel.jbanking.internal.CharacterPredicate;
 import java.util.Optional;
 
 /**
@@ -14,42 +15,22 @@ public enum SwiftPatternCharacterRepresentation {
   /**
    * Digits (numeric characters 0 to 9 only).
    */
-  DIGITS('n', "[0-9]") {
-    @Override
-    public boolean has(char c) {
-      return AsciiCharacters.isNumeric(c);
-    }
-  },
+  DIGITS('n', "[0-9]", AsciiCharacters::isNumeric),
 
   /**
    * Uppercase letters (alphabetic characters A-Z only).
    */
-  UPPER_CASE_LETTERS('a', "[A-Z]") {
-    @Override
-    public boolean has(char c) {
-      return AsciiCharacters.isUpperAlphabetic(c);
-    }
-  },
+  UPPER_CASE_LETTERS('a', "[A-Z]", AsciiCharacters::isUpperAlphabetic),
 
   /**
    * Uppercase and lowercase case alphanumeric characters (A-Z, a-z and 0-9).
    */
-  UPPER_AND_LOWER_CASE_ALPHANUMERICS('c', "[a-zA-Z0-9]") {
-    @Override
-    public boolean has(char c) {
-      return AsciiCharacters.isAlphanumeric(c);
-    }
-  },
+  UPPER_AND_LOWER_CASE_ALPHANUMERICS('c', "[a-zA-Z0-9]", AsciiCharacters::isAlphanumeric),
 
   /**
    * Blank space.
    */
-  SPACES('e', "[ ]") {
-    @Override
-    public boolean has(char c) {
-      return c == ' ';
-    }
-  };
+  SPACES('e', "[ ]", AsciiCharacters::isSpace);
 
   public static Optional<SwiftPatternCharacterRepresentation> from(char qualifier) {
     for (SwiftPatternCharacterRepresentation characters : values()) {
@@ -63,10 +44,12 @@ public enum SwiftPatternCharacterRepresentation {
 
   private final char qualifier;
   private final String regex;
+  private final CharacterPredicate predicate;
 
-  SwiftPatternCharacterRepresentation(char qualifier, String regex) {
+  SwiftPatternCharacterRepresentation(char qualifier, String regex, CharacterPredicate predicate) {
     this.qualifier = qualifier;
     this.regex = requireNonNull(regex);
+    this.predicate = requireNonNull(predicate);
   }
 
   /**
@@ -92,5 +75,7 @@ public enum SwiftPatternCharacterRepresentation {
    *
    * @return {@code true} if the given character belongs to this character representation, {@code false} otherwise
    */
-  public abstract boolean has(char c);
+  public boolean has(char c) {
+    return predicate.test(c);
+  }
 }
