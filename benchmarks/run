@@ -48,7 +48,7 @@ parser.add_argument("-f", "--fast", action="store_true",
 parser.add_argument("-v", "--version", type=str, nargs="*",
                     help="limit to only some versions")
 parser.add_argument("-e", "--exclude", type=str, nargs="*",
-                    help="exclude some benchmarks (must be on of " + ", ".join(BENCHMARKS) + ")")
+                    help="exclude some benchmarks (must be one of " + ", ".join(BENCHMARKS) + ")")
 args = parser.parse_args()
 
 versions = set(args.version) if args.version else set(VERSIONS.keys())

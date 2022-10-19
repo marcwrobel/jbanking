@@ -84,10 +84,18 @@ final class IbanPattern implements Serializable {
     List<IbanPatternGroup> groups = new ArrayList<>();
 
     int from = 0;
+    IbanPatternGroup previousGroup = null;
     while (matcher.find()) {
       IbanPatternGroup group = transform(expression, matcher.group(), from);
       from = from + group.length;
+
+      if (previousGroup != null && previousGroup.canBeMergedTo(group)) {
+        groups.remove(previousGroup);
+        group = previousGroup.merge(group);
+      }
+
       groups.add(group);
+      previousGroup = group;
     }
 
     return Collections.unmodifiableList(groups);
@@ -118,7 +126,7 @@ final class IbanPattern implements Serializable {
       throw new SwiftPatternSyntaxException(expression, "could not extract length from '" + groupExpression + "'");
     }
 
-    return new IbanPatternGroup(from, maxOccurrences, cRepresentation.get());
+    return new IbanPatternGroup(cRepresentation.get(), from, maxOccurrences);
   }
 
   /**
