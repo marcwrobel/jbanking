@@ -32,6 +32,7 @@ jbanking is supporting the following features :
 * [ISO 9362:2009 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
 * [ISO 13616:2007 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
   check digit and national bank account number structure).
+* Random [ISO 13616:2007 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) generation.
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
 * Configurable [holiday](https://wikipedia.org/wiki/Holiday) calendar support with predefined calendars for :
@@ -86,6 +87,9 @@ Assertions.assertEquals("FR", iban.getCountryCode());
 Assertions.assertEquals("25", iban.getCheckDigit());
 Assertions.assertEquals("31682128768051490609537", iban.getBban());
 Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
+
+// Generate a random IBAN
+Iban randomIban = new RandomIban().next();
 
 // Validate a BIC
 Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));

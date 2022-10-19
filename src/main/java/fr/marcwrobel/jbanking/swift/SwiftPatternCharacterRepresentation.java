@@ -15,22 +15,23 @@ public enum SwiftPatternCharacterRepresentation {
   /**
    * Digits (numeric characters 0 to 9 only).
    */
-  DIGITS('n', "[0-9]", AsciiCharacters::isNumeric),
+  DIGITS('n', "[0-9]", "0123456789", AsciiCharacters::isNumeric),
 
   /**
    * Uppercase letters (alphabetic characters A-Z only).
    */
-  UPPER_CASE_LETTERS('a', "[A-Z]", AsciiCharacters::isUpperAlphabetic),
+  UPPER_CASE_LETTERS('a', "[A-Z]", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", AsciiCharacters::isUpperAlphabetic),
 
   /**
    * Uppercase and lowercase case alphanumeric characters (A-Z, a-z and 0-9).
    */
-  UPPER_AND_LOWER_CASE_ALPHANUMERICS('c', "[a-zA-Z0-9]", AsciiCharacters::isAlphanumeric),
+  UPPER_AND_LOWER_CASE_ALPHANUMERICS('c', "[a-zA-Z0-9]", "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      AsciiCharacters::isAlphanumeric),
 
   /**
    * Blank space.
    */
-  SPACES('e', "[ ]", AsciiCharacters::isSpace);
+  SPACES('e', "[ ]", " ", AsciiCharacters::isSpace);
 
   public static Optional<SwiftPatternCharacterRepresentation> from(char qualifier) {
     for (SwiftPatternCharacterRepresentation characters : values()) {
@@ -44,11 +45,13 @@ public enum SwiftPatternCharacterRepresentation {
 
   private final char qualifier;
   private final String regex;
+  private final String alphabet;
   private final CharacterPredicate predicate;
 
-  SwiftPatternCharacterRepresentation(char qualifier, String regex, CharacterPredicate predicate) {
+  SwiftPatternCharacterRepresentation(char qualifier, String regex, String alphabet, CharacterPredicate predicate) {
     this.qualifier = qualifier;
     this.regex = requireNonNull(regex);
+    this.alphabet = requireNonNull(alphabet);
     this.predicate = requireNonNull(predicate);
   }
 
@@ -59,6 +62,15 @@ public enum SwiftPatternCharacterRepresentation {
    */
   public char qualifier() {
     return qualifier;
+  }
+
+  /**
+   * Returns this character representation alphabet, i.e. a String composed of all the characters in the representation.
+   *
+   * @return a non-null String
+   */
+  public String alphabet() {
+    return alphabet;
   }
 
   /**

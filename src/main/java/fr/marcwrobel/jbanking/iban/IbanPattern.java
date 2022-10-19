@@ -37,17 +37,17 @@ final class IbanPattern implements Serializable {
   /**
    * The SWIFT pattern.
    */
-  private final String expression;
+  final String expression;
 
   /**
    * The groups that compose this pattern.
    */
-  private final List<IbanPatternGroup> groups;
+  final List<IbanPatternGroup> groups;
 
   /**
    * The expected length of the corresponding IBANs.
    */
-  private final int length;
+  final int length;
 
   private IbanPattern(String expression, List<IbanPatternGroup> groups) {
     this.expression = expression;

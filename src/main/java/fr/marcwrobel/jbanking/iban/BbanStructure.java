@@ -1,21 +1,6 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static fr.marcwrobel.jbanking.IsoCountry.AX;
-import static fr.marcwrobel.jbanking.IsoCountry.BL;
-import static fr.marcwrobel.jbanking.IsoCountry.GF;
-import static fr.marcwrobel.jbanking.IsoCountry.GG;
-import static fr.marcwrobel.jbanking.IsoCountry.GP;
-import static fr.marcwrobel.jbanking.IsoCountry.IM;
-import static fr.marcwrobel.jbanking.IsoCountry.JE;
-import static fr.marcwrobel.jbanking.IsoCountry.MF;
-import static fr.marcwrobel.jbanking.IsoCountry.MQ;
-import static fr.marcwrobel.jbanking.IsoCountry.NC;
-import static fr.marcwrobel.jbanking.IsoCountry.PF;
-import static fr.marcwrobel.jbanking.IsoCountry.PM;
-import static fr.marcwrobel.jbanking.IsoCountry.RE;
-import static fr.marcwrobel.jbanking.IsoCountry.TF;
-import static fr.marcwrobel.jbanking.IsoCountry.WF;
-import static fr.marcwrobel.jbanking.IsoCountry.YT;
+import static fr.marcwrobel.jbanking.IsoCountry.*;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import java.util.*;
@@ -31,7 +16,7 @@ import java.util.*;
  * @since 1.0
  */
 @SuppressWarnings("java:S1192") // swift expressions cannot be constants (maintainability).
-enum BbanStructure {
+public enum BbanStructure {
   /**
    * BBAN structure for Andorra as defined by the <a href="https://www.andorranbanking.ad/">Associació de Bancs Andorrans</a>
    * (ABA).
@@ -934,21 +919,6 @@ enum BbanStructure {
   }
 
   /**
-   * Test whether the given BBAN is valid.
-   *
-   * @param bban A non-null string.
-   * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false} otherwise.
-   * @throws IllegalArgumentException if the given BBAN is {@code null}.
-   */
-  public boolean isBbanValid(String bban) {
-    if (bban == null) {
-      throw new IllegalArgumentException("the bban argument cannot be null");
-    }
-
-    return bbanPattern.matches(bban);
-  }
-
-  /**
    * Returns this BBAN definition country.
    *
    * @return a non-null country.
@@ -964,5 +934,33 @@ enum BbanStructure {
    */
   public Set<IsoCountry> getSubdivisions() {
     return subdivisions;
+  }
+
+  /**
+   * Test whether the given BBAN is valid.
+   *
+   * <p>
+   * This method is for internal use only.
+   *
+   * @param bban A non-null string.
+   * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false} otherwise.
+   * @throws IllegalArgumentException if the given BBAN is {@code null}.
+   */
+  boolean isBbanValid(String bban) {
+    if (bban == null) {
+      throw new IllegalArgumentException("the bban argument cannot be null");
+    }
+
+    return bbanPattern.matches(bban);
+  }
+
+  /**
+   * Returns this structure BBAN pattern.
+   *
+   * <p>
+   * This method is for internal use only.
+   */
+  IbanPattern getBbanPattern() {
+    return bbanPattern;
   }
 }
