@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Tests for the {@link SwiftPattern} class.
@@ -17,84 +15,115 @@ import org.junit.jupiter.params.provider.ValueSource;
 class SwiftPatternTest {
 
   @Test
-  void patternCannotBeNull() {
+  void aSwiftPatternCannotBeNull() {
     assertThrows(IllegalArgumentException.class, () -> SwiftPattern.compile(null));
   }
 
   @Test
-  void unknownCharacterClassAreForbidden() {
-    String pattern = "2!n3!d";
+  void aSwiftPatternMustBeWellFormed() {
+    String invalidPattern = "2!n3d";
 
-    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class, () -> SwiftPattern.compile(pattern));
-
-    assertEquals(pattern, e.getExpression());
-    assertTrue(e.getMessage().contains("must match"));
+    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class,
+        () -> SwiftPattern.compile(invalidPattern));
+    assertEquals(invalidPattern, e.getExpression());
   }
 
   @Test
-  void nonStrictGroupAreForbidden() {
-    String pattern = "2n";
-
-    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class, () -> SwiftPattern.compile(pattern));
-
-    assertEquals(pattern, e.getExpression());
-    assertTrue(e.getMessage().contains("not supported"));
+  void digitsFormatTest() {
+    String expression = "10n";
+    assertMatches("1", expression);
+    assertMatches("12", expression);
+    assertNotMatches("01234567890", expression);
+    assertNotMatches("1a", expression);
   }
 
   @Test
-  void strictDigitsFormatValid() {
-    assertMatches("12345", "5!n");
-  }
-
-  @ParameterizedTest
-  @ValueSource(strings = { "", "1234", "123456", "abcde", "     " })
-  void strictDigitsFormatInvalid(String s) {
-    assertNotMatches(s, "5!n");
+  void strictDigitsFormatTest() {
+    String expression = "5!n";
+    assertMatches("12345", expression);
+    assertNotMatches("123", expression);
+    assertNotMatches("123456", expression);
+    assertNotMatches("1a", expression);
   }
 
   @Test
-  void strictUpperCaseLettersFormatValid() {
-    assertMatches("ABCDE", "5!a");
+  void upperCaseLettersFormatTest() {
+    String expression = "2a";
+    assertMatches("A", expression);
+    assertMatches("AB", expression);
+    assertNotMatches("ABC", expression);
+    assertNotMatches("1A", expression);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "", "ABCD", "ABCDEF", "12345", "     " })
-  void strictUpperCaseLettersFormatInvalid(String s) {
-    assertNotMatches(s, "5!a");
+  @Test
+  void strictUpperCaseLettersFormatTest() {
+    String expression = "5!a";
+    assertMatches("ABCDE", expression);
+    assertNotMatches("ABC", expression);
+    assertNotMatches("ABCDEF", expression);
+    assertNotMatches("1A", expression);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "12345", "abcde", "ABCDE", "Ab1De" })
-  void strictUpperAndLowerCaseAlphanumericsFormatValid(String s) {
-    assertMatches(s, "5!c");
+  @Test
+  void upperAndLowerCaseAlphanumericsFormatTest() {
+    String expression = "2c";
+    assertMatches("1", expression);
+    assertMatches("A", expression);
+    assertMatches("Ab", expression);
+    assertMatches("12", expression);
+    assertMatches("1A", expression);
+    assertNotMatches("1!", expression);
+    assertNotMatches("ABC", expression);
+    assertNotMatches("AB1", expression);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "", "1234", "123456", "ABCD", "ABCDEF", "abcd", "abcdef", "Abc123", "Ab12", "     " })
-  void strictUpperAndLowerCaseAlphanumericsFormatInvalid(String s) {
-    assertNotMatches(s, "5!c");
+  @Test
+  void strictUpperAndLowerCaseAlphanumericsFormatTest() {
+    String expression = "5!c";
+    assertMatches("Ab1De", expression);
+    assertNotMatches("Ab1", expression);
+    assertNotMatches("Ab1De3", expression);
+    assertNotMatches("1111", expression);
+    assertNotMatches("aaaaaa", expression);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "12abcA  ", "23ABCB  ", "78123C  ", "78xY5D  ", "90a1ZZ  " })
-  void multipleStrictExpressionsValid(String s) {
-    assertMatches(s, "2!n3!c1!a2!e");
+  @Test
+  void multipleBasicExpressionTest() {
+    String expression = "2!c18!c";
+    assertMatches("01234567890123456789", expression);
+    assertNotMatches("Ab1", expression);
+    assertNotMatches("Ab1De3", expression);
+    assertNotMatches("1111", expression);
+    assertNotMatches("aaaaaa", expression);
   }
 
-  @ParameterizedTest
-  @ValueSource(strings = { "        ", "12345678", "abcdefgh", "ABCDEFGH", "123aBcA  ", "12aBA  " })
-  void multipleStrictExpressionsInvalid(String s) {
-    assertNotMatches(s, "2!n3!c1!a2!e");
+  @Test
+  void mixedFormatTest() {
+    String expression = "2!n3!c1!a2e";
+    assertMatches("12a1cC  ", expression);
+    assertNotMatches("12", expression);
+    assertNotMatches("123", expression);
+    assertNotMatches("1a", expression);
+    assertNotMatches("12ac2", expression);
+    assertNotMatches("12ac2  ", expression);
   }
 
   private void assertMatches(String value, String expression) {
     SwiftPattern pattern = SwiftPattern.compile(expression);
-    assertTrue(pattern.matches(value));
+    assertTrue(pattern.matcher(value).matches());
   }
 
   private void assertNotMatches(String value, String expression) {
     SwiftPattern pattern = SwiftPattern.compile(expression);
-    assertFalse(pattern.matches(value));
+    assertFalse(pattern.matcher(value).matches());
+  }
+
+  @Test
+  void transformationTest() {
+    String expression = "5!n";
+    SwiftPattern pattern = SwiftPattern.compile(expression);
+    assertEquals(expression, pattern.getExpression());
+    assertEquals("^[0-9]{5}$", pattern.getEquivalentJavaPattern().pattern());
   }
 
   @Test

@@ -18,7 +18,6 @@ import static fr.marcwrobel.jbanking.IsoCountry.WF;
 import static fr.marcwrobel.jbanking.IsoCountry.YT;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.swift.SwiftPattern;
 import java.util.*;
 
 /**
@@ -910,14 +909,14 @@ enum BbanStructure {
   private final IsoCountry country;
 
   @SuppressWarnings("ImmutableEnumChecker") // SwiftPattern is immutable
-  private final SwiftPattern bbanPattern;
+  private final IbanPattern bbanPattern;
 
   @SuppressWarnings("ImmutableEnumChecker") // initialized with Collections.unmodifiableSet(...).
   private final Set<IsoCountry> subdivisions;
 
   BbanStructure(IsoCountry country, String bbanSwiftExpression, IsoCountry... subdivisions) {
     this.country = country;
-    this.bbanPattern = SwiftPattern.compile(bbanSwiftExpression);
+    this.bbanPattern = IbanPattern.compile(bbanSwiftExpression);
     this.subdivisions = Collections.unmodifiableSet(subdivisions.length > 0
         ? EnumSet.copyOf(Arrays.asList(subdivisions))
         : EnumSet.noneOf(IsoCountry.class));
@@ -956,15 +955,6 @@ enum BbanStructure {
    */
   public IsoCountry getCountry() {
     return country;
-  }
-
-  /**
-   * Returns this BBAN definition pattern.
-   *
-   * @return a non-null pattern.
-   */
-  public SwiftPattern getBbanPattern() {
-    return bbanPattern;
   }
 
   /**

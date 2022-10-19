@@ -23,7 +23,7 @@ public class SwiftPatternSyntaxException extends RuntimeException {
    *
    * @param expression a string
    */
-  SwiftPatternSyntaxException(String expression, String cause) {
+  public SwiftPatternSyntaxException(String expression, String cause) {
     super(String.format("the expression '%s' is invalid : %s", expression, cause));
     this.expression = expression;
   }

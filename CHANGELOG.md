@@ -8,6 +8,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Document alternatives to jbanking (#164).
 - Make `CreditorIdentifier#REGEX` public (as part of #172).
 - Make `Iban#REGEX` public (as part of #171).
+- Add `SwiftPatternCharacterRepresentation` to centralize information about SWIFT pattern character representations (as
+  part of #171).
 
 ### Changed
 
@@ -16,13 +18,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   (as part of #170).
 - (**breaking change**) Make `Iban` not accepting values containing spaces anymore (as part of #116). This means
   printable or untrimmed IBANs are not considered valid values anymore. Note that this feature was not documented.
-- (**breaking change**) Modify `SwiftPattern` API to not use regexes anymore (as part of #171). You will have to update
-  your code accordingly (from `pattern.matcher(s).matches()` to `pattern.matches(s)`).
-- (**breaking change**) Remove support of _variable length indication_ (such as `4n`) in `SwiftPattern` (during #171).
-  Only _fixed length indication_ is now supported (such as `4!n`). This feature was too complex to reimplement during
-  the `SwiftPattern` rewrite. And because this feature is probably not used outside of jbanking code, we choose to drop
-  it. But if you were using it, please let us know by [raising an issue](https://github.com/marcwrobel/jbanking/issues),
-  so we can add it back.
 - (**breaking change**) Make `IbanCheckDigit#validate` return `false` for `null` or less than 5 characters strings
   (#188).
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
@@ -48,6 +43,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - (**breaking change**) Remove `Bic#BIC_PATTERN` (as part of #170). If you still need to use the BIC regex, you may
   compile the pattern from `Bic#REGEX`, which has been kept for compatibility and documentation purposes.
+- (**breaking change**) Remove `BbanStructure#getBbanPattern` (as part of #171). `BbanStructure` does not use the
+  `SwiftPattern` class anymore to validate BBAN. If you were using this method, use `BbanStructure#isBbanValid` instead.
 
 ### Internal
 
