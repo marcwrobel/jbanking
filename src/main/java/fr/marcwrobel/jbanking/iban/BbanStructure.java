@@ -828,7 +828,7 @@ public enum BbanStructure {
   TN(IsoCountry.TN, "2!n3!n13!n2!n"),
 
   /**
-   * BBAN structure for Turkey as defined by the <a href="https://www.tcmb.gov.tr/">Türkiye Cumhuriyet Merkez Bankası</a> (CBRT
+   * BBAN structure for Türkiye as defined by the <a href="https://www.tcmb.gov.tr/">Türkiye Cumhuriyet Merkez Bankası</a> (CBRT
    * - Central Bank of the Republic of Turkey).
    *
    * <ul>

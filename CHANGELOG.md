@@ -39,6 +39,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add the _national day of mourning for Her Majesty The Queen_ day to Sydney calendar (#204).
 - Improve documentation of `Bic`, `CreditorIdentifier`, `Iban` and `SwiftPattern` regarding serialization (as part of
   #222).
+- Update documentation to reflect the change from _Turkey_ to _Türkiye_ documented in the [ISO 4217 Currency Code
+  Service - Amendment number 173](https://www.six-group.com/en/products-services/financial-information/data-standards.html)
+  (#207).
 
 ### Fixed
 

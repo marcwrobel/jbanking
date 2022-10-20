@@ -1530,7 +1530,7 @@ public enum IsoCountry {
   TN("TUN", 788),
 
   /**
-   * Turkey (aka the Republic of Turkey).
+   * Türkiye (aka the Republic of Türkiye).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:TR">www.iso.org</a>
    */
