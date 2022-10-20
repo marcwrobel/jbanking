@@ -1,6 +1,6 @@
 package fr.marcwrobel.jbanking.bic;
 
-import static fr.marcwrobel.jbanking.TestUtils.BLANK;
+import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

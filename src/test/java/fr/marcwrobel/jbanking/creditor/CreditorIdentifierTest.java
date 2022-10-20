@@ -1,6 +1,6 @@
 package fr.marcwrobel.jbanking.creditor;
 
-import static fr.marcwrobel.jbanking.TestUtils.shouldHaveThrown;
+import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.TestUtils;
+import fr.marcwrobel.jbanking.internal.TestUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;

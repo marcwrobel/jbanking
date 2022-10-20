@@ -1,4 +1,4 @@
-package fr.marcwrobel.jbanking;
+package fr.marcwrobel.jbanking.internal;
 
 import org.junit.jupiter.api.Assertions;
 

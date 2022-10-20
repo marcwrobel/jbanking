@@ -1,6 +1,6 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static fr.marcwrobel.jbanking.TestUtils.shouldHaveThrown;
+import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.collect.Sets;
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.TestUtils;
+import fr.marcwrobel.jbanking.internal.TestUtils;
 import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
