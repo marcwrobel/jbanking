@@ -26,6 +26,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - (**breaking change**) Make `SwiftPattern#toString` returning only the SWIFT pattern expression (as part of #222).
   Prior to this version `SwiftPattern#toString` were returning the SWIFT pattern expression with its corresponding
   regular expression.
+- (**breaking change**) Make `BicFormatException`, `CreditorIdentifierFormatException`, `IbanFormatException` and
+  `SwiftPatternSyntaxException` extend `IllegalArgumentException` instead of `RuntimeException` (#220).
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
   creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of

@@ -9,7 +9,7 @@ import fr.marcwrobel.jbanking.IsoCountry;
  * @see Iban#Iban(String)
  * @since 1.0
  */
-public final class IbanFormatException extends RuntimeException {
+public final class IbanFormatException extends IllegalArgumentException {
 
   /**
    * Serialization version.

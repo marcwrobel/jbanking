@@ -6,7 +6,7 @@ package fr.marcwrobel.jbanking.swift;
  * @see SwiftPattern
  * @since 1.0
  */
-public class SwiftPatternSyntaxException extends RuntimeException {
+public class SwiftPatternSyntaxException extends IllegalArgumentException {
 
   /**
    * Serialization version.

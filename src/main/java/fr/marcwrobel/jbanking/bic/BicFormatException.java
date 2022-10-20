@@ -7,7 +7,7 @@ package fr.marcwrobel.jbanking.bic;
  * @see Bic#Bic(String)
  * @since 1.0
  */
-public final class BicFormatException extends RuntimeException {
+public final class BicFormatException extends IllegalArgumentException {
 
   /**
    * Serialization version.

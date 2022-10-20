@@ -6,7 +6,7 @@ package fr.marcwrobel.jbanking.creditor;
  *
  * @see fr.marcwrobel.jbanking.creditor.CreditorIdentifier#CreditorIdentifier(String)
  */
-public class CreditorIdentifierFormatException extends RuntimeException {
+public class CreditorIdentifierFormatException extends IllegalArgumentException {
 
   /**
    * Serialization version.
