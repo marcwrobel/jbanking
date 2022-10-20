@@ -1,15 +1,11 @@
 package fr.marcwrobel.jbanking.iban;
 
 import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.common.collect.Sets;
 import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import fr.marcwrobel.jbanking.internal.TestUtils;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -249,6 +245,17 @@ class IbanTest {
     assertNotEquals(null, iban1);
     assertNotEquals(iban1, new Object());
     assertNotEquals(iban1, new Iban(VALID_IBAN2));
+  }
+
+  @Test
+  void serialization() {
+    Iban object = new Iban(VALID_IBAN);
+
+    byte[] serializedObject = SerializationUtils.serialize(object);
+    Iban deserializedObject = SerializationUtils.deserialize(serializedObject);
+
+    assertTrue(SerializationUtils.isSerializable(Iban.class));
+    assertEquals(object, deserializedObject);
   }
 
   private static Stream<Arguments> validIbans() {

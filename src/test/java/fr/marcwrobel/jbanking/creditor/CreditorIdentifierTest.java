@@ -1,15 +1,10 @@
 package fr.marcwrobel.jbanking.creditor;
 
 import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import fr.marcwrobel.jbanking.internal.TestUtils;
 import java.util.Arrays;
 import java.util.List;
@@ -240,6 +235,17 @@ class CreditorIdentifierTest {
     assertNotNull(creditorId1);
     assertNotEquals(creditorId1, new Object());
     assertNotEquals(creditorId1, new CreditorIdentifier(VALID_CI2));
+  }
+
+  @Test
+  void serialization() {
+    CreditorIdentifier object = new CreditorIdentifier(VALID_CI);
+
+    byte[] serializedObject = SerializationUtils.serialize(object);
+    CreditorIdentifier deserializedObject = SerializationUtils.deserialize(serializedObject);
+
+    assertTrue(SerializationUtils.isSerializable(CreditorIdentifier.class));
+    assertEquals(object, deserializedObject);
   }
 
   private static Stream<Arguments> validCreditorIdentifiers() {

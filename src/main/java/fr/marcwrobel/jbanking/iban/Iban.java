@@ -21,6 +21,10 @@ import java.util.Optional;
  * Instances of this class are immutable and thread-safe.
  *
  * <p>
+ * This class implements {@link Serializable} for convenience, but you are encouraged to use the {@link #toString()
+ * normalized string representation} if possible. Note that no validity check is done during deserialization.
+ *
+ * <p>
  * Usage:
  *
  * <pre>
@@ -238,6 +242,19 @@ public final class Iban implements Serializable {
     return printableIban.toString();
   }
 
+  /**
+   * Returns a normalized string representation of this IBAN.
+   *
+   * <p>
+   * Normalized means the string is:
+   *
+   * <ul>
+   * <li>made of uppercase characters
+   * <li>contains no spaces
+   * </ul>
+   *
+   * @return a normalized string representation of this IBAN
+   */
   @Override
   public String toString() {
     return normalizedIban;
@@ -257,19 +274,6 @@ public final class Iban implements Serializable {
     return normalizedIban.equals(other.normalizedIban);
   }
 
-  /**
-   * Returns a normalized string representation of this IBAN.
-   *
-   * <p>
-   * Normalized means the string is:
-   *
-   * <ul>
-   * <li>made of uppercase characters
-   * <li>contains no spaces
-   * </ul>
-   *
-   * @return a normalized string representation of this IBAN
-   */
   @Override
   public int hashCode() {
     return 29 * normalizedIban.hashCode();

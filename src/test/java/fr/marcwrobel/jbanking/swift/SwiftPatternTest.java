@@ -1,12 +1,8 @@
 package fr.marcwrobel.jbanking.swift;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -142,5 +138,16 @@ class SwiftPatternTest {
     assertNotNull(pattern1);
     assertNotEquals(pattern1, new Object());
     assertNotEquals(pattern1, pattern3);
+  }
+
+  @Test
+  void serialization() {
+    SwiftPattern object = SwiftPattern.compile("2!n3!c1!a2e3c2n");
+
+    byte[] serializedObject = SerializationUtils.serialize(object);
+    SwiftPattern deserializedObject = SerializationUtils.deserialize(serializedObject);
+
+    assertTrue(SerializationUtils.isSerializable(SwiftPattern.class));
+    assertEquals(object, deserializedObject);
   }
 }

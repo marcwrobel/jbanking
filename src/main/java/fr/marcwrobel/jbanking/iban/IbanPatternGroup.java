@@ -3,14 +3,8 @@ package fr.marcwrobel.jbanking.iban;
 import static java.util.Objects.requireNonNull;
 
 import fr.marcwrobel.jbanking.swift.SwiftPatternCharacterRepresentation;
-import java.io.Serializable;
 
-class IbanPatternGroup implements Serializable {
-  /**
-   * Serialization version.
-   */
-  private static final long serialVersionUID = 0;
-
+class IbanPatternGroup {
   final int from;
   final int length;
   final SwiftPatternCharacterRepresentation characters;

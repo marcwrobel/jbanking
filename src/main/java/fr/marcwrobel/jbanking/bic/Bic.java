@@ -27,6 +27,10 @@ import java.util.Optional;
  * Instances of this class are immutable and thread-safe.
  *
  * <p>
+ * This class implements {@link Serializable} for convenience, but you are encouraged to use the {@link #toString()
+ * normalized string representation} if possible. Note that no validity check is done during deserialization.
+ *
+ * <p>
  * Usage:
  *
  * <pre>

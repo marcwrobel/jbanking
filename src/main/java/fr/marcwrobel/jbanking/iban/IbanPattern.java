@@ -5,7 +5,6 @@ import static fr.marcwrobel.jbanking.swift.SwiftPattern.SWIFT_FORMAT_PATTERN;
 
 import fr.marcwrobel.jbanking.swift.SwiftPatternCharacterRepresentation;
 import fr.marcwrobel.jbanking.swift.SwiftPatternSyntaxException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,12 +26,7 @@ import java.util.regex.Matcher;
  *
  * @since 4.0
  */
-final class IbanPattern implements Serializable {
-
-  /**
-   * Serialization version.
-   */
-  private static final long serialVersionUID = 0;
+final class IbanPattern {
 
   /**
    * The SWIFT pattern.

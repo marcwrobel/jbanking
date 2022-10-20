@@ -23,6 +23,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   printable or untrimmed IBANs are not considered valid values anymore. Note that this feature was not documented.
 - (**breaking change**) Make `IbanCheckDigit#validate` return `false` for `null` or less than 5 characters strings
   (#188).
+- (**breaking change**) Make `SwiftPattern#toString` returning only the SWIFT pattern expression (as part of #222).
+  Prior to this version `SwiftPattern#toString` were returning the SWIFT pattern expression with its corresponding
+  regular expression.
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
   creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
@@ -32,6 +35,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Improve javadoc (as part of #170 and #172).
 - Add the _state funeral of Queen Elizabeth II_ day to London calendar (#204).
 - Add the _national day of mourning for Her Majesty The Queen_ day to Sydney calendar (#204).
+- Improve documentation of `Bic`, `CreditorIdentifier`, `Iban` and `SwiftPattern` regarding serialization (as part of
+  #222).
 
 ### Fixed
 
@@ -66,5 +71,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Update build workflow to use Java 19 instead of Java 18 (#191).
 - Use `Character.digit` instead of `Character.getNumericValue` in `IbanCheckDigit` as recommended in
   [Error Prone#CharacterGetNumericValue](https://errorprone.info/bugpattern/CharacterGetNumericValue) (closes #117).
+- Add serialization tests for serializable classes (#222).
 
 ### Thanks

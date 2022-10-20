@@ -1,15 +1,10 @@
 package fr.marcwrobel.jbanking.bic;
 
 import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import fr.marcwrobel.jbanking.IsoCountry;
+import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -167,5 +162,16 @@ class BicTest {
   void toStringReturnsANormalizedBic() {
     Bic bic = new Bic(VALID_BIC8_LOWERCASE);
     assertEquals(VALID_BIC11, bic.toString());
+  }
+
+  @Test
+  void serialization() {
+    Bic object = new Bic(VALID_BIC11);
+
+    byte[] serializedObject = SerializationUtils.serialize(object);
+    Bic deserializedObject = SerializationUtils.deserialize(serializedObject);
+
+    assertTrue(SerializationUtils.isSerializable(Bic.class));
+    assertEquals(object, deserializedObject);
   }
 }

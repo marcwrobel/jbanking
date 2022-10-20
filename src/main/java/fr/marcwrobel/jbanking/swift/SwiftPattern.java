@@ -69,6 +69,10 @@ import java.util.regex.Pattern;
  * <p>
  * Instances of this class are immutable and thread-safe.
  *
+ * <p>
+ * This class implements {@link Serializable} for convenience, but you are encouraged to use the {@link #toString()
+ * normalized string representation} if possible. Note that no validity check is done during deserialization.
+ *
  * @see java.util.regex.Pattern
  * @since 1.0
  */
@@ -193,8 +197,13 @@ public final class SwiftPattern implements Serializable {
     return 13 + expression.hashCode();
   }
 
+  /**
+   * Returns this SWIFT pattern expression as a String.
+   *
+   * @return a non-null String
+   */
   @Override
   public String toString() {
-    return expression + "{regex=" + equivalentJavaPattern + "}";
+    return expression;
   }
 }
