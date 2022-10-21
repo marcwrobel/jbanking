@@ -15,6 +15,18 @@ import java.util.Optional;
  * in ISO/IEC 7064 (MOD97-10). Note that an IBAN is case-insensitive.
  *
  * <p>
+ * Except the national check digit, which is pretty common, the following information were considered too specific to be
+ * part of the jbanking API :
+ * <ul>
+ * <li>account type (Bulgaria, Brasil, Guatemala),</li>
+ * <li>account currency (Guatemala, Mauritius, Seychelles),</li>
+ * <li>balance account number (Belarus),</li>
+ * <li>identification number (Iceland),</li>
+ * <li>owner account number (Brasil),</li>
+ * <li>reserved characters (Costa Rica, Mauritius).</li>
+ * </ul>
+ *
+ * <p>
  * This class handles validation of the check digit and validation of the {@link BbanStructure BBAN structure}.
  *
  * <p>
@@ -37,6 +49,10 @@ import java.util.Optional;
  * Assertions.assertEquals("FR", iban.getCountryCode());
  * Assertions.assertEquals("25", iban.getCheckDigit());
  * Assertions.assertEquals("31682128768051490609537", iban.getBban());
+ * Assertions.assertEquals("31682", iban.getBankIdentifier());
+ * Assertions.assertEquals("12876", iban.getBranchIdentifier().get());
+ * Assertions.assertEquals("80514906095", iban.getAccountNumber());
+ * Assertions.assertEquals("37", iban.getNationalCheckDigit().get());
  * Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
  * </pre>
  *
@@ -73,6 +89,11 @@ public final class Iban implements Serializable {
   private final String normalizedIban;
 
   /**
+   * This IBAN BBAN structure.
+   */
+  private final BbanStructure structure;
+
+  /**
    * Create a new IBAN from the given country code and BBAN.
    *
    * <p>
@@ -95,14 +116,14 @@ public final class Iban implements Serializable {
     String normalizedBban = bban.toUpperCase();
     String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
-    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country);
-    if (!oBbanStructure.isPresent()) {
+    Optional<BbanStructure> oStructure = BbanStructure.forCountry(country);
+    if (!oStructure.isPresent()) {
       throw IbanFormatException.forNotSupportedCountry(bban, country);
     }
 
-    BbanStructure bbanStructure = oBbanStructure.get();
-    if (!bbanStructure.isBbanValid(normalizedBban)) {
-      throw IbanFormatException.forInvalidBbanStructure(bban, bbanStructure);
+    structure = oStructure.get();
+    if (!structure.isBbanValid(normalizedBban)) {
+      throw IbanFormatException.forInvalidBbanStructure(bban, structure);
     }
 
     String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalized);
@@ -131,14 +152,14 @@ public final class Iban implements Serializable {
       throw IbanFormatException.forUnknownCountry(iban);
     }
 
-    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country.get());
-    if (!oBbanStructure.isPresent()) {
+    Optional<BbanStructure> oStructure = BbanStructure.forCountry(country.get());
+    if (!oStructure.isPresent()) {
       throw IbanFormatException.forNotSupportedCountry(iban, country.get());
     }
 
-    BbanStructure bbanStructure = oBbanStructure.get();
-    if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
-      throw IbanFormatException.forInvalidBbanStructure(iban, bbanStructure);
+    structure = oStructure.get();
+    if (!structure.isBbanValid(normalized.substring(BBAN_INDEX))) {
+      throw IbanFormatException.forInvalidBbanStructure(iban, structure);
     }
 
     if (!IbanCheckDigit.INSTANCE.validate(normalized)) {
@@ -168,13 +189,13 @@ public final class Iban implements Serializable {
       return false;
     }
 
-    Optional<BbanStructure> oBbanStructure = BbanStructure.forCountry(country.get());
-    if (!oBbanStructure.isPresent()) {
+    Optional<BbanStructure> oStructure = BbanStructure.forCountry(country.get());
+    if (!oStructure.isPresent()) {
       return false;
     }
 
-    BbanStructure bbanStructure = oBbanStructure.get();
-    if (!bbanStructure.isBbanValid(normalized.substring(BBAN_INDEX))) {
+    BbanStructure structure = oStructure.get();
+    if (!structure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       return false;
     }
 
@@ -200,14 +221,13 @@ public final class Iban implements Serializable {
    * @return A non-null {@link IsoCountry}.
    */
   public IsoCountry getCountry() {
-    return findCountryFor(normalizedIban)
-        .orElseThrow(() -> new IllegalStateException("a valid Iban should have a country code"));
+    return structure.getCountry();
   }
 
   /**
    * Extract the check digit from this IBAN.
    *
-   * @return A non-null string representing this IBAN check digit.
+   * @return a non-null string
    */
   public String getCheckDigit() {
     return normalizedIban.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
@@ -216,10 +236,70 @@ public final class Iban implements Serializable {
   /**
    * Extract the BBAN from this IBAN.
    *
-   * @return A non-null string representing this IBAN BBAN.
+   * @return a non-null string
    */
   public String getBban() {
     return normalizedIban.substring(BBAN_INDEX);
+  }
+
+  /**
+   * Extract the bank identifier (also known as bank code) from this IBAN.
+   *
+   * @return a non-null string
+   */
+  public String getBankIdentifier() {
+    int from = structure.getBankIdentifierStartIndexInclusive();
+    int to = structure.getBankIdentifierEndIndexExclusive();
+
+    return normalizedIban.substring(BBAN_INDEX + from, BBAN_INDEX + to);
+  }
+
+  /**
+   * Extract the branch identifier (also known as branch code) from this IBAN, if possible.
+   *
+   * @return a non-null optional
+   */
+  public Optional<String> getBranchIdentifier() {
+    Optional<Integer> from = structure.getBranchIdentifierStartIndexInclusive();
+    Optional<Integer> to = structure.getBranchIdentifierEndIndexExclusive();
+
+    if (from.isPresent() && to.isPresent()) {
+      return Optional.of(normalizedIban.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
+    }
+
+    return Optional.empty();
+  }
+
+  /**
+   * Extract the national check digit (also known as check character) from this IBAN, if possible.
+   *
+   * <p>
+   * The type of the check digit and the algorithm used to compute it varies by country (RIB key in France, CIN in
+   * Italy...).
+   *
+   * @return a non-null optional
+   */
+  public Optional<String> getNationalCheckDigit() {
+    Optional<Integer> from = structure.getNationalCheckDigitStartIndexInclusive();
+    Optional<Integer> to = structure.getNationalCheckDigitEndIndexExclusive();
+
+    if (from.isPresent() && to.isPresent()) {
+      return Optional.of(normalizedIban.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
+    }
+
+    return Optional.empty();
+  }
+
+  /**
+   * Extract the national account number from this IBAN.
+   *
+   * @return a non-null string representing this IBAN account number
+   */
+  public String getAccountNumber() {
+    int from = structure.getAccountNumberStartIndexInclusive();
+    int to = structure.getAccountNumberEndIndexExclusive();
+
+    return normalizedIban.substring(BBAN_INDEX + from, BBAN_INDEX + to);
   }
 
   /**
@@ -229,7 +309,7 @@ public final class Iban implements Serializable {
    * When printed on paper, the IBAN is expressed in groups of four characters separated by a single space, the last group being
    * of variable length
    *
-   * @return A non-null string representing this IBAN formatted for printing.
+   * @return a non-null string representing this IBAN formatted for printing
    */
   public String toPrintableString() {
     StringBuilder printableIban = new StringBuilder(normalizedIban);

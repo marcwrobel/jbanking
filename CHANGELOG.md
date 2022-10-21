@@ -13,6 +13,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add random IBAN generation for all the ISO 13616-compliant national IBAN formats (#153).
 - Make `BbanStructure` public (as part of #153). `BbanStructure` is an enum that holds countries BBAN structure as
   listed in the [IBAN registry](https://www.iso13616.org).
+- Add `Iban#getBankIdentifier()` to get the bank identifier from an Iban (#162).
+- Add `Iban#getBranchIdentifier()` to get the branch identifier from an Iban (#162).
+- Add `Iban#getAccountNumber()` to get the account number from an Iban (#162).
+- Add `Iban#getNationalCheckDigit()` to get the national check digit from an Iban (#162).
 
 ### Changed
 

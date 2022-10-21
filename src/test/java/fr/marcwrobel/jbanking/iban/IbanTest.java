@@ -1,6 +1,5 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.common.collect.Sets;
@@ -12,6 +11,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -45,23 +45,6 @@ class IbanTest {
       "SV62CENR00000000000000700025", "TL380080012345678910157", "TN6199977105796904072050",
       "TR330006100519786457841326", "TR888859050625760496700846", "UA213223130000026007233566001",
       "VA59001123000012345678", "VG14NDUM4605555206975725", "XK051212012345678906");
-
-  private static final IsoCountry VALID_IBAN_COUNTRY = IsoCountry.FR;
-  private static final String VALID_IBAN_CHECKDIGIT = "14";
-  private static final String VALID_IBAN_BBAN = "20041010050500013M02606";
-  private static final String VALID_IBAN = VALID_IBAN_COUNTRY.getAlpha2Code() + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-  private static final String VALID_IBAN2 = "AL36442788709271283994894168";
-
-  private static final String BBAN_WITH_INVALID_FORMAT = "132!";
-  private static final String IBAN_WITH_INVALID_FORMAT = VALID_IBAN_COUNTRY.getAlpha2Code() + VALID_IBAN_CHECKDIGIT
-      + BBAN_WITH_INVALID_FORMAT;
-
-  private static final String IBAN_WITH_UNKNOWN_COUNTRY = "ZZ" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-  private static final String IBAN_WITH_UNSUPPORTED_COUNTRY = "US" + VALID_IBAN_CHECKDIGIT + VALID_IBAN_BBAN;
-  private static final String IBAN_WITH_INVALID_CHECK_DIGIT = "FR0920041010050500013M02606";
-  private static final String IBAN_WITH_INVALID_CHECK_DIGIT_2 = "BY00NBRB3600000000000Z00AB00";
-
-  private static final String IBAN_WITH_INVALID_BBAN_STRUCTURE = "GB72MIDLA0051539024150";
 
   @Test
   void nullIsNotAValidIban() {
@@ -100,100 +83,66 @@ class IbanTest {
 
   @Test
   void ibanWithUnknownCountryIsNotValid() {
-    assertFalse(Iban.isValid(IBAN_WITH_UNKNOWN_COUNTRY));
+    assertFalse(Iban.isValid("ZZ1420041010050500013M02606"));
   }
 
   @Test
   void anIbanMustBeFromAKnownCountry() {
-    try {
-      new Iban(IBAN_WITH_UNKNOWN_COUNTRY);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(IBAN_WITH_UNKNOWN_COUNTRY, e.getInputString());
-      assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
-    }
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban("ZZ1420041010050500013M02606"));
+    assertEquals("ZZ1420041010050500013M02606", e.getInputString());
+    assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
   }
 
   @Test
   void ibanWithUnsupportedCountryIsNotValid() {
-    assertFalse(Iban.isValid(IBAN_WITH_UNSUPPORTED_COUNTRY));
+    assertFalse(Iban.isValid("US1420041010050500013M02606"));
   }
 
   @Test
   void anIbanMustBeFromASupportedCountry() {
-    try {
-      new Iban(IBAN_WITH_UNSUPPORTED_COUNTRY);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(IBAN_WITH_UNSUPPORTED_COUNTRY, e.getInputString());
-      assertTrue(e.getMessage().contains("support"));
-    }
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban("US1420041010050500013M02606"));
+    assertEquals("US1420041010050500013M02606", e.getInputString());
+    assertTrue(e.getMessage().contains("support"));
   }
 
   @Test
   void anIbanCountryMustBeSupported() {
-    try {
-      new Iban(IsoCountry.US, VALID_IBAN_BBAN);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(VALID_IBAN_BBAN, e.getInputString());
-      assertTrue(e.getMessage().contains("support"));
-    }
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.US, "20041010050500013M02606"));
+    assertEquals("20041010050500013M02606", e.getInputString());
+    assertTrue(e.getMessage().contains("support"));
   }
 
   @Test
   void notProperlyStructuredIbanIsNotValid() {
-    assertFalse(Iban.isValid(IBAN_WITH_INVALID_BBAN_STRUCTURE));
+    assertFalse(Iban.isValid("GB72MIDLA0051539024150"));
   }
 
   @Test
   void anIbanMustBeProperlyStructured() {
-    try {
-      new Iban(IBAN_WITH_INVALID_BBAN_STRUCTURE);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(IBAN_WITH_INVALID_BBAN_STRUCTURE, e.getInputString());
-      assertTrue(e.getMessage().contains("structure"));
-    }
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban("GB72MIDLA0051539024150"));
+    assertEquals("GB72MIDLA0051539024150", e.getInputString());
+    assertTrue(e.getMessage().contains("structure"));
   }
 
   @Test
   void anIbanBbanMustBeProperlyStructured() {
-    try {
-      new Iban(IsoCountry.FR, BBAN_WITH_INVALID_FORMAT);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(BBAN_WITH_INVALID_FORMAT, e.getInputString());
-      assertTrue(e.getMessage().contains("structure"));
-    }
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban(IsoCountry.FR, "132!"));
+    assertEquals("132!", e.getInputString());
+    assertTrue(e.getMessage().contains("structure"));
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { IBAN_WITH_INVALID_CHECK_DIGIT, IBAN_WITH_INVALID_CHECK_DIGIT_2 })
+  @ValueSource(strings = { "FR0920041010050500013M02606", "BY00NBRB3600000000000Z00AB00" })
   void anIbanWithInvalidCheckDigitsIsNotValid(String iban) {
     assertFalse(Iban.isValid(iban));
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { IBAN_WITH_INVALID_CHECK_DIGIT, IBAN_WITH_INVALID_CHECK_DIGIT_2 })
+  @ValueSource(strings = { "FR0920041010050500013M02606", "BY00NBRB3600000000000Z00AB00" })
   void anIbanMustHaveCorrectCheckDigit(String iban) {
-    try {
-      new Iban(iban);
-      shouldHaveThrown(IbanFormatException.class);
-    } catch (IbanFormatException e) {
-      assertEquals(iban, e.getInputString());
-      assertTrue(e.getMessage().contains("check digits"));
-    }
-  }
-
-  @Test
-  void validIbanDecomposition() {
-    assertTrue(Iban.isValid(VALID_IBAN));
-    Iban iban = new Iban(VALID_IBAN);
-    assertEquals(VALID_IBAN_COUNTRY, iban.getCountry());
-    assertEquals(VALID_IBAN_COUNTRY.getAlpha2Code(), iban.getCountryCode());
-    assertEquals(VALID_IBAN_CHECKDIGIT, iban.getCheckDigit());
-    assertEquals(VALID_IBAN_BBAN, iban.getBban());
+    IbanFormatException e = assertThrows(IbanFormatException.class, () -> new Iban(iban));
+    assertEquals(iban, e.getInputString());
+    assertTrue(e.getMessage().contains("check digits"));
   }
 
   @ParameterizedTest
@@ -231,9 +180,44 @@ class IbanTest {
   }
 
   @Test
+  void validManualDecomposition() {
+    Iban iban = new Iban("FR1420041010050500013M02606");
+
+    assertTrue(Iban.isValid(iban.toString()));
+    assertEquals("FR14 2004 1010 0505 0001 3M02 606", iban.toPrintableString());
+    assertEquals(IsoCountry.FR, iban.getCountry());
+    assertEquals("FR", iban.getCountryCode());
+    assertEquals("14", iban.getCheckDigit());
+    assertEquals("20041010050500013M02606", iban.getBban());
+    assertEquals("20041", iban.getBankIdentifier());
+    assertTrue(iban.getBranchIdentifier().isPresent());
+    assertEquals("01005", iban.getBranchIdentifier().get());
+    assertEquals("0500013M026", iban.getAccountNumber());
+    assertTrue(iban.getNationalCheckDigit().isPresent());
+    assertEquals("06", iban.getNationalCheckDigit().get());
+  }
+
+  @ParameterizedTest
+  @EnumSource(BbanStructure.class)
+  void validDecomposition(BbanStructure structure) {
+    Iban iban = new RandomIban().next(structure);
+
+    assertEquals(structure.getCountry(), iban.getCountry());
+    assertEquals(structure.getCountry().name(), iban.getCountryCode());
+    assertDoesNotThrow(iban::getCheckDigit);
+    assertDoesNotThrow(iban::getBban);
+    assertDoesNotThrow(iban::getBankIdentifier);
+    assertDoesNotThrow(iban::getBranchIdentifier);
+    assertDoesNotThrow(iban::getNationalCheckDigit);
+    assertDoesNotThrow(iban::getAccountNumber);
+    assertDoesNotThrow(iban::toPrintableString);
+    assertDoesNotThrow(iban::toString);
+  }
+
+  @Test
   void equalityTest() {
-    Iban iban1 = new Iban(VALID_IBAN);
-    Iban iban2 = new Iban(VALID_IBAN.toLowerCase());
+    Iban iban1 = new Iban("FR1420041010050500013M02606");
+    Iban iban2 = new Iban("FR1420041010050500013M02606".toLowerCase());
 
     assertEquals(iban1, iban1);
     assertEquals(iban2, iban2);
@@ -244,18 +228,18 @@ class IbanTest {
 
     assertNotEquals(null, iban1);
     assertNotEquals(iban1, new Object());
-    assertNotEquals(iban1, new Iban(VALID_IBAN2));
+    assertNotEquals(iban1, new Iban("AL36442788709271283994894168"));
   }
 
   @Test
   void serialization() {
-    Iban object = new Iban(VALID_IBAN);
+    Iban object = new Iban("FR1420041010050500013M02606");
 
     byte[] serializedObject = SerializationUtils.serialize(object);
     Iban deserializedObject = SerializationUtils.deserialize(serializedObject);
 
-    assertTrue(SerializationUtils.isSerializable(Iban.class));
     assertEquals(object, deserializedObject);
+    assertTrue(SerializationUtils.isSerializable(Iban.class));
   }
 
   private static Stream<Arguments> validIbans() {

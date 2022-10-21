@@ -86,6 +86,10 @@ Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
 Assertions.assertEquals("FR", iban.getCountryCode());
 Assertions.assertEquals("25", iban.getCheckDigit());
 Assertions.assertEquals("31682128768051490609537", iban.getBban());
+Assertions.assertEquals("31682", iban.getBankIdentifier());
+Assertions.assertEquals("12876", iban.getBranchIdentifier().get());
+Assertions.assertEquals("80514906095", iban.getAccountNumber());
+Assertions.assertEquals("37", iban.getNationalCheckDigit().get());
 Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
 
 // Generate a random IBAN
