@@ -223,8 +223,8 @@ class IbanTest {
     assertEquals(iban1.hashCode(), iban2.hashCode());
 
     assertNotEquals(null, iban1);
-    assertNotEquals(iban1, new Object());
-    assertNotEquals(iban1, new Iban("AL36442788709271283994894168"));
+    assertNotEquals(new Object(), iban1);
+    assertNotEquals(new Iban("AL36442788709271283994894168"), iban1);
   }
 
   @Test

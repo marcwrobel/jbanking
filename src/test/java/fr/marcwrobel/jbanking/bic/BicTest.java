@@ -26,7 +26,7 @@ class BicTest {
       // invalid
       "", BLANK,
       // malformed
-      "FR", "BNPA", "BNPAFR", "BNPAPPXXX", "AAAAAAA",
+      "FR", "BNPA", "BNPAFR", "BNPAPPXXX", "AAAAAAA", "BNP!FRPPXXX", "BNPA!RPPXXX", "BNPAFR!PXXX", "BNPAFRPPXX!",
       // unknown country
       "BNPAFGPPXXX" })
   void invalidInputIsNotValid(String s) {

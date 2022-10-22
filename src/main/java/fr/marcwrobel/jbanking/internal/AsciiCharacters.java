@@ -19,12 +19,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiAlpha('a')  = true
-   *   CharUtils.isAsciiAlpha('A')  = true
-   *   CharUtils.isAsciiAlpha('3')  = false
-   *   CharUtils.isAsciiAlpha('-')  = false
-   *   CharUtils.isAsciiAlpha('\n') = false
-   *   CharUtils.isAsciiAlpha('&copy;') = false
+   *   AsciiCharacters.isAlphabetic('a')  = true
+   *   AsciiCharacters.isAlphabetic('A')  = true
+   *   AsciiCharacters.isAlphabetic('3')  = false
+   *   AsciiCharacters.isAlphabetic('-')  = false
+   *   AsciiCharacters.isAlphabetic('\n') = false
+   *   AsciiCharacters.isAlphabetic('&copy;') = false
    * </pre>
    *
    * @param c the character to check
@@ -40,12 +40,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiAlphaUpper('a')  = false
-   *   CharUtils.isAsciiAlphaUpper('A')  = true
-   *   CharUtils.isAsciiAlphaUpper('3')  = false
-   *   CharUtils.isAsciiAlphaUpper('-')  = false
-   *   CharUtils.isAsciiAlphaUpper('\n') = false
-   *   CharUtils.isAsciiAlphaUpper('&copy;') = false
+   *   AsciiCharacters.isUpperAlphabetic('a')  = false
+   *   AsciiCharacters.isUpperAlphabetic('A')  = true
+   *   AsciiCharacters.isUpperAlphabetic('3')  = false
+   *   AsciiCharacters.isUpperAlphabetic('-')  = false
+   *   AsciiCharacters.isUpperAlphabetic('\n') = false
+   *   AsciiCharacters.isUpperAlphabetic('&copy;') = false
    * </pre>
    *
    * @param c the character to check
@@ -61,12 +61,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiAlphaLower('a')  = true
-   *   CharUtils.isAsciiAlphaLower('A')  = false
-   *   CharUtils.isAsciiAlphaLower('3')  = false
-   *   CharUtils.isAsciiAlphaLower('-')  = false
-   *   CharUtils.isAsciiAlphaLower('\n') = false
-   *   CharUtils.isAsciiAlphaLower('&copy;') = false
+   *   AsciiCharacters.isLowerAlphabetic('a')  = true
+   *   AsciiCharacters.isLowerAlphabetic('A')  = false
+   *   AsciiCharacters.isLowerAlphabetic('3')  = false
+   *   AsciiCharacters.isLowerAlphabetic('-')  = false
+   *   AsciiCharacters.isLowerAlphabetic('\n') = false
+   *   AsciiCharacters.isLowerAlphabetic('&copy;') = false
    * </pre>
    *
    * @param c the character to check
@@ -82,12 +82,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiNumeric('a')  = false
-   *   CharUtils.isAsciiNumeric('A')  = false
-   *   CharUtils.isAsciiNumeric('3')  = true
-   *   CharUtils.isAsciiNumeric('-')  = false
-   *   CharUtils.isAsciiNumeric('\n') = false
-   *   CharUtils.isAsciiNumeric('&copy;') = false
+   *   AsciiCharacters.isNumeric('a')  = false
+   *   AsciiCharacters.isNumeric('A')  = false
+   *   AsciiCharacters.isNumeric('3')  = true
+   *   AsciiCharacters.isNumeric('-')  = false
+   *   AsciiCharacters.isNumeric('\n') = false
+   *   AsciiCharacters.isNumeric('&copy;') = false
    * </pre>
    *
    * @param c the character to check
@@ -103,12 +103,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiAlphanumeric('a')  = true
-   *   CharUtils.isAsciiAlphanumeric('A')  = true
-   *   CharUtils.isAsciiAlphanumeric('3')  = true
-   *   CharUtils.isAsciiAlphanumeric('-')  = false
-   *   CharUtils.isAsciiAlphanumeric('\n') = false
-   *   CharUtils.isAsciiAlphanumeric('&copy;') = false
+   *   AsciiCharacters.isAlphanumeric('a')  = true
+   *   AsciiCharacters.isAlphanumeric('A')  = true
+   *   AsciiCharacters.isAlphanumeric('3')  = true
+   *   AsciiCharacters.isAlphanumeric('-')  = false
+   *   AsciiCharacters.isAlphanumeric('\n') = false
+   *   AsciiCharacters.isAlphanumeric('&copy;') = false
    * </pre>
    *
    * @param c the character to check
@@ -124,12 +124,12 @@ public class AsciiCharacters {
    * </p>
    *
    * <pre>
-   *   CharUtils.isAsciiAlphanumeric(' ')  = true
-   *   CharUtils.isAsciiAlphanumeric('A')  = false
-   *   CharUtils.isAsciiAlphanumeric('3')  = false
-   *   CharUtils.isAsciiAlphanumeric('-')  = false
-   *   CharUtils.isAsciiAlphanumeric('\n') = false
-   *   CharUtils.isAsciiAlphanumeric('&copy;') = false
+   *   AsciiCharacters.isSpace(' ')  = true
+   *   AsciiCharacters.isSpace('A')  = false
+   *   AsciiCharacters.isSpace('3')  = false
+   *   AsciiCharacters.isSpace('-')  = false
+   *   AsciiCharacters.isSpace('\n') = false
+   *   AsciiCharacters.isSpace('&copy;') = false
    * </pre>
    *
    * @param c the character to check

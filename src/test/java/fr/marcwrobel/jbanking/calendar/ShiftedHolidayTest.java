@@ -55,5 +55,8 @@ class ShiftedHolidayTest {
     assertNotEquals(holiday3, holiday1);
     assertNotEquals(holiday1.hashCode(), holiday3.hashCode());
     assertNotEquals(holiday1.toString(), holiday3.toString());
+
+    assertNotEquals(null, holiday1);
+    assertNotEquals(new Object(), holiday1);
   }
 }

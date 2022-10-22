@@ -78,5 +78,8 @@ class RelativeHolidayTest {
     assertNotEquals(holiday4, holiday1);
     assertNotEquals(holiday1.hashCode(), holiday4.hashCode());
     assertNotEquals(holiday1.toString(), holiday4.toString());
+
+    assertNotEquals(null, holiday1);
+    assertNotEquals(new Object(), holiday1);
   }
 }

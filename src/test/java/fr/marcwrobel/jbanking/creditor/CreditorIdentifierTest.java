@@ -45,7 +45,7 @@ class CreditorIdentifierTest {
       // invalid
       "", BLANK,
       // malformed
-      "FR", "FR72", "FR72ZZZ", "FR72ZZZ12345!",
+      "FR", "FR72", "FR72ZZZ", "FR72ZZZ12345!", "F!72ZZZ123456", "FR7!ZZZ123456", "FR72ZZ!123456", "FR72ZZZ12345!",
       // unknown country
       "FG72ZZZ123456",
       // invalid check digit
@@ -142,8 +142,9 @@ class CreditorIdentifierTest {
     assertEquals(ci1.hashCode(), ci2.hashCode());
 
     assertNotNull(ci1);
-    assertNotEquals(ci1, new Object());
-    assertNotEquals(ci1, new CreditorIdentifier(VALID_CI2));
+    assertNotEquals(null, ci1);
+    assertNotEquals(new Object(), ci1);
+    assertNotEquals(new CreditorIdentifier(VALID_CI2), ci1);
   }
 
   @Test

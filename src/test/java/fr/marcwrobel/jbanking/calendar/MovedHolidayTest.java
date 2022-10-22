@@ -28,6 +28,14 @@ class MovedHolidayTest {
   }
 
   @Test
+  void holidayIsMoved() {
+    assertTrue(HOLIDAY.check(FROM.minusYears(1)));
+    assertFalse(HOLIDAY.check(FROM));
+    assertTrue(HOLIDAY.check(TO));
+    assertTrue(HOLIDAY.check(FROM.plusYears(1)));
+  }
+
+  @Test
   void equalsAndHashCodeAndToString() {
     Holiday holiday1 = HOLIDAY;
     Holiday holiday2 = HOLIDAY;
@@ -49,13 +57,8 @@ class MovedHolidayTest {
     assertNotEquals(holiday4, holiday1);
     assertNotEquals(holiday1.hashCode(), holiday4.hashCode());
     assertNotEquals(holiday1.toString(), holiday4.toString());
-  }
 
-  @Test
-  void holidayIsMoved() {
-    assertTrue(HOLIDAY.check(FROM.minusYears(1)));
-    assertFalse(HOLIDAY.check(FROM));
-    assertTrue(HOLIDAY.check(TO));
-    assertTrue(HOLIDAY.check(FROM.plusYears(1)));
+    assertNotEquals(null, holiday1);
+    assertNotEquals(new Object(), holiday1);
   }
 }

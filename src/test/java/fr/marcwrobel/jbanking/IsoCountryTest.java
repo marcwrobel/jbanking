@@ -6,10 +6,7 @@ import static fr.marcwrobel.jbanking.IsoCountry.FR;
 import static fr.marcwrobel.jbanking.IsoCountry.PS;
 import static fr.marcwrobel.jbanking.IsoCountry.TW;
 import static java.util.EnumSet.of;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CountryCode.Assignment;
@@ -179,6 +176,11 @@ class IsoCountryTest {
         .filter(c -> CountryCode.getByCode(c.getAlpha2Code()) == null).collect(Collectors.toList());
 
     assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
+  }
+
+  @Test
+  void nullParticipationThrows() {
+    assertThrows(IllegalArgumentException.class, () -> FR.isParticipatingTo(null));
   }
 
   @Test

@@ -29,6 +29,15 @@ class YearRangeHolidayTest {
   }
 
   @Test
+  void holidayIsPunctual() {
+    assertFalse(HOLIDAY.check(DATE.minusYears(2)));
+    assertTrue(HOLIDAY.check(DATE.minusYears(1)));
+    assertTrue(HOLIDAY.check(DATE));
+    assertTrue(HOLIDAY.check(DATE.plusYears(1)));
+    assertFalse(HOLIDAY.check(DATE.plusYears(2)));
+  }
+
+  @Test
   void equalsAndHashCodeAndToString() {
     Holiday holiday1 = HOLIDAY;
     Holiday holiday2 = HOLIDAY;
@@ -50,14 +59,8 @@ class YearRangeHolidayTest {
     assertNotEquals(holiday4, holiday1);
     assertNotEquals(holiday1.hashCode(), holiday4.hashCode());
     assertNotEquals(holiday1.toString(), holiday4.toString());
-  }
 
-  @Test
-  void holidayIsPunctual() {
-    assertFalse(HOLIDAY.check(DATE.minusYears(2)));
-    assertTrue(HOLIDAY.check(DATE.minusYears(1)));
-    assertTrue(HOLIDAY.check(DATE));
-    assertTrue(HOLIDAY.check(DATE.plusYears(1)));
-    assertFalse(HOLIDAY.check(DATE.plusYears(2)));
+    assertNotEquals(null, holiday1);
+    assertNotEquals(new Object(), holiday1);
   }
 }

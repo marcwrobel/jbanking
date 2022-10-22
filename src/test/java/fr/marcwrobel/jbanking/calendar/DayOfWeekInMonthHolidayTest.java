@@ -85,5 +85,8 @@ class DayOfWeekInMonthHolidayTest {
     assertNotEquals(holiday1, holiday5);
     assertNotEquals(holiday1.hashCode(), holiday5.hashCode());
     assertNotEquals(holiday1.toString(), holiday5.toString());
+
+    assertNotEquals(null, holiday1);
+    assertNotEquals(new Object(), holiday1);
   }
 }
