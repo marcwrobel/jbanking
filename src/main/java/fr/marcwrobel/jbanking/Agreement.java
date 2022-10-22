@@ -30,7 +30,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-07-20")
+  @LastVerification("2022-10-22")
   EUROPEAN_ECONOMIC_AREA(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, NL, NO,
       PL, PT, RO, SK, SI, ES, SE, CH),
 
@@ -46,7 +46,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/European_Free_Trade_Association">Wikipedia - European Free Trade Association</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-07-20")
+  @LastVerification("2022-10-22")
   EUROPEAN_FREE_TRADE_ASSOCIATION(IS, LI, NO, CH),
 
   /**
@@ -67,7 +67,7 @@ public enum Agreement {
    *      member state territories and the European Union</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-07-20")
+  @LastVerification("2022-10-22")
   EUROPEAN_UNION(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI,
       ES, SE),
 
@@ -84,7 +84,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-07-20")
+  @LastVerification("2022-10-27")
   SEPA_COM_PACIFIQUE(PF, NC, WF),
 
   /**
@@ -101,7 +101,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-07-20")
+  @LastVerification("2022-10-22")
   SINGLE_EURO_PAYMENTS_AREA(
       // EU countries
       AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE,

@@ -84,5 +84,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   [Error Prone#CharacterGetNumericValue](https://errorprone.info/bugpattern/CharacterGetNumericValue) (closes #117).
 - Add serialization tests for serializable classes (#222).
 - Add the `CheckDigit` interface and make `IbanCheckDigit` implements it (#174).
+- Enums maintenance - 2022/10 (#231).
 
 ### Thanks

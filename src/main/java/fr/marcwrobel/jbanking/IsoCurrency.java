@@ -41,7 +41,7 @@ import java.util.*;
  *      Currency &amp; Funds - List One</a>
  * @since 1.0
  */
-@LastVerification("2022-04-20")
+@LastVerification("2022-10-22")
 public enum IsoCurrency {
   /**
    * United Arab Emirates dirham.
