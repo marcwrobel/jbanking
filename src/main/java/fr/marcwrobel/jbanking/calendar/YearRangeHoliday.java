@@ -23,8 +23,8 @@ public final class YearRangeHoliday implements Holiday {
   /**
    * Create a new holiday using the given base and years of validity.
    *
-   * @param base a non-null holiday to use as a base.
-   * @param validityRange a non-null validity range.
+   * @param base a non-null holiday to use as a base
+   * @param validityRange a non-null validity range
    * @throws NullPointerException if either {@code base} or {@code validityRange} is {@code null}
    */
   public YearRangeHoliday(Holiday base, ValueRange validityRange) {
@@ -35,7 +35,7 @@ public final class YearRangeHoliday implements Holiday {
   /**
    * Create a new holiday using the given base and years of validity.
    *
-   * @param base a non-null holiday to use as a base.
+   * @param base a non-null holiday to use as a base
    * @param from the minimum year of validity (included)
    * @param to the maximum year of validity (included)
    * @throws NullPointerException if {@code base} is {@code null}

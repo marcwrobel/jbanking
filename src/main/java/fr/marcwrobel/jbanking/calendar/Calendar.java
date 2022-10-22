@@ -57,24 +57,24 @@ public interface Calendar {
   /**
    * Check whether the given date is a public holiday.
    *
-   * @param date a non-null date.
-   * @return {@code true} if the given date is a holiday, {@code false} otherwise.
+   * @param date a non-null date
+   * @return {@code true} if the given date is a holiday, {@code false} otherwise
    */
   boolean isHoliday(LocalDate date);
 
   /**
    * Get all the {@link Holiday}s matching with the given day.
    *
-   * @param date a non-null and unmodifiable set of {@link Holiday}s.
-   * @return {@code true} if the given date is a holiday, {@code false} otherwise.
+   * @param date a non-null and unmodifiable set of {@link Holiday}s
+   * @return {@code true} if the given date is a holiday, {@code false} otherwise
    */
   Set<Holiday> getHolidaysFor(LocalDate date);
 
   /**
    * Check whether the given date is a business day.
    *
-   * @param date a non-null date.
-   * @return {@code true} if the given date is a business day, {@code false} otherwise.
+   * @param date a non-null date
+   * @return {@code true} if the given date is a business day, {@code false} otherwise
    */
   default boolean isBusinessDay(LocalDate date) {
     return !isHoliday(date);

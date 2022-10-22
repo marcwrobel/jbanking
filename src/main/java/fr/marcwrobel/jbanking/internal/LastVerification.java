@@ -16,7 +16,7 @@ public @interface LastVerification {
   /**
    * Returns the last verification date of the annotated element.
    *
-   * @return a non null date formatted as {@code yyyy-MM-dd} (e.g. 2022-07-20).
+   * @return a non null date formatted as {@code yyyy-MM-dd} (e.g. 2022-07-20)
    */
   String value();
 }

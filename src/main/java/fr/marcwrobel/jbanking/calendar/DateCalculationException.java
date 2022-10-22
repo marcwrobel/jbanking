@@ -15,7 +15,7 @@ public class DateCalculationException extends RuntimeException {
   /**
    * Creates a new instance with the given message.
    *
-   * @param message the detail message.
+   * @param message the detail message
    */
   public DateCalculationException(String message) {
     super(message);

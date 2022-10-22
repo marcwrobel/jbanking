@@ -101,7 +101,7 @@ public final class Bic implements Serializable {
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
    * may be a BIC8 or a BIC11.
    *
-   * @param s A non-null String.
+   * @param s a non-null string
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws BicFormatException if the given string does not match {@value #REGEX} or if its country code is not known in
    *         {@link fr.marcwrobel.jbanking.IsoCountry}
@@ -134,8 +134,8 @@ public final class Bic implements Serializable {
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
    * may be a BIC8 or a BIC11.
    *
-   * @param s A String.
-   * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
+   * @param s a string, may be {@code null}
+   * @return {@code true} if the given string is valid BIC, otherwise {@code false}
    */
   public static boolean isValid(String s) {
     String normalizedValue = trimUpperCase(s);
@@ -170,7 +170,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the institution code (or bank code) from this BIC.
    *
-   * @return A non-null string representing this BIC institution code.
+   * @return a non-null string representing this BIC institution code
    */
   public String getInstitutionCode() {
     return value.substring(INSTITUTION_CODE_INDEX, INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH);
@@ -179,7 +179,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the country code from this BIC.
    *
-   * @return A non-null string representing this BIC country code.
+   * @return a non-null string representing this BIC country code
    */
   public String getCountryCode() {
     return getCountry().getAlpha2Code();
@@ -188,7 +188,7 @@ public final class Bic implements Serializable {
   /**
    * Gets this BIC {@link IsoCountry}.
    *
-   * @return A non-null {@link IsoCountry}.
+   * @return a non-null {@link IsoCountry}
    */
   public IsoCountry getCountry() {
     return findCountryFor(value).orElseThrow(() -> new IllegalStateException("a valid Bic should have a country code"));
@@ -197,7 +197,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the location code from this BIC.
    *
-   * @return A non-null string representing this BIC location code.
+   * @return a non-null string representing this BIC location code
    */
   public String getLocationCode() {
     return value.substring(LOCATION_CODE_INDEX, LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH);
@@ -206,7 +206,7 @@ public final class Bic implements Serializable {
   /**
    * Extract the branch code from this BIC.
    *
-   * @return A non-null string representing this BIC branch code.
+   * @return a non-null string representing this BIC branch code
    */
   public String getBranchCode() {
     return value.substring(BRANCH_CODE_INDEX, BRANCH_CODE_INDEX + BRANCH_CODE_LENGTH);
@@ -218,7 +218,7 @@ public final class Bic implements Serializable {
    * <p>
    * A BIC is a test BIC if the last character of the location code is {@value #TEST_BIC_INDICATOR}.
    *
-   * @return {@code true} if this BIC is a test BIC, otherwise {@code false}.
+   * @return {@code true} if this BIC is a test BIC, otherwise {@code false}
    * @see #isLiveBic
    */
   public boolean isTestBic() {
@@ -231,7 +231,7 @@ public final class Bic implements Serializable {
    * <p>
    * A BIC is a live BIC if the last character of the location code is not {@value #TEST_BIC_INDICATOR}.
    *
-   * @return {@code true} if this BIC is a live BIC, otherwise {@code false}.
+   * @return {@code true} if this BIC is a live BIC, otherwise {@code false}
    * @see #isTestBic
    */
   public boolean isLiveBic() {
@@ -241,7 +241,7 @@ public final class Bic implements Serializable {
   /**
    * Transform this BIC to a test BIC.
    *
-   * @return this if this BIC is a test BIC, or this BIC corresponding test BIC otherwise.
+   * @return this if this BIC is a test BIC, or this BIC corresponding test BIC otherwise
    */
   public Bic asTestBic() {
     if (isTestBic()) {
@@ -260,8 +260,8 @@ public final class Bic implements Serializable {
    * To be equals to this one the other object must be a {@link Bic} and the BICs normalized form (see
    * {@link #toString()}) must be equal.
    *
-   * @param o the object with which to compare.
-   * @return {@code true} if this object is the same as the obj argument or {@code false} otherwise.
+   * @param o the object with which to compare
+   * @return {@code true} if this object is the same as the obj argument or {@code false} otherwise
    * @see Object#toString()
    */
   @Override

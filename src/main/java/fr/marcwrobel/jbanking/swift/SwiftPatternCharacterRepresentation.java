@@ -33,6 +33,12 @@ public enum SwiftPatternCharacterRepresentation {
    */
   SPACES('e', "[ ]", " ", AsciiCharacters::isSpace);
 
+  /**
+   * Get the corresponding representation for the given qualifier.
+   *
+   * @param qualifier a char
+   * @return a non-null optional SwiftPatternCharacterRepresentation
+   */
   public static Optional<SwiftPatternCharacterRepresentation> from(char qualifier) {
     for (SwiftPatternCharacterRepresentation characters : values()) {
       if (characters.qualifier == qualifier) {
@@ -67,7 +73,7 @@ public enum SwiftPatternCharacterRepresentation {
   /**
    * Returns this character representation alphabet, i.e. a String composed of all the characters in the representation.
    *
-   * @return a non-null String
+   * @return a non-null string
    */
   public String alphabet() {
     return alphabet;
@@ -76,7 +82,7 @@ public enum SwiftPatternCharacterRepresentation {
   /**
    * Returns this character representation regular expression.
    *
-   * @return a non-null String
+   * @return a non-null string
    */
   public String regex() {
     return regex;
@@ -85,6 +91,7 @@ public enum SwiftPatternCharacterRepresentation {
   /**
    * Checks whether the given character belongs to this character representation.
    *
+   * @param c the char to test
    * @return {@code true} if the given character belongs to this character representation, {@code false} otherwise
    */
   public boolean has(char c) {

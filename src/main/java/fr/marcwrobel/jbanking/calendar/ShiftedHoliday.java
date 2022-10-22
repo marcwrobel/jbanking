@@ -22,8 +22,8 @@ public final class ShiftedHoliday implements Holiday {
   /**
    * Create a new holiday using the given {@link Holiday base holiday} and shifting strategy.
    *
-   * @param base a non-null holiday to use as a base.
-   * @param strategy a non-null strategy to use as for shifting dates.
+   * @param base a non-null holiday to use as a base
+   * @param strategy a non-null strategy to use as for shifting dates
    * @throws NullPointerException if the either {@code base} or {@code strategy} is {@code null}
    */
   public ShiftedHoliday(Holiday base, ShiftingStrategy strategy) {

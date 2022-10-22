@@ -30,7 +30,7 @@ public final class SuppressedHoliday implements Holiday {
    * The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the original dates dans vn are the
    * replacement.
    *
-   * @param base a non-null holiday to use as a base.
+   * @param base a non-null holiday to use as a base
    * @param suppressedYears a list of year the holiday has been suppressed
    * @throws NullPointerException if {@code base} is {@code null}
    */
@@ -46,7 +46,7 @@ public final class SuppressedHoliday implements Holiday {
    * The replacements are expressed as {@code k1, v1, k2, v2, ..., kn, vn} where kn are the original dates dans vn are the
    * replacement.
    *
-   * @param base a non-null holiday to use as a base.
+   * @param base a non-null holiday to use as a base
    * @param suppressedYears a list of year the holiday has been suppressed
    * @throws NullPointerException if {@code base} is {@code null}
    */

@@ -106,10 +106,10 @@ public final class Iban implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param country A non-null IsoCountry.
-   * @param bban A non-null String.
+   * @param country a non-null IsoCountry
+   * @param bban a non-null string
    * @throws IllegalArgumentException if either the IsoCountry or BBAN is {@code null}
-   * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry and BBAN.
+   * @throws IbanFormatException if a valid IBAN could not be calculated using the given IsoCountry and BBAN
    */
   public Iban(IsoCountry country, String bban) {
     if (country == null) {
@@ -144,9 +144,9 @@ public final class Iban implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param s A non-null String.
+   * @param s a non-null string
    * @throws IllegalArgumentException if the given string is {@code null}
-   * @throws IbanFormatException if the given string is not a valid IBAN.
+   * @throws IbanFormatException if the given string is not a valid IBAN
    */
   public Iban(String s) {
     if (s == null) {
@@ -186,8 +186,8 @@ public final class Iban implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param s A String.
-   * @return {@code true} if the given String is a valid IBAN, {@code false} otherwise.
+   * @param s a string, may be {@code null}
+   * @return {@code true} if the given String is a valid IBAN, {@code false} otherwise
    */
   public static boolean isValid(String s) {
     if (s == null) {
@@ -224,7 +224,7 @@ public final class Iban implements Serializable {
   /**
    * Extract the ISO 3166-1-alpha-2 country code from this IBAN.
    *
-   * @return A non-null string representing this IBAN ISO 3166-1-alpha-2 country code.
+   * @return a non-null string representing this IBAN ISO 3166-1-alpha-2 country code
    */
   public String getCountryCode() {
     return getCountry().getAlpha2Code();
@@ -233,7 +233,7 @@ public final class Iban implements Serializable {
   /**
    * Gets this IBAN {@link IsoCountry}.
    *
-   * @return A non-null {@link IsoCountry}.
+   * @return a non-null {@link IsoCountry}
    */
   public IsoCountry getCountry() {
     return structure.getCountry();
@@ -261,6 +261,7 @@ public final class Iban implements Serializable {
    * Extract the bank identifier (also known as bank code) from this IBAN.
    *
    * @return a non-null string
+   * @since 4.0.0
    */
   public String getBankIdentifier() {
     int from = structure.getBankIdentifierStartIndexInclusive();
@@ -272,7 +273,8 @@ public final class Iban implements Serializable {
   /**
    * Extract the branch identifier (also known as branch code) from this IBAN, if possible.
    *
-   * @return a non-null optional
+   * @return a non-null optional string
+   * @since 4.0.0
    */
   public Optional<String> getBranchIdentifier() {
     Optional<Integer> from = structure.getBranchIdentifierStartIndexInclusive();
@@ -292,7 +294,8 @@ public final class Iban implements Serializable {
    * The type of the check digit and the algorithm used to compute it varies by country (RIB key in France, CIN in
    * Italy...).
    *
-   * @return a non-null optional
+   * @return a non-null optional string
+   * @since 4.0.0
    */
   public Optional<String> getNationalCheckDigit() {
     Optional<Integer> from = structure.getNationalCheckDigitStartIndexInclusive();
@@ -309,6 +312,7 @@ public final class Iban implements Serializable {
    * Extract the national account number from this IBAN.
    *
    * @return a non-null string representing this IBAN account number
+   * @since 4.0.0
    */
   public String getAccountNumber() {
     int from = structure.getAccountNumberStartIndexInclusive();

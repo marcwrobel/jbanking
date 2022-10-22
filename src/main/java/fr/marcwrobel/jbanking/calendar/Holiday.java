@@ -20,9 +20,9 @@ public interface Holiday {
   /**
    * Check whether the given date is an occurrence of this holiday.
    *
-   * @param date the date to check.
-   * @return {@code true} if the given date is an occurrence of this holiday, {@code false} otherwise.
-   * @throws NullPointerException if the given date is {@code null}.
+   * @param date the date to check
+   * @return {@code true} if the given date is an occurrence of this holiday, {@code false} otherwise
+   * @throws NullPointerException if the given date is {@code null}
    */
   boolean check(LocalDate date);
 }

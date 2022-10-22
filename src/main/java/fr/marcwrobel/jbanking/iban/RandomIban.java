@@ -25,6 +25,8 @@ import java.util.Random;
  *
  * <p>
  * This class should be used only for tests.
+ *
+ * @since 4.0.0
  */
 public final class RandomIban {
 
@@ -69,6 +71,7 @@ public final class RandomIban {
    * Generates a random IBAN for one of the given {@link BbanStructure ISO 13616-compliant national IBAN formats}
    * (randomly chosen).
    *
+   * @param structures a non-null and non-empty array of {@link BbanStructure}
    * @return a non-null {@link Iban}
    * @throws NullPointerException if one of the given {@link BbanStructure} is {@code null}
    * @throws IllegalArgumentException if {@code structures} is empty

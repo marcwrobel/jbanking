@@ -1629,7 +1629,7 @@ public enum BbanStructure {
   /**
    * Returns the appropriate BbanStructure given the country, or null if IBAN are not in use in this country.
    *
-   * @param country A Country.
+   * @param country a country
    * @return the given country BBAN definition, or null if IBAN are not in use in this country or if the argument is
    *         {@code null}.
    */
@@ -1643,7 +1643,7 @@ public enum BbanStructure {
    * <p>
    * This method is for internal use only.
    *
-   * @return a non-null country.
+   * @return a non-null {@link IsoCountry}
    */
   IsoCountry getCountry() {
     return country;
@@ -1655,7 +1655,7 @@ public enum BbanStructure {
    * <p>
    * This method is for internal use only.
    *
-   * @return a non-null Set of countries (can be empty).
+   * @return a non-null Set of countries (can be empty)
    */
   Set<IsoCountry> getSubdivisions() {
     return subdivisions;
@@ -1775,9 +1775,9 @@ public enum BbanStructure {
    * <p>
    * This method is for internal use only.
    *
-   * @param bban A non-null string.
-   * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false} otherwise.
-   * @throws IllegalArgumentException if the given BBAN is {@code null}.
+   * @param bban a non-null string
+   * @return {@code true} if the given BBAN is valid against this BBAN structure, {@code false} otherwise
+   * @throws IllegalArgumentException if the given BBAN is {@code null}
    */
   boolean isBbanValid(String bban) {
     if (bban == null) {

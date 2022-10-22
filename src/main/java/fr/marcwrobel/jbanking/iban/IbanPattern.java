@@ -1,8 +1,5 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static fr.marcwrobel.jbanking.swift.SwiftPattern.SWIFT_FORMAT_GROUPS_PATTERN;
-import static fr.marcwrobel.jbanking.swift.SwiftPattern.SWIFT_FORMAT_PATTERN;
-
 import fr.marcwrobel.jbanking.swift.SwiftPatternCharacterRepresentation;
 import fr.marcwrobel.jbanking.swift.SwiftPatternSyntaxException;
 import java.util.ArrayList;
@@ -10,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Similar to {@link fr.marcwrobel.jbanking.swift.SwiftPattern}, but specialized for IBANs. Unlike
@@ -27,6 +25,11 @@ import java.util.regex.Matcher;
  * @since 4.0
  */
 final class IbanPattern {
+
+  // Identical to SwiftPattern. But we want to keep those constants private, so they have been copied.
+  private static final String GROUP_REGEX = "\\d{1,3}!?[ance]";
+  private static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
+  private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
 
   /**
    * The SWIFT pattern.
@@ -59,7 +62,7 @@ final class IbanPattern {
    *
    * @param expression The expression to be compiled
    * @return a SwiftPattern representing the given expression
-   * @throws SwiftPatternSyntaxException If the expression's syntax is invalid.
+   * @throws SwiftPatternSyntaxException if the expression's syntax is invalid
    */
   public static IbanPattern compile(String expression) {
     if (expression == null) {
@@ -126,7 +129,7 @@ final class IbanPattern {
   /**
    * Checks whether the given string matches this expression.
    *
-   * @return {@code true} if the given string matches this expression, {@code false} otherwise.
+   * @return {@code true} if the given string matches this expression, {@code false} otherwise
    */
   boolean matches(String s) {
     if (s.length() != length) {
@@ -164,7 +167,7 @@ final class IbanPattern {
   /**
    * Returns the SWIFT expression from which this pattern was created.
    *
-   * @return a non-null string.
+   * @return a non-null string
    */
   @Override
   public String toString() {

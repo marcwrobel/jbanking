@@ -23,7 +23,7 @@ public final class Normalizer {
    *   Normalizer.trimUpperCase(" aBc ") = "ABC"
    * </pre>
    *
-   * @param s a string
+   * @param s a string, may be {@code null}
    * @return a string (may be {@code null})
    */
   public static String trimUpperCase(String s) {

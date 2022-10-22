@@ -90,7 +90,7 @@ public final class CreditorIdentifier implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param s a non-null String
+   * @param s a non-null string
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws CreditorIdentifierFormatException if the given string does not match {@value #REGEX} or if its country code
    *         is not known in {@link fr.marcwrobel.jbanking.IsoCountry} or if its check digit is wrong
@@ -199,7 +199,7 @@ public final class CreditorIdentifier implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param s a string
+   * @param s a string, may be {@code null}
    * @return {@code true} if the given String is a valid Creditor Identifier, {@code false} otherwise
    */
   public static boolean isValid(String s) {
@@ -225,7 +225,7 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Extract the ISO 3166-1-alpha-2 country code from this Creditor Identifier.
    *
-   * @return A non-null string representing this Creditor Identifier ISO 3166-1-alpha-2 country code.
+   * @return a non-null string representing this Creditor Identifier ISO 3166-1-alpha-2 country code
    */
   public String getCountryCode() {
     return getCountry().getAlpha2Code();
@@ -234,7 +234,7 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Gets this Creditor Identifier {@link IsoCountry}.
    *
-   * @return A non-null {@link IsoCountry}.
+   * @return a non-null {@link IsoCountry}
    */
   public IsoCountry getCountry() {
     return findCountryFor(value).orElseThrow(() -> new IllegalStateException("a valid CI should have a country code"));
@@ -243,7 +243,7 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Extract the check digit from this Creditor Identifier.
    *
-   * @return A non-null string representing this Creditor Identifier check digit.
+   * @return a non-null string representing this Creditor Identifier check digit
    */
   public String getCheckDigit() {
     return value.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
@@ -252,7 +252,7 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Extract the business code from this Creditor Identifier.
    *
-   * @return A non-null string representing this Creditor Identifier business code.
+   * @return a non-null string representing this Creditor Identifier business code
    */
   public String getBusinessCode() {
     return value.substring(CREDITOR_BUSINESS_CODE_INDEX,
@@ -262,12 +262,25 @@ public final class CreditorIdentifier implements Serializable {
   /**
    * Extract the creditor national identifier from this Creditor Identifier.
    *
-   * @return A non-null string representing this Creditor Identifier National ID.
+   * @return a non-null string representing this Creditor Identifier National ID
    */
   public String getNationalIdentifier() {
     return value.substring(CREDITOR_NATIONAL_ID_INDEX);
   }
 
+  /**
+   * Returns a normalized string representation of this Creditor Identifier.
+   *
+   * <p>
+   * Normalized means the string is:
+   *
+   * <ul>
+   * <li>made of uppercase characters
+   * <li>contains no spaces
+   * </ul>
+   *
+   * @return a normalized string representation of this Creditor Identifier
+   */
   @Override
   public String toString() {
     return value;

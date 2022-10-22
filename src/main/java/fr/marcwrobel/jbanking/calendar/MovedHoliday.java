@@ -57,7 +57,7 @@ public final class MovedHoliday implements Holiday {
    * <p>
    * This constructor build a {@link MonthDayHoliday} internally.
    *
-   * @param base a non-null holiday to use as a base.
+   * @param base a non-null holiday to use as a base
    * @param replacement the replacement expressed as a {@link MonthDay}
    * @param replacedYears the years when the holiday must be replaced
    * @throws NullPointerException if {@code base} is {@code null}

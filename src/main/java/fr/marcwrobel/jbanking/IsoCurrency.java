@@ -1432,7 +1432,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency ISO 4217 alphabetical code.
    *
-   * @return a non-null and 3 characters length string.
+   * @return a non-null and 3 characters length string
    */
   public String getAlphabeticCode() {
     return name();
@@ -1441,7 +1441,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency ISO 4217 numeric code.
    *
-   * @return an integer.
+   * @return an integer
    */
   public int getNumericCode() {
     return numericCode;
@@ -1450,7 +1450,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency minor unit, if applicable.
    *
-   * @return an Integer or null if this not applicable.
+   * @return an Integer or null if this not applicable
    */
   public Integer getMinorUnit() {
     return minorUnit;
@@ -1459,7 +1459,7 @@ public enum IsoCurrency {
   /**
    * Returns this currency {@link Category category}.
    *
-   * @return a non-null {@link Category}.
+   * @return a non-null {@link Category}
    */
   public Category getCategory() {
     return category;
@@ -1468,7 +1468,7 @@ public enum IsoCurrency {
   /**
    * Returns the countries that are using this currency.
    *
-   * @return a non-null but may be empty set of countries.
+   * @return a non-null but may be empty set of countries
    */
   public Set<IsoCountry> getCountries() {
     return countries;
@@ -1480,8 +1480,8 @@ public enum IsoCurrency {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param code A non-null String.
-   * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
+   * @param code a non-null string
+   * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist
    */
   public static Optional<IsoCurrency> fromAlphabeticCode(String code) {
     return Optional.ofNullable(byAlphaCode.get(trimUpperCase(code)));
@@ -1490,8 +1490,8 @@ public enum IsoCurrency {
   /**
    * Translate the given ISO 4217 numeric code to an IsoCurrency.
    *
-   * @param code An Integer, null or not.
-   * @return the currency having the given ISO 4217 numerical code, or null if it does not exist.
+   * @param code an int
+   * @return the currency having the given ISO 4217 numerical code, or null if it does not exist
    */
   public static Optional<IsoCurrency> fromNumericCode(int code) {
     return Optional.ofNullable(byNumericCode.get(code));

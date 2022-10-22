@@ -83,9 +83,10 @@ public final class SwiftPattern implements Serializable {
    */
   private static final long serialVersionUID = 0;
 
-  public static final String GROUP_REGEX = "\\d{1,3}!?[ance]";
-  public static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
-  public static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
+  // Identical to IbanPattern. But we want to keep those constants private, so they have been copied.
+  private static final String GROUP_REGEX = "\\d{1,3}!?[ance]";
+  private static final Pattern SWIFT_FORMAT_PATTERN = Pattern.compile("^(" + GROUP_REGEX + "){1,1000}$");
+  private static final Pattern SWIFT_FORMAT_GROUPS_PATTERN = Pattern.compile(GROUP_REGEX);
 
   /**
    * The SWIFT pattern.
@@ -107,7 +108,7 @@ public final class SwiftPattern implements Serializable {
    *
    * @param expression The expression to be compiled
    * @return a SwiftPattern representing the given expression
-   * @throws SwiftPatternSyntaxException If the expression's syntax is invalid.
+   * @throws SwiftPatternSyntaxException if the expression's syntax is invalid
    */
   public static SwiftPattern compile(String expression) {
     if (expression == null) {
@@ -154,7 +155,7 @@ public final class SwiftPattern implements Serializable {
    * Creates a matcher that will match the given input against this pattern.
    *
    * @param input The character sequence to be matched
-   * @return A new matcher for this pattern.
+   * @return a new matcher for this pattern
    */
   public Matcher matcher(CharSequence input) {
     return equivalentJavaPattern.matcher(input);
@@ -163,7 +164,7 @@ public final class SwiftPattern implements Serializable {
   /**
    * Returns the SWIFT expression from which this pattern was compiled.
    *
-   * @return a non-null string.
+   * @return a non-null string
    */
   public String getExpression() {
     return expression;
@@ -172,7 +173,7 @@ public final class SwiftPattern implements Serializable {
   /**
    * Returns the {@link java.util.regex.Pattern java Pattern} build using the SWIFT expression.
    *
-   * @return a non-null pattern.
+   * @return a non-null pattern
    */
   public Pattern getEquivalentJavaPattern() {
     return equivalentJavaPattern;
@@ -200,7 +201,7 @@ public final class SwiftPattern implements Serializable {
   /**
    * Returns this SWIFT pattern expression as a String.
    *
-   * @return a non-null String
+   * @return a non-null string
    */
   @Override
   public String toString() {

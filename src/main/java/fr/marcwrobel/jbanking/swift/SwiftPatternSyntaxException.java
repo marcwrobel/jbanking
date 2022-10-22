@@ -1,5 +1,7 @@
 package fr.marcwrobel.jbanking.swift;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Thrown to indicate a syntax error in a SWIFT expression pattern.
  *
@@ -19,19 +21,21 @@ public class SwiftPatternSyntaxException extends IllegalArgumentException {
   private final String expression;
 
   /**
-   * Constructs a {@code SwiftPatternSyntaxException} with the expression that caused the error and the given detail message.
+   * Constructs a {@code SwiftPatternSyntaxException} with the expression that caused the error and the given detail
+   * message describing the cause.
    *
-   * @param expression a string
+   * @param expression a non-null string
+   * @param cause a non-null string
    */
   public SwiftPatternSyntaxException(String expression, String cause) {
-    super(String.format("the expression '%s' is invalid : %s", expression, cause));
-    this.expression = expression;
+    super(String.format("the expression '%s' is invalid : %s", expression, requireNonNull(cause)));
+    this.expression = requireNonNull(expression);
   }
 
   /**
    * Returns the input expression that caused this exception to be raised.
    *
-   * @return a string
+   * @return a non-null string
    */
   public String getExpression() {
     return expression;

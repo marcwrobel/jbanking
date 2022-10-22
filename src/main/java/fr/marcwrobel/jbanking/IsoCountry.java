@@ -1849,7 +1849,7 @@ public enum IsoCountry {
   /**
    * Returns this country ISO 3166-1 alpha-2 code.
    *
-   * @return a non-null and 2 characters length string.
+   * @return a non-null and 2 characters length string
    * @since 2.1.0
    */
   public String getAlpha2Code() {
@@ -1859,7 +1859,7 @@ public enum IsoCountry {
   /**
    * Returns this country ISO 3166-1 alpha-3 code.
    *
-   * @return a non-null and 3 characters length string.
+   * @return a non-null and 3 characters length string
    * @since 2.1.0
    */
   public String getAlpha3Code() {
@@ -1881,7 +1881,7 @@ public enum IsoCountry {
    * Whether this country is independent, according to the <a href="https://www.iso.org"> International Organization for
    * Standardization (ISO)</a>.
    *
-   * @return {@code true} if this country is independent, {@code false} otherwise.
+   * @return {@code true} if this country is independent, {@code false} otherwise
    * @since 2.1.0
    */
   public boolean isIndependent() {
@@ -1950,7 +1950,7 @@ public enum IsoCountry {
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param code a string ({@code null} accepted)
-   * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}.
+   * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}
    */
   public static Optional<IsoCountry> fromAlpha2Code(String code) {
     return Optional.ofNullable(byAlpha2Code.get(trimUpperCase(code)));
@@ -1962,8 +1962,8 @@ public enum IsoCountry {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param code A string ({@code null} accepted).
-   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
+   * @param code a string ({@code null} accepted)
+   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}
    */
   public static Optional<IsoCountry> fromAlpha3Code(String code) {
     return Optional.ofNullable(byAlpha3Code.get(trimUpperCase(code)));
@@ -1972,8 +1972,8 @@ public enum IsoCountry {
   /**
    * Translate the given ISO 3166-1 numeric code to an IsoCountry.
    *
-   * @param code A string ({@code null} accepted).
-   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
+   * @param code a string ({@code null} accepted)
+   * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}
    */
   public static Optional<IsoCountry> fromNumericCode(int code) {
     return Optional.ofNullable(byNumericCode.get(code));
