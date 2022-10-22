@@ -1,5 +1,7 @@
 package fr.marcwrobel.jbanking.creditor;
 
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
+
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.checkdigit.IbanCheckDigit;
 import fr.marcwrobel.jbanking.internal.AsciiCharacters;
@@ -38,10 +40,10 @@ import java.util.Optional;
  *
  * <pre>
  * // Validate a creditor identifier
- * Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
+ * Assertions.assertTrue(CreditorIdentifier.isValid(" fr72zzz123456 "));
  *
  * // Get creditor identifier information
- * CreditorIdentifier ci = new CreditorIdentifier("fr72zzz123456");
+ * CreditorIdentifier ci = new CreditorIdentifier(" fr72zzz123456 ");
  * Assertions.assertEquals("FR72ZZZ123456", ci.toString());
  * Assertions.assertEquals("FR", ci.getCountryCode());
  * Assertions.assertEquals("72", ci.getCheckDigit());
@@ -61,11 +63,14 @@ public final class CreditorIdentifier implements Serializable {
 
   /**
    * A simple regex that validate well-formed Creditor Identifiers.
+   *
+   * <p>
+   * All strings accepted by {@link #isValid(String)} are also accepted by this regex.
    */
   @SuppressWarnings("unused") // kept for documentation purposes
-  public static final String REGEX = "[A-Z]{2}[0-9]{2}[A-Z0-9]{3}[A-Z0-9]+";
+  public static final String REGEX = "\\s*[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{3}[a-zA-Z0-9]+\\s*";
 
-  private static final int CREDITOR_IDENTIFIER_MIN_LENGTH = 8;
+  private static final int MIN_LENGTH = 8;
   private static final int COUNTRY_CODE_INDEX = 0;
   private static final int COUNTRY_CODE_LENGTH = 2;
   private static final int CHECK_DIGITS_INDEX = COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH;
@@ -83,35 +88,34 @@ public final class CreditorIdentifier implements Serializable {
    * Create a new Creditor Identifier from the given string.
    *
    * <p>
-   * Uppercase and lowercase characters are accepted.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param creditorId A non-null String.
+   * @param creditorIdentifier A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws CreditorIdentifierFormatException if the given string does not match {@value #REGEX} or if its country code
    *         is not known in {@link fr.marcwrobel.jbanking.IsoCountry} or if its check digit is wrong
    */
-  public CreditorIdentifier(String creditorId) {
-    if (creditorId == null) {
+  public CreditorIdentifier(String creditorIdentifier) {
+    if (creditorIdentifier == null) {
       throw new IllegalArgumentException("the creditor identifier argument cannot be null");
     }
 
-    String normalizedCreditorId = normalize(creditorId);
-
-    if (!isWellFormatted(normalizedCreditorId)) {
-      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorId);
+    String normalizedCreditorIdentifier = trimUpperCase(creditorIdentifier);
+    if (!isWellFormatted(normalizedCreditorIdentifier)) {
+      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorIdentifier);
     }
 
-    Optional<IsoCountry> country = findCountryFor(normalizedCreditorId);
+    Optional<IsoCountry> country = findCountryFor(normalizedCreditorIdentifier);
     if (!country.isPresent()) {
-      throw CreditorIdentifierFormatException.forUnknownCountry(creditorId);
+      throw CreditorIdentifierFormatException.forUnknownCountry(creditorIdentifier);
     }
 
-    String normalizedCreditorIdWithoutBusinessCode = removeBusinessCode(normalizedCreditorId);
+    String normalizedCreditorIdWithoutBusinessCode = removeBusinessCode(normalizedCreditorIdentifier);
     if (!IbanCheckDigit.INSTANCE.validate(normalizedCreditorIdWithoutBusinessCode)) {
-      throw CreditorIdentifierFormatException.forIncorrectCheckDigits(creditorId);
+      throw CreditorIdentifierFormatException.forIncorrectCheckDigits(creditorIdentifier);
     }
 
-    this.normalizedCi = normalizedCreditorId;
+    this.normalizedCi = normalizedCreditorIdentifier;
   }
 
   /**
@@ -119,7 +123,7 @@ public final class CreditorIdentifier implements Serializable {
    * identifier.
    *
    * <p>
-   * The check digit is automatically calculated. Uppercase and lowercase characters are accepted.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param country A non-null IsoCountry.
    * @param businessCode A non-null String.
@@ -140,25 +144,21 @@ public final class CreditorIdentifier implements Serializable {
       throw new IllegalArgumentException("the creditorNationalId argument cannot be null");
     }
 
-    String normalizedNationalId = normalize(creditorNationalId);
+    String normalizedBusinessCode = trimUpperCase(businessCode);
+    String normalizedNationalId = trimUpperCase(creditorNationalId);
     String normalizedCreditorId = country.getAlpha2Code() + "00" + normalizedNationalId;
-
     if (!isWellFormatted(normalizedCreditorId)) {
       throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(creditorNationalId);
     }
 
     String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalizedCreditorId);
 
-    this.normalizedCi = country.getAlpha2Code() + checkDigits + businessCode + normalizedNationalId;
-  }
-
-  private static String normalize(String creditorIdentifier) {
-    return creditorIdentifier.replaceAll("\\s+", "").toUpperCase();
+    this.normalizedCi = country.getAlpha2Code() + checkDigits + normalizedBusinessCode + normalizedNationalId;
   }
 
   private static boolean isWellFormatted(String s) {
     int length = s.length();
-    if (length < CREDITOR_IDENTIFIER_MIN_LENGTH) {
+    if (length < MIN_LENGTH) {
       return false;
     }
 
@@ -197,7 +197,7 @@ public final class CreditorIdentifier implements Serializable {
    * Check whether the given string is a valid creditor identifier.
    *
    * <p>
-   * Uppercase and lowercase characters are considered valid.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param creditorIdentifier a String.
    * @return {@code true} if the given String is a valid Creditor Identifier, {@code false} otherwise.
@@ -207,7 +207,7 @@ public final class CreditorIdentifier implements Serializable {
       return false;
     }
 
-    String normalizedCreditorId = normalize(creditorIdentifier);
+    String normalizedCreditorId = trimUpperCase(creditorIdentifier);
     if (!isWellFormatted(normalizedCreditorId)) {
       return false;
     }

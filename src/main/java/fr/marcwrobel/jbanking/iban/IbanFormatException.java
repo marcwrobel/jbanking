@@ -32,6 +32,10 @@ public final class IbanFormatException extends IllegalArgumentException {
     this.inputString = input;
   }
 
+  static IbanFormatException forInvalidLength(String input) {
+    return new IbanFormatException(input, String.format("'%s' format is not appropriate", input));
+  }
+
   static IbanFormatException forIncorrectCheckDigits(String input) {
     return new IbanFormatException(input, String.format("'%s' check digits are incorrect", input));
   }

@@ -42,6 +42,13 @@ class IsoCurrencyTest {
   }
 
   @Test
+  void fromAlphaCodeAllowsLeadingAndTrailingWhitespaces() {
+    Optional<IsoCurrency> currency = fromAlphabeticCode(" " + EUR.getAlphabeticCode() + " ");
+    assertTrue(currency.isPresent());
+    assertEquals(EUR, currency.get());
+  }
+
+  @Test
   void fromAlphaCodeWorksWithExistingValues() {
     for (IsoCurrency currency : IsoCurrency.values()) {
       Optional<IsoCurrency> found = fromAlphabeticCode(currency.getAlphabeticCode());

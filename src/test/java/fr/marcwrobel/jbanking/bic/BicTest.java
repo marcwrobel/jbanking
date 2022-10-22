@@ -91,8 +91,23 @@ class BicTest {
   }
 
   @Test
+  void lowerCaseBicIsValid() {
+    assertTrue(Bic.isValid(VALID_BIC11_LOWERCASE));
+  }
+
+  @Test
   void bicIsCaseInsensitive() {
     assertDoesNotThrow(() -> new Bic(VALID_BIC11_LOWERCASE));
+  }
+
+  @Test
+  void leadingAndTrailingWhitespacesAreValid() {
+    assertTrue(Bic.isValid(" " + VALID_BIC11 + " "));
+  }
+
+  @Test
+  void bicAllowsLeadingAndTrailingWhitespaces() {
+    assertDoesNotThrow(() -> new Bic(" " + VALID_BIC11 + " "));
   }
 
   @Test

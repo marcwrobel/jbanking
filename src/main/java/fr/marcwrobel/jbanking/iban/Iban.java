@@ -1,5 +1,7 @@
 package fr.marcwrobel.jbanking.iban;
 
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
+
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.checkdigit.IbanCheckDigit;
 import java.io.Serializable;
@@ -42,11 +44,12 @@ import java.util.Optional;
  *
  * <pre>
  * // Validate an IBAN
- * Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
+ * Assertions.assertTrue(Iban.isValid(" fr2531682128768051490609537 "));
  *
  * // Get IBAN information
- * Iban iban = new Iban("fr2531682128768051490609537");
+ * Iban iban = new Iban(" fr2531682128768051490609537 ");
  * Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
+ * Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
  * Assertions.assertEquals("FR", iban.getCountryCode());
  * Assertions.assertEquals("25", iban.getCheckDigit());
  * Assertions.assertEquals("31682128768051490609537", iban.getBban());
@@ -54,7 +57,6 @@ import java.util.Optional;
  * Assertions.assertEquals("12876", iban.getBranchIdentifier().get());
  * Assertions.assertEquals("80514906095", iban.getAccountNumber());
  * Assertions.assertEquals("37", iban.getNationalCheckDigit().get());
- * Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
  * </pre>
  *
  * @see BbanStructure
@@ -71,11 +73,15 @@ public final class Iban implements Serializable {
   private static final long serialVersionUID = 0;
 
   /**
-   * A simple regex that validate well-formed BICs.
+   * A simple regex that validate well-formed IBANs.
+   *
+   * <p>
+   * All strings accepted by {@link #isValid(String)} are also accepted by this regex.
    */
   @SuppressWarnings("unused") // kept for documentation purposes
-  public static final String REGEX = "[A-Z]{2}\\d{2}[A-Z0-9]+";
+  public static final String REGEX = "\\s*[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]+\\s*";
 
+  private static final int MIN_LENGTH = 5;
   private static final int COUNTRY_CODE_INDEX = 0;
   private static final int COUNTRY_CODE_LENGTH = 2;
   private static final int CHECK_DIGITS_INDEX = COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH;
@@ -98,7 +104,7 @@ public final class Iban implements Serializable {
    * Create a new IBAN from the given country code and BBAN.
    *
    * <p>
-   * Uppercase and lowercase characters are accepted.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param country A non-null IsoCountry.
    * @param bban A non-null String.
@@ -114,7 +120,7 @@ public final class Iban implements Serializable {
       throw new IllegalArgumentException("the bban argument cannot be null");
     }
 
-    String normalizedBban = bban.toUpperCase();
+    String normalizedBban = trimUpperCase(bban);
     String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
     Optional<BbanStructure> oStructure = BbanStructure.forCountry(country);
@@ -136,7 +142,7 @@ public final class Iban implements Serializable {
    * Create a new IBAN from the given string.
    *
    * <p>
-   * Uppercase and lowercase characters are accepted.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param iban A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
@@ -147,7 +153,11 @@ public final class Iban implements Serializable {
       throw new IllegalArgumentException("the iban argument cannot be null");
     }
 
-    String normalized = iban.toUpperCase();
+    String normalized = trimUpperCase(iban);
+    if (normalized.length() < MIN_LENGTH) {
+      throw IbanFormatException.forInvalidLength(iban);
+    }
+
     Optional<IsoCountry> country = findCountryFor(normalized);
     if (!country.isPresent()) {
       throw IbanFormatException.forUnknownCountry(iban);
@@ -174,7 +184,7 @@ public final class Iban implements Serializable {
    * Validates the given IBAN String.
    *
    * <p>
-   * Uppercase and lowercase characters are considered valid.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param iban A String.
    * @return {@code true} if the given String is a valid IBAN, {@code false} otherwise.
@@ -184,7 +194,11 @@ public final class Iban implements Serializable {
       return false;
     }
 
-    String normalized = iban.toUpperCase();
+    String normalized = trimUpperCase(iban);
+    if (normalized.length() < MIN_LENGTH) {
+      return false;
+    }
+
     Optional<IsoCountry> country = findCountryFor(normalized);
     if (!country.isPresent()) {
       return false;

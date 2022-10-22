@@ -1,13 +1,10 @@
 package fr.marcwrobel.jbanking;
 
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
 import static java.util.Objects.requireNonNull;
 
 import fr.marcwrobel.jbanking.internal.LastVerification;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The countries, dependent territories, and special areas of geographical interest having an
@@ -1950,28 +1947,26 @@ public enum IsoCountry {
    * Translate the given ISO 3166-1 alpha-2 code to an IsoCountry.
    *
    * <p>
-   * This method is not case-sensitive.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param code A string ({@code null} accepted).
+   * @param code a string ({@code null} accepted)
    * @return the country having the given ISO 3166-1 alpha-2 code, or {@code Optional#empty}.
    */
   public static Optional<IsoCountry> fromAlpha2Code(String code) {
-    String upperCasedCode = (code == null ? null : code.toUpperCase());
-    return Optional.ofNullable(byAlpha2Code.get(upperCasedCode));
+    return Optional.ofNullable(byAlpha2Code.get(trimUpperCase(code)));
   }
 
   /**
    * Translate the given ISO 3166-1 alpha-3 code to an IsoCountry.
    *
    * <p>
-   * This method is not case-sensitive.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param code A string ({@code null} accepted).
    * @return the country having the given ISO 3166-1 alpha-3 code, or {@code Optional#empty}.
    */
   public static Optional<IsoCountry> fromAlpha3Code(String code) {
-    String upperCasedCode = (code == null ? null : code.toUpperCase());
-    return Optional.ofNullable(byAlpha3Code.get(upperCasedCode));
+    return Optional.ofNullable(byAlpha3Code.get(trimUpperCase(code)));
   }
 
   /**

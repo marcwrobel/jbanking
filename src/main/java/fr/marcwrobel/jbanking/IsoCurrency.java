@@ -2,6 +2,7 @@ package fr.marcwrobel.jbanking;
 
 import static fr.marcwrobel.jbanking.IsoCountry.*;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.*;
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
@@ -1477,14 +1478,13 @@ public enum IsoCurrency {
    * Translate the given ISO 4217 alphabetical code to an IsoCurrency.
    *
    * <p>
-   * This method is not case-sensitive.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
    * @param code A non-null String.
    * @return the currency having the given ISO 4217 alphabetical code, or null if it does not exist.
    */
   public static Optional<IsoCurrency> fromAlphabeticCode(String code) {
-    String upperCasedCode = (code == null ? null : code.toUpperCase());
-    return Optional.ofNullable(byAlphaCode.get(upperCasedCode));
+    return Optional.ofNullable(byAlphaCode.get(trimUpperCase(code)));
   }
 
   /**

@@ -21,8 +21,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - (**breaking change**) Make `CreditorIdentifier` final (#116).
-- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and change it to not accept lower-case characters anymore
-  (as part of #170).
+- (**breaking change**) Rename `Bic#BIC_REGEX` to `Bic#REGEX` and make it accept untrimmed strings (as part of #170 and
+  #176).
 - (**breaking change**) Make `Iban` not accepting values containing spaces anymore (as part of #116). This means
   printable or untrimmed IBANs are not considered valid values anymore. Note that this feature was not documented.
 - (**breaking change**) Make `IbanCheckDigit#validate` return `false` for `null` or less than 5 characters strings
@@ -34,6 +34,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `SwiftPatternSyntaxException` extend `IllegalArgumentException` instead of `RuntimeException` (#220).
 - (**breaking change**) Move `IbanCheckDigit` from `fr.marcwrobel.jbanking.iban` to `fr.marcwrobel.jbanking.checkdigit`
   (#174).
+- (**breaking change**) Accept untrimmed input strings in `Bic`, `CreditorIdentifier`, `Iban`, `IsoCountry` and
+  `IsoCurrency` (#176). In earlier versions only case-insensitive were accepted.
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
   creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
@@ -62,8 +64,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - (**breaking change**) Remove `Bic#BIC_PATTERN` (as part of #170). If you still need to use the BIC regex, you may
   compile the pattern from `Bic#REGEX`, which has been kept for compatibility and documentation purposes.
-- (**breaking change**) Remove `BbanStructure#getBbanPattern` (as part of #171). `BbanStructure` does not use the
-  `SwiftPattern` class anymore to validate BBAN. If you were using this method, use `BbanStructure#isBbanValid` instead.
 
 ### Internal
 

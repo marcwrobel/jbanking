@@ -69,6 +69,22 @@ class IsoCountryTest {
   }
 
   @Test
+  void fromAlpha2CodeAllowsLeadingAndTrailingWhitespaces() {
+    Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(" " + IsoCountry.FR.getAlpha2Code().toLowerCase() + " ");
+
+    assertTrue(country.isPresent());
+    assertEquals(FR, country.get());
+  }
+
+  @Test
+  void fromAlpha3CodeAllowsLeadingAndTrailingWhitespaces() {
+    Optional<IsoCountry> country = IsoCountry.fromAlpha3Code(" " + IsoCountry.FR.getAlpha3Code() + " ");
+
+    assertTrue(country.isPresent());
+    assertEquals(FR, country.get());
+  }
+
+  @Test
   void fromAlpha2CodeWorksWithAllExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
       Optional<IsoCountry> result = IsoCountry.fromAlpha2Code(country.getAlpha2Code());

@@ -64,25 +64,26 @@ Then you just have to use the jbanking API.
 
 ```java
 // Get ISO country information
-IsoCountry country = IsoCountry.fromAlpha2Code("FR").get();
+IsoCountry country = IsoCountry.fromAlpha2Code(" fr ").get();
 Assertion.assertEquals("FRA", country.getAlpha3Code());
 Assertion.assertEquals(250, country.getNumericCode());
 Assertion.assertTrue(country.isIndependent());
 Assertion.assertTrue(country.isParticipatingTo(EUROPEAN_ECONOMIC_AREA));
 
 // Get ISO currency information
-IsoCurrency currency = IsoCurrency.fromAlphabeticCode("EUR").get();
+IsoCurrency currency = IsoCurrency.fromAlphabeticCode(" eur ").get();
 Assertion.assertEquals(978, currency.getNumericCode());
 Assertion.assertEquals(2, currency.getMinorUnit().get());
 Assertion.assertEquals(NATIONAL, currency.getCategory());
 Assertion.assertTrue(currency.getCountries().contains(FR));
 
 // Validate an IBAN
-Assertions.assertTrue(Iban.isValid("FR2531682128768051490609537"));
+Assertions.assertTrue(Iban.isValid(" fr2531682128768051490609537 "));
 
 // Get IBAN information
-Iban iban = new Iban("fr2531682128768051490609537");
+Iban iban = new Iban(" fr2531682128768051490609537 ");
 Assertions.assertEquals("FR2531682128768051490609537", iban.toString());
+Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
 Assertions.assertEquals("FR", iban.getCountryCode());
 Assertions.assertEquals("25", iban.getCheckDigit());
 Assertions.assertEquals("31682128768051490609537", iban.getBban());
@@ -90,16 +91,15 @@ Assertions.assertEquals("31682", iban.getBankIdentifier());
 Assertions.assertEquals("12876", iban.getBranchIdentifier().get());
 Assertions.assertEquals("80514906095", iban.getAccountNumber());
 Assertions.assertEquals("37", iban.getNationalCheckDigit().get());
-Assertions.assertEquals("FR25 3168 2128 7680 5149 0609 537", iban.toPrintableString());
 
 // Generate a random IBAN
 Iban randomIban = new RandomIban().next();
 
 // Validate a BIC
-Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
+Assertions.assertTrue(Bic.isValid(" psstfrppxxx "));
 
 // Get BIC information
-Bic bic = new Bic("psstfrppxxx");
+Bic bic = new Bic(" psstfrppxxx ");
 Assertions.assertEquals("PSSTFRPPXXX", bic.toString());
 Assertions.assertEquals("PSST", bic.getInstitutionCode());
 Assertions.assertEquals("FR", bic.getCountryCode());
@@ -108,10 +108,10 @@ Assertions.assertEquals("XXX", bic.getBranchCode());
 Assertions.assertTrue(bic.isLiveBic());
 
 // Validate a creditor identifier
-Assertions.assertTrue(CreditorIdentifier.isValid("FR72ZZZ123456"));
+Assertions.assertTrue(CreditorIdentifier.isValid(" fr72zzz123456 "));
 
 // Get creditor identifier information
-CreditorIdentifier ci = new CreditorIdentifier("fr72zzz123456");
+CreditorIdentifier ci = new CreditorIdentifier(" fr72zzz123456 ");
 Assertions.assertEquals("FR72ZZZ123456", ci.toString());
 Assertions.assertEquals("FR", ci.getCountryCode());
 Assertions.assertEquals("72", ci.getCheckDigit());
@@ -132,7 +132,7 @@ For more information take a look at [the javadoc](https://javadoc.io/doc/fr.marc
 
 ## Alternatives
 
-There is no alternatives to jbanking with all its features. But here are some _partial_ alternatives :
+There is no alternatives to jbanking that has all its features. But here are some _partial_ alternatives :
 
 - Java itself for [ISO 3166 countries](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html)
   and [ISO 4217 currencies](https://docs.oracle.com/javase/8/docs/api/java/util/Currency.html).

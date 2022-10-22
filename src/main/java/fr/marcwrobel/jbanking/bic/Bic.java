@@ -1,5 +1,7 @@
 package fr.marcwrobel.jbanking.bic;
 
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
+
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.internal.AsciiCharacters;
 import java.io.Serializable;
@@ -35,10 +37,10 @@ import java.util.Optional;
  *
  * <pre>
  * // Validate a BIC
- * Assertions.assertTrue(Bic.isValid("PSSTFRPPXXX"));
+ * Assertions.assertTrue(Bic.isValid(" psstfrppxxx "));
  *
  * // Get BIC information
- * Bic bic = new Bic("psstfrppxxx");
+ * Bic bic = new Bic(" psstfrppxxx ");
  * Assertions.assertEquals("PSSTFRPPXXX", bic.toString());
  * Assertions.assertEquals("PSST", bic.getInstitutionCode());
  * Assertions.assertEquals("FR", bic.getCountryCode());
@@ -59,9 +61,12 @@ public final class Bic implements Serializable {
 
   /**
    * A simple regex that validate well-formed BICs.
+   *
+   * <p>
+   * All strings accepted by {@link #isValid(String)} are also accepted by this regex.
    */
   @SuppressWarnings("unused") // kept for compatibility and documentation purposes
-  public static final String REGEX = "[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?";
+  public static final String REGEX = "\\s*[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?\\s*";
 
   /**
    * The branch code for primary offices.
@@ -93,7 +98,8 @@ public final class Bic implements Serializable {
    * Create a new BIC from the given string.
    *
    * <p>
-   * The given string may be a BIC8 or a BIC11. Uppercase and lowercase characters are accepted.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
+   * may be a BIC8 or a BIC11.
    *
    * @param bic8Or11 A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
@@ -105,33 +111,35 @@ public final class Bic implements Serializable {
       throw new IllegalArgumentException("the bic8Or11 argument cannot be null");
     }
 
-    if (!isWellFormatted(bic8Or11)) {
+    String normalizedBic8Or11 = trimUpperCase(bic8Or11);
+    if (!isWellFormatted(normalizedBic8Or11)) {
       throw BicFormatException.forNotProperlyFormattedInput(bic8Or11);
     }
 
-    if (!findCountryFor(bic8Or11).isPresent()) {
+    if (!findCountryFor(normalizedBic8Or11).isPresent()) {
       throw BicFormatException.forUnknownCountryCode(bic8Or11);
     }
 
-    String cleanedBic = bic8Or11.toUpperCase();
-    if (cleanedBic.length() == BIC8_LENGTH) {
-      cleanedBic += PRIMARY_OFFICE_BRANCH_CODE;
+    if (normalizedBic8Or11.length() == BIC8_LENGTH) {
+      normalizedBic8Or11 += PRIMARY_OFFICE_BRANCH_CODE;
     }
 
-    this.normalizedBic = cleanedBic;
+    this.normalizedBic = normalizedBic8Or11;
   }
 
   /**
    * Check whether the given string is a valid BIC.
    *
    * <p>
-   * The given string may be a BIC8 or a BIC11. Uppercase and lowercase characters are considered valid.
+   * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
+   * may be a BIC8 or a BIC11.
    *
    * @param bic A String.
    * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
    */
   public static boolean isValid(String bic) {
-    return bic != null && isWellFormatted(bic) && findCountryFor(bic).isPresent();
+    String normalizedBic = trimUpperCase(bic);
+    return normalizedBic != null && isWellFormatted(normalizedBic) && findCountryFor(normalizedBic).isPresent();
   }
 
   private static boolean isWellFormatted(String s) {

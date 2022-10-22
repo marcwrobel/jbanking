@@ -1,6 +1,9 @@
 package fr.marcwrobel.jbanking.internal;
 
 /**
+ * Operations on ASCII characters.
+ *
+ * <p>
  * Code from this class is an adaptation of <a href="https://commons.apache.org/proper/commons-lang/">Apache commons-lang</a>
  * {@code CharUtils}.
  */
