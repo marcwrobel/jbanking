@@ -1,21 +1,12 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import fr.marcwrobel.jbanking.iban.IbanPattern;
 import fr.marcwrobel.jbanking.swift.SwiftPatternSyntaxException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/**
- * Tests for the {@link IbanPattern} class.
- */
 class IbanPatternTest {
 
   @Test

@@ -17,9 +17,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for the {@link IsoCountry} class.
- */
 class IsoCurrencyTest {
 
   private static final Set<String> NOT_IN_NV_I18N = new HashSet<>(Arrays.asList("UYW", "VED", "SLE"));

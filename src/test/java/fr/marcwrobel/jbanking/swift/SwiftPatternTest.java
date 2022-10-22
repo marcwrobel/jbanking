@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for the {@link SwiftPattern} class.
- */
 class SwiftPatternTest {
 
   @Test

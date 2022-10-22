@@ -11,9 +11,6 @@ import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for the {@link BbanStructure} enum.
- */
 class BbanStructureTest {
 
   @Test

@@ -1,179 +1,110 @@
 package fr.marcwrobel.jbanking.creditor;
 
-import static fr.marcwrobel.jbanking.internal.TestUtils.shouldHaveThrown;
+import static fr.marcwrobel.jbanking.IsoCountry.FR;
+import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
 import static org.junit.jupiter.api.Assertions.*;
 
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.internal.SerializationUtils;
-import fr.marcwrobel.jbanking.internal.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/**
- * Tests for the {@link fr.marcwrobel.jbanking.creditor.CreditorIdentifier} class.
- */
 class CreditorIdentifierTest {
 
-  private static final IsoCountry VALID_CI_COUNTRY = IsoCountry.FR;
-  private static final String VALID_CI_CHECKDIGIT = "72";
-  private static final String VALID_CI_BUSINESS_CODE = "ZZZ";
-  private static final String VALID_CI_NATIONAL_ID = "123456";
-  private static final String VALID_CI = VALID_CI_COUNTRY.getAlpha2Code() + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
-      + VALID_CI_NATIONAL_ID;
+  private static final String VALID_CI = "FR72ZZZ123456";
   private static final String VALID_CI2 = "BE69ZZZ050D000000008";
 
-  private static final String INVALID_CI_NATIONAL_ID = "132!";
-
-  private static final String CI_WITH_INVALID_FORMAT = VALID_CI_COUNTRY.getAlpha2Code() + VALID_CI_CHECKDIGIT
-      + VALID_CI_BUSINESS_CODE + INVALID_CI_NATIONAL_ID;
-  private static final String CI_WITH_UNKNOWN_COUNTRY = "ZZ" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
-      + VALID_CI_NATIONAL_ID;
-  private static final String CI_WITH_UNSUPPORTED_COUNTRY = "US" + VALID_CI_CHECKDIGIT + VALID_CI_BUSINESS_CODE
-      + VALID_CI_NATIONAL_ID;
-
-  private static final String CI_WITH_INVALID_CHECK_DIGIT = VALID_CI_COUNTRY.getAlpha2Code() + "09" + VALID_CI_BUSINESS_CODE
-      + VALID_CI_NATIONAL_ID;
-
   @Test
-  void nullIsNotAValidCreditorIdentifier() {
+  void nullIsNotValid() {
     assertFalse(CreditorIdentifier.isValid(null));
   }
 
   @Test
-  void aCreditorIdentifierCannotBeNull() {
+  void cannotCreateWithNull() {
     assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(null));
   }
 
   @Test
-  void aCreditorIdentifierCountryCannotBeNull() {
-    assertThrows(IllegalArgumentException.class,
-        () -> new CreditorIdentifier(null, VALID_CI_BUSINESS_CODE, "123456"));
+  void cannotCreateWithNullCountry() {
+    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(null, "ZZZ", "123456"));
   }
 
   @Test
-  void blankIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(TestUtils.BLANK));
+  void cannotCreateWithNullBusinessCode() {
+    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(FR, null, "123456"));
   }
 
   @Test
-  void cannotBeBlank() {
-    assertThrows(CreditorIdentifierFormatException.class, () -> new CreditorIdentifier(TestUtils.BLANK));
+  void cannotCreateWithNullNationalId() {
+    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(FR, "ZZZ", null));
   }
 
-  @Test
-  void aCreditorIdentifierBusinessCodeCannotBeNull() {
-    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(IsoCountry.FR, null, "123456"));
+  @ParameterizedTest
+  @ValueSource(strings = {
+      // invalid
+      "", BLANK,
+      // malformed
+      "FR", "FR72", "FR72ZZZ", "FR72ZZZ12345!",
+      // unknown country
+      "FG72ZZZ123456",
+      // invalid check digit
+      "FR77ZZZ123456"
+  })
+  void invalidInputIsNotValid(String s) {
+    assertFalse(CreditorIdentifier.isValid(s));
   }
 
-  @Test
-  void aCreditorNationalIdCannotBeNull() {
-    assertThrows(IllegalArgumentException.class,
-        () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, null));
-  }
-
-  @Test
-  void blankIsNotAValidCreditorIdentifier() {
-    assertFalse(CreditorIdentifier.isValid(TestUtils.BLANK));
-  }
-
-  @Test
-  void aCreditorIdentifierCannotBeBlank() {
-    assertThrows(CreditorIdentifierFormatException.class, () -> new CreditorIdentifier(TestUtils.BLANK));
-  }
-
-  @Test
-  void aCreditorNationalIdCannotBeBlank() {
-    assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, TestUtils.BLANK));
-  }
-
-  @Test
-  void creditorIdWithUnknownCountryIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(CI_WITH_UNKNOWN_COUNTRY));
-  }
-
-  @Test
-  void aCreditorIdMustBeFromAKnownCountry() {
+  @ParameterizedTest
+  @ValueSource(strings = {
+      // invalid
+      "", BLANK,
+      // malformed
+      "FR", "FR72", "FR72ZZZ", "FR72ZZZ12345!"
+  })
+  void cannotCreateWithInvalidInput(String s) {
     CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier(CI_WITH_UNKNOWN_COUNTRY));
-    assertEquals(CI_WITH_UNKNOWN_COUNTRY, e.getInputString());
+        () -> new CreditorIdentifier(s));
+    assertEquals(s, e.getInputString());
+    assertTrue(e.getMessage().contains("format"));
+  }
+
+  @Test
+  void cannotCreateWithUnknownCountry() {
+    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
+        () -> new CreditorIdentifier("FG72ZZZ123456"));
+    assertEquals("FG72ZZZ123456", e.getInputString());
     assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
   }
 
   @Test
-  void creditorIdWithUnsupportedCountryIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(CI_WITH_UNSUPPORTED_COUNTRY));
+  void cannotCreateWithInvalidCheckDigit() {
+    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
+        () -> new CreditorIdentifier("FR77ZZZ123456"));
+    assertEquals("FR77ZZZ123456", e.getInputString());
+    assertTrue(e.getMessage().contains("check digits"));
   }
 
   @Test
-  void notProperlyFormattedCreditorIdentifierIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(CI_WITH_INVALID_FORMAT));
+  void cannotCreateWithInvalidNationalId() {
+    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
+        () -> new CreditorIdentifier(""));
+    assertEquals("", e.getInputString());
+    assertTrue(e.getMessage().contains("format"));
   }
 
-  @Test
-  void aCreditorIdMustBeProperlyFormatted() {
-    try {
-      new CreditorIdentifier(CI_WITH_INVALID_FORMAT);
-      shouldHaveThrown(CreditorIdentifierFormatException.class);
-    } catch (CreditorIdentifierFormatException e) {
-      assertEquals(CI_WITH_INVALID_FORMAT, e.getInputString());
-      assertTrue(e.getMessage().contains("format"));
-    }
-  }
+  @ParameterizedTest
+  @ValueSource(strings = { "FR72ZZZ123456", "fr72zzz123456", " FR72ZZZ123456 " })
+  void canCreateAndValidateWithValidInput(String s) {
+    assertTrue(CreditorIdentifier.isValid(s));
 
-  @Test
-  void aCreditorNationalIdMustBeProperlyStructured() {
-    try {
-      new CreditorIdentifier(IsoCountry.FR, VALID_CI_BUSINESS_CODE, INVALID_CI_NATIONAL_ID);
-      shouldHaveThrown(CreditorIdentifierFormatException.class);
-    } catch (CreditorIdentifierFormatException e) {
-      assertEquals(INVALID_CI_NATIONAL_ID, e.getInputString());
-      assertTrue(e.getMessage().contains("format"));
-    }
-  }
-
-  @Test
-  void aCreditorIdWithInvalidCheckDigitsIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(CI_WITH_INVALID_CHECK_DIGIT));
-  }
-
-  @Test
-  void aCreditorIdMustHaveCorrectCheckDigit() {
-    try {
-      new CreditorIdentifier(CI_WITH_INVALID_CHECK_DIGIT);
-      shouldHaveThrown(CreditorIdentifierFormatException.class);
-    } catch (CreditorIdentifierFormatException e) {
-      assertEquals(CI_WITH_INVALID_CHECK_DIGIT, e.getInputString());
-      assertTrue(e.getMessage().contains("check digits"));
-    }
-  }
-
-  @Test
-  void creditorIdValidationIsNotCaseSensitive() {
-    assertTrue(CreditorIdentifier.isValid(VALID_CI.toLowerCase()));
-  }
-
-  @Test
-  void creditorIdCreationIsNotCaseSensitive() {
-    assertDoesNotThrow(() -> new CreditorIdentifier(VALID_CI.toLowerCase()));
-  }
-
-  @Test
-  void creditorIdFromBbanCreationIsNotCaseSensitive() {
-    assertDoesNotThrow(() -> new CreditorIdentifier(VALID_CI_COUNTRY, VALID_CI_BUSINESS_CODE.toLowerCase(),
-        VALID_CI_NATIONAL_ID.toLowerCase()));
-  }
-
-  @Test
-  void validCreditorIdentifierDecomposition() {
-    assertTrue(CreditorIdentifier.isValid(VALID_CI));
-    CreditorIdentifier creditorId = new CreditorIdentifier(VALID_CI);
-    assertEquals(VALID_CI_COUNTRY.getAlpha2Code(), creditorId.getCountryCode());
-    assertEquals(VALID_CI_COUNTRY, creditorId.getCountry());
-    assertEquals(VALID_CI_CHECKDIGIT, creditorId.getCheckDigit());
-    assertEquals(VALID_CI_BUSINESS_CODE, creditorId.getBusinessCode());
-    assertEquals(VALID_CI_NATIONAL_ID, creditorId.getNationalIdentifier());
+    CreditorIdentifier ci = new CreditorIdentifier(s);
+    assertEquals("FR72ZZZ123456", ci.toString());
+    assertEquals(FR, ci.getCountry());
+    assertEquals("FR", ci.getCountryCode());
+    assertEquals("72", ci.getCheckDigit());
+    assertEquals("ZZZ", ci.getBusinessCode());
+    assertEquals("123456", ci.getNationalIdentifier());
   }
 
   @ParameterizedTest
@@ -189,47 +120,30 @@ class CreditorIdentifierTest {
   void validCreditorIdentifiersTest(String value) {
     assertTrue(CreditorIdentifier.isValid(value));
 
-    CreditorIdentifier creditorId = new CreditorIdentifier(value);
-    String countryCode = value.substring(0, 2);
+    CreditorIdentifier ci1 = new CreditorIdentifier(value);
+
+    IsoCountry country = IsoCountry.fromAlpha2Code(value.substring(0, 2)).orElseThrow(IllegalArgumentException::new);
     String businessCode = value.substring(4, 7);
     String nationalId = value.substring(7);
-    assertEquals(creditorId,
-        new CreditorIdentifier(
-            IsoCountry.fromAlpha2Code(countryCode).orElseThrow(IllegalArgumentException::new), businessCode,
-            nationalId));
-  }
+    CreditorIdentifier ci2 = new CreditorIdentifier(country, businessCode, nationalId);
 
-  @Test
-  void printableCreditorIdentifiersAreValid() {
-    CreditorIdentifier creditorId = new CreditorIdentifier(VALID_CI);
-    String printableCreditorIdentifier = creditorId.toString();
-
-    assertTrue(CreditorIdentifier.isValid(printableCreditorIdentifier));
-    assertEquals(creditorId, new CreditorIdentifier(printableCreditorIdentifier));
+    assertEquals(ci1, ci2);
   }
 
   @Test
   void equalityTest() {
-    CreditorIdentifier creditorId1 = new CreditorIdentifier(VALID_CI);
-    CreditorIdentifier creditorId2 = new CreditorIdentifier(creditorId1.toString());
-    CreditorIdentifier creditorId3 = new CreditorIdentifier(VALID_CI.toLowerCase());
+    CreditorIdentifier ci1 = new CreditorIdentifier(VALID_CI);
+    CreditorIdentifier ci2 = new CreditorIdentifier(ci1.toString());
 
-    assertEquals(creditorId1, creditorId1);
-    assertEquals(creditorId2, creditorId2);
-    assertEquals(creditorId3, creditorId3);
+    assertEquals(ci1, ci1);
+    assertEquals(ci2, ci2);
+    assertEquals(ci1, ci2);
+    assertEquals(ci2, ci1);
+    assertEquals(ci1.hashCode(), ci2.hashCode());
 
-    assertEquals(creditorId1, creditorId2);
-    assertEquals(creditorId2, creditorId1);
-    assertEquals(creditorId2, creditorId3);
-    assertEquals(creditorId3, creditorId2);
-    assertEquals(creditorId1, creditorId3);
-    assertEquals(creditorId3, creditorId1);
-    assertEquals(creditorId1.hashCode(), creditorId2.hashCode());
-    assertEquals(creditorId2.hashCode(), creditorId3.hashCode());
-
-    assertNotNull(creditorId1);
-    assertNotEquals(creditorId1, new Object());
-    assertNotEquals(creditorId1, new CreditorIdentifier(VALID_CI2));
+    assertNotNull(ci1);
+    assertNotEquals(ci1, new Object());
+    assertNotEquals(ci1, new CreditorIdentifier(VALID_CI2));
   }
 
   @Test

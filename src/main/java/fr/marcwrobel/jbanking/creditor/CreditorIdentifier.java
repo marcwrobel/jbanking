@@ -102,7 +102,7 @@ public final class CreditorIdentifier implements Serializable {
 
     String normalizedCreditorIdentifier = trimUpperCase(creditorIdentifier);
     if (!isWellFormatted(normalizedCreditorIdentifier)) {
-      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(normalizedCreditorIdentifier);
+      throw CreditorIdentifierFormatException.forNotProperlyFormattedInput(creditorIdentifier);
     }
 
     Optional<IsoCountry> country = findCountryFor(normalizedCreditorIdentifier);
