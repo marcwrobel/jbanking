@@ -56,7 +56,7 @@ as a maven dependency:
 <dependency>
   <groupId>fr.marcwrobel</groupId>
   <artifactId>jbanking</artifactId>
-  <version>3.4.0</version>
+  <version>4.0.0</version>
 </dependency>
 ```
 

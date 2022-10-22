@@ -83,7 +83,11 @@ In order to publish a release to Maven Central, you :
 - need to declare, in your Maven `settings.xml`, the `oss.sonatype.org` profile and the `sonatype-nexus-staging` server
   (you can find those declarations in [this sample settings.xml](/.mvn/build-settings.xml)),
 
-Then you can start the release process. First execute the following commands:
+Then you can start the release process. First disable the [`main` branch protection
+rules](https://github.com/marcwrobel/jbanking/settings/branches) _Require a pull request before merging_ and _Require
+status checks to pass before merging_.
+
+Then execute the following commands:
 
 ```shell
 cd jbanking
@@ -96,11 +100,17 @@ Details are available on the [OSSRH publish guide](https://central.sonatype.org/
 
 And finally:
 
-1. declare the release on GitHub (copy the [changelog content](/CHANGELOG.md) in the release notes and create the
-   related [discussion](https://github.com/marcwrobel/jbanking/discussions)),
-2. empty the [changelog](/CHANGELOG.md) for the next release,
-3. update jbanking version in [README.md](/README.md),
-4. lock the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous version.
+1. re-enable the disabled [branch protection rules](https://github.com/marcwrobel/jbanking/settings/branches),
+2. declare the release on GitHub :
+   1. copy the [changelog content](/CHANGELOG.md) in the release notes,
+   2. check _Set as the latest release_ if appropriate,
+   3. and check _Create a discussion for this release_  to automatically create the [release
+      discussion](https://github.com/marcwrobel/jbanking/discussions)),
+3. empty the [changelog](/CHANGELOG.md) for the next release,
+4. update jbanking version in [README.md](/README.md),
+5. lock and unpin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous
+   version,
+6. pin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the current version.
 
 ## Continuous Integration
 
