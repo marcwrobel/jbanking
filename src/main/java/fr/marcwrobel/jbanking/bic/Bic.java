@@ -57,7 +57,7 @@ public final class Bic implements Serializable {
   /**
    * Serialization version.
    */
-  private static final long serialVersionUID = 0;
+  private static final long serialVersionUID = 1;
 
   /**
    * A simple regex that validate well-formed BICs.
@@ -92,7 +92,7 @@ public final class Bic implements Serializable {
   /**
    * The normalized form of this BIC.
    */
-  private final String normalizedBic;
+  private final String value;
 
   /**
    * Create a new BIC from the given string.
@@ -101,30 +101,30 @@ public final class Bic implements Serializable {
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
    * may be a BIC8 or a BIC11.
    *
-   * @param bic8Or11 A non-null String.
+   * @param s A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws BicFormatException if the given string does not match {@value #REGEX} or if its country code is not known in
    *         {@link fr.marcwrobel.jbanking.IsoCountry}
    */
-  public Bic(final String bic8Or11) {
-    if (bic8Or11 == null) {
-      throw new IllegalArgumentException("the bic8Or11 argument cannot be null");
+  public Bic(final String s) {
+    if (s == null) {
+      throw new IllegalArgumentException("s cannot be null");
     }
 
-    String normalizedBic8Or11 = trimUpperCase(bic8Or11);
-    if (!isWellFormatted(normalizedBic8Or11)) {
-      throw BicFormatException.forNotProperlyFormattedInput(bic8Or11);
+    String normalized = trimUpperCase(s);
+    if (!isWellFormatted(normalized)) {
+      throw BicFormatException.forNotProperlyFormattedInput(s);
     }
 
-    if (!findCountryFor(normalizedBic8Or11).isPresent()) {
-      throw BicFormatException.forUnknownCountryCode(bic8Or11);
+    if (!findCountryFor(normalized).isPresent()) {
+      throw BicFormatException.forUnknownCountryCode(s);
     }
 
-    if (normalizedBic8Or11.length() == BIC8_LENGTH) {
-      normalizedBic8Or11 += PRIMARY_OFFICE_BRANCH_CODE;
+    if (normalized.length() == BIC8_LENGTH) {
+      normalized += PRIMARY_OFFICE_BRANCH_CODE;
     }
 
-    this.normalizedBic = normalizedBic8Or11;
+    this.value = normalized;
   }
 
   /**
@@ -134,28 +134,28 @@ public final class Bic implements Serializable {
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces. The given string
    * may be a BIC8 or a BIC11.
    *
-   * @param bic A String.
+   * @param s A String.
    * @return {@code true} if the given string is valid BIC, otherwise {@code false}.
    */
-  public static boolean isValid(String bic) {
-    String normalizedBic = trimUpperCase(bic);
-    return normalizedBic != null && isWellFormatted(normalizedBic) && findCountryFor(normalizedBic).isPresent();
+  public static boolean isValid(String s) {
+    String normalizedValue = trimUpperCase(s);
+    return normalizedValue != null && isWellFormatted(normalizedValue) && findCountryFor(normalizedValue).isPresent();
   }
 
-  private static boolean isWellFormatted(String s) {
-    int length = s.length();
+  private static boolean isWellFormatted(String bic) {
+    int length = bic.length();
     if (length != BIC8_LENGTH && length != BIC11_LENGTH) {
       return false;
     }
 
     for (int i = 0; i < INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH + COUNTRY_CODE_LENGTH; i++) {
-      if (!AsciiCharacters.isAlphabetic(s.charAt(i))) {
+      if (!AsciiCharacters.isAlphabetic(bic.charAt(i))) {
         return false;
       }
     }
 
     for (int i = LOCATION_CODE_INDEX; i < length; i++) {
-      if (!AsciiCharacters.isAlphanumeric(s.charAt(i))) {
+      if (!AsciiCharacters.isAlphanumeric(bic.charAt(i))) {
         return false;
       }
     }
@@ -163,8 +163,8 @@ public final class Bic implements Serializable {
     return true;
   }
 
-  private static Optional<IsoCountry> findCountryFor(String s) {
-    return IsoCountry.fromAlpha2Code(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
+  private static Optional<IsoCountry> findCountryFor(String bic) {
+    return IsoCountry.fromAlpha2Code(bic.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
   /**
@@ -173,7 +173,7 @@ public final class Bic implements Serializable {
    * @return A non-null string representing this BIC institution code.
    */
   public String getInstitutionCode() {
-    return normalizedBic.substring(INSTITUTION_CODE_INDEX, INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH);
+    return value.substring(INSTITUTION_CODE_INDEX, INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH);
   }
 
   /**
@@ -191,7 +191,7 @@ public final class Bic implements Serializable {
    * @return A non-null {@link IsoCountry}.
    */
   public IsoCountry getCountry() {
-    return findCountryFor(normalizedBic).orElseThrow(() -> new IllegalStateException("a valid Bic should have a country code"));
+    return findCountryFor(value).orElseThrow(() -> new IllegalStateException("a valid Bic should have a country code"));
   }
 
   /**
@@ -200,7 +200,7 @@ public final class Bic implements Serializable {
    * @return A non-null string representing this BIC location code.
    */
   public String getLocationCode() {
-    return normalizedBic.substring(LOCATION_CODE_INDEX, LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH);
+    return value.substring(LOCATION_CODE_INDEX, LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH);
   }
 
   /**
@@ -209,7 +209,7 @@ public final class Bic implements Serializable {
    * @return A non-null string representing this BIC branch code.
    */
   public String getBranchCode() {
-    return normalizedBic.substring(BRANCH_CODE_INDEX, BRANCH_CODE_INDEX + BRANCH_CODE_LENGTH);
+    return value.substring(BRANCH_CODE_INDEX, BRANCH_CODE_INDEX + BRANCH_CODE_LENGTH);
   }
 
   /**
@@ -222,7 +222,7 @@ public final class Bic implements Serializable {
    * @see #isLiveBic
    */
   public boolean isTestBic() {
-    return normalizedBic.charAt(LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH - 1) == TEST_BIC_INDICATOR;
+    return value.charAt(LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH - 1) == TEST_BIC_INDICATOR;
   }
 
   /**
@@ -248,7 +248,7 @@ public final class Bic implements Serializable {
       return this;
     }
 
-    StringBuilder testBicBuilder = new StringBuilder(normalizedBic);
+    StringBuilder testBicBuilder = new StringBuilder(value);
     testBicBuilder.setCharAt(LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH - 1, TEST_BIC_INDICATOR);
     return new Bic(testBicBuilder.toString());
   }
@@ -274,7 +274,7 @@ public final class Bic implements Serializable {
       return false;
     }
 
-    return normalizedBic.equals(((Bic) o).normalizedBic);
+    return value.equals(((Bic) o).value);
   }
 
   /**
@@ -282,7 +282,7 @@ public final class Bic implements Serializable {
    */
   @Override
   public int hashCode() {
-    return 31 * normalizedBic.hashCode();
+    return 31 * value.hashCode();
   }
 
   /**
@@ -299,6 +299,6 @@ public final class Bic implements Serializable {
    */
   @Override
   public String toString() {
-    return normalizedBic;
+    return value;
   }
 }

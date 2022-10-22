@@ -70,7 +70,7 @@ public final class Iban implements Serializable {
   /**
    * Serialization version.
    */
-  private static final long serialVersionUID = 0;
+  private static final long serialVersionUID = 1;
 
   /**
    * A simple regex that validate well-formed IBANs.
@@ -93,7 +93,7 @@ public final class Iban implements Serializable {
   /**
    * The normalized form of this IBAN.
    */
-  private final String normalizedIban;
+  private final String value;
 
   /**
    * This IBAN BBAN structure.
@@ -113,11 +113,11 @@ public final class Iban implements Serializable {
    */
   public Iban(IsoCountry country, String bban) {
     if (country == null) {
-      throw new IllegalArgumentException("the country argument cannot be null");
+      throw new IllegalArgumentException("country cannot be null");
     }
 
     if (bban == null) {
-      throw new IllegalArgumentException("the bban argument cannot be null");
+      throw new IllegalArgumentException("bban cannot be null");
     }
 
     String normalizedBban = trimUpperCase(bban);
@@ -133,9 +133,9 @@ public final class Iban implements Serializable {
       throw IbanFormatException.forInvalidBbanStructure(bban, structure);
     }
 
-    String checkDigits = IbanCheckDigit.INSTANCE.calculate(normalized);
+    String checkDigit = IbanCheckDigit.INSTANCE.calculate(normalized);
 
-    this.normalizedIban = country.getAlpha2Code() + checkDigits + normalizedBban;
+    this.value = country.getAlpha2Code() + checkDigit + normalizedBban;
   }
 
   /**
@@ -144,40 +144,40 @@ public final class Iban implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param iban A non-null String.
+   * @param s A non-null String.
    * @throws IllegalArgumentException if the given string is {@code null}
    * @throws IbanFormatException if the given string is not a valid IBAN.
    */
-  public Iban(String iban) {
-    if (iban == null) {
-      throw new IllegalArgumentException("the iban argument cannot be null");
+  public Iban(String s) {
+    if (s == null) {
+      throw new IllegalArgumentException("s cannot be null");
     }
 
-    String normalized = trimUpperCase(iban);
+    String normalized = trimUpperCase(s);
     if (normalized.length() < MIN_LENGTH) {
-      throw IbanFormatException.forInvalidLength(iban);
+      throw IbanFormatException.forInvalidLength(s);
     }
 
     Optional<IsoCountry> country = findCountryFor(normalized);
     if (!country.isPresent()) {
-      throw IbanFormatException.forUnknownCountry(iban);
+      throw IbanFormatException.forUnknownCountry(s);
     }
 
     Optional<BbanStructure> oStructure = BbanStructure.forCountry(country.get());
     if (!oStructure.isPresent()) {
-      throw IbanFormatException.forNotSupportedCountry(iban, country.get());
+      throw IbanFormatException.forNotSupportedCountry(s, country.get());
     }
 
     structure = oStructure.get();
     if (!structure.isBbanValid(normalized.substring(BBAN_INDEX))) {
-      throw IbanFormatException.forInvalidBbanStructure(iban, structure);
+      throw IbanFormatException.forInvalidBbanStructure(s, structure);
     }
 
     if (!IbanCheckDigit.INSTANCE.validate(normalized)) {
-      throw IbanFormatException.forIncorrectCheckDigits(iban);
+      throw IbanFormatException.forIncorrectCheckDigits(s);
     }
 
-    this.normalizedIban = normalized;
+    this.value = normalized;
   }
 
   /**
@@ -186,15 +186,15 @@ public final class Iban implements Serializable {
    * <p>
    * This method is neither sensitive to the case nor to the presence of leading or trailing spaces.
    *
-   * @param iban A String.
+   * @param s A String.
    * @return {@code true} if the given String is a valid IBAN, {@code false} otherwise.
    */
-  public static boolean isValid(String iban) {
-    if (iban == null) {
+  public static boolean isValid(String s) {
+    if (s == null) {
       return false;
     }
 
-    String normalized = trimUpperCase(iban);
+    String normalized = trimUpperCase(s);
     if (normalized.length() < MIN_LENGTH) {
       return false;
     }
@@ -217,8 +217,8 @@ public final class Iban implements Serializable {
     return IbanCheckDigit.INSTANCE.validate(normalized);
   }
 
-  private static Optional<IsoCountry> findCountryFor(String s) {
-    return IsoCountry.fromAlpha2Code(s.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
+  private static Optional<IsoCountry> findCountryFor(String iban) {
+    return IsoCountry.fromAlpha2Code(iban.substring(COUNTRY_CODE_INDEX, COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH));
   }
 
   /**
@@ -245,7 +245,7 @@ public final class Iban implements Serializable {
    * @return a non-null string
    */
   public String getCheckDigit() {
-    return normalizedIban.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
+    return value.substring(CHECK_DIGITS_INDEX, CHECK_DIGITS_INDEX + CHECK_DIGITS_LENGTH);
   }
 
   /**
@@ -254,7 +254,7 @@ public final class Iban implements Serializable {
    * @return a non-null string
    */
   public String getBban() {
-    return normalizedIban.substring(BBAN_INDEX);
+    return value.substring(BBAN_INDEX);
   }
 
   /**
@@ -266,7 +266,7 @@ public final class Iban implements Serializable {
     int from = structure.getBankIdentifierStartIndexInclusive();
     int to = structure.getBankIdentifierEndIndexExclusive();
 
-    return normalizedIban.substring(BBAN_INDEX + from, BBAN_INDEX + to);
+    return value.substring(BBAN_INDEX + from, BBAN_INDEX + to);
   }
 
   /**
@@ -279,7 +279,7 @@ public final class Iban implements Serializable {
     Optional<Integer> to = structure.getBranchIdentifierEndIndexExclusive();
 
     if (from.isPresent() && to.isPresent()) {
-      return Optional.of(normalizedIban.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
+      return Optional.of(value.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
     }
 
     return Optional.empty();
@@ -299,7 +299,7 @@ public final class Iban implements Serializable {
     Optional<Integer> to = structure.getNationalCheckDigitEndIndexExclusive();
 
     if (from.isPresent() && to.isPresent()) {
-      return Optional.of(normalizedIban.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
+      return Optional.of(value.substring(BBAN_INDEX + from.get(), BBAN_INDEX + to.get()));
     }
 
     return Optional.empty();
@@ -314,7 +314,7 @@ public final class Iban implements Serializable {
     int from = structure.getAccountNumberStartIndexInclusive();
     int to = structure.getAccountNumberEndIndexExclusive();
 
-    return normalizedIban.substring(BBAN_INDEX + from, BBAN_INDEX + to);
+    return value.substring(BBAN_INDEX + from, BBAN_INDEX + to);
   }
 
   /**
@@ -327,14 +327,14 @@ public final class Iban implements Serializable {
    * @return a non-null string representing this IBAN formatted for printing
    */
   public String toPrintableString() {
-    StringBuilder printableIban = new StringBuilder(normalizedIban);
-    int length = normalizedIban.length();
+    StringBuilder printable = new StringBuilder(value);
+    int length = value.length();
 
     for (int i = 0; i < length / GROUP_SIZE_FOR_PRINTABLE_IBAN; i++) {
-      printableIban.insert((i + 1) * GROUP_SIZE_FOR_PRINTABLE_IBAN + i, ' ');
+      printable.insert((i + 1) * GROUP_SIZE_FOR_PRINTABLE_IBAN + i, ' ');
     }
 
-    return printableIban.toString();
+    return printable.toString();
   }
 
   /**
@@ -352,7 +352,7 @@ public final class Iban implements Serializable {
    */
   @Override
   public String toString() {
-    return normalizedIban;
+    return value;
   }
 
   @Override
@@ -366,11 +366,11 @@ public final class Iban implements Serializable {
     }
 
     Iban other = (Iban) o;
-    return normalizedIban.equals(other.normalizedIban);
+    return value.equals(other.value);
   }
 
   @Override
   public int hashCode() {
-    return 29 * normalizedIban.hashCode();
+    return 29 * value.hashCode();
   }
 }

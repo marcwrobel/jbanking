@@ -58,6 +58,7 @@ class BicTest {
     assertEquals("FR", bic.getCountryCode());
     assertEquals("BNPA", bic.getInstitutionCode());
     assertEquals("XXX", bic.getBranchCode());
+    assertEquals("PP", bic.getLocationCode());
     assertEquals("BNPAFRPPXXX", bic.toString());
     assertFalse(bic.isTestBic());
   }
