@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>jbanking</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>4.0.0</version>
   <packaging>jar</packaging>
 
   <name>${project.artifactId}</name>
@@ -121,4 +121,8 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <tag>v4.0.0</tag>
+  </scm>
 </project>
