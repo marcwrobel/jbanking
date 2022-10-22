@@ -71,7 +71,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump github/codeql-action from 2.1.16 to 2.1.27 (#192, #206, #217).
 - Bump actions/setup-java from 3.4.1 to 3.6.0 (#195, #202, #218).
 - Bump actions/checkout from 3.0.2 to 3.1.0 (#205).
-- Bump development java version from temurin-17.0.3+7 to temurin-17.0.4+8 (#212).
+- Bump development java version from temurin-17.0.3+7 to temurin-17.0.4+101 (#212, #233).
 - Alphabetically sort `IsoCurrency`, `Holidays` and `BbanStructure` enums entries (#161).
 - Add benchmarks that track the evolution of jbanking performances from version to version (#166). Some numbers can be
   seen [here](benchmarks/README.md).
