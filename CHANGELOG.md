@@ -32,6 +32,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   regular expression.
 - (**breaking change**) Make `BicFormatException`, `CreditorIdentifierFormatException`, `IbanFormatException` and
   `SwiftPatternSyntaxException` extend `IllegalArgumentException` instead of `RuntimeException` (#220).
+- (**breaking change**) Move `IbanCheckDigit` from `fr.marcwrobel.jbanking.iban` to `fr.marcwrobel.jbanking.checkdigit`
+  (#174).
 - Get rid of regexes to validate BICs (#170). This significantly increased the performances of BIC validation and
   creation (+200-300%).
 - Get rid of regexes to validate Creditor Identifiers (#172). This significantly increased the performances of
@@ -81,5 +83,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Use `Character.digit` instead of `Character.getNumericValue` in `IbanCheckDigit` as recommended in
   [Error Prone#CharacterGetNumericValue](https://errorprone.info/bugpattern/CharacterGetNumericValue) (closes #117).
 - Add serialization tests for serializable classes (#222).
+- Add the `CheckDigit` interface and make `IbanCheckDigit` implements it (#174).
 
 ### Thanks

@@ -1,7 +1,7 @@
 package fr.marcwrobel.jbanking.creditor;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.iban.IbanCheckDigit;
+import fr.marcwrobel.jbanking.checkdigit.IbanCheckDigit;
 import fr.marcwrobel.jbanking.internal.AsciiCharacters;
 import java.io.Serializable;
 import java.util.Optional;

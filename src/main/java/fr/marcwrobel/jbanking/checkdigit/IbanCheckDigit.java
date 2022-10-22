@@ -1,4 +1,4 @@
-package fr.marcwrobel.jbanking.iban;
+package fr.marcwrobel.jbanking.checkdigit;
 
 /**
  * Provide ISO 7064 Mod 97,10 IBAN check digit calculation and validation.
@@ -15,7 +15,7 @@ package fr.marcwrobel.jbanking.iban;
  *      "https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD">https://git.apache.org/repos/asf?p=commons-validator.git;a=blob;f=src/main/java/org/apache/commons/validator/routines/checkdigit/IBANCheckDigit.java;hb=HEAD</a>
  * @since 1.0
  */
-public enum IbanCheckDigit {
+public enum IbanCheckDigit implements CheckDigit {
   /**
    * The singleton instance for this class.
    */
@@ -33,10 +33,10 @@ public enum IbanCheckDigit {
    * The behavior of this method changed in 4.0.0: prior to this version this method raised an exception on invalid
    * check digits. Now it is returning {@code false} instead.
    *
-   * @param iban a non-null string.
-   * @return {@code true} if the given IBAN check digit is valid, {@code false} otherwise.
-   * @throws IllegalArgumentException if the given IBAN is {@code null} or if its size is not at least four characters.
+   * @param iban a non-null string
+   * @return {@code true} if the given IBAN check digit is valid, {@code false} otherwise
    */
+  @Override
   public boolean validate(String iban) {
     if (iban == null || iban.length() <= BBAN_INDEX) {
       return false;
@@ -58,8 +58,9 @@ public enum IbanCheckDigit {
    * ([a-zA-Z0-9]) and check digit characters have to be set to zero.
    *
    * @param iban a non-null string
-   * @return the given IBAN check digit.
+   * @return the given IBAN check digit
    */
+  @Override
   public String calculate(String iban) {
     if (iban == null) {
       throw new IllegalArgumentException("the iban argument cannot be null");
