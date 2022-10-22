@@ -1,11 +1,7 @@
 package fr.marcwrobel.jbanking.calendar;
 
-import static java.time.Month.DECEMBER;
-import static java.time.Month.JANUARY;
-import static java.time.Month.JUNE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static java.time.Month.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -63,5 +59,9 @@ class MonthDayHolidayTest {
     assertEquals(holiday1, holiday1);
     assertEquals(holiday1.hashCode(), holiday2.hashCode());
     assertEquals(holiday1.toString(), holiday2.toString());
+
+    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
+    assertFalse(holiday1.equals(null));
+    assertFalse(holiday1.equals(new Object()));
   }
 }

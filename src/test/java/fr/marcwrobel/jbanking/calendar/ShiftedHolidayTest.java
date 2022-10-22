@@ -1,10 +1,8 @@
 package fr.marcwrobel.jbanking.calendar;
 
 import static fr.marcwrobel.jbanking.calendar.ShiftingStrategy.CLOSEST_WEEKDAY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -55,5 +53,9 @@ class ShiftedHolidayTest {
     assertNotEquals(holiday3, holiday1);
     assertNotEquals(holiday1.hashCode(), holiday3.hashCode());
     assertNotEquals(holiday1.toString(), holiday3.toString());
+
+    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
+    assertFalse(holiday1.equals(null));
+    assertFalse(holiday1.equals(new Object()));
   }
 }

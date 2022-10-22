@@ -26,7 +26,7 @@ class BicTest {
       // invalid
       "", BLANK,
       // malformed
-      "FR", "BNPA", "BNPAFR", "BNPAPPXXX", "AAAAAAA",
+      "FR", "BNPA", "BNPAFR", "BNPAPPXXX", "AAAAAAA", "BNP!FRPPXXX", "BNPA!RPPXXX", "BNPAFR!PXXX", "BNPAFRPPXX!",
       // unknown country
       "BNPAFGPPXXX" })
   void invalidInputIsNotValid(String s) {
@@ -86,8 +86,9 @@ class BicTest {
     assertEquals(bic2, bic1);
     assertEquals(bic1.hashCode(), bic2.hashCode());
 
-    assertNotEquals(null, bic1);
-    assertNotEquals(bic1, new Object());
+    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
+    assertFalse(bic1.equals(null));
+    assertFalse(bic1.equals(new Object()));
   }
 
   @Test

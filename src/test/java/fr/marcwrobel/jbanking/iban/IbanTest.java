@@ -221,10 +221,11 @@ class IbanTest {
     assertEquals(iban1, iban2);
     assertEquals(iban2, iban1);
     assertEquals(iban1.hashCode(), iban2.hashCode());
+    assertNotEquals(new Iban("AL36442788709271283994894168"), iban1);
 
-    assertNotEquals(null, iban1);
-    assertNotEquals(iban1, new Object());
-    assertNotEquals(iban1, new Iban("AL36442788709271283994894168"));
+    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
+    assertFalse(iban1.equals(null));
+    assertFalse(iban1.equals(new Object()));
   }
 
   @Test
