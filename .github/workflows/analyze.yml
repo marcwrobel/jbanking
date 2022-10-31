@@ -3,29 +3,46 @@ name: analyze
 
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'maintenance/*']
+  pull_request:
+    branches: ['main', 'maintenance/*']
   schedule:
     - cron: '0 0 * * 6'
 
 permissions:
   contents: 'read'
+  pull-requests: 'write' # Needed by SonarCloud to comment PRs
 
 jobs:
   sonar:
+    # This workflow is only of value to the marcwrobel/jbanking repository and would always fail in forks
+    if: github.repository == 'marcwrobel/jbanking'
     runs-on: 'ubuntu-latest'
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: 'actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8'
-
-      - name: Unshallow repository
-        run:  'git fetch --prune --unshallow' # needed for sonar analysis
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of sonar analysis
 
       - name: Set up Java
         uses: 'actions/setup-java@de1bb2b0c5634f0fc4438d7aa9944e68f9bf86cc'
         with:
           distribution: 'temurin'
-          java-version: '17'
-          cache: 'maven'
+          java-version: 11
+
+      - name: Cache SonarQube packages
+        uses: 'actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7'
+        with:
+          path: '~/.sonar/cache'
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: 'actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7'
+        with:
+          path: '~/.m2/repository'
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
 
       - name: Analyze
         env:
