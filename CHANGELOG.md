@@ -18,6 +18,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Reactivate SonarCloud analysis for PR originating from this repo (#243).
 - Grant permissions to comment pull-requests to SonarCloud (#243).
 - Improve caching during SonarCloud analysis (#243).
+- Merge codeql and analyze workflows (#243).
 - Bump github/codeql-action from 2.1.28 to 2.1.29 (#240).
 - Bump parent from 2.7.0 to 2.7.1 (#241).
 
