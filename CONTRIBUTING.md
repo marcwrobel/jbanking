@@ -111,6 +111,7 @@ And finally:
 5. lock and unpin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous
    version,
 6. pin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the current version.
+7. close the [milestone](https://github.com/marcwrobel/jbanking/milestones) that was created for the released version.
 
 ## Continuous Integration
 
