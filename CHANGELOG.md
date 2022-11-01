@@ -21,5 +21,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Merge codeql and analyze workflows (#243).
 - Bump github/codeql-action from 2.1.28 to 2.1.29 (#240).
 - Bump parent from 2.7.0 to 2.7.1 (#241).
+- Enable reproducible builds (#247).
 
 ### Thanks

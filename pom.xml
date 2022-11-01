@@ -25,6 +25,9 @@
 
     <!-- 2.17+ requires java 11+ -->
     <formatter-maven-plugin.version>2.16.0</formatter-maven-plugin.version>
+
+    <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+    <project.build.outputTimestamp>10</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
