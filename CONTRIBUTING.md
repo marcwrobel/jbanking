@@ -107,11 +107,12 @@ And finally:
    3. and check _Create a discussion for this release_  to automatically create the [release
       discussion](https://github.com/marcwrobel/jbanking/discussions)),
 3. empty the [changelog](/CHANGELOG.md) for the next release,
-4. update jbanking version in [README.md](/README.md),
-5. lock and unpin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous
+4. update the [Security Policy](/SECURITY.md) if necessary,
+5. update the current version in [README.md](/README.md),
+6. lock and unpin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the previous
    version,
-6. pin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the current version.
-7. close the [milestone](https://github.com/marcwrobel/jbanking/milestones) that was created for the released version.
+7. pin the [discussion](https://github.com/marcwrobel/jbanking/discussions) that relates to the current version.
+8. close the [milestone](https://github.com/marcwrobel/jbanking/milestones) that was created for the released version.
 
 ## Continuous Integration
 
