@@ -1,0 +1,13 @@
+# https://www.gitpod.io/docs/config-gitpod-file
+
+tasks:
+  - init: mvn verify
+
+vscode:
+  extensions:
+    - redhat.java
+    - vscjava.vscode-java-debug
+    - vscjava.vscode-java-pack
+    - vscjava.vscode-maven
+    - vscjava.vscode-java-dependency
+    - vscjava.vscode-java-test
