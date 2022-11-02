@@ -23,5 +23,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump parent from 2.7.0 to 2.7.1 (#241).
 - Enable reproducible builds (#247).
 - Add Gitpod integration to facilitate contributions (#251).
+- Trigger workflow run only if source-related files has been modified (#246).
 
 ### Thanks
