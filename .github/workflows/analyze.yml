@@ -4,8 +4,10 @@ name: analyze
 on:
   push:
     branches: ['main', 'maintenance/*']
+    paths: ['.github/**', '.mvn/**', 'src/**', 'eclipse-formatter-config.xml', 'pom.xml']
   pull_request:
     branches: ['main', 'maintenance/*']
+    paths: ['.github/**', '.mvn/**', 'src/**', 'eclipse-formatter-config.xml', 'pom.xml']
   schedule:
     - cron: '0 0 * * 6'
 
