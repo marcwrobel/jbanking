@@ -21,6 +21,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Merge codeql and analyze workflows (#243).
 - Bump github/codeql-action from 2.1.28 to 2.1.30 (#240, #255).
 - Bump parent from 2.7.0 to 2.7.1 (#241).
+- Bump development java version from 17.0.4+101 to 17.0.5+8 (#258).
 - Enable reproducible builds (#247).
 - Add Gitpod integration to facilitate contributions (#251).
 - Trigger analysis only if source-related files has been modified (#246).
