@@ -19,7 +19,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Grant permissions to comment pull-requests to SonarCloud (#243).
 - Improve caching during SonarCloud analysis (#243).
 - Merge codeql and analyze workflows (#243).
-- Bump github/codeql-action from 2.1.28 to 2.1.30 (#240, #255).
+- Bump github/codeql-action from 2.1.28 to 2.1.31 (#240, #255, #259).
 - Bump parent from 2.7.0 to 2.7.1 (#241).
 - Bump development java version from 17.0.4+101 to 17.0.5+8 (#258).
 - Enable reproducible builds (#247).
