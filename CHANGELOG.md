@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Add [Bank Holiday for the Coronation of King Charles III](https://www.timeanddate.com/holidays/uk/king-coronation-day-holiday)
+  to LONDON calendar (#266).
+
 ### Fixed
 
 ### Deprecated

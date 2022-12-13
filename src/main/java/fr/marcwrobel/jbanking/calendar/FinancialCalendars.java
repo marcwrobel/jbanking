@@ -124,7 +124,9 @@ public enum FinancialCalendars implements Calendar {
       // platinum jubilee
       new FixedHoliday(d(2022, 6, 2), d(2022, 6, 3)),
       // state Funeral of Queen Elizabeth II
-      new FixedHoliday(d(2022, 9, 19)))),
+      new FixedHoliday(d(2022, 9, 19)),
+      // bank Holiday for the Coronation of King Charles III
+      new FixedHoliday(d(2023, 5, 8)))),
 
   /**
    * Federal Reserve Bank of New York holidays.
