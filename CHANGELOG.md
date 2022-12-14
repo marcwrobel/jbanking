@@ -23,6 +23,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/setup-java from 3.6.0 to 3.7.0 (#262, #264).
 - Bump parent from 2.7.0 to 2.7.2 (#241, #261).
 - Bump development java version from 17.0.4+101 to 17.0.5+8 (#258).
+- Bump development maven version from 3.8.5 to 3.8.6 (during #266).
 - Enable reproducible builds (#247).
 - Add Gitpod integration to facilitate contributions (#251).
 - Trigger analysis only if source-related files has been modified (#246).
