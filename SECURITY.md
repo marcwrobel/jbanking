@@ -2,11 +2,11 @@
 
 ## Supported Versions
 
-| Version | Supported                 |
-|---------|---------------------------|
-| 4.0.x   | Yes (New Features / Bugs) |
-| 3.2.x   | Yes (Bugs)                |
-| < 3.2.0 | No                        |
+| Version        | Supported                                   |
+|----------------|---------------------------------------------|
+| 4.1.x          | Yes (New Features / Bugs / Vulnerabilities) |
+| 3.2.x          | Yes (Bugs / Vulnerabilities)                |
+| < 3.2.0, 4.0.0 | No                                          |
 
 ## Reporting a Vulnerability
 

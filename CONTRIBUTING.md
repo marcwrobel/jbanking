@@ -101,11 +101,11 @@ Details are available on the [OSSRH publish guide](https://central.sonatype.org/
 And finally:
 
 1. re-enable the disabled [branch protection rules](https://github.com/marcwrobel/jbanking/settings/branches),
-2. declare the release on GitHub :
+2. [declare the release on GitHub](https://github.com/marcwrobel/jbanking/tags) :
    1. copy the [changelog content](/CHANGELOG.md) in the release notes,
    2. check _Set as the latest release_ if appropriate,
-   3. and check _Create a discussion for this release_  to automatically create the [release
-      discussion](https://github.com/marcwrobel/jbanking/discussions)),
+   3. and check _Create a discussion for this release_  to automatically create the
+      [release discussion](https://github.com/marcwrobel/jbanking/discussions)),
 3. empty the [changelog](/CHANGELOG.md) for the next release,
 4. update the [Security Policy](/SECURITY.md) if necessary,
 5. update the current version in [README.md](/README.md),
