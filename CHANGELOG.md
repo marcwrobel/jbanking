@@ -33,5 +33,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Enable reproducible builds (#247).
 - Add Gitpod integration to facilitate contributions (#251).
 - Trigger analysis only if source-related files has been modified (#246).
+- Integrate CycloneDX to publish an SBOM (#257).
 
 ### Thanks
