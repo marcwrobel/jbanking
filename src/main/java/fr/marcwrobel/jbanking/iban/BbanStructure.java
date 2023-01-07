@@ -36,7 +36,7 @@ import java.util.*;
  * @see <a href="https://bank-code.net/iban/country-list">List of Countries using the IBAN standard</a>
  * @since 1.0
  */
-@LastVerification("2022-10-22")
+@LastVerification("2023-01-07")
 @SuppressWarnings("java:S1192") // swift expressions cannot be constants (maintainability).
 public enum BbanStructure {
   /**

@@ -22,6 +22,12 @@ public enum Agreement {
    * Association.
    *
    * <p>
+   * Note that Switzerland, which is not officially a member of the European Economic Area (EEA), is
+   * also listed because it signed treaties that contain largely
+   * <a href="https://en.wikipedia.org/wiki/Switzerland%E2%80%93European_Union_relations">the same
+   * content as the EEA treaties</a>.
+   *
+   * <p>
    * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
    * @see <a href=
@@ -30,9 +36,11 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/European_Economic_Area">Wikipedia - European Economic Area</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-10-22")
+  @LastVerification("2023-01-07")
   EUROPEAN_ECONOMIC_AREA(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IS, IE, IT, LV, LI, LT, LU, MT, NL, NO,
-      PL, PT, RO, SK, SI, ES, SE, CH),
+      PL, PT, RO, SK, SI, ES, SE,
+      // see https://en.wikipedia.org/wiki/Switzerland%E2%80%93European_Union_relations#Treaties
+      CH),
 
   /**
    * The European Free Trade Association (EFTA) is a regional trade organization and free trade area. The organization operates
@@ -46,7 +54,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/European_Free_Trade_Association">Wikipedia - European Free Trade Association</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-10-22")
+  @LastVerification("2023-01-07")
   EUROPEAN_FREE_TRADE_ASSOCIATION(IS, LI, NO, CH),
 
   /**
@@ -67,7 +75,7 @@ public enum Agreement {
    *      member state territories and the European Union</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-10-22")
+  @LastVerification("2023-01-07")
   EUROPEAN_UNION(AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI,
       ES, SE),
 
@@ -84,7 +92,7 @@ public enum Agreement {
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-10-27")
+  @LastVerification("2023-01-07")
   SEPA_COM_PACIFIQUE(PF, NC, WF),
 
   /**
@@ -95,13 +103,13 @@ public enum Agreement {
    * <p>
    * Last verification date of this list can be seen in the {@code @LastVerification} value.
    *
-   * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC409-09 EPC
-   *      List of SEPA Countries v4.0 - February 2021</a>
+   * @see <a href="https://www.europeanpaymentscouncil.eu/document-library/other/epc-list-sepa-scheme-countries">EPC List of
+   *      SEPA Scheme Countries</a>
    * @see <a href="https://www.iso13616.org/">IBAN registry</a>
    * @see <a href="https://wikipedia.org/wiki/Single_Euro_Payments_Area">Wikipedia</a>
    * @since 2.1.0
    */
-  @LastVerification("2022-10-22")
+  @LastVerification("2023-01-07")
   SINGLE_EURO_PAYMENTS_AREA(
       // EU countries
       AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE,

@@ -44,7 +44,7 @@ import java.util.*;
  * @see <a href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166 Country Codes</a>
  * @since 1.0
  */
-@LastVerification("2022-10-22")
+@LastVerification("2023-01-07")
 public enum IsoCountry {
   /**
    * Afghanistan (aka the Islamic Republic of Afghanistan).

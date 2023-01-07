@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add [Bank Holiday for the Coronation of King Charles III](https://www.timeanddate.com/holidays/uk/king-coronation-day-holiday)
   to LONDON calendar (#266).
 - Move Croatia (HR) from kuna currency (HKR) countries to euro currency (EUR) countries (#256).
+- Verify enums are up-to-date (#278).
 
 ### Fixed
 
