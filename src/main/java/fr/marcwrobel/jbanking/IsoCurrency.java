@@ -13,6 +13,9 @@ import java.util.*;
  * The currencies having an ISO 4217 code.
  *
  * <p>
+ * Only current currencies are listed in this enum.
+ *
+ * <p>
  * Note that enum entries are named after the ISO 4217 alphabetic code. This choice has been made in version 3.0.0 of jbanking
  * in order to :
  *
@@ -41,7 +44,7 @@ import java.util.*;
  *      Currency &amp; Funds - List One</a>
  * @since 1.0
  */
-@LastVerification("2022-10-22")
+@LastVerification("2023-01-07")
 public enum IsoCurrency {
   /**
    * United Arab Emirates dirham.
@@ -406,7 +409,7 @@ public enum IsoCurrency {
    * @see <a href="https://wikipedia.org/wiki/Euro">wikipedia.org</a>
    */
   EUR(978, 2, PT, RE, LU, IT, SK, MF, AD, YT, BL, AX, GP, GF, PM, DE, BE, ES, SM, FI, MT, VA, MC, GR, MQ, TF, EE, IE,
-      NL, ME, SI, FR, AT, CY, XK, LV, LT),
+      NL, ME, SI, FR, AT, CY, XK, LV, LT, HR),
 
   /**
    * Fijian dollar.
@@ -495,9 +498,18 @@ public enum IsoCurrency {
   /**
    * Croatian kuna.
    *
+   * <p>
+   * As per ISO-4217 amendment number 174, the croatian kuna was replaced by the euro on 2023-01-15.
+   * See <a href="https://en.wikipedia.org/wiki/Croatia_and_the_euro">Croatia and the euro</a> for
+   * more information.
+   *
    * @see <a href="https://wikipedia.org/wiki/Croatian_kuna">wikipedia.org</a>
+   * @deprecated see <a href=
+   *             "https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-174.pdf">ISO
+   *             4217 amendment 174</a> (will be removed in 5.0.0)
    */
-  HRK(191, 2, HR),
+  @Deprecated
+  HRK(191, 2),
 
   /**
    * Haitian gourde.

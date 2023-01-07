@@ -19,7 +19,11 @@ import org.junit.jupiter.api.Test;
 
 class IsoCurrencyTest {
 
-  private static final Set<String> NOT_IN_NV_I18N = new HashSet<>(Arrays.asList("UYW", "VED", "SLE"));
+  private static final Set<String> EXCLUDED_CURRENCIES = new HashSet<>(Arrays.asList(
+      // Not in nv-i18n
+      "UYW", "VED", "SLE",
+      // Deprecated
+      "HRK"));
 
   @Test
   void fromAlphaCodeAllowsNull() {
@@ -93,7 +97,7 @@ class IsoCurrencyTest {
     assertEquals(FUND, USS.getCategory());
   }
 
-  // using nv-i18n helps us to keep the enum up-to-date
+  // using nv-i18n helps keeping the enum up-to-date
   @Test
   @SuppressWarnings("deprecation")
   void ensureCompleteness() {
@@ -114,15 +118,13 @@ class IsoCurrencyTest {
     assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
   }
 
-  // using nv-i18n helps us to keep the enum up-to-date
+  // using nv-i18n helps keeping the enum up-to-date
   @Test
   void ensureCountriesCompleteness() {
     Multimap<IsoCurrency, IsoCountry> missingCountries = HashMultimap.create();
     Set<CountryCode> unknownCountryCode = new HashSet<>();
 
-    stream(IsoCurrency.values()).filter(isoCurrency -> !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not
-        // in
-        // nv-i18n
+    stream(IsoCurrency.values()).filter(currency -> !EXCLUDED_CURRENCIES.contains(currency.getAlphabeticCode()))
         .forEach(currency -> {
           CurrencyCode currencyCode = CurrencyCode.getByCode(currency.getAlphabeticCode());
 
@@ -145,12 +147,12 @@ class IsoCurrencyTest {
     assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
   }
 
-  // using nv-i18n helps us to keep the enum up-to-date
+  // using nv-i18n helps keeping the enum up-to-date
   @Test
   void ensureNoDeprecated() {
     List<IsoCurrency> deprecated = stream(IsoCurrency.values())
         .filter(isoCurrency -> !isoCurrency.getAlphabeticCode().equals("CLF")) // wrong minor unit
-        .filter(isoCurrency -> !NOT_IN_NV_I18N.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
+        .filter(isoCurrency -> !EXCLUDED_CURRENCIES.contains(isoCurrency.getAlphabeticCode())) // not in nv-i18n
         .filter(currency -> {
           CurrencyCode code = CurrencyCode.getByCode(currency.getAlphabeticCode());
           if (code != null) {
