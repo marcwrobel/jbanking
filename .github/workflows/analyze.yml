@@ -34,14 +34,14 @@ jobs:
           java-version: 11
 
       - name: Cache SonarQube packages
-        uses: 'actions/cache@4723a57e26efda3a62cbde1812113b730952852d'
+        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12'
         with:
           path: '~/.sonar/cache'
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Maven packages
-        uses: 'actions/cache@4723a57e26efda3a62cbde1812113b730952852d'
+        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12'
         with:
           path: '~/.m2/repository'
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

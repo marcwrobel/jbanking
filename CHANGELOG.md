@@ -15,4 +15,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
+- Bump actions/cache from 3.2.2 to 3.2.3 (#284).
+
 ### Thanks
