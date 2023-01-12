@@ -23,25 +23,25 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout
-        uses: 'actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c'
+        uses: 'actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c' # 3.3.0
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of sonar analysis
 
       - name: Set up Java
-        uses: 'actions/setup-java@1df8dbefe2a8cbc99770194893dd902763bee34b'
+        uses: 'actions/setup-java@1df8dbefe2a8cbc99770194893dd902763bee34b' # 3.9.0
         with:
           distribution: 'temurin'
           java-version: 11
 
       - name: Cache SonarQube packages
-        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12'
+        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12' # 3.2.3
         with:
           path: '~/.sonar/cache'
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Maven packages
-        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12'
+        uses: 'actions/cache@58c146cc91c5b9e778e71775dfe9bf1442ad9a12' # 3.2.3
         with:
           path: '~/.m2/repository'
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -58,19 +58,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: 'actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c'
+        uses: 'actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c' # 3.3.0
         with:
           # We must fetch at least the immediate parents so that if this is a pull request then we can check out the head.
           fetch-depth: 2
 
       - name: Initialize CodeQL
-        uses: 'github/codeql-action/init@515828d97454b8354517688ddc5b48402b723750'
+        uses: 'github/codeql-action/init@515828d97454b8354517688ddc5b48402b723750' # 2.1.38
         with:
           languages: 'java'
           queries: 'security-and-quality'
 
       - name: Autobuild
-        uses: 'github/codeql-action/autobuild@515828d97454b8354517688ddc5b48402b723750'
+        uses: 'github/codeql-action/autobuild@515828d97454b8354517688ddc5b48402b723750' # 2.1.38
 
       - name: Perform CodeQL Analysis
-        uses: 'github/codeql-action/analyze@515828d97454b8354517688ddc5b48402b723750'
+        uses: 'github/codeql-action/analyze@515828d97454b8354517688ddc5b48402b723750' # 2.1.38
