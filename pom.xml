@@ -21,7 +21,7 @@
 
     <guava.version>31.1-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
-    <strata.version>2.12.17</strata.version>
+    <strata.version>2.12.18</strata.version>
 
     <!-- 2.17+ requires java 11+ -->
     <cyclonedx-maven-plugin.version>2.7.4</cyclonedx-maven-plugin.version>
