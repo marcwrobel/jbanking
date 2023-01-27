@@ -7,6 +7,7 @@
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=bugs)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![Maven Central](https://img.shields.io/maven-central/v/fr.marcwrobel/jbanking.svg?logo=apache-maven&label=Maven%20Central)](https://search.maven.org/search?q=g:%22fr.marcwrobel%22%20AND%20a:%22jbanking%22)
 [![javadoc](https://javadoc.io/badge2/fr.marcwrobel/jbanking/javadoc.svg)](https://javadoc.io/doc/fr.marcwrobel/jbanking)
+[![Reproducible Builds](https://img.shields.io/badge/Reproducible_Builds-ok-success)](https://github.com/jvm-repo-rebuild/reproducible-central#fr.marcwrobel:jbanking)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6217/badge)](https://bestpractices.coreinfrastructure.org/projects/6217)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/marcwrobel/jbanking/badge)](https://deps.dev/maven/fr.marcwrobel%3Ajbanking)
 
