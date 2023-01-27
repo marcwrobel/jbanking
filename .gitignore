@@ -9,6 +9,8 @@
 target
 .flattened-pom.xml
 dependency-reduced-pom.xml
+pom.xml.releaseBackup
+release.properties
 
 # IDEs
 *.classpath
