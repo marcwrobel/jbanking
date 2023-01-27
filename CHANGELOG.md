@@ -17,7 +17,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Comment GitHub actions with version (#287).
 - Bump actions/cache from 3.2.2 to 3.2.3 (#284).
-- Bump github/codeql-action from 2.1.37 to 2.1.39 (#286, #290)
+- Bump github/codeql-action from 2.1.37 to 2.2.1 (#286, #290, #291)
 - Bump strata-basics from 2.12.17 to 2.12.20 (#285, #288, #289)
 
 ### Thanks
