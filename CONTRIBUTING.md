@@ -129,10 +129,15 @@ jbanking CI checks are:
 4. javadoc can be generated,
 5. [SonarCloud](https://sonarcloud.io/project/overview?id=fr.marcwrobel:jbanking) analysis,
 6. [GitHub CodeQL](https://codeql.github.com/) analysis,
-7. [Sonatype lift](https://lift.sonatype.com/) analysis.
+7. [Qodana](https://www.jetbrains.com/help/qodana/) analysis,
+8. [Sonatype lift](https://lift.sonatype.com/) analysis.
 
 CI checks are automatically triggered on PR and on push on master or maintenance branches. All workflows are also
 automatically triggered weekly.
+
+Note:
+- SonarCloud analysis can be run locally [using SonarLint](https://www.sonarsource.com/products/sonarlint/).
+- Qodana analysis can be run locally [using Docker](https://www.jetbrains.com/help/qodana/qodana-jvm-docker-readme.html).
 
 ## Contribution rules
 

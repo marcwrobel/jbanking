@@ -84,7 +84,7 @@ final class IbanPattern {
     IbanPatternGroup previousGroup = null;
     while (matcher.find()) {
       IbanPatternGroup group = transform(expression, matcher.group(), from);
-      from = from + group.length;
+      from += group.length;
 
       if (previousGroup != null && previousGroup.canBeMergedTo(group)) {
         groups.remove(previousGroup);

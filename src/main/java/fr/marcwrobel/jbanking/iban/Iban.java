@@ -123,12 +123,8 @@ public final class Iban implements Serializable {
     String normalizedBban = trimUpperCase(bban);
     String normalized = country.getAlpha2Code() + "00" + normalizedBban;
 
-    Optional<BbanStructure> oStructure = BbanStructure.forCountry(country);
-    if (!oStructure.isPresent()) {
-      throw IbanFormatException.forNotSupportedCountry(bban, country);
-    }
-
-    structure = oStructure.get();
+    structure = BbanStructure.forCountry(country)
+        .orElseThrow(() -> IbanFormatException.forNotSupportedCountry(bban, country));
     if (!structure.isBbanValid(normalizedBban)) {
       throw IbanFormatException.forInvalidBbanStructure(bban, structure);
     }
@@ -158,17 +154,11 @@ public final class Iban implements Serializable {
       throw IbanFormatException.forInvalidLength(s);
     }
 
-    Optional<IsoCountry> country = findCountryFor(normalized);
-    if (!country.isPresent()) {
-      throw IbanFormatException.forUnknownCountry(s);
-    }
+    IsoCountry country = findCountryFor(normalized)
+        .orElseThrow(() -> IbanFormatException.forUnknownCountry(s));
+    structure = BbanStructure.forCountry(country)
+        .orElseThrow(() -> IbanFormatException.forNotSupportedCountry(s, country));
 
-    Optional<BbanStructure> oStructure = BbanStructure.forCountry(country.get());
-    if (!oStructure.isPresent()) {
-      throw IbanFormatException.forNotSupportedCountry(s, country.get());
-    }
-
-    structure = oStructure.get();
     if (!structure.isBbanValid(normalized.substring(BBAN_INDEX))) {
       throw IbanFormatException.forInvalidBbanStructure(s, structure);
     }
