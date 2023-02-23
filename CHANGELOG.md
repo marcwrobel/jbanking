@@ -16,7 +16,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Internal
 
 - Comment GitHub actions with version (#287).
-- Bump actions/cache from 3.2.2 to 3.2.5 (#284, #294, #301).
+- Bump actions/cache from 3.2.2 to 3.2.6 (#284, #294, #301, #305).
 - Bump actions/setup-java from 3.9.0 to 3.10.0 (#299).
 - Bump github/codeql-action from 2.1.37 to 2.2.4 (#286, #290, #291, #295, #300, #302)
 - Bump cyclonedx-maven-plugin from 2.7.4 to 2.7.5 (#304)
