@@ -63,16 +63,16 @@ jobs:
           fetch-depth: 2
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+        uses: github/codeql-action/init@32dc499307d133bb5085bae78498c0ac2cf762d5 # v2.2.5
         with:
           languages: 'java'
           queries: 'security-and-quality'
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+        uses: github/codeql-action/autobuild@32dc499307d133bb5085bae78498c0ac2cf762d5 # v2.2.5
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+        uses: github/codeql-action/analyze@32dc499307d133bb5085bae78498c0ac2cf762d5 # v2.2.5
 
   # See https://www.jetbrains.com/help/qodana/github.html#Usage
   codana:
@@ -92,6 +92,6 @@ jobs:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
 
       - name: Upload result
-        uses: github/codeql-action/upload-sarif@17573ee1cc1b9d061760f3a006fc4aac4f944fd5 # v2.2.4
+        uses: github/codeql-action/upload-sarif@32dc499307d133bb5085bae78498c0ac2cf762d5 # v2.2.5
         with:
           sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
