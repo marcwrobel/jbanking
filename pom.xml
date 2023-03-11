@@ -18,6 +18,8 @@
 
   <properties>
     <this.java.version>1.8</this.java.version>
+    <!-- Remove once Maven has been updated on GitPod -->
+    <this.maven.version.enforced>[3.8.6,)</this.maven.version.enforced>
 
     <guava.version>31.1-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
