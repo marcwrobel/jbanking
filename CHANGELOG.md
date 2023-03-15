@@ -20,7 +20,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/setup-java from 3.9.0 to 3.10.0 (#299).
 - Bump github/codeql-action from 2.1.37 to 2.2.6 (#286, #290, #291, #295, #300, #302, #307, #310)
 - Bump cyclonedx-maven-plugin from 2.7.4 to 2.7.5 (#304)
-- Bump strata-basics from 2.12.17 to 2.12.20 (#285, #288, #289)
+- Bump strata-basics from 2.12.17 to 2.12.21 (#285, #288, #289, #311)
 - Bump parent from 3.0.0 to 3.0.1 (#306).
 - Bump maven from 3.8.6 to 3.9.0 in `.tool-versions` (#306).
 - Set up Qodana analysis (#296)
