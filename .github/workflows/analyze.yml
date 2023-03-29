@@ -73,25 +73,3 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@04df1262e6247151b5ac09cd2c303ac36ad3f62b # v2.2.9
-
-  # See https://www.jetbrains.com/help/qodana/github.html#Usage
-  codana:
-    # This workflow is only of value to the marcwrobel/jbanking repository and would always fail in forks
-    if: github.repository == 'marcwrobel/jbanking'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
-        with:
-          # required for checkout in case Qodana works in pull request mode
-          fetch-depth: 0
-
-      - name: Perform Qodana Scan
-        uses: jetbrains/qodana-action@7afb26c0c2f325c0d5c21ea1f617c79c7f899337 # v2022.3.4
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-
-      - name: Upload result
-        uses: github/codeql-action/upload-sarif@04df1262e6247151b5ac09cd2c303ac36ad3f62b # v2.2.9
-        with:
-          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
