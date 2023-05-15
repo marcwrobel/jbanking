@@ -95,7 +95,10 @@
             <compilerArgs>
               <arg>
                 -Xplugin:ErrorProne
-                <!-- More Error Prone flags on https://errorprone.info/docs/flags. -->
+                <!-- Workaround for https://github.com/PicnicSupermarket/error-prone-support/issues/626. -->
+                -Xep:CollectorMutability:OFF
+                -Xep:FluxImplicitBlock:OFF
+                -Xep:ScheduledTransactionTrace:OFF
               </arg>
               <arg>-XDcompilePolicy=simple</arg>
             </compilerArgs>
