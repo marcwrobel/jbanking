@@ -25,5 +25,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump strata-basics from 2.12.17 to 2.12.24 (#285, #288, #289, #311, #330, #332, #333)
 - Bump parent from 3.0.0 to 3.0.2 (#306, #331).
 - Bump maven from 3.8.6 to 3.9.0 in `.tool-versions` (#306).
+- Update build workflow to use Java 20 instead of Java 19 (#336)
 
 ### Thanks
