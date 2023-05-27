@@ -26,5 +26,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump parent from 3.0.0 to 3.0.2 (#306, #331).
 - Bump maven from 3.8.6 to 3.9.0 in `.tool-versions` (#306).
 - Update build workflow to use Java 20 instead of Java 19 (#336)
+- Bump java from 17.0.5 to 17.0.7 (#340).
+- Bump maven from 3.9.0 to 3.9.2 (#340).
+
 
 ### Thanks
