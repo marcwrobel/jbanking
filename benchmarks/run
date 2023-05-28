@@ -26,15 +26,15 @@ class Result:
 
 BENCHMARKS = {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
 VERSIONS = {
-    "2.1.0": {
-        "benchmarks": {"Iban", "Bic", "CreditorIdentifier"}
-    },
-    "3.4.0": {
-        "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
-    },
-    "4.0.0-SNAPSHOT": {
-        "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
-    }
+  "2.1.0": {
+    "benchmarks": {"Iban", "Bic", "CreditorIdentifier"}
+  },
+  "3.4.0": {
+    "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
+  },
+  "4.0.0": {
+    "benchmarks": {"Iban", "Bic", "CreditorIdentifier", "Calendar"}
+  }
 }
 
 project_dir = os.path.dirname(__file__)

@@ -12,7 +12,7 @@ Here are the benchmarks that are available :
 
 ## Run the benchmarks
 
-First install the current SNAPSHOT version of jbanking in you local Maven repository. Then use the [`run`](/run)
+First install the current SNAPSHOT version of jbanking in you local Maven repository. Then use the [`run`](run)
 script with a JDK 8 in your path: `./run`.
 
 By default, the script run the benchmarks against the latest of each major version and produces, in a temporary
@@ -29,7 +29,7 @@ Options are available to target only specific versions or benchmarks. See `./run
 All test were run with in the following conditions :
 
 - [AMD Ryzen 7 4800H](https://www.amd.com/fr/products/apu/amd-ryzen-7-4800h),
-- JDK 1.8.0_332, OpenJDK 64-Bit Server VM ([Eclipse Temurin build](https://adoptium.net/temurin/releases/)),
+- JDK 1.8.0_372, OpenJDK 64-Bit Server VM ([Eclipse Temurin build](https://adoptium.net/temurin/releases/)),
 - 128 MB of heap memory,
 - 3 warmup iterations,
 - 3 iterations,
@@ -37,76 +37,83 @@ All test were run with in the following conditions :
 - 1 thread,
 - blackhole mode: full + dont-inline hint.
 
+The results presented here are only valid for the hardware and the software used to run them, and
+enable us to roughly compare the performances of jbanking over versions. Small (< 10%) increases or
+decreases must be ignored.
+
 ### BIC
 
-| Name                                     | Parameter                       | Version        | Ops/s      | Increase |
-|------------------------------------------|---------------------------------|----------------|------------|----------|
-| b.BicBenchmark.creation                  | AECFFR21                        | 2.1.0          | 2,829,008  | N/A      |
-| b.BicBenchmark.creation                  | AECFFR21                        | 3.4.0          | 7,249,899  | 156.27%  |
-| b.BicBenchmark.creation                  | AECFFR21                        | 4.0.0-SNAPSHOT | 22,657,649 | 212.52%  |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 2.1.0          | 2,733,999  | N/A      |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 3.4.0          | 8,223,643  | 200.79%  |
-| b.BicBenchmark.creation                  | AECFFR21XXX                     | 4.0.0-SNAPSHOT | 25,649,768 | 211.90%  |
-| b.BicBenchmark.validation                | AECFFR21                        | 2.1.0          | 3,104,155  | N/A      |
-| b.BicBenchmark.validation                | AECFFR21                        | 3.4.0          | 8,931,005  | 187.71%  |
-| b.BicBenchmark.validation                | AECFFR21                        | 4.0.0-SNAPSHOT | 30,925,142 | 246.27%  |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 2.1.0          | 2,860,202  | N/A      |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 3.4.0          | 8,955,774  | 213.12%  |
-| b.BicBenchmark.validation                | AECFFR21XXX                     | 4.0.0-SNAPSHOT | 27,706,544 | 209.37%  |
+| Name                      | Parameter   | Version | Ops/s      | Increase |
+|---------------------------|-------------|---------|------------|----------|
+| b.BicBenchmark.creation   | AECFFR21    | 2.1.0   | 2,743,335  | N/A      |
+| b.BicBenchmark.creation   | AECFFR21    | 3.4.0   | 7,336,205  | 167.42%  |
+| b.BicBenchmark.creation   | AECFFR21    | 4.0.0   | 22,495,144 | 206.63%  |
+| b.BicBenchmark.creation   | AECFFR21XXX | 2.1.0   | 2,684,730  | N/A      |
+| b.BicBenchmark.creation   | AECFFR21XXX | 3.4.0   | 7,183,931  | 167.58%  |
+| b.BicBenchmark.creation   | AECFFR21XXX | 4.0.0   | 23,673,678 | 229.54%  |
+| b.BicBenchmark.validation | AECFFR21    | 2.1.0   | 2,839,685  | N/A      |
+| b.BicBenchmark.validation | AECFFR21    | 3.4.0   | 9,126,799  | 221.40%  |
+| b.BicBenchmark.validation | AECFFR21    | 4.0.0   | 30,332,360 | 232.34%  |
+| b.BicBenchmark.validation | AECFFR21XXX | 2.1.0   | 2,942,164  | N/A      |
+| b.BicBenchmark.validation | AECFFR21XXX | 3.4.0   | 9,179,068  | 211.98%  |
+| b.BicBenchmark.validation | AECFFR21XXX | 4.0.0   | 27,337,955 | 197.83%  |
+
 
 ### IBAN
 
-| Name                                     | Parameter                       | Version        | Ops/s      | Increase |
-|------------------------------------------|---------------------------------|----------------|------------|----------|
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 2.1.0          | 524,002    | N/A      |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 3.4.0          | 1,133,703  | 116.35%  |
-| b.IbanBenchmark.creation                 | ES2837832292261368335005        | 4.0.0-SNAPSHOT | 5,408,809  | 377.09%  |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 2.1.0          | 554,747    | N/A      |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 3.4.0          | 940,360    | 69.51%   |
-| b.IbanBenchmark.creation                 | MT84AIWA00813109843252965695890 | 4.0.0-SNAPSHOT | 2,978,276  | 216.72%  |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 2.1.0          | 671,508    | N/A      |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 3.4.0          | 1,529,074  | 127.71%  |
-| b.IbanBenchmark.creation                 | NO2451742753161                 | 4.0.0-SNAPSHOT | 7,601,079  | 397.10%  |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 2.1.0          | 530,710    | N/A      |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 3.4.0          | 1,208,639  | 127.74%  |
-| b.IbanBenchmark.validation               | ES2837832292261368335005        | 4.0.0-SNAPSHOT | 5,934,524  | 391.01%  |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 2.1.0          | 555,508    | N/A      |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 3.4.0          | 974,202    | 75.37%   |
-| b.IbanBenchmark.validation               | MT84AIWA00813109843252965695890 | 4.0.0-SNAPSHOT | 3,047,429  | 212.81%  |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 2.1.0          | 656,613    | N/A      |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 3.4.0          | 1,549,316  | 135.96%  |
-| b.IbanBenchmark.validation               | NO2451742753161                 | 4.0.0-SNAPSHOT | 7,650,197  | 393.78%  |
+| Name                       | Parameter                       | Version | Ops/s     | Increase |
+|----------------------------|---------------------------------|---------|-----------|----------|
+| b.IbanBenchmark.creation   | ES2837832292261368335005        | 2.1.0   | 525,758   | N/A      |
+| b.IbanBenchmark.creation   | ES2837832292261368335005        | 3.4.0   | 1,196,611 | 127.60%  |
+| b.IbanBenchmark.creation   | ES2837832292261368335005        | 4.0.0   | 4,988,199 | 316.86%  |
+| b.IbanBenchmark.creation   | MT84AIWA00813109843252965695890 | 2.1.0   | 537,777   | N/A      |
+| b.IbanBenchmark.creation   | MT84AIWA00813109843252965695890 | 3.4.0   | 937,856   | 74.39%   |
+| b.IbanBenchmark.creation   | MT84AIWA00813109843252965695890 | 4.0.0   | 2,822,266 | 200.93%  |
+| b.IbanBenchmark.creation   | NO2451742753161                 | 2.1.0   | 665,184   | N/A      |
+| b.IbanBenchmark.creation   | NO2451742753161                 | 3.4.0   | 1,503,839 | 126.08%  |
+| b.IbanBenchmark.creation   | NO2451742753161                 | 4.0.0   | 7,132,829 | 374.31%  |
+| b.IbanBenchmark.validation | ES2837832292261368335005        | 2.1.0   | 532,961   | N/A      |
+| b.IbanBenchmark.validation | ES2837832292261368335005        | 3.4.0   | 1,168,217 | 119.19%  |
+| b.IbanBenchmark.validation | ES2837832292261368335005        | 4.0.0   | 5,341,337 | 357.22%  |
+| b.IbanBenchmark.validation | MT84AIWA00813109843252965695890 | 2.1.0   | 534,997   | N/A      |
+| b.IbanBenchmark.validation | MT84AIWA00813109843252965695890 | 3.4.0   | 934,482   | 74.67%   |
+| b.IbanBenchmark.validation | MT84AIWA00813109843252965695890 | 4.0.0   | 2,993,041 | 220.29%  |
+| b.IbanBenchmark.validation | NO2451742753161                 | 2.1.0   | 676,793   | N/A      |
+| b.IbanBenchmark.validation | NO2451742753161                 | 3.4.0   | 1,458,368 | 115.48%  |
+| b.IbanBenchmark.validation | NO2451742753161                 | 4.0.0   | 8,158,591 | 459.43%  |
 
 ### Creditor identifiers
 
-| Name                                     | Parameter                       | Version        | Ops/s      | Increase |
-|------------------------------------------|---------------------------------|----------------|------------|----------|
-| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 2.1.0          | 1,287,131  | N/A      |
-| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 3.4.0          | 1,571,896  | 22.12%   |
-| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008            | 4.0.0-SNAPSHOT | 4,663,745  | 196.70%  |
-| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 2.1.0          | 1,473,941  | N/A      |
-| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 3.4.0          | 2,101,759  | 42.59%   |
-| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                     | 4.0.0-SNAPSHOT | 8,107,983  | 285.77%  |
-| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 2.1.0          | 700,040    | N/A      |
-| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 3.4.0          | 1,386,933  | 98.12%   |
-| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234    | 4.0.0-SNAPSHOT | 3,537,574  | 155.06%  |
-| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 2.1.0          | 1,284,337  | N/A      |
-| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 3.4.0          | 1,547,156  | 20.46%   |
-| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008            | 4.0.0-SNAPSHOT | 4,375,769  | 182.83%  |
-| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 2.1.0          | 1,497,450  | N/A      |
-| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 3.4.0          | 2,194,562  | 46.55%   |
-| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                     | 4.0.0-SNAPSHOT | 8,397,975  | 282.67%  |
-| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 2.1.0          | 686,535    | N/A      |
-| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 3.4.0          | 1,376,117  | 100.44%  |
-| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234    | 4.0.0-SNAPSHOT | 4,266,289  | 210.02%  |
+| Name                                     | Parameter                    | Version | Ops/s     | Increase |
+|------------------------------------------|------------------------------|---------|-----------|----------|
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008         | 2.1.0   | 1,261,666 | N/A      |
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008         | 3.4.0   | 1,515,320 | 20.10%   |
+| b.CreditorIdentifierBenchmark.creation   | BE69ZZZ050D000000008         | 4.0.0   | 4,285,990 | 182.84%  |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                  | 2.1.0   | 1,398,624 | N/A      |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                  | 3.4.0   | 2,094,990 | 49.79%   |
+| b.CreditorIdentifierBenchmark.creation   | CY54ZZZ003A                  | 4.0.0   | 7,955,744 | 279.75%  |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234 | 2.1.0   | 637,440   | N/A      |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234 | 3.4.0   | 1,295,687 | 103.26%  |
+| b.CreditorIdentifierBenchmark.creation   | GB23ZZZSDDBARC000000ABCD1234 | 4.0.0   | 3,511,540 | 171.02%  |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008         | 2.1.0   | 1,272,654 | N/A      |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008         | 3.4.0   | 1,515,902 | 19.11%   |
+| b.CreditorIdentifierBenchmark.validation | BE69ZZZ050D000000008         | 4.0.0   | 4,578,655 | 202.04%  |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                  | 2.1.0   | 1,479,744 | N/A      |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                  | 3.4.0   | 2,121,245 | 43.35%   |
+| b.CreditorIdentifierBenchmark.validation | CY54ZZZ003A                  | 4.0.0   | 7,890,800 | 271.99%  |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234 | 2.1.0   | 665,218   | N/A      |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234 | 3.4.0   | 1,341,645 | 101.68%  |
+| b.CreditorIdentifierBenchmark.validation | GB23ZZZSDDBARC000000ABCD1234 | 4.0.0   | 3,712,698 | 176.73%  |
+
+
 
 ### Calendar
 
-| Name                                     | Parameter                       | Version        | Ops/s      | Increase |
-|------------------------------------------|---------------------------------|----------------|------------|----------|
-| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 3.4.0          | 1,488,633  | N/A      |
-| b.CalendarBenchmark.validation           | NEW_YORK_FED                    | 4.0.0-SNAPSHOT | 1,526,671  | 2.56%    |
-| b.CalendarBenchmark.validation           | PARIS                           | 3.4.0          | 2,644,530  | N/A      |
-| b.CalendarBenchmark.validation           | PARIS                           | 4.0.0-SNAPSHOT | 2,748,954  | 3.95%    |
-| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 3.4.0          | 20,497,110 | N/A      |
-| b.CalendarBenchmark.validation           | SATURDAY_SUNDAY                 | 4.0.0-SNAPSHOT | 21,279,043 | 3.81%    |
+| Name                           | Parameter       | Version | Ops/s      | Increase |
+|--------------------------------|-----------------|---------|------------|----------|
+| b.CalendarBenchmark.validation | NEW_YORK_FED    | 4.0.0   | 1,536,760  | N/A      |
+| b.CalendarBenchmark.validation | NEW_YORK_FED    | 3.4.0   | 1,565,606  | 1.88%    |
+| b.CalendarBenchmark.validation | PARIS           | 4.0.0   | 2,616,921  | N/A      |
+| b.CalendarBenchmark.validation | PARIS           | 3.4.0   | 2,665,889  | 1.87%    |
+| b.CalendarBenchmark.validation | SATURDAY_SUNDAY | 4.0.0   | 21,520,789 | N/A      |
+| b.CalendarBenchmark.validation | SATURDAY_SUNDAY | 3.4.0   | 21,596,440 | 0.35%    |
