@@ -78,16 +78,55 @@ public final class Bic implements Serializable {
    */
   public static final char TEST_BIC_INDICATOR = '0';
 
-  private static final int BIC8_LENGTH = 8;
-  private static final int BIC11_LENGTH = 11;
-  private static final int INSTITUTION_CODE_INDEX = 0;
-  private static final int INSTITUTION_CODE_LENGTH = 4;
-  private static final int COUNTRY_CODE_INDEX = INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH;
-  private static final int COUNTRY_CODE_LENGTH = 2;
-  private static final int LOCATION_CODE_INDEX = COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH;
-  private static final int LOCATION_CODE_LENGTH = 2;
-  private static final int BRANCH_CODE_INDEX = LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH;
-  private static final int BRANCH_CODE_LENGTH = 3;
+  /**
+   * The length of a BIC8.
+   */
+  public static final int BIC8_LENGTH = 8;
+
+  /**
+   * The length of a BIC11.
+   */
+  public static final int BIC11_LENGTH = 11;
+
+  /**
+   * The index of the institution code in a BIC.
+   */
+  public static final int INSTITUTION_CODE_INDEX = 0;
+
+  /**
+   * The length of the institution code in a BIC.
+   */
+  public static final int INSTITUTION_CODE_LENGTH = 4;
+
+  /**
+   * The index of the country code in a BIC.
+   */
+  public static final int COUNTRY_CODE_INDEX = INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH;
+
+  /**
+   * The length of the country code in a BIC.
+   */
+  public static final int COUNTRY_CODE_LENGTH = 2;
+
+  /**
+   * The index of the location code in a BIC.
+   */
+  public static final int LOCATION_CODE_INDEX = COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH;
+
+  /**
+   * The length of the location code in a BIC.
+   */
+  public static final int LOCATION_CODE_LENGTH = 2;
+
+  /**
+   * The index of the branch code in a BIC.
+   */
+  public static final int BRANCH_CODE_INDEX = LOCATION_CODE_INDEX + LOCATION_CODE_LENGTH;
+
+  /**
+   * The length of the branch code in a BIC.
+   */
+  public static final int BRANCH_CODE_LENGTH = 3;
 
   /**
    * The normalized form of this BIC.

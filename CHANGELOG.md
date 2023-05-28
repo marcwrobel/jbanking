@@ -10,6 +10,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Make `Bic` constants public (during #339). New available constants are `BIC8_LENGTH`,
+  `BIC11_LENGTH`, `INSTITUTION_CODE_INDEX`, `INSTITUTION_CODE_LENGTH`, `COUNTRY_CODE_INDEX`,
+  `COUNTRY_CODE_LENGTH`, `LOCATION_CODE_INDEX`, `LOCATION_CODE_LENGTH`, `BRANCH_CODE_INDEX`,
+  `BRANCH_CODE_LENGTH`.
+
 ### Fixed
 
 ### Deprecated
