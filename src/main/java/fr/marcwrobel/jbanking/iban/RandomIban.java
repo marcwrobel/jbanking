@@ -23,12 +23,15 @@ import java.util.Random;
  *
  * // Generating a random french or german IBAN (with BbanStructure or IsoCountry)
  * Iban random3 = new RandomIban().next(BbanStructure.FR, BbanStructure.DE);
- * Iban random4 = new RandomIban().next(BbanStructure.valueOf(IsoCountry.FR.name()),
- *     BbanStructure.valueOf(IsoCountry.DE.name()));
+ * Iban random4 = new RandomIban().next(IsoCountry.FR, IsoCountry.DE);
+ * Iban random5 = new RandomIban().next("FR", "DE");
+ *
+ * // Generating a random IBAN for a country using Euro or US Dollar as currency.
+ * Iban random6 = new RandomIban().next(IsoCurrency.EUR, IsoCurrency.USD);
  * </pre>
  *
  * <p>
- * This class should be used only for tests.
+ * This class should only be used for tests.
  *
  * @since 4.0.0
  */
@@ -37,7 +40,7 @@ public final class RandomIban {
   private final Random random;
 
   /**
-   * Creates a new random Iban generator using the given {@link Random random number generator}.
+   * Creates a new random IBAN generator using the given {@link Random random number generator}.
    *
    * @param random a non-null {@link Random} instance
    * @throws NullPointerException if the given {@link Random} instance is {@code null}
@@ -47,14 +50,14 @@ public final class RandomIban {
   }
 
   /**
-   * Creates a new random Iban generator.
+   * Creates a new random IBAN generator.
    *
    * <p>
    * This constructor is creating a new {@link Random random number generator} each time it is
    * invoked.
    */
   public RandomIban() {
-    // Note that Random was choose over SecureRandom because security does not matter in our case and because Random :
+    // Note that Random was chosen over SecureRandom because security does not matter in our case and because Random :
     // - produces the same result on all platforms,
     // - produces the same results for a seed by default,
     // - is random enough,
@@ -91,7 +94,7 @@ public final class RandomIban {
    *
    * @param countries a non-null and non-empty array of {@link IsoCountry}
    * @return a non-null {@link Iban}
-   * @throws IllegalArgumentException if {@code structures} is empty or if no corresponding {@link BbanStructure} can be found
+   * @throws IllegalArgumentException if {@code countries} is empty or if no corresponding {@link BbanStructure} can be found
    *         for the chosen {@link IsoCountry}
    * @since 4.2.0
    */
