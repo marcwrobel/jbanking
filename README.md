@@ -31,10 +31,11 @@ jbanking is supporting the following features :
   * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area).
 * [ISO 4217 currencies](https://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code, minor unit and
   countries using it).
-* [ISO 9362:2009 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
-* [ISO 13616:2007 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
+* [ISO 9362 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
+* [ISO 13616 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
   check digit and national bank account number structure).
-* Random [ISO 13616:2007 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) generation.
+* Random [ISO 9362 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) and
+  [ISO 13616 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) generation.
 * [Creditor Identifiers (CIs)](https://www.europeanpaymentscouncil.eu/document-library/guidance-documents/creditor-identifier-overview)
   handling and validation.
 * Configurable [holiday](https://wikipedia.org/wiki/Holiday) calendar support with predefined calendars for :
@@ -108,6 +109,9 @@ Assertions.assertEquals("FR", bic.getCountryCode());
 Assertions.assertEquals("PP", bic.getLocationCode());
 Assertions.assertEquals("XXX", bic.getBranchCode());
 Assertions.assertTrue(bic.isLiveBic());
+
+// Generate a random BIC
+Bic randomBic = new RandomBic().next();
 
 // Validate a creditor identifier
 Assertions.assertTrue(CreditorIdentifier.isValid(" fr72zzz123456 "));
