@@ -5,6 +5,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Support IBAN generation based on countries (`RandomIban.next(IsoCountry...)`), country alpha-2
+  codes (`RandomIban.next(String...)`) or currencies (`RandomIban.next(IsoCurrency...)`) (#339).
+
 ### Changed
 
 ### Fixed
