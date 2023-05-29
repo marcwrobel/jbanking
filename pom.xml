@@ -4,7 +4,7 @@
   <parent>
     <artifactId>parent</artifactId>
     <groupId>fr.marcwrobel</groupId>
-    <version>3.0.2</version>
+    <version>3.1.0</version>
   </parent>
 
   <artifactId>jbanking</artifactId>
