@@ -21,7 +21,7 @@
     <!-- Remove once Maven has been updated on GitPod -->
     <this.maven.version.enforced>[3.8.6,)</this.maven.version.enforced>
 
-    <guava.version>32.0.1-jre</guava.version>
+    <guava.version>32.1.1-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
     <strata.version>2.12.27</strata.version>
 
