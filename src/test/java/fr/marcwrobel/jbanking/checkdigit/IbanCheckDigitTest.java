@@ -1,7 +1,7 @@
 package fr.marcwrobel.jbanking.checkdigit;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import fr.marcwrobel.jbanking.internal.TestUtils;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -14,18 +14,18 @@ class IbanCheckDigitTest {
 
   @Test
   void cannotCalculateWithNull() {
-    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> IbanCheckDigit.INSTANCE.calculate(null));
   }
 
   @Test
   void nullIsNotValid() {
-    assertFalse(IbanCheckDigit.INSTANCE.validate(null));
+    assertThat(IbanCheckDigit.INSTANCE.validate(null)).isFalse();
   }
 
   @ParameterizedTest
   @ValueSource(strings = { "", TestUtils.BLANK, "123" })
   void cannotCalculate(String s) {
-    assertThrows(IllegalArgumentException.class, () -> IbanCheckDigit.INSTANCE.calculate(s));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> IbanCheckDigit.INSTANCE.calculate(s));
   }
 
   @ParameterizedTest
@@ -37,7 +37,7 @@ class IbanCheckDigitTest {
       "BY00NBRB3600000000000Z00AB00"
   })
   void invalid(String s) {
-    assertFalse(IbanCheckDigit.INSTANCE.validate(s));
+    assertThat(IbanCheckDigit.INSTANCE.validate(s)).isFalse();
   }
 
   @ParameterizedTest
@@ -46,13 +46,13 @@ class IbanCheckDigitTest {
     String countryCode = iban.substring(0, 2);
     String checkDigit = iban.substring(2, 4);
     String bban = iban.substring(4);
-    assertEquals(checkDigit, IbanCheckDigit.INSTANCE.calculate(countryCode + "00" + bban));
+    assertThat(IbanCheckDigit.INSTANCE.calculate(countryCode + "00" + bban)).isEqualTo(checkDigit);
   }
 
   @ParameterizedTest
   @MethodSource("validIbans")
   void validationWithValidIbans(String iban) {
-    assertTrue(IbanCheckDigit.INSTANCE.validate(iban));
+    assertThat(IbanCheckDigit.INSTANCE.validate(iban)).isTrue();
   }
 
   // Generated using https://www.mobilefish.com/services/random_iban_generator/random_iban_generator.php

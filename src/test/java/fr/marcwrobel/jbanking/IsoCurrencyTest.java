@@ -5,10 +5,7 @@ import static fr.marcwrobel.jbanking.IsoCurrency.Category.FUND;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.METAL;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.NATIONAL;
 import static java.util.Arrays.stream;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.neovisionaries.i18n.CountryCode;
@@ -27,42 +24,39 @@ class IsoCurrencyTest {
 
   @Test
   void fromAlphaCodeAllowsNull() {
-    assertFalse(fromAlphabeticCode(null).isPresent());
+    assertThat(fromAlphabeticCode(null)).isEmpty();
   }
 
   @Test
   void fromAlphaCodeAllowsUnknownOrInvalidCodes() {
-    assertFalse(fromAlphabeticCode("AA").isPresent());
+    assertThat(fromAlphabeticCode("AA")).isEmpty();
   }
 
   @Test
   void fromAlphaCodeIsNotCaseSensitive() {
     Optional<IsoCurrency> currency = fromAlphabeticCode(EUR.getAlphabeticCode().toLowerCase());
-    assertTrue(currency.isPresent());
-    assertEquals(EUR, currency.get());
+    assertThat(currency).contains(EUR);
   }
 
   @Test
   void fromAlphaCodeAllowsLeadingAndTrailingWhitespaces() {
     Optional<IsoCurrency> currency = fromAlphabeticCode(" " + EUR.getAlphabeticCode() + " ");
-    assertTrue(currency.isPresent());
-    assertEquals(EUR, currency.get());
+    assertThat(currency).contains(EUR);
   }
 
   @Test
   void fromAlphaCodeWorksWithExistingValues() {
     for (IsoCurrency currency : IsoCurrency.values()) {
       Optional<IsoCurrency> found = fromAlphabeticCode(currency.getAlphabeticCode());
-      assertTrue(found.isPresent());
-      assertEquals(currency, found.get());
+      assertThat(found).contains(currency);
     }
   }
 
   @Test
   void fromNumericCodeAllowsUnknownOrInvalidCodes() {
-    assertFalse(IsoCurrency.fromNumericCode(-1).isPresent());
-    assertFalse(IsoCurrency.fromNumericCode(1).isPresent());
-    assertFalse(IsoCurrency.fromNumericCode(1000).isPresent());
+    assertThat(IsoCurrency.fromNumericCode(-1)).isEmpty();
+    assertThat(IsoCurrency.fromNumericCode(1)).isEmpty();
+    assertThat(IsoCurrency.fromNumericCode(1000)).isEmpty();
   }
 
   @Test
@@ -71,7 +65,7 @@ class IsoCurrencyTest {
 
     for (IsoCurrency currency : IsoCurrency.values()) {
       Integer code = currency.getNumericCode();
-      assertFalse(codes.contains(code));
+      assertThat(codes).doesNotContain(code);
       codes.add(code);
     }
   }
@@ -79,22 +73,22 @@ class IsoCurrencyTest {
   @Test
   void euroIsInNationalCategory() {
     Set<IsoCurrency> currencies = IsoCurrency.allOf(NATIONAL);
-    assertTrue(currencies.contains(EUR));
-    assertEquals(NATIONAL, EUR.getCategory());
+    assertThat(currencies).contains(EUR);
+    assertThat(EUR.getCategory()).isEqualTo(NATIONAL);
   }
 
   @Test
   void goldIsInMetalCategory() {
     Set<IsoCurrency> currencies = IsoCurrency.allOf(METAL);
-    assertTrue(currencies.contains(XAU));
-    assertEquals(METAL, XAU.getCategory());
+    assertThat(currencies).contains(XAU);
+    assertThat(XAU.getCategory()).isEqualTo(METAL);
   }
 
   @Test
   void usDollarSameDayIsInMetalCategory() {
     Set<IsoCurrency> currencies = IsoCurrency.allOf(FUND);
-    assertTrue(currencies.contains(USS));
-    assertEquals(FUND, USS.getCategory());
+    assertThat(currencies).contains(USS);
+    assertThat(USS.getCategory()).isEqualTo(FUND);
   }
 
   // using nv-i18n helps keeping the enum up-to-date
@@ -115,7 +109,7 @@ class IsoCurrencyTest {
     List<CurrencyCode> undefinedCurrencies = allCurrencies.stream()
         .filter(c -> !fromAlphabeticCode(c.name()).isPresent()).collect(Collectors.toList());
 
-    assertTrue(undefinedCurrencies.isEmpty(), "Missing currencies : " + undefinedCurrencies);
+    assertThat(undefinedCurrencies).as("Missing currencies : " + undefinedCurrencies).isEmpty();
   }
 
   // using nv-i18n helps keeping the enum up-to-date
@@ -143,8 +137,8 @@ class IsoCurrencyTest {
           }
         });
 
-    assertTrue(missingCountries.isEmpty(), "Missing countries : " + missingCountries);
-    assertTrue(unknownCountryCode.isEmpty(), "Unknown countries : " + unknownCountryCode);
+    assertThat(missingCountries.isEmpty()).as("Missing countries : " + missingCountries).isTrue();
+    assertThat(unknownCountryCode).as("Unknown countries : " + unknownCountryCode).isEmpty();
   }
 
   // using nv-i18n helps keeping the enum up-to-date
@@ -169,13 +163,13 @@ class IsoCurrencyTest {
           return true;
         }).collect(Collectors.toList());
 
-    assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
+    assertThat(deprecated).as("Deprecated currencies : " + deprecated).isEmpty();
   }
 
   @Test
   void ensureIsoCodeIsUsedForEnumEntries() {
     for (IsoCurrency currency : IsoCurrency.values()) {
-      assertEquals(3, currency.name().length());
+      assertThat(currency.name()).hasSize(3);
     }
   }
 }

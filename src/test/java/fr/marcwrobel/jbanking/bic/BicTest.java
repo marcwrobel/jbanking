@@ -1,10 +1,12 @@
 package fr.marcwrobel.jbanking.bic;
 
 import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
-import static org.junit.jupiter.api.Assertions.*;
+import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
+import static fr.marcwrobel.jbanking.internal.TestUtils.testSerialization;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,12 +15,12 @@ class BicTest {
 
   @Test
   void nullIsNotValid() {
-    assertFalse(Bic.isValid(null));
+    assertThat(Bic.isValid(null)).isFalse();
   }
 
   @Test
   void cannotCreateWithNull() {
-    assertThrows(IllegalArgumentException.class, () -> new Bic(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new Bic(null));
   }
 
   @ParameterizedTest
@@ -30,75 +32,61 @@ class BicTest {
       // unknown country
       "BNPAFGPPXXX" })
   void invalidInputIsNotValid(String s) {
-    assertFalse(Bic.isValid(s));
+    assertThat(Bic.isValid(s)).isFalse();
   }
 
   @ParameterizedTest
   @ValueSource(strings = { BLANK, "BNPAFR", "BNPAPPXXX", "AAAAAAA" })
   void cannotCreateWithInvalidInput(String s) {
-    BicFormatException e = assertThrows(BicFormatException.class, () -> new Bic(s));
-    assertEquals(s, e.getInputString());
-    assertTrue(e.getMessage().contains("format"));
+    assertThatExceptionOfType(BicFormatException.class)
+        .isThrownBy(() -> new Bic(s))
+        .withMessageContaining("format")
+        .extracting(BicFormatException::getInputString)
+        .isEqualTo(s);
   }
 
   @Test
   void cannotCreateWithUnknownCountry() {
-    BicFormatException e = assertThrows(BicFormatException.class, () -> new Bic("BNPAFGPPXXX"));
-    assertEquals("BNPAFGPPXXX", e.getInputString());
-    assertTrue(e.getMessage().contains("country"));
+    assertThatExceptionOfType(BicFormatException.class)
+        .isThrownBy(() -> new Bic("BNPAFGPPXXX"))
+        .withMessageContaining("country")
+        .extracting(BicFormatException::getInputString)
+        .isEqualTo("BNPAFGPPXXX");
   }
 
   @ParameterizedTest
   @ValueSource(strings = { "BNPAFRPPXXX", "BNPAFRPP", "bnpafrpp", " BNPAFRPP ", " bnpafrpp " })
   void canCreateAndValidateWithValidInput(String s) {
-    assertTrue(Bic.isValid(s));
+    assertThat(Bic.isValid(s)).isTrue();
 
     Bic bic = new Bic(s);
-    assertEquals(IsoCountry.FR, bic.getCountry());
-    assertEquals("FR", bic.getCountryCode());
-    assertEquals("BNPA", bic.getInstitutionCode());
-    assertEquals("XXX", bic.getBranchCode());
-    assertEquals("PP", bic.getLocationCode());
-    assertEquals("BNPAFRPPXXX", bic.toString());
-    assertFalse(bic.isTestBic());
+    assertThat(bic.getCountry()).isEqualTo(IsoCountry.FR);
+    assertThat(bic.getCountryCode()).isEqualTo("FR");
+    assertThat(bic.getInstitutionCode()).isEqualTo("BNPA");
+    assertThat(bic.getBranchCode()).isEqualTo("XXX");
+    assertThat(bic.getLocationCode()).isEqualTo("PP");
+    assertThat(bic).hasToString("BNPAFRPPXXX");
+    assertThat(bic.isTestBic()).isFalse();
   }
 
   @Test
   void liveBicTest() {
     Bic liveBic = new Bic("BNPAFRPPXXX");
-    assertTrue(liveBic.isLiveBic());
-    assertFalse(liveBic.isTestBic());
+    assertThat(liveBic.isLiveBic()).isTrue();
+    assertThat(liveBic.isTestBic()).isFalse();
 
     Bic testBic = liveBic.asTestBic();
-    assertTrue(testBic.isTestBic());
-    assertEquals(new Bic("BNPAFRP0XXX"), testBic);
+    assertThat(testBic.isTestBic()).isTrue();
+    assertThat(testBic).isEqualTo(new Bic("BNPAFRP0XXX"));
   }
 
   @Test
-  void equalityTest() {
-    Bic bic1 = new Bic("BNPAFRPP");
-    Bic bic2 = new Bic("BNPAFRPPXXX");
-
-    assertEquals(bic1, bic1);
-    assertEquals(bic2, bic2);
-
-    assertEquals(bic1, bic2);
-    assertEquals(bic2, bic1);
-    assertEquals(bic1.hashCode(), bic2.hashCode());
-
-    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
-    assertFalse(bic1.equals(null));
-    assertFalse(bic1.equals(new Object()));
+  void equality() {
+    testEquality(new Bic("BNPAFRPP"), new Bic("BNPAFRPPXXX"));
   }
 
   @Test
   void serialization() {
-    Bic object = new Bic("BNPAFRPPXXX");
-
-    byte[] serializedObject = SerializationUtils.serialize(object);
-    Bic deserializedObject = SerializationUtils.deserialize(serializedObject);
-
-    assertTrue(SerializationUtils.isSerializable(Bic.class));
-    assertEquals(object, deserializedObject);
+    testSerialization(new Bic("BNPAFRPPXXX"));
   }
 }

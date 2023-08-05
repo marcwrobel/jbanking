@@ -1,9 +1,7 @@
 package fr.marcwrobel.jbanking.calendar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
@@ -20,12 +18,12 @@ class DayOfWeekHolidayTest {
 
   @Test
   void checkDoesNotAcceptNull() {
-    assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> HOLIDAY.check(null));
   }
 
   @Test
   void holidayCheckSucceed() {
-    assertTrue(HOLIDAY.check(CURRENT_WEEK));
+    assertThat(HOLIDAY.check(CURRENT_WEEK)).isTrue();
   }
 
   @Test
@@ -40,6 +38,6 @@ class DayOfWeekHolidayTest {
       }
     }
 
-    assertEquals(1, count);
+    assertThat(count).isEqualTo(1);
   }
 }

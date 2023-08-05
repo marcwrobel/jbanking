@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A partial compiled representation of a SWIFT expression (sort of a regular expression) as used in many SWIFT
+ * A partial compiled representation of a SWIFT expression (a sort of regular expression) as used in many SWIFT
  * documents (for instance <a href="https://www.iso13616.org/">the IBAN registry document</a>).
  *
  * <p>

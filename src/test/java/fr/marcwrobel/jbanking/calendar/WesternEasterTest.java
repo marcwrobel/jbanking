@@ -2,10 +2,8 @@ package fr.marcwrobel.jbanking.calendar;
 
 import static java.time.Month.DECEMBER;
 import static java.time.Month.JANUARY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,8 +27,7 @@ class WesternEasterTest {
 
   @Test
   void checkDoesNotAcceptNull() {
-    // noinspection ConstantConditions
-    assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> HOLIDAY.check(null));
   }
 
   // Data from https://www.census.gov/data/software/x13as/genhol/easter-dates-frequency.html
@@ -38,7 +35,7 @@ class WesternEasterTest {
   @MethodSource("easter500")
   void easter500(int month, int dayOfMonth, int year) {
     LocalDate date = LocalDate.of(year, month, dayOfMonth);
-    assertTrue(HOLIDAY.check(date));
+    assertThat(HOLIDAY.check(date)).isTrue();
   }
 
   @Test
@@ -53,6 +50,6 @@ class WesternEasterTest {
       }
     }
 
-    assertEquals(1, count);
+    assertThat(count).isEqualTo(1);
   }
 }

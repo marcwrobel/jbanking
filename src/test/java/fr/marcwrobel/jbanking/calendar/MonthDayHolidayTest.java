@@ -1,8 +1,9 @@
 package fr.marcwrobel.jbanking.calendar;
 
+import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
 import static java.time.Month.*;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.MonthDay;
@@ -20,18 +21,18 @@ class MonthDayHolidayTest {
 
   @Test
   void monthDayCannotBeNull() {
-    assertThrows(NullPointerException.class, () -> new MonthDayHoliday(null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> new MonthDayHoliday(null));
   }
 
   @Test
   void checkDoesNotAcceptNull() {
-    assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> HOLIDAY.check(null));
   }
 
   @ParameterizedTest
   @ValueSource(ints = { 1, 100, 1970, YEAR, 2050, 10000 })
   void holidayCheckSucceed(int year) {
-    assertTrue(HOLIDAY.check(LocalDate.of(year, MONTH, DAY)));
+    assertThat(HOLIDAY.check(LocalDate.of(year, MONTH, DAY))).isTrue();
   }
 
   @Test
@@ -46,22 +47,12 @@ class MonthDayHolidayTest {
       }
     }
 
-    assertEquals(1, count);
+    assertThat(count).isEqualTo(1);
   }
 
   @Test
   void equalsAndHashCodeAndToString() {
-    Holiday holiday1 = new MonthDayHoliday(MonthDay.of(MONTH, DAY));
-    Holiday holiday2 = new MonthDayHoliday(MonthDay.of(MONTH, DAY));
-
-    assertEquals(holiday1, holiday2);
-    assertEquals(holiday2, holiday1);
-    assertEquals(holiday1, holiday1);
-    assertEquals(holiday1.hashCode(), holiday2.hashCode());
-    assertEquals(holiday1.toString(), holiday2.toString());
-
-    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
-    assertFalse(holiday1.equals(null));
-    assertFalse(holiday1.equals(new Object()));
+    testEquality(new MonthDayHoliday(MonthDay.of(MONTH, DAY)),
+        new MonthDayHoliday(MonthDay.of(MONTH, DAY)));
   }
 }

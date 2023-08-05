@@ -1,11 +1,8 @@
 package fr.marcwrobel.jbanking.calendar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.MonthDay;
@@ -24,42 +21,19 @@ class MovedHolidayTest {
 
   @Test
   void baseCannotBeNull() {
-    assertThrows(NullPointerException.class, () -> new RelativeHoliday(null, 0));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> new RelativeHoliday(null, 0));
   }
 
   @Test
   void holidayIsMoved() {
-    assertTrue(HOLIDAY.check(FROM.minusYears(1)));
-    assertFalse(HOLIDAY.check(FROM));
-    assertTrue(HOLIDAY.check(TO));
-    assertTrue(HOLIDAY.check(FROM.plusYears(1)));
+    assertThat(HOLIDAY.check(FROM.minusYears(1))).isTrue();
+    assertThat(HOLIDAY.check(FROM)).isFalse();
+    assertThat(HOLIDAY.check(TO)).isTrue();
+    assertThat(HOLIDAY.check(FROM.plusYears(1))).isTrue();
   }
 
   @Test
   void equalsAndHashCodeAndToString() {
-    Holiday holiday1 = HOLIDAY;
-    Holiday holiday2 = HOLIDAY;
-    Holiday holiday3 = new MovedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY + 3)));
-    Holiday holiday4 = new MovedHoliday(BASE);
-
-    assertEquals(holiday1, holiday2);
-    assertEquals(holiday2, holiday1);
-    assertEquals(holiday1, holiday1);
-    assertEquals(holiday1.hashCode(), holiday2.hashCode());
-    assertEquals(holiday1.toString(), holiday2.toString());
-
-    assertNotEquals(holiday1, holiday3);
-    assertNotEquals(holiday3, holiday1);
-    assertNotEquals(holiday1.hashCode(), holiday3.hashCode());
-    assertNotEquals(holiday1.toString(), holiday3.toString());
-
-    assertNotEquals(holiday1, holiday4);
-    assertNotEquals(holiday4, holiday1);
-    assertNotEquals(holiday1.hashCode(), holiday4.hashCode());
-    assertNotEquals(holiday1.toString(), holiday4.toString());
-
-    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
-    assertFalse(holiday1.equals(null));
-    assertFalse(holiday1.equals(new Object()));
+    testEquality(new MovedHoliday(BASE, FROM, TO), new MovedHoliday(BASE, FROM, TO));
   }
 }

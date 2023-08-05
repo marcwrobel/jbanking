@@ -2,11 +2,8 @@ package fr.marcwrobel.jbanking.calendar;
 
 import static java.time.LocalDate.MAX;
 import static java.time.LocalDate.MIN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
@@ -33,77 +30,77 @@ class CalendarTest {
   @Test
   void businessDay() {
     Calendar calendar = new OddCalendar();
-    assertTrue(calendar.isHoliday(ODD));
-    assertFalse(calendar.isBusinessDay(ODD));
-    assertFalse(calendar.isHoliday(EVEN));
-    assertTrue(calendar.isBusinessDay(EVEN));
+    assertThat(calendar.isHoliday(ODD)).isTrue();
+    assertThat(calendar.isBusinessDay(ODD)).isFalse();
+    assertThat(calendar.isHoliday(EVEN)).isFalse();
+    assertThat(calendar.isBusinessDay(EVEN)).isTrue();
   }
 
   @Test
   void shift() {
     Calendar calendar = new OddCalendar();
 
-    assertEquals(ODD, calendar.shift(ODD, 0));
-    assertEquals(EVEN, calendar.shift(EVEN, 0));
+    assertThat(calendar.shift(ODD, 0)).isEqualTo(ODD);
+    assertThat(calendar.shift(EVEN, 0)).isEqualTo(EVEN);
 
-    assertEquals(ODD.plusDays(1), calendar.shift(ODD, 1));
-    assertEquals(EVEN.plusDays(2), calendar.shift(EVEN, 1));
+    assertThat(calendar.shift(ODD, 1)).isEqualTo(ODD.plusDays(1));
+    assertThat(calendar.shift(EVEN, 1)).isEqualTo(EVEN.plusDays(2));
 
-    assertEquals(ODD.minusDays(1), calendar.shift(ODD, -1));
-    assertEquals(EVEN.minusDays(2), calendar.shift(EVEN, -1));
+    assertThat(calendar.shift(ODD, -1)).isEqualTo(ODD.minusDays(1));
+    assertThat(calendar.shift(EVEN, -1)).isEqualTo(EVEN.minusDays(2));
   }
 
   @Test
   void nextOrSame() {
     Calendar calendar = new OddCalendar();
-    assertEquals(ODD.plusDays(1), calendar.nextOrSame(ODD));
-    assertEquals(EVEN, calendar.nextOrSame(EVEN));
+    assertThat(calendar.nextOrSame(ODD)).isEqualTo(ODD.plusDays(1));
+    assertThat(calendar.nextOrSame(EVEN)).isEqualTo(EVEN);
   }
 
   @Test
   void previousOrSame() {
     Calendar calendar = new OddCalendar();
-    assertEquals(ODD.minusDays(1), calendar.previousOrSame(ODD));
-    assertEquals(EVEN, calendar.previousOrSame(EVEN));
+    assertThat(calendar.previousOrSame(ODD)).isEqualTo(ODD.minusDays(1));
+    assertThat(calendar.previousOrSame(EVEN)).isEqualTo(EVEN);
   }
 
   @Test
   void next() {
     Calendar calendar = new OddCalendar();
-    assertEquals(ODD.plusDays(1), calendar.next(ODD));
-    assertEquals(EVEN.plusDays(2), calendar.next(EVEN));
+    assertThat(calendar.next(ODD)).isEqualTo(ODD.plusDays(1));
+    assertThat(calendar.next(EVEN)).isEqualTo(EVEN.plusDays(2));
   }
 
   @Test
   void previous() {
     Calendar calendar = new OddCalendar();
-    assertEquals(ODD.minusDays(1), calendar.previous(ODD));
-    assertEquals(EVEN.minusDays(2), calendar.previous(EVEN));
+    assertThat(calendar.previous(ODD)).isEqualTo(ODD.minusDays(1));
+    assertThat(calendar.previous(EVEN)).isEqualTo(EVEN.minusDays(2));
   }
 
   @Test
   void holidaysWithinParameterValidation() {
     Calendar calendar = new OddCalendar();
-    assertThrows(IllegalArgumentException.class, () -> calendar.holidaysWithin(MAX, MIN));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calendar.holidaysWithin(MAX, MIN));
   }
 
   @Test
   void holidaysWithin() {
     Calendar calendar = new OddCalendar();
-    assertEquals(Arrays.asList(ODD.minusDays(2), ODD, ODD.plusDays(2)),
-        calendar.holidaysWithin(ODD.minusDays(2), ODD.plusDays(2)));
+    assertThat(calendar.holidaysWithin(ODD.minusDays(2), ODD.plusDays(2)))
+        .isEqualTo(Arrays.asList(ODD.minusDays(2), ODD, ODD.plusDays(2)));
   }
 
   @Test
   void businessDaysWithinParameterValidation() {
     Calendar calendar = new OddCalendar();
-    assertThrows(IllegalArgumentException.class, () -> calendar.businessDaysWithin(MAX, MIN));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calendar.businessDaysWithin(MAX, MIN));
   }
 
   @Test
   void businessDaysWithin() {
     Calendar calendar = new OddCalendar();
-    assertEquals(Arrays.asList(ODD.minusDays(1), ODD.plusDays(1)),
-        calendar.businessDaysWithin(ODD.minusDays(2), ODD.plusDays(2)));
+    assertThat(calendar.businessDaysWithin(ODD.minusDays(2), ODD.plusDays(2)))
+        .isEqualTo(Arrays.asList(ODD.minusDays(1), ODD.plusDays(1)));
   }
 }

@@ -6,8 +6,8 @@ import static fr.marcwrobel.jbanking.IsoCountry.FR;
 import static fr.marcwrobel.jbanking.IsoCountry.PS;
 import static fr.marcwrobel.jbanking.IsoCountry.TW;
 import static java.util.EnumSet.of;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CountryCode.Assignment;
 import java.util.Arrays;
@@ -23,67 +23,58 @@ class IsoCountryTest {
 
   @Test
   void fromAlpha2CodeAllowsNull() {
-    assertFalse(IsoCountry.fromAlpha2Code(null).isPresent());
+    assertThat(IsoCountry.fromAlpha2Code(null)).isEmpty();
   }
 
   @Test
   void fromAlpha3CodeAllowsNull() {
-    assertFalse(IsoCountry.fromAlpha3Code(null).isPresent());
+    assertThat(IsoCountry.fromAlpha3Code(null)).isEmpty();
   }
 
   @Test
   void fromAlpha2CodeAllowsUnknownOrInvalidCodes() {
-    assertFalse(IsoCountry.fromAlpha2Code("XXX").isPresent());
+    assertThat(IsoCountry.fromAlpha2Code("XXX")).isEmpty();
   }
 
   @Test
   void fromAlpha3CodeAllowsUnknownOrInvalidCodes() {
-    assertFalse(IsoCountry.fromAlpha3Code("XX").isPresent());
+    assertThat(IsoCountry.fromAlpha3Code("XX")).isEmpty();
   }
 
   @Test
   void fromNumericCodeAllowsUnknownOrInvalidCodes() {
-    assertFalse(IsoCountry.fromNumericCode(-1).isPresent());
+    assertThat(IsoCountry.fromNumericCode(-1)).isEmpty();
   }
 
   @Test
   void fromAlpha2CodeIsNotCaseSensitive() {
     Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(IsoCountry.FR.getAlpha2Code().toLowerCase());
-
-    assertTrue(country.isPresent());
-    assertEquals(FR, country.get());
+    assertThat(country).contains(FR);
   }
 
   @Test
   void fromAlpha3CodeIsNotCaseSensitive() {
     Optional<IsoCountry> country = IsoCountry.fromAlpha3Code(IsoCountry.FR.getAlpha3Code().toLowerCase());
-
-    assertTrue(country.isPresent());
-    assertEquals(FR, country.get());
+    assertThat(country).contains(FR);
   }
 
   @Test
   void fromAlpha2CodeAllowsLeadingAndTrailingWhitespaces() {
     Optional<IsoCountry> country = IsoCountry.fromAlpha2Code(" " + IsoCountry.FR.getAlpha2Code().toLowerCase() + " ");
-
-    assertTrue(country.isPresent());
-    assertEquals(FR, country.get());
+    assertThat(country).contains(FR);
   }
 
   @Test
   void fromAlpha3CodeAllowsLeadingAndTrailingWhitespaces() {
     Optional<IsoCountry> country = IsoCountry.fromAlpha3Code(" " + IsoCountry.FR.getAlpha3Code() + " ");
-
-    assertTrue(country.isPresent());
-    assertEquals(FR, country.get());
+    assertThat(country).contains(FR);
   }
 
   @Test
   void fromAlpha2CodeWorksWithAllExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
       Optional<IsoCountry> result = IsoCountry.fromAlpha2Code(country.getAlpha2Code());
-      assertTrue(result.isPresent());
-      assertEquals(country, result.get());
+      assertThat(result).contains(country);
     }
   }
 
@@ -91,8 +82,7 @@ class IsoCountryTest {
   void fromAlpha3CodeWorksWithAllExistingValues() {
     for (IsoCountry country : IsoCountry.values()) {
       Optional<IsoCountry> result = IsoCountry.fromAlpha3Code(country.getAlpha3Code());
-      assertTrue(result.isPresent());
-      assertEquals(country, result.get());
+      assertThat(result).contains(country);
     }
   }
 
@@ -102,8 +92,7 @@ class IsoCountryTest {
       Optional<Integer> code = country.getNumericCode();
       if (code.isPresent()) {
         Optional<IsoCountry> result = IsoCountry.fromNumericCode(code.get());
-        assertTrue(result.isPresent());
-        assertEquals(country, result.get());
+        assertThat(result).contains(country);
       }
     }
   }
@@ -127,7 +116,7 @@ class IsoCountryTest {
     List<CountryCode> undefinedCountries = allCountries.stream()
         .filter(c -> !IsoCountry.fromAlpha2Code(c.getAlpha2()).isPresent()).collect(Collectors.toList());
 
-    assertTrue(undefinedCountries.isEmpty(), "Missing countries : " + undefinedCountries);
+    assertThat(undefinedCountries).as("Missing countries : " + undefinedCountries).isEmpty();
   }
 
   @Test
@@ -136,7 +125,7 @@ class IsoCountryTest {
 
     for (IsoCountry country : IsoCountry.values()) {
       String code = country.getAlpha3Code();
-      assertFalse(codes.contains(code));
+      assertThat(codes).doesNotContain(code);
       codes.add(code);
     }
   }
@@ -148,7 +137,7 @@ class IsoCountryTest {
     for (IsoCountry country : IsoCountry.values()) {
       Optional<Integer> code = country.getNumericCode();
       if (code.isPresent()) {
-        assertFalse(codes.contains(code.get()));
+        assertThat(codes).doesNotContain(code.get());
         codes.add(code.get());
       }
     }
@@ -159,12 +148,12 @@ class IsoCountryTest {
   void ensureExactness() {
     for (IsoCountry country : IsoCountry.values()) {
       CountryCode code = CountryCode.getByAlpha2Code(country.getAlpha2Code());
-      assertNotNull(code);
-      assertEquals(code.getAlpha2(), country.getAlpha2Code());
-      assertEquals(code.getAlpha3(), country.getAlpha3Code());
+      assertThat(code).isNotNull();
+      assertThat(country.getAlpha2Code()).isEqualTo(code.getAlpha2());
+      assertThat(country.getAlpha3Code()).isEqualTo(code.getAlpha3());
 
       if (country.getNumericCode().isPresent()) {
-        assertEquals(code.getNumeric(), country.getNumericCode().get());
+        assertThat(country.getNumericCode()).contains(code.getNumeric());
       }
     }
   }
@@ -175,12 +164,12 @@ class IsoCountryTest {
     List<IsoCountry> deprecated = Arrays.stream(IsoCountry.values())
         .filter(c -> CountryCode.getByCode(c.getAlpha2Code()) == null).collect(Collectors.toList());
 
-    assertTrue(deprecated.isEmpty(), "Deprecated currencies : " + deprecated);
+    assertThat(deprecated).as("Deprecated currencies : " + deprecated).isEmpty();
   }
 
   @Test
   void nullParticipationThrows() {
-    assertThrows(IllegalArgumentException.class, () -> FR.isParticipatingTo(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> FR.isParticipatingTo(null));
   }
 
   @Test
@@ -189,14 +178,14 @@ class IsoCountryTest {
 
     for (IsoCountry country : IsoCountry.values()) {
       if (country.isIndependent()) {
-        assertFalse(country.getDependency().isPresent(), country::name);
+        assertThat(country.getDependency()).as(country::name).isEmpty();
 
       } else if (excludedCountries.contains(country)) {
-        assertFalse(country.getDependency().isPresent(), country::name);
+        assertThat(country.getDependency()).as(country::name).isEmpty();
 
       } else {
-        assertTrue(country.getDependency().isPresent(), country::name);
-        assertTrue(country.getDependency().get().isIndependent(), country::name);
+        assertThat(country.getDependency()).as(country::name).isPresent();
+        assertThat(country.getDependency().get().isIndependent()).as(country::name).isTrue();
       }
     }
   }
@@ -204,7 +193,7 @@ class IsoCountryTest {
   @Test
   void ensureIsoAlpha2CodeIsUsedForEnumEntries() {
     for (IsoCountry country : IsoCountry.values()) {
-      assertEquals(2, country.name().length());
+      assertThat(country.name()).hasSize(2);
     }
   }
 }

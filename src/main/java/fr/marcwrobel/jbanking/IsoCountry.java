@@ -925,7 +925,7 @@ public enum IsoCountry {
   MY("MYS", 458),
 
   /**
-   * Maldives (aka the Republic of Maldives).
+   * Maldives (aka the Republic of the Maldives).
    *
    * @see <a href="https://www.iso.org/obp/ui/#iso:code:3166:MV">www.iso.org</a>
    */

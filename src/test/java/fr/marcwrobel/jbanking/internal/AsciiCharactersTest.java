@@ -1,71 +1,69 @@
 package fr.marcwrobel.jbanking.internal;
 
 import static fr.marcwrobel.jbanking.internal.AsciiCharacters.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 class AsciiCharactersTest {
 
   @Test
   void isAlphabeticTest() {
-    assertTrue(isAlphabetic('a'));
-    assertTrue(isAlphabetic('A'));
-    assertFalse(isAlphabetic('3'));
-    assertFalse(isAlphabetic('-'));
-    assertFalse(isAlphabetic('\n'));
-    assertFalse(isAlphabetic('©'));
+    assertThat(isAlphabetic('a')).isTrue();
+    assertThat(isAlphabetic('A')).isTrue();
+    assertThat(isAlphabetic('3')).isFalse();
+    assertThat(isAlphabetic('-')).isFalse();
+    assertThat(isAlphabetic('\n')).isFalse();
+    assertThat(isAlphabetic('©')).isFalse();
   }
 
   @Test
   void isUpperAlphabeticTest() {
-    assertFalse(isUpperAlphabetic('a'));
-    assertTrue(isUpperAlphabetic('A'));
-    assertFalse(isUpperAlphabetic('3'));
-    assertFalse(isUpperAlphabetic('-'));
-    assertFalse(isUpperAlphabetic('\n'));
-    assertFalse(isUpperAlphabetic('©'));
+    assertThat(isUpperAlphabetic('a')).isFalse();
+    assertThat(isUpperAlphabetic('A')).isTrue();
+    assertThat(isUpperAlphabetic('3')).isFalse();
+    assertThat(isUpperAlphabetic('-')).isFalse();
+    assertThat(isUpperAlphabetic('\n')).isFalse();
+    assertThat(isUpperAlphabetic('©')).isFalse();
   }
 
   @Test
   void isLowerAlphabeticTest() {
-    assertTrue(isLowerAlphabetic('a'));
-    assertFalse(isLowerAlphabetic('A'));
-    assertFalse(isLowerAlphabetic('3'));
-    assertFalse(isLowerAlphabetic('-'));
-    assertFalse(isLowerAlphabetic('\n'));
-    assertFalse(isLowerAlphabetic('©'));
+    assertThat(isLowerAlphabetic('a')).isTrue();
+    assertThat(isLowerAlphabetic('A')).isFalse();
+    assertThat(isLowerAlphabetic('3')).isFalse();
+    assertThat(isLowerAlphabetic('-')).isFalse();
+    assertThat(isLowerAlphabetic('\n')).isFalse();
+    assertThat(isLowerAlphabetic('©')).isFalse();
   }
 
   @Test
   void isNumericTest() {
-    assertFalse(isNumeric('a'));
-    assertFalse(isNumeric('A'));
-    assertTrue(isNumeric('3'));
-    assertFalse(isNumeric('-'));
-    assertFalse(isNumeric('\n'));
-    assertFalse(isNumeric('©'));
+    assertThat(isNumeric('a')).isFalse();
+    assertThat(isNumeric('A')).isFalse();
+    assertThat(isNumeric('3')).isTrue();
+    assertThat(isNumeric('-')).isFalse();
+    assertThat(isNumeric('\n')).isFalse();
+    assertThat(isNumeric('©')).isFalse();
   }
 
   @Test
   void isAlphanumericTest() {
-    assertTrue(isAlphanumeric('a'));
-    assertTrue(isAlphanumeric('A'));
-    assertTrue(isAlphanumeric('3'));
-    assertFalse(isAlphanumeric('-'));
-    assertFalse(isAlphanumeric('\n'));
-    assertFalse(isAlphanumeric('©'));
+    assertThat(isAlphanumeric('a')).isTrue();
+    assertThat(isAlphanumeric('A')).isTrue();
+    assertThat(isAlphanumeric('3')).isTrue();
+    assertThat(isAlphanumeric('-')).isFalse();
+    assertThat(isAlphanumeric('\n')).isFalse();
+    assertThat(isAlphanumeric('©')).isFalse();
   }
 
   @Test
   void isSpaceTest() {
-    assertTrue(isSpace(' '));
-    assertFalse(isSpace('a'));
-    assertFalse(isSpace('A'));
-    assertFalse(isSpace('3'));
-    assertFalse(isSpace('-'));
-    assertFalse(isSpace('\n'));
-    assertFalse(isSpace('©'));
+    assertThat(isSpace(' ')).isTrue();
+    assertThat(isSpace('a')).isFalse();
+    assertThat(isSpace('A')).isFalse();
+    assertThat(isSpace('3')).isFalse();
+    assertThat(isSpace('-')).isFalse();
+    assertThat(isSpace('\n')).isFalse();
+    assertThat(isSpace('©')).isFalse();
   }
 }

@@ -3,9 +3,7 @@ package fr.marcwrobel.jbanking.calendar;
 import static fr.marcwrobel.jbanking.calendar.FinancialCalendars.SATURDAY_SUNDAY;
 import static java.time.DayOfWeek.SATURDAY;
 import static java.time.DayOfWeek.SUNDAY;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
 import java.util.EnumSet;
 import org.junit.jupiter.api.Test;
@@ -22,11 +20,11 @@ class SaturdaySundayCalendarTest {
 
     while (!current.equals(TO)) {
       if (EnumSet.of(SATURDAY, SUNDAY).contains(current.getDayOfWeek())) {
-        assertFalse(SATURDAY_SUNDAY.isBusinessDay(current));
-        assertTrue(SATURDAY_SUNDAY.isHoliday(current));
+        assertThat(SATURDAY_SUNDAY.isBusinessDay(current)).isFalse();
+        assertThat(SATURDAY_SUNDAY.isHoliday(current)).isTrue();
       } else {
-        assertTrue(SATURDAY_SUNDAY.isBusinessDay(current));
-        assertFalse(SATURDAY_SUNDAY.isHoliday(current));
+        assertThat(SATURDAY_SUNDAY.isBusinessDay(current)).isTrue();
+        assertThat(SATURDAY_SUNDAY.isHoliday(current)).isFalse();
       }
 
       current = current.plusDays(1);

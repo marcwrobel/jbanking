@@ -1,10 +1,7 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import fr.marcwrobel.jbanking.IsoCountry;
 import java.util.EnumSet;
 import java.util.Optional;
@@ -15,20 +12,19 @@ class BbanStructureTest {
 
   @Test
   void nullReturnsEmpty() {
-    assertFalse(BbanStructure.forCountry(null).isPresent());
+    assertThat(BbanStructure.forCountry(null)).isEmpty();
   }
 
   @Test
   void unsupportedCountryReturnsEmpty() {
-    assertFalse(BbanStructure.forCountry(IsoCountry.US).isPresent());
+    assertThat(BbanStructure.forCountry(IsoCountry.US)).isEmpty();
   }
 
   @Test
   void supportedCountryReturnsCorrespondingBbanDefinition() {
     for (BbanStructure structure : BbanStructure.values()) {
       Optional<BbanStructure> found = BbanStructure.forCountry(structure.getCountry());
-      assertTrue(found.isPresent());
-      assertEquals(structure, found.get());
+      assertThat(found).contains(structure);
     }
   }
 
@@ -37,15 +33,14 @@ class BbanStructureTest {
     for (BbanStructure structure : BbanStructure.values()) {
       for (IsoCountry country : structure.getSubdivisions()) {
         Optional<BbanStructure> found = BbanStructure.forCountry(country);
-        assertTrue(found.isPresent());
-        assertEquals(structure, found.get());
+        assertThat(found).contains(structure);
       }
     }
   }
 
   @Test
   void isBbanValidCannotBeCalledWithNull() {
-    assertThrows(IllegalArgumentException.class, () -> BbanStructure.AL.isBbanValid(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> BbanStructure.AL.isBbanValid(null));
   }
 
   @Test
@@ -54,11 +49,11 @@ class BbanStructureTest {
 
     for (BbanStructure structure : BbanStructure.values()) {
       IsoCountry country = structure.getCountry();
-      assertFalse(countries.contains(country));
+      assertThat(countries).doesNotContain(country);
       countries.add(country);
 
       for (IsoCountry subDivision : structure.getSubdivisions()) {
-        assertFalse(countries.contains(subDivision));
+        assertThat(countries).doesNotContain(subDivision);
         countries.add(subDivision);
       }
     }

@@ -1112,7 +1112,7 @@ public enum BbanStructure {
   NL(IsoCountry.NL, "4!a10!n", 0, 4, null, null, null, null, 4, 14),
 
   /**
-   * BBAN structure for Norway as defined by the <a href="https://www.dnb.no">DNB ASA</a> ((formerly DnB NOR ASA).
+   * BBAN structure for Norway as defined by the <a href="https://www.dnb.no">DNB ASA</a> (formerly DnB NOR ASA).
    *
    * <p>
    * Example:

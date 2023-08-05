@@ -3,17 +3,13 @@ package fr.marcwrobel.jbanking.calendar;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singletonList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.LocalDate;
 import java.time.MonthDay;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ConfigurableCalendarTest {
@@ -35,14 +31,14 @@ class ConfigurableCalendarTest {
 
   @Test
   void holidaysMustNotBeNull() {
-    // noinspection ConstantConditions
-    assertThrows(NullPointerException.class, () -> new ConfigurableCalendar((Collection<Holiday>) null));
+    assertThatExceptionOfType(NullPointerException.class)
+        .isThrownBy(() -> new ConfigurableCalendar((Collection<Holiday>) null));
   }
 
   @Test
   void oneHolidayMustNotBeNull() {
-    assertThrows(NullPointerException.class,
-        () -> new ConfigurableCalendar(SUNDAY_HOLIDAY1, null, SUNDAY_HOLIDAY2));
+    assertThatExceptionOfType(NullPointerException.class)
+        .isThrownBy(() -> new ConfigurableCalendar(SUNDAY_HOLIDAY1, null, SUNDAY_HOLIDAY2));
   }
 
   @Test
@@ -50,12 +46,12 @@ class ConfigurableCalendarTest {
     Calendar emptyCalendar = new ConfigurableCalendar();
     LocalDate date = LocalDate.of(2020, 4, 14);
 
-    assertTrue(emptyCalendar.isBusinessDay(date));
-    assertFalse(emptyCalendar.isHoliday(date));
-    assertEquals(date, emptyCalendar.nextOrSame(date));
-    assertEquals(date.plusDays(1), emptyCalendar.next(date));
-    assertEquals(date, emptyCalendar.previousOrSame(date));
-    assertEquals(date.minusDays(1), emptyCalendar.previous(date));
+    assertThat(emptyCalendar.isBusinessDay(date)).isTrue();
+    assertThat(emptyCalendar.isHoliday(date)).isFalse();
+    assertThat(emptyCalendar.nextOrSame(date)).isEqualTo(date);
+    assertThat(emptyCalendar.next(date)).isEqualTo(date.plusDays(1));
+    assertThat(emptyCalendar.previousOrSame(date)).isEqualTo(date);
+    assertThat(emptyCalendar.previous(date)).isEqualTo(date.minusDays(1));
   }
 
   @Test
@@ -64,82 +60,84 @@ class ConfigurableCalendarTest {
     LocalDate date = LocalDate.of(2020, 4, 14);
 
     for (int i = 0; i < 365; i++) {
-      assertTrue(fullCalendar.isHoliday(date));
-      assertFalse(fullCalendar.isBusinessDay(date));
+      assertThat(fullCalendar.isHoliday(date)).isTrue();
+      assertThat(fullCalendar.isBusinessDay(date)).isFalse();
     }
 
-    assertThrows(DateCalculationException.class, () -> fullCalendar.shift(date, 1));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.shift(date, -1));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.next(date));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.nextOrSame(date));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.previous(date));
-    assertThrows(DateCalculationException.class, () -> fullCalendar.previousOrSame(date));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.shift(date, 1));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.shift(date, -1));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.next(date));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.nextOrSame(date));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.previous(date));
+    assertThatExceptionOfType(DateCalculationException.class).isThrownBy(() -> fullCalendar.previousOrSame(date));
   }
 
   @Test
   void saturdayCalculation() {
-    assertFalse(WEEKEND_CALENDAR.isBusinessDay(SATURDAY));
-    assertTrue(WEEKEND_CALENDAR.isHoliday(SATURDAY));
-    assertEquals(new HashSet<>(singletonList(SATURDAY_HOLIDAY)), WEEKEND_CALENDAR.getHolidaysFor(SATURDAY));
+    assertThat(WEEKEND_CALENDAR.isBusinessDay(SATURDAY)).isFalse();
+    assertThat(WEEKEND_CALENDAR.isHoliday(SATURDAY)).isTrue();
+    assertThat(WEEKEND_CALENDAR.getHolidaysFor(SATURDAY)).isEqualTo(new HashSet<>(singletonList(SATURDAY_HOLIDAY)));
   }
 
   @Test
   void fridayCalculation() {
-    assertTrue(WEEKEND_CALENDAR.isBusinessDay(FRIDAY));
-    assertFalse(WEEKEND_CALENDAR.isHoliday(FRIDAY));
-    assertEquals(emptySet(), WEEKEND_CALENDAR.getHolidaysFor(FRIDAY));
-    assertEquals(FRIDAY, WEEKEND_CALENDAR.previous(SATURDAY));
+    assertThat(WEEKEND_CALENDAR.isBusinessDay(FRIDAY)).isTrue();
+    assertThat(WEEKEND_CALENDAR.isHoliday(FRIDAY)).isFalse();
+    assertThat(WEEKEND_CALENDAR.getHolidaysFor(FRIDAY)).isEqualTo(emptySet());
+    assertThat(WEEKEND_CALENDAR.previous(SATURDAY)).isEqualTo(FRIDAY);
   }
 
   @Test
   void sundayCalculation() {
-    assertFalse(WEEKEND_CALENDAR.isBusinessDay(SUNDAY));
-    assertTrue(WEEKEND_CALENDAR.isHoliday(SUNDAY));
-    assertTrue(WEEKEND_CALENDAR.isHoliday(SUNDAY));
-    assertEquals(new HashSet<>(asList(SUNDAY_HOLIDAY1, SUNDAY_HOLIDAY2)), WEEKEND_CALENDAR.getHolidaysFor(SUNDAY));
+    assertThat(WEEKEND_CALENDAR.isBusinessDay(SUNDAY)).isFalse();
+    assertThat(WEEKEND_CALENDAR.isHoliday(SUNDAY)).isTrue();
+    assertThat(WEEKEND_CALENDAR.isHoliday(SUNDAY)).isTrue();
+    assertThat(WEEKEND_CALENDAR.getHolidaysFor(SUNDAY)).isEqualTo(new HashSet<>(asList(SUNDAY_HOLIDAY1, SUNDAY_HOLIDAY2)));
   }
 
   @Test
   void nextMondayCalculation() {
-    assertTrue(WEEKEND_CALENDAR.isBusinessDay(NEXT_MONDAY));
-    assertFalse(WEEKEND_CALENDAR.isHoliday(NEXT_MONDAY));
-    assertEquals(emptySet(), WEEKEND_CALENDAR.getHolidaysFor(NEXT_MONDAY));
-    assertEquals(NEXT_MONDAY, WEEKEND_CALENDAR.next(SATURDAY));
+    assertThat(WEEKEND_CALENDAR.isBusinessDay(NEXT_MONDAY)).isTrue();
+    assertThat(WEEKEND_CALENDAR.isHoliday(NEXT_MONDAY)).isFalse();
+    assertThat(WEEKEND_CALENDAR.getHolidaysFor(NEXT_MONDAY)).isEqualTo(emptySet());
+    assertThat(WEEKEND_CALENDAR.next(SATURDAY)).isEqualTo(NEXT_MONDAY);
   }
 
   @Test
   void fromCannotBeAfterToForHolidaysComputation() {
-    assertThrows(IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
   }
 
   @Test
   void fromCanBeEqualsToForHolidaysComputation() {
-    assertTrue(WEEKEND_CALENDAR.holidaysWithin(MONDAY, MONDAY).isEmpty());
-    assertEquals(1, WEEKEND_CALENDAR.holidaysWithin(SUNDAY, SUNDAY).size());
+    assertThat(WEEKEND_CALENDAR.holidaysWithin(MONDAY, MONDAY)).isEmpty();
+    assertThat(WEEKEND_CALENDAR.holidaysWithin(SUNDAY, SUNDAY)).hasSize(1);
   }
 
   @Test
   void holidaysComputation() {
     List<LocalDate> expected = asList(SATURDAY, SUNDAY);
     List<LocalDate> occurrences = WEEKEND_CALENDAR.holidaysWithin(MONDAY, SUNDAY);
-    Assertions.assertEquals(expected, occurrences);
+    assertThat(occurrences).isEqualTo(expected);
   }
 
   @Test
   void fromCannotBeAfterToForBusinessDaysComputation() {
-    assertThrows(IllegalArgumentException.class, () -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> WEEKEND_CALENDAR.holidaysWithin(TUESDAY, MONDAY));
   }
 
   @Test
   void fromCanBeEqualsToForBusinessDaysComputation() {
-    assertTrue(WEEKEND_CALENDAR.holidaysWithin(MONDAY, MONDAY).isEmpty());
-    assertEquals(1, WEEKEND_CALENDAR.holidaysWithin(SUNDAY, SUNDAY).size());
+    assertThat(WEEKEND_CALENDAR.holidaysWithin(MONDAY, MONDAY)).isEmpty();
+    assertThat(WEEKEND_CALENDAR.holidaysWithin(SUNDAY, SUNDAY)).hasSize(1);
   }
 
   @Test
   void businessDaysComputation() {
     List<LocalDate> expected = asList(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY);
     List<LocalDate> occurrences = WEEKEND_CALENDAR.businessDaysWithin(MONDAY, SUNDAY);
-    Assertions.assertEquals(expected, occurrences);
+    assertThat(occurrences).isEqualTo(expected);
   }
 }

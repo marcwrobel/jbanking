@@ -1,29 +1,28 @@
 package fr.marcwrobel.jbanking.internal;
 
 import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 class NormalizerTest {
 
   @Test
   void nullNormalizeToNull() {
-    assertNull(trimUpperCase(null));
+    assertThat(trimUpperCase(null)).isNull();
   }
 
   @Test
   void emptyNormalizeToEmpty() {
-    assertEquals("", trimUpperCase(""));
+    assertThat(trimUpperCase("")).isEmpty();
   }
 
   @Test
   void blankNormalizeToEmpty() {
-    assertEquals("", trimUpperCase(" \t\n\f\r" + (char) 0x0B));
+    assertThat(trimUpperCase(" \t\n\f\r" + (char) 0x0B)).isEmpty();
   }
 
   @Test
   void lowerCaseNormalizeToUpperCase() {
-    assertEquals("ABC", trimUpperCase("abc"));
+    assertThat(trimUpperCase("abc")).isEqualTo("ABC");
   }
 }

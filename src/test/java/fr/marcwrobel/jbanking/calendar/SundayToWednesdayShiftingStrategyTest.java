@@ -1,8 +1,6 @@
 package fr.marcwrobel.jbanking.calendar;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
@@ -20,71 +18,71 @@ class SundayToWednesdayShiftingStrategyTest {
 
   @Test
   void thursdayShift() {
-    assertEquals(THURSDAY, STRATEGY.shift(THURSDAY));
+    assertThat(STRATEGY.shift(THURSDAY)).isEqualTo(THURSDAY);
   }
 
   @Test
   void thursdayUnshift() {
-    assertArrayEquals(new LocalDate[] { THURSDAY }, STRATEGY.unshift(THURSDAY));
+    assertThat(STRATEGY.unshift(THURSDAY)).containsExactly(THURSDAY);
   }
 
   @Test
   void fridayShift() {
-    assertEquals(FRIDAY, STRATEGY.shift(FRIDAY));
+    assertThat(STRATEGY.shift(FRIDAY)).isEqualTo(FRIDAY);
   }
 
   @Test
   void fridayUnshift() {
-    assertArrayEquals(new LocalDate[] { FRIDAY }, STRATEGY.unshift(FRIDAY));
+    assertThat(STRATEGY.unshift(FRIDAY)).containsExactly(FRIDAY);
   }
 
   @Test
   void saturdayShift() {
-    assertEquals(SATURDAY, STRATEGY.shift(SATURDAY));
+    assertThat(STRATEGY.shift(SATURDAY)).isEqualTo(SATURDAY);
   }
 
   @Test
   void saturdayUnshift() {
-    assertArrayEquals(new LocalDate[] { SATURDAY }, STRATEGY.unshift(SATURDAY));
+    assertThat(STRATEGY.unshift(SATURDAY)).containsExactly(SATURDAY);
   }
 
   @Test
   void sundayShift() {
-    assertEquals(WEDNESDAY, STRATEGY.shift(SUNDAY));
+    assertThat(STRATEGY.shift(SUNDAY)).isEqualTo(WEDNESDAY);
   }
 
   @Test
   void sundayUnshift() {
-    assertArrayEquals(new LocalDate[] { SUNDAY }, STRATEGY.unshift(SUNDAY));
+    assertThat(STRATEGY.unshift(SUNDAY)).containsExactly(SUNDAY);
   }
 
   @Test
   void mondayShift() {
-    assertEquals(MONDAY, STRATEGY.shift(MONDAY));
+    assertThat(STRATEGY.shift(MONDAY)).isEqualTo(MONDAY);
   }
 
   @Test
   void mondayUnshift() {
-    assertArrayEquals(new LocalDate[] { MONDAY }, STRATEGY.unshift(MONDAY));
+    assertThat(STRATEGY.unshift(MONDAY)).containsExactly(MONDAY);
   }
 
   @Test
   void tuesdayShift() {
-    assertEquals(TUESDAY, STRATEGY.shift(TUESDAY));
+    assertThat(STRATEGY.shift(TUESDAY)).isEqualTo(TUESDAY);
   }
 
   @Test
   void tuesdayUnshift() {
-    assertArrayEquals(new LocalDate[] { TUESDAY }, STRATEGY.unshift(TUESDAY));
+    assertThat(STRATEGY.unshift(TUESDAY)).containsExactly(TUESDAY);
   }
 
   @Test
   void wednesdayShift() {
-    assertEquals(WEDNESDAY, STRATEGY.shift(WEDNESDAY));
+    assertThat(STRATEGY.shift(WEDNESDAY)).isEqualTo(WEDNESDAY);
   }
 
   @Test
   void wednesdayUnshift() {
-    assertArrayEquals(new LocalDate[] { WEDNESDAY, SUNDAY }, STRATEGY.unshift(WEDNESDAY));
+    assertThat(STRATEGY.unshift(WEDNESDAY)).containsExactly(WEDNESDAY, SUNDAY);
   }
 }

@@ -5,10 +5,7 @@ import static fr.marcwrobel.jbanking.Agreement.EUROPEAN_FREE_TRADE_ASSOCIATION;
 import static fr.marcwrobel.jbanking.Agreement.EUROPEAN_UNION;
 import static fr.marcwrobel.jbanking.Agreement.SEPA_COM_PACIFIQUE;
 import static fr.marcwrobel.jbanking.Agreement.SINGLE_EURO_PAYMENTS_AREA;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +17,8 @@ class AgreementTest {
       Set<Agreement> participations = country.participations();
 
       for (Agreement agreement : Agreement.values()) {
-        assertEquals(agreement.getParticipants().contains(country), country.isParticipatingTo(agreement));
-        assertEquals(country.isParticipatingTo(agreement), participations.contains(agreement));
+        assertThat(country.isParticipatingTo(agreement)).isEqualTo(agreement.getParticipants().contains(country));
+        assertThat(participations.contains(agreement)).isEqualTo(country.isParticipatingTo(agreement));
       }
     }
   }
@@ -29,28 +26,28 @@ class AgreementTest {
   @Test
   void sepaComPacifiqueParticipantsAreNotSingleEuroPaymentAreaParticipants() {
     for (IsoCountry participant : SEPA_COM_PACIFIQUE.getParticipants()) {
-      assertFalse(participant.isParticipatingTo(SINGLE_EURO_PAYMENTS_AREA), participant::name);
+      assertThat(participant.isParticipatingTo(SINGLE_EURO_PAYMENTS_AREA)).as(participant::name).isFalse();
     }
   }
 
   @Test
   void europeanUnionParticipantsAreAlsoSingleEuroPaymentAreaParticipants() {
     for (IsoCountry participant : EUROPEAN_UNION.getParticipants()) {
-      assertTrue(participant.isParticipatingTo(SINGLE_EURO_PAYMENTS_AREA), participant::name);
+      assertThat(participant.isParticipatingTo(SINGLE_EURO_PAYMENTS_AREA)).as(participant::name).isTrue();
     }
   }
 
   @Test
   void europeanUnionParticipantsAreEuropeanEconomicAreaParticipants() {
     for (IsoCountry participant : EUROPEAN_UNION.getParticipants()) {
-      assertTrue(participant.isParticipatingTo(EUROPEAN_ECONOMIC_AREA), participant::name);
+      assertThat(participant.isParticipatingTo(EUROPEAN_ECONOMIC_AREA)).as(participant::name).isTrue();
     }
   }
 
   @Test
   void europeanFreeTradeAssociationParticipantsAreEuropeanEconomicAreaParticipants() {
     for (IsoCountry participant : EUROPEAN_FREE_TRADE_ASSOCIATION.getParticipants()) {
-      assertTrue(participant.isParticipatingTo(EUROPEAN_ECONOMIC_AREA), participant::name);
+      assertThat(participant.isParticipatingTo(EUROPEAN_ECONOMIC_AREA)).as(participant::name).isTrue();
     }
   }
 }

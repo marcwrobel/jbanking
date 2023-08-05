@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking.iban;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import fr.marcwrobel.jbanking.swift.SwiftPatternSyntaxException;
 import org.junit.jupiter.api.Test;
@@ -11,27 +12,27 @@ class IbanPatternTest {
 
   @Test
   void patternCannotBeNull() {
-    assertThrows(IllegalArgumentException.class, () -> IbanPattern.compile(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> IbanPattern.compile(null));
   }
 
   @Test
   void unknownCharacterClassAreForbidden() {
     String pattern = "2!n3!d";
-
-    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class, () -> IbanPattern.compile(pattern));
-
-    assertEquals(pattern, e.getExpression());
-    assertTrue(e.getMessage().contains("must match"));
+    assertThatExceptionOfType(SwiftPatternSyntaxException.class)
+        .isThrownBy(() -> IbanPattern.compile(pattern))
+        .withMessageContaining("must match")
+        .extracting(SwiftPatternSyntaxException::getExpression)
+        .isEqualTo(pattern);
   }
 
   @Test
   void nonStrictGroupAreForbidden() {
     String pattern = "2n";
-
-    SwiftPatternSyntaxException e = assertThrows(SwiftPatternSyntaxException.class, () -> IbanPattern.compile(pattern));
-
-    assertEquals(pattern, e.getExpression());
-    assertTrue(e.getMessage().contains("not supported"));
+    assertThatExceptionOfType(SwiftPatternSyntaxException.class)
+        .isThrownBy(() -> IbanPattern.compile(pattern))
+        .withMessageContaining("not supported")
+        .extracting(SwiftPatternSyntaxException::getExpression)
+        .isEqualTo(pattern);
   }
 
   @Test
@@ -82,29 +83,28 @@ class IbanPatternTest {
 
   private void assertMatches(String value, String expression) {
     IbanPattern pattern = IbanPattern.compile(expression);
-    assertTrue(pattern.matches(value));
+    assertThat(pattern.matches(value)).isTrue();
   }
 
   private void assertNotMatches(String value, String expression) {
     IbanPattern pattern = IbanPattern.compile(expression);
-    assertFalse(pattern.matches(value));
+    assertThat(pattern.matches(value)).isFalse();
   }
 
   @Test
-  void equalityTest() {
+  void equality() {
     IbanPattern pattern1 = IbanPattern.compile("4!n");
     IbanPattern pattern2 = IbanPattern.compile("4!n");
 
-    assertEquals(pattern1, pattern1);
-    assertEquals(pattern2, pattern2);
+    assertThat(pattern1).isEqualTo(pattern1).isEqualTo(pattern2);
 
-    assertEquals(pattern1, pattern2);
-    assertEquals(pattern2, pattern1);
-    assertEquals(pattern1.hashCode(), pattern2.hashCode());
+    assertThat(pattern2).isEqualTo(pattern1)
+        .isEqualTo(pattern2)
+        .hasSameHashCodeAs(pattern1);
 
     IbanPattern pattern3 = IbanPattern.compile("3!n");
-    assertNotNull(pattern1);
-    assertNotEquals(pattern1, new Object());
-    assertNotEquals(pattern1, pattern3);
+    assertThat(pattern1).isNotNull();
+    assertThat(new Object()).isNotEqualTo(pattern1);
+    assertThat(pattern3).isNotEqualTo(pattern1);
   }
 }

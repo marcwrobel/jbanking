@@ -2,10 +2,12 @@ package fr.marcwrobel.jbanking.creditor;
 
 import static fr.marcwrobel.jbanking.IsoCountry.FR;
 import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
-import static org.junit.jupiter.api.Assertions.*;
+import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
+import static fr.marcwrobel.jbanking.internal.TestUtils.testSerialization;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import fr.marcwrobel.jbanking.IsoCountry;
-import fr.marcwrobel.jbanking.internal.SerializationUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,27 +19,27 @@ class CreditorIdentifierTest {
 
   @Test
   void nullIsNotValid() {
-    assertFalse(CreditorIdentifier.isValid(null));
+    assertThat(CreditorIdentifier.isValid(null)).isFalse();
   }
 
   @Test
   void cannotCreateWithNull() {
-    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new CreditorIdentifier(null));
   }
 
   @Test
   void cannotCreateWithNullCountry() {
-    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(null, "ZZZ", "123456"));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new CreditorIdentifier(null, "ZZZ", "123456"));
   }
 
   @Test
   void cannotCreateWithNullBusinessCode() {
-    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(FR, null, "123456"));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new CreditorIdentifier(FR, null, "123456"));
   }
 
   @Test
   void cannotCreateWithNullNationalId() {
-    assertThrows(IllegalArgumentException.class, () -> new CreditorIdentifier(FR, "ZZZ", null));
+    assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new CreditorIdentifier(FR, "ZZZ", null));
   }
 
   @ParameterizedTest
@@ -52,7 +54,7 @@ class CreditorIdentifierTest {
       "FR77ZZZ123456"
   })
   void invalidInputIsNotValid(String s) {
-    assertFalse(CreditorIdentifier.isValid(s));
+    assertThat(CreditorIdentifier.isValid(s)).isFalse();
   }
 
   @ParameterizedTest
@@ -63,48 +65,52 @@ class CreditorIdentifierTest {
       "FR", "FR72", "FR72ZZZ", "FR72ZZZ12345!"
   })
   void cannotCreateWithInvalidInput(String s) {
-    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier(s));
-    assertEquals(s, e.getInputString());
-    assertTrue(e.getMessage().contains("format"));
+    assertThatExceptionOfType(CreditorIdentifierFormatException.class)
+        .isThrownBy(() -> new CreditorIdentifier(s))
+        .withMessageContaining("format")
+        .extracting(CreditorIdentifierFormatException::getInputString)
+        .isEqualTo(s);
   }
 
   @Test
   void cannotCreateWithUnknownCountry() {
-    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier("FG72ZZZ123456"));
-    assertEquals("FG72ZZZ123456", e.getInputString());
-    assertTrue(e.getMessage().contains("ISO 3166-1-alpha-2 code"));
+    assertThatExceptionOfType(CreditorIdentifierFormatException.class)
+        .isThrownBy(() -> new CreditorIdentifier("FG72ZZZ123456"))
+        .withMessageContaining("ISO 3166-1-alpha-2 code")
+        .extracting(CreditorIdentifierFormatException::getInputString)
+        .isEqualTo("FG72ZZZ123456");
   }
 
   @Test
   void cannotCreateWithInvalidCheckDigit() {
-    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier("FR77ZZZ123456"));
-    assertEquals("FR77ZZZ123456", e.getInputString());
-    assertTrue(e.getMessage().contains("check digits"));
+    assertThatExceptionOfType(CreditorIdentifierFormatException.class)
+        .isThrownBy(() -> new CreditorIdentifier("FR77ZZZ123456"))
+        .withMessageContaining("check digits")
+        .extracting(CreditorIdentifierFormatException::getInputString)
+        .isEqualTo("FR77ZZZ123456");
   }
 
   @Test
   void cannotCreateWithInvalidNationalId() {
-    CreditorIdentifierFormatException e = assertThrows(CreditorIdentifierFormatException.class,
-        () -> new CreditorIdentifier(""));
-    assertEquals("", e.getInputString());
-    assertTrue(e.getMessage().contains("format"));
+    assertThatExceptionOfType(CreditorIdentifierFormatException.class)
+        .isThrownBy(() -> new CreditorIdentifier(""))
+        .withMessageContaining("format")
+        .extracting(CreditorIdentifierFormatException::getInputString)
+        .isEqualTo("");
   }
 
   @ParameterizedTest
   @ValueSource(strings = { "FR72ZZZ123456", "fr72zzz123456", " FR72ZZZ123456 " })
   void canCreateAndValidateWithValidInput(String s) {
-    assertTrue(CreditorIdentifier.isValid(s));
+    assertThat(CreditorIdentifier.isValid(s)).isTrue();
 
     CreditorIdentifier ci = new CreditorIdentifier(s);
-    assertEquals("FR72ZZZ123456", ci.toString());
-    assertEquals(FR, ci.getCountry());
-    assertEquals("FR", ci.getCountryCode());
-    assertEquals("72", ci.getCheckDigit());
-    assertEquals("ZZZ", ci.getBusinessCode());
-    assertEquals("123456", ci.getNationalIdentifier());
+    assertThat(ci).hasToString("FR72ZZZ123456");
+    assertThat(ci.getCountry()).isEqualTo(FR);
+    assertThat(ci.getCountryCode()).isEqualTo("FR");
+    assertThat(ci.getCheckDigit()).isEqualTo("72");
+    assertThat(ci.getBusinessCode()).isEqualTo("ZZZ");
+    assertThat(ci.getNationalIdentifier()).isEqualTo("123456");
   }
 
   @ParameterizedTest
@@ -118,7 +124,7 @@ class CreditorIdentifierTest {
       "SM94ZZZA1B2C3D4E5F6G7H8", "ES50ZZZM23456789", "LU27ZZZ0000000000123456789", "CH1312300000012345",
       "MT31ZZZ123456789X", "EE49ZZZEE00012345678" })
   void validCreditorIdentifiersTest(String value) {
-    assertTrue(CreditorIdentifier.isValid(value));
+    assertThat(CreditorIdentifier.isValid(value)).isTrue();
 
     CreditorIdentifier ci1 = new CreditorIdentifier(value);
 
@@ -127,34 +133,16 @@ class CreditorIdentifierTest {
     String nationalId = value.substring(7);
     CreditorIdentifier ci2 = new CreditorIdentifier(country, businessCode, nationalId);
 
-    assertEquals(ci1, ci2);
+    assertThat(ci2).isEqualTo(ci1);
   }
 
   @Test
-  void equalityTest() {
-    CreditorIdentifier ci1 = new CreditorIdentifier(VALID_CI);
-    CreditorIdentifier ci2 = new CreditorIdentifier(ci1.toString());
-
-    assertEquals(ci1, ci1);
-    assertEquals(ci2, ci2);
-    assertEquals(ci1, ci2);
-    assertEquals(ci2, ci1);
-    assertEquals(ci1.hashCode(), ci2.hashCode());
-    assertNotEquals(new CreditorIdentifier(VALID_CI2), ci1);
-
-    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
-    assertFalse(ci1.equals(null));
-    assertFalse(ci1.equals(new Object()));
+  void equality() {
+    testEquality(new CreditorIdentifier(VALID_CI), new CreditorIdentifier(VALID_CI));
   }
 
   @Test
   void serialization() {
-    CreditorIdentifier object = new CreditorIdentifier(VALID_CI);
-
-    byte[] serializedObject = SerializationUtils.serialize(object);
-    CreditorIdentifier deserializedObject = SerializationUtils.deserialize(serializedObject);
-
-    assertTrue(SerializationUtils.isSerializable(CreditorIdentifier.class));
-    assertEquals(object, deserializedObject);
+    testSerialization(new CreditorIdentifier(VALID_CI));
   }
 }

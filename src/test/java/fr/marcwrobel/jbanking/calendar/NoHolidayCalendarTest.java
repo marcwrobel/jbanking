@@ -1,10 +1,7 @@
 package fr.marcwrobel.jbanking.calendar;
 
 import static fr.marcwrobel.jbanking.calendar.FinancialCalendars.NO_HOLIDAYS;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
@@ -19,19 +16,19 @@ class NoHolidayCalendarTest {
     LocalDate current = FROM;
 
     while (!current.equals(TO)) {
-      assertTrue(NO_HOLIDAYS.isBusinessDay(current));
-      assertFalse(NO_HOLIDAYS.isHoliday(current));
-      assertTrue(NO_HOLIDAYS.getHolidaysFor(current).isEmpty());
+      assertThat(NO_HOLIDAYS.isBusinessDay(current)).isTrue();
+      assertThat(NO_HOLIDAYS.isHoliday(current)).isFalse();
+      assertThat(NO_HOLIDAYS.getHolidaysFor(current)).isEmpty();
       current = current.plusDays(1);
     }
 
-    assertTrue(NO_HOLIDAYS.holidaysWithin(FROM, TO).isEmpty());
-    assertFalse(NO_HOLIDAYS.businessDaysWithin(FROM, TO).isEmpty());
+    assertThat(NO_HOLIDAYS.holidaysWithin(FROM, TO)).isEmpty();
+    assertThat(NO_HOLIDAYS.businessDaysWithin(FROM, TO)).isNotEmpty();
   }
 
   @Test
   void previousAndNextDaysAreBusinessDays() {
-    assertEquals(NOW.minusDays(1), NO_HOLIDAYS.previous(NOW));
-    assertEquals(NOW.plusDays(1), NO_HOLIDAYS.next(NOW));
+    assertThat(NO_HOLIDAYS.previous(NOW)).isEqualTo(NOW.minusDays(1));
+    assertThat(NO_HOLIDAYS.next(NOW)).isEqualTo(NOW.plusDays(1));
   }
 }

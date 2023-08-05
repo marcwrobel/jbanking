@@ -1,14 +1,11 @@
 package fr.marcwrobel.jbanking.calendar;
 
-import static java.time.Month.DECEMBER;
-import static java.time.Month.JANUARY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.opengamma.strata.basics.date.HolidayCalendar;
 import com.opengamma.strata.basics.date.HolidayCalendars;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.MonthDay;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -23,17 +20,6 @@ abstract class CalendarTestSupport {
     this.calendar = calendar;
   }
 
-  protected void check(int year, MonthDay... expectedDatesForYear) {
-    LocalDate from = LocalDate.of(year, JANUARY, 1);
-    LocalDate to = LocalDate.of(year, DECEMBER, 31);
-    List<LocalDate> actual = calendar.holidaysWithin(from, to);
-
-    List<LocalDate> expected = Arrays.stream(expectedDatesForYear)
-        .map(d -> LocalDate.of(year, d.getMonth(), d.getDayOfMonth())).collect(Collectors.toList());
-
-    assertEquals(filterOutWeekends(expected), filterOutWeekends(actual));
-  }
-
   protected void checkWithStrata(String calendarId, LocalDate... excludedDates) {
     HolidayCalendar strataCalendar = HolidayCalendars.of(calendarId);
     LocalDate date = LocalDate.of(2000, 1, 1);
@@ -45,8 +31,8 @@ abstract class CalendarTestSupport {
         boolean isHoliday = calendar.isHoliday(date);
         boolean isStrataHoliday = strataCalendar.isHoliday(date);
         Set<Holiday> holidays = calendar.getHolidaysFor(date);
-        assertEquals(isStrataHoliday, isHoliday,
-            String.format("%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays));
+        assertThat(isHoliday).as(String.format("%s : strata=%s, jbanking=%s (%s)", date, isStrataHoliday, isHoliday, holidays))
+            .isEqualTo(isStrataHoliday);
       }
 
       date = date.plusDays(1);

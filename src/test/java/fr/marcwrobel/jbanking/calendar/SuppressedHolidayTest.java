@@ -1,8 +1,9 @@
 package fr.marcwrobel.jbanking.calendar;
 
+import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
 import static java.time.Month.JUNE;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.MonthDay;
@@ -22,49 +23,39 @@ class SuppressedHolidayTest {
 
   @Test
   void baseCannotBeNull() {
-    assertThrows(NullPointerException.class, () -> new SuppressedHoliday(null, YEAR));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> new SuppressedHoliday(null, YEAR));
   }
 
   @Test
   void suppressedYearsCannotBeNull() {
-    assertThrows(NullPointerException.class, () -> new SuppressedHoliday(BASE, (Collection<Integer>) null));
+    assertThatExceptionOfType(NullPointerException.class)
+        .isThrownBy(() -> new SuppressedHoliday(BASE, (Collection<Integer>) null));
   }
 
   @Test
   void suppressedYearsCannotBeNull2() {
-    assertThrows(NullPointerException.class, () -> new SuppressedHoliday(BASE, (Integer[]) null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> new SuppressedHoliday(BASE, (Integer[]) null));
   }
 
   @Test
   void checkDoesNotAcceptNull() {
-    // noinspection ConstantConditions
-    assertThrows(NullPointerException.class, () -> HOLIDAY.check(null));
+    assertThatExceptionOfType(NullPointerException.class).isThrownBy(() -> HOLIDAY.check(null));
   }
 
   @ParameterizedTest
   @ValueSource(ints = { 1, 100, 1970, 2050, 10000 })
   void holidayCheckSucceed(int year) {
-    assertTrue(HOLIDAY.check(LocalDate.of(year, MONTH, DAY)));
+    assertThat(HOLIDAY.check(LocalDate.of(year, MONTH, DAY))).isTrue();
   }
 
   @Test
   void holidayIsSuppressed() {
-    assertFalse(HOLIDAY.check(LocalDate.of(YEAR, MONTH, DAY)));
+    assertThat(HOLIDAY.check(LocalDate.of(YEAR, MONTH, DAY))).isFalse();
   }
 
   @Test
   void equalsAndHashCodeAndToString() {
-    Holiday holiday1 = new SuppressedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY)), YEAR);
-    Holiday holiday2 = new SuppressedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY)), YEAR);
-
-    assertEquals(holiday1, holiday2);
-    assertEquals(holiday2, holiday1);
-    assertEquals(holiday1, holiday1);
-    assertEquals(holiday1.hashCode(), holiday2.hashCode());
-    assertEquals(holiday1.toString(), holiday2.toString());
-
-    // do not modify - bullshit tests to improve coverage and have a better visibility in sonar
-    assertFalse(holiday1.equals(null));
-    assertFalse(holiday1.equals(new Object()));
+    testEquality(new SuppressedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY)), YEAR),
+        new SuppressedHoliday(new MonthDayHoliday(MonthDay.of(MONTH, DAY)), YEAR));
   }
 }

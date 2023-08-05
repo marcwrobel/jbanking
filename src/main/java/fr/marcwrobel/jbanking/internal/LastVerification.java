@@ -1,7 +1,6 @@
 package fr.marcwrobel.jbanking.internal;
 
 import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.ElementType.TYPE;
 
 import java.lang.annotation.*;
 
