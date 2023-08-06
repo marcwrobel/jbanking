@@ -40,5 +40,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump maven from 3.9.0 to 3.9.2 (#340).
 - Bump guava from 31.1-jre to 32.1.2-jre (#345, #351, #355, #357).
 - Update benchmarks results (#341).
+- Migrate tests to AssertJ (#359).
+- Upgrade analyze workflow to use Java 17 (#361).
 
 ### Thanks
