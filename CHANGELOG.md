@@ -27,7 +27,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Comment GitHub actions with version (#287).
 - Bump actions/cache from 3.2.2 to 3.3.2 (#284, #294, #301, #305, #308, #309, #364).
-- Bump actions/setup-java from 3.9.0 to 3.12.0 (#299, #318, #356).
+- Bump actions/setup-java from 3.9.0 to 3.13.0 (#299, #318, #356, #365).
 - Bump actions/checkout from 3.3.0 to 4.0.0 (#313, #316, #324, #352, #362, #363).
 - Bump github/codeql-action from 2.1.37 to 2.13.4 (#286, #290, #291, #295, #300, #302, #307, #310,
   #312, #315, #317, #321, #322, #325, #326, #328, #329, #335, #348, #353).
