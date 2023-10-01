@@ -5,6 +5,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Officially support Java 21 (#367).
+- Drop official support for Java 20 (#367).
 - Support random IBAN generation based on countries (`RandomIban.next(IsoCountry...)`), country alpha-2
   codes (`RandomIban.next(String...)`) or currencies (`RandomIban.next(IsoCurrency...)`) (#339).
 - Support random BIC generation based on countries (`RandomBic.next(IsoCountry...)`), country alpha-2

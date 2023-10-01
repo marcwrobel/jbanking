@@ -1,6 +1,6 @@
 [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/marcwrobel/jbanking/)
 [![Build](https://github.com/marcwrobel/jbanking/workflows/build/badge.svg)](https://github.com/marcwrobel/jbanking/actions)
-[![Supported JVM Versions](https://img.shields.io/badge/JVM-8--17-brightgreen.svg?logo=openjdk)](https://github.com/marcwrobel/jbanking/actions/workflows/build.yml)
+[![Supported JVM Versions](https://img.shields.io/badge/JVM-8--21-brightgreen.svg?logo=openjdk)](https://github.com/marcwrobel/jbanking/actions/workflows/build.yml)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=coverage)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=fr.marcwrobel:jbanking&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=fr.marcwrobel:jbanking)
@@ -46,7 +46,7 @@ jbanking is supporting the following features :
 
 ## Requirements
 
-jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 19). It has no
+jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 21). It has no
 additional dependency !
 
 ## Use it !
