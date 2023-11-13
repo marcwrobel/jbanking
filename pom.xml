@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>jbanking</artifactId>
-  <version>4.2.0-SNAPSHOT</version>
+  <version>4.2.0</version>
   <packaging>jar</packaging>
 
   <name>${project.artifactId}</name>
@@ -29,7 +29,7 @@
     <formatter-maven-plugin.version>2.16.0</formatter-maven-plugin.version>
 
     <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
-    <project.build.outputTimestamp>10</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1699906827</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
@@ -137,4 +137,8 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <tag>v4.2.0</tag>
+  </scm>
 </project>
