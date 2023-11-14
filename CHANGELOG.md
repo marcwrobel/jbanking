@@ -15,4 +15,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
+- Bump com.opengamma.strata:strata-basics from 2.12.28 to 2.12.29 (#373).
+
 ### Thanks
