@@ -22,3 +22,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/checkout from 4.1.1 to 4.1.2 (#387).
 
 ### Thanks
+
+- Fix link in README.md (#393).
