@@ -19,7 +19,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump com.google.guava:guava from 32.1.3 to 33.2.0 (#378, #390, #398).
 - Bump actions/setup-java from 3.13.0 to 4.2.1 (#374, #389).
 - Bump actions/cache from 3.3.2 to 4.0.1 (#381, #385, #391).
-- Bump actions/checkout from 4.1.1 to 4.1.6 (#387, #397, #400).
+- Bump actions/checkout from 4.1.1 to 4.1.7 (#387, #397, #400, #407).
 - Bump github/codeql-action from 2.13.4 to 3.25.11 (#401, #409).
 
 ### Thanks
