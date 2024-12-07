@@ -20,7 +20,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/setup-java from 3.13.0 to 4.3.0 (#374, #389, #416, #425).
 - Bump actions/cache from 3.3.2 to 4.2.0 (#381, #385, #391, #455).
 - Bump actions/checkout from 4.1.1 to 4.1.7 (#387, #397, #400, #407).
-- Bump github/codeql-action from 2.13.4 to 3.26.8 (#401, #409, #417, #427).
+- Bump github/codeql-action from 2.13.4 to 3.27.6 (#401, #409, #417, #427, #454).
 
 ### Thanks
 
