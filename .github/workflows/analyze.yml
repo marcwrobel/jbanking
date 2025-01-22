@@ -63,13 +63,13 @@ jobs:
           fetch-depth: 2
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@aa578102511db1f4524ed59b8cc2bae4f6e88195 # v3.27.6
+        uses: github/codeql-action/init@d68b2d4edb4189fd2a5366ac14e72027bd4b37dd # v3.28.2
         with:
           languages: 'java'
           queries: 'security-and-quality'
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@aa578102511db1f4524ed59b8cc2bae4f6e88195 # v3.27.6
+        uses: github/codeql-action/autobuild@d68b2d4edb4189fd2a5366ac14e72027bd4b37dd # v3.28.2
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@aa578102511db1f4524ed59b8cc2bae4f6e88195 # v3.27.6
+        uses: github/codeql-action/analyze@d68b2d4edb4189fd2a5366ac14e72027bd4b37dd # v3.28.2
