@@ -7,6 +7,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Add the [National Day of Mourning for former President Jimmy Carter](https://wikipedia.org/wiki/Death_and_state_funeral_of_Jimmy_Carter)
+  to the list of holidays of the New York Stock Exchange calendar (#477).
+
 ### Fixed
 
 ### Deprecated

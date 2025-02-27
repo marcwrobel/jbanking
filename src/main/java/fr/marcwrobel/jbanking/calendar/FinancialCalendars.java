@@ -1,5 +1,11 @@
 package fr.marcwrobel.jbanking.calendar;
 
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.time.temporal.ValueRange;
+import java.util.List;
+import java.util.Set;
+
 import static fr.marcwrobel.jbanking.calendar.DayOfWeekHoliday.FRIDAY;
 import static fr.marcwrobel.jbanking.calendar.DayOfWeekHoliday.SATURDAY;
 import static fr.marcwrobel.jbanking.calendar.DayOfWeekHoliday.SUNDAY;
@@ -39,12 +45,6 @@ import static java.time.Month.MAY;
 import static java.time.Month.NOVEMBER;
 import static java.time.Month.OCTOBER;
 import static java.time.Month.SEPTEMBER;
-
-import java.time.LocalDate;
-import java.time.MonthDay;
-import java.time.temporal.ValueRange;
-import java.util.List;
-import java.util.Set;
 
 /**
  * A non-exhaustive list of {@link Calendar}s for some of the most important
@@ -187,7 +187,9 @@ public enum FinancialCalendars implements Calendar {
       // https://wikipedia.org/wiki/Hurricane_Sandy
       new FixedHoliday(d(2012, 10, 30)),
       // https://wikipedia.org/wiki/Death_and_state_funeral_of_George_H._W._Bush
-      new FixedHoliday(d(2018, 12, 5)))),
+      new FixedHoliday(d(2018, 12, 5)),
+      // https://wikipedia.org/wiki/Death_and_state_funeral_of_Jimmy_Carter
+      new FixedHoliday(d(2025, 1, 9)))),
 
   /**
    * Paris (France) financial district holidays.
