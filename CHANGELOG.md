@@ -21,6 +21,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/cache from 3.3.2 to 4.2.0 (#381, #385, #391, #455).
 - Bump actions/checkout from 4.1.1 to 4.2.2 (#387, #397, #400, #407, #443).
 - Bump github/codeql-action from 2.13.4 to 3.27.6 (#401, #409, #417, #427, #454).
+- Bump internal Java version from 17.0.8 to 17.0.14 (#479).
 
 ### Thanks
 
