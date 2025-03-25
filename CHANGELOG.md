@@ -18,7 +18,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Internal
 
-- Bump com.opengamma.strata:strata-basics from 2.12.28 to 2.12.46 (#376, #379, #383, #386, #392, #396, #405, #412, #453).
+- Bump com.opengamma.strata:strata-basics from 2.12.28 to 2.12.54 (#376, #379, #383, #386, #392, #396, #405, #412, #453, #481).
 - Bump com.google.guava:guava from 32.1.3 to 33.4.6 (#378, #390, #398, #403, #420, #428, #458, #483).
 - Bump actions/setup-java from 3.13.0 to v4 (#374, #389, #416, #425, #444).
 - Bump actions/cache from 3.3.2 to v4 (#381, #385, #391, #455).
