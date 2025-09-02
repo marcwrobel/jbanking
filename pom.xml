@@ -23,7 +23,7 @@
 
     <guava.version>33.4.8-jre</guava.version>
     <nv-i18n.version>1.29</nv-i18n.version>
-    <strata.version>2.12.61</strata.version>
+    <strata.version>2.12.62</strata.version>
 
     <!-- 2.17+ requires java 11+ -->
     <formatter-maven-plugin.version>2.16.0</formatter-maven-plugin.version>
