@@ -23,7 +23,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Bump actions/setup-java from 3.13.0 to v5 (#374, #389, #416, #425, #444, #494).
 - Bump actions/cache from 3.3.2 to v4 (#381, #385, #391, #455).
 - Bump actions/checkout from 4.1.1 to v5 (#387, #397, #400, #407, #443, #494).
-- Bump github/codeql-action from 2.13.4 to v3 (#401, #409, #417, #427, #454).
+- Bump github/codeql-action from 2.13.4 to v4 (#401, #409, #417, #427, #454, #500).
 - Use only major versions for GitHub-managed actions (#480).
 - Bump internal Java version from 17.0.8 to 17.0.17 (#479, #501).
 - Bump internal Maven version from 3.9.4 to 3.9.9 (#501).
