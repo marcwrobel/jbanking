@@ -1431,9 +1431,29 @@ public enum IsoCurrency {
 
   /**
    * Zimbabwean dollar.
+   * <p>
+   * As per ISO-4217 amendment number 177:
+   * <blockquote>
+   * The monetary authority of Zimbabwe (Reserve Bank of Zimbabwe) has confirmed that the new currency ZWG will replace the old
+   * currency ZWL. The name of the new currency ZWG will be Zimbabwe Gold with new numeric code 924 and is effective from 25
+   * June 2024.
+   * </blockquote>
+   *
+   * @see <a href="https://en.wikipedia.org/wiki/Zimbabwean_ZiG">wikipedia.org</a>
+   */
+  ZWG(924, 2, ZW),
+
+  /**
+   * Zimbabwean dollar.
+   * <p>
+   * As per ISO-4217 amendment number 177, Zimbabwe Dollar ZWL will expire on 31 August 2024.
    *
    * @see <a href="https://wikipedia.org/wiki/Zimbabwean_dollar">wikipedia.org</a>
+   * @deprecated see <a href=
+   *             "https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-177.pdf">ISO
+   *             4217 amendment 177</a> (will be removed in 5.0.0)
    */
+  @Deprecated
   ZWL(932, 2, ZW);
 
   // Enum.valueOf throws Exception on null or not found

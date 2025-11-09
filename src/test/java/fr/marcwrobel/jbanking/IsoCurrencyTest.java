@@ -18,7 +18,7 @@ class IsoCurrencyTest {
 
   private static final Set<String> EXCLUDED_CURRENCIES = new HashSet<>(Arrays.asList(
       // Not in nv-i18n
-      "UYW", "VED", "SLE", "XAD",
+      "UYW", "VED", "SLE", "XAD", "ZWG",
       // Deprecated
       "HRK"));
 
