@@ -28,6 +28,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Deprecate for removal the cuban convertible peso (CUC) as per ISO-4217 amendment number 178 (#474).
 - Deprecate for removal the zimbabwean dollar (ZWL) as per ISO-4217 amendment number 177 (#408).
+- Deprecate for removal the sierra leonean leone (SLL) as per ISO-4217 amendment number 175 (#320).
 
 ### Removed
 
