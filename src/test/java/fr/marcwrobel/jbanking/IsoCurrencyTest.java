@@ -1,24 +1,24 @@
 package fr.marcwrobel.jbanking;
 
-import static fr.marcwrobel.jbanking.IsoCurrency.*;
-import static fr.marcwrobel.jbanking.IsoCurrency.Category.FUND;
-import static fr.marcwrobel.jbanking.IsoCurrency.Category.METAL;
-import static fr.marcwrobel.jbanking.IsoCurrency.Category.NATIONAL;
-import static java.util.Arrays.stream;
-import static org.assertj.core.api.Assertions.assertThat;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.neovisionaries.i18n.CountryCode;
 import com.neovisionaries.i18n.CurrencyCode;
+import org.junit.jupiter.api.Test;
+
 import java.util.*;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
+
+import static fr.marcwrobel.jbanking.IsoCurrency.Category.*;
+import static fr.marcwrobel.jbanking.IsoCurrency.*;
+import static java.util.Arrays.stream;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class IsoCurrencyTest {
 
   private static final Set<String> EXCLUDED_CURRENCIES = new HashSet<>(Arrays.asList(
       // Not in nv-i18n
-      "UYW", "VED", "SLE",
+      "UYW", "VED", "SLE", "XAD",
       // Deprecated
       "HRK"));
 

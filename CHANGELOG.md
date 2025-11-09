@@ -5,6 +5,13 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add currency code XAD/396 to IsoCurrency (#488).
+  This currency code was introduced by [ISO-4217 amendment number 179](https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-179.pdf) and is effective from 12 May 2025.
+  According to the amendment :
+  > The Finance Department Arab Monetary Fund (AMF) is applying for new Fund currency code Arab Accounting Dinar with Alphabetic Code XAD and Numeric Code 396.
+  > The Arab Accounting Dinar is the official and reporting currency of the Arab Monetary Fund Reserve Asset.
+  > The decimal for the currency is set to 1.00, which corresponds to a Minor Unit of 2.
+
 ### Changed
 
 - Add the [National Day of Mourning for former President Jimmy Carter](https://wikipedia.org/wiki/Death_and_state_funeral_of_Jimmy_Carter)

@@ -1,13 +1,14 @@
 package fr.marcwrobel.jbanking;
 
+import fr.marcwrobel.jbanking.internal.LastVerification;
+
+import java.util.*;
+
 import static fr.marcwrobel.jbanking.IsoCountry.*;
 import static fr.marcwrobel.jbanking.IsoCurrency.Category.*;
 import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
-
-import fr.marcwrobel.jbanking.internal.LastVerification;
-import java.util.*;
 
 /**
  * The currencies having an ISO 4217 code.
@@ -1263,6 +1264,22 @@ public enum IsoCurrency {
    * @see <a href="https://wikipedia.org/wiki/Samoan_t%C4%81l%C4%81">wikipedia.org</a>
    */
   WST(882, 2, WS),
+
+  /**
+   * Arab Accounting Dinar.
+   * <p>
+   * It was introduced by the ISO 4217 AMENDMENT NUMBER 179 and is effective from 12 May 2025:
+   * <blockquote>
+   * ”Effective from 12 May 2025, the following change will be made to “List one: Currency, fund and
+   * precious metal codes” as well as to “List Two: Fund Codes Registered with Agency”:
+   * <p>
+   * The Finance Department Arab Monetary Fund (AMF) is applying for new Fund currency code Arab
+   * Accounting Dinar with Alphabetic Code XAD and Numeric Code 396. The Arab Accounting Dinar is the official and reporting
+   * currency of the Arab Monetary Fund Reserve Asset. The decimal for the currency is set to 1.00, which corresponds to a Minor
+   * Unit of 2.
+   * </blockquote>
+   */
+  XAD(396, 2, FUND),
 
   /**
    * Central African CFA franc.
