@@ -21,6 +21,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Deprecated
 
+- Deprecate the cuban convertible peso (CUC) as per ISO-4217 amendment number 178 (#474).
+
 ### Removed
 
 ### Internal

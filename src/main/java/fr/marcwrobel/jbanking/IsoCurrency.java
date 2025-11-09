@@ -330,8 +330,16 @@ public enum IsoCurrency {
   /**
    * Cuban convertible peso.
    *
+   * <p>
+   * As per ISO-4217 amendment number 178, the Cuban Peso Convertible (CUC) was officially withdrawn from circulation starting
+   * January 1, 2021, as mandated by per Resolution 177/2020 of the Central Bank of Cuba (BCC), the monetary authority for Cuba.
+   *
    * @see <a href="https://wikipedia.org/wiki/Cuban_convertible_peso">wikipedia.org</a>
+   * @deprecated see <a href=
+   *             "https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-178.pdf">ISO
+   *             4217 amendment 178</a> (will be removed in 5.0.0)
    */
+  @Deprecated
   CUC(931, 2, CU),
 
   /**
