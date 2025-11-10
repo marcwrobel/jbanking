@@ -5,6 +5,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Support numeric characters in BIC's institution code (#452).
+  Currently, the BIC validation checks if the institution code contains only letters.
+  [ISO 9362:2022 changed this](https://cdn.standards.iteh.ai/samples/84108/21078408ed25469391d0cf6c5d1b6ca9/ISO-9362-2022.pdf) to also allow numeric characters.
 - Add currency code XAD/396 to `IsoCurrency` (#488).
   This currency code was introduced by [ISO-4217 amendment number 179](https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-179.pdf) and is effective from 12 May 2025.
   According to the amendment :

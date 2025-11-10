@@ -1,21 +1,22 @@
 package fr.marcwrobel.jbanking.bic;
 
-import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
-
 import fr.marcwrobel.jbanking.IsoCountry;
 import fr.marcwrobel.jbanking.internal.AsciiCharacters;
+
 import java.io.Serializable;
 import java.util.Optional;
 
+import static fr.marcwrobel.jbanking.internal.Normalizer.trimUpperCase;
+
 /**
  * A Business Identifier Code (also known as BIC, SWIFT-BIC, BIC code, SWIFT ID or SWIFT code, Business Entity
- * Identifier or BEI) as specified by ISO 9362:2009.
+ * Identifier or BEI) as specified by ISO 9362:2022.
  *
  * <p>
  * A BIC is either eight (BIC8) or eleven (BIC11) characters made up of :
  *
  * <ul>
- * <li>4 letters: institution code (or bank code)
+ * <li>4 letters or digits: institution code (or bank code)
  * <li>2 letters: ISO 3166-1 alpha-2 country code
  * <li>2 letters or digits: location code
  * <li>3 letters or digits (optional): branch code
@@ -50,6 +51,9 @@ import java.util.Optional;
  * </pre>
  *
  * @see <a href="https://wikipedia.org/wiki/Bank_Identifier_Code">https://wikipedia.org/wiki/Bank_Identifier_Code</a>
+ * @see <a href="https://www.swift.com/fr/node/301371">https://www.swift.com/fr/node/301371</a>
+ * @see <a href="https://cdn.standards.iteh.ai/samples/84108/21078408ed25469391d0cf6c5d1b6ca9/ISO-9362-2022.pdf">ISO 9362 Fifth
+ *      edition 2022-04</a>
  * @since 1.0
  */
 public final class Bic implements Serializable {
@@ -66,7 +70,7 @@ public final class Bic implements Serializable {
    * All strings accepted by {@link #isValid(String)} are also accepted by this regex.
    */
   @SuppressWarnings("unused") // kept for compatibility and documentation purposes
-  public static final String REGEX = "\\s*[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?\\s*";
+  public static final String REGEX = "\\s*[a-zA-Z0-9]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?\\s*";
 
   /**
    * The branch code for primary offices.
@@ -187,7 +191,13 @@ public final class Bic implements Serializable {
       return false;
     }
 
-    for (int i = 0; i < INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH + COUNTRY_CODE_LENGTH; i++) {
+    for (int i = 0; i < INSTITUTION_CODE_INDEX + INSTITUTION_CODE_LENGTH; i++) {
+      if (!AsciiCharacters.isAlphanumeric(bic.charAt(i))) {
+        return false;
+      }
+    }
+
+    for (int i = COUNTRY_CODE_INDEX; i < COUNTRY_CODE_INDEX + COUNTRY_CODE_LENGTH; i++) {
       if (!AsciiCharacters.isAlphabetic(bic.charAt(i))) {
         return false;
       }

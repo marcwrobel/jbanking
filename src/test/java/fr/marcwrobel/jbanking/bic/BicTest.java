@@ -1,15 +1,13 @@
 package fr.marcwrobel.jbanking.bic;
 
-import static fr.marcwrobel.jbanking.internal.TestUtils.BLANK;
-import static fr.marcwrobel.jbanking.internal.TestUtils.testEquality;
-import static fr.marcwrobel.jbanking.internal.TestUtils.testSerialization;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
-
 import fr.marcwrobel.jbanking.IsoCountry;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static fr.marcwrobel.jbanking.internal.TestUtils.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 class BicTest {
 
@@ -36,7 +34,7 @@ class BicTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { BLANK, "BNPAFR", "BNPAPPXXX", "AAAAAAA" })
+  @ValueSource(strings = { BLANK, "BNPAFR", "BNPAPPXXX", "BNPAF1PPXXX", "AAAAAAA" })
   void cannotCreateWithInvalidInput(String s) {
     assertThatExceptionOfType(BicFormatException.class)
         .isThrownBy(() -> new Bic(s))
@@ -55,7 +53,7 @@ class BicTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { "BNPAFRPPXXX", "BNPAFRPP", "bnpafrpp", " BNPAFRPP ", " bnpafrpp " })
+  @ValueSource(strings = { "BNPAFRPPXXX", "BNPAFRPP", "BNPAfrPPXxx", "bnpafrpp", " BNPAFRPP ", " bnpafrpp " })
   void canCreateAndValidateWithValidInput(String s) {
     assertThat(Bic.isValid(s)).isTrue();
 
@@ -67,6 +65,11 @@ class BicTest {
     assertThat(bic.getLocationCode()).isEqualTo("PP");
     assertThat(bic).hasToString("BNPAFRPPXXX");
     assertThat(bic.isTestBic()).isFalse();
+  }
+
+  @Test
+  void allowNumericInInstitutionCode() {
+    assertThat(Bic.isValid("WG11US335AB")).isTrue();
   }
 
   @Test
