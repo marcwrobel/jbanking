@@ -6,8 +6,8 @@ Only the latest version of the library is supported.
 
 | Version | Supported                                   |
 |---------|---------------------------------------------|
-| 4.2.x   | Yes (New Features / Bugs / Vulnerabilities) |
-| < 4.2.0 | No                                          |
+| 4.3.x   | Yes (New Features / Bugs / Vulnerabilities) |
+| < 4.3.0 | No                                          |
 
 ## Reporting a Vulnerability
 
