@@ -1,6 +1,7 @@
 package fr.marcwrobel.jbanking.calendar;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -190,7 +191,7 @@ public interface Calendar {
       throw new IllegalArgumentException("from is after to");
     }
 
-    long days = from.until(to).getDays() + 1;
+    long days = ChronoUnit.DAYS.between(from, to) + 1;
     int initialCapacity = days > Integer.MAX_VALUE ? 16 : (int) Math.min(days, 16);
     List<LocalDate> occurrences = new ArrayList<>(initialCapacity);
     for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
@@ -215,7 +216,7 @@ public interface Calendar {
       throw new IllegalArgumentException("from is after to");
     }
 
-    long days = from.until(to).getDays() + 1;
+    long days = ChronoUnit.DAYS.between(from, to) + 1;
     int initialCapacity = days > Integer.MAX_VALUE ? 16 : (int) Math.min(days, 16);
     List<LocalDate> occurrences = new ArrayList<>(initialCapacity);
     for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
