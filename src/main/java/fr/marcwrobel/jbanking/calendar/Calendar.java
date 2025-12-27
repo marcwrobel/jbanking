@@ -190,7 +190,9 @@ public interface Calendar {
       throw new IllegalArgumentException("from is after to");
     }
 
-    List<LocalDate> occurrences = new ArrayList<>(0);
+    long days = from.until(to).getDays() + 1;
+    int initialCapacity = days > Integer.MAX_VALUE ? 16 : (int) Math.min(days, 16);
+    List<LocalDate> occurrences = new ArrayList<>(initialCapacity);
     for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
       if (isHoliday(date)) {
         occurrences.add(date);
@@ -213,7 +215,9 @@ public interface Calendar {
       throw new IllegalArgumentException("from is after to");
     }
 
-    List<LocalDate> occurrences = new ArrayList<>(0);
+    long days = from.until(to).getDays() + 1;
+    int initialCapacity = days > Integer.MAX_VALUE ? 16 : (int) Math.min(days, 16);
+    List<LocalDate> occurrences = new ArrayList<>(initialCapacity);
     for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
       if (isBusinessDay(date)) {
         occurrences.add(date);

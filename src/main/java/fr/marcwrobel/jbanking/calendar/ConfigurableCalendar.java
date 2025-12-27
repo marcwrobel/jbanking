@@ -65,7 +65,7 @@ public final class ConfigurableCalendar implements Calendar {
    */
   @Override
   public Set<Holiday> getHolidaysFor(LocalDate date) {
-    Set<Holiday> matchingHolidays = new HashSet<>(0);
+    Set<Holiday> matchingHolidays = new HashSet<>(4);
 
     for (Holiday holiday : holidays) {
       if (holiday.check(date)) {

@@ -63,7 +63,7 @@ public final class CompositeCalendar implements Calendar {
    */
   @Override
   public Set<Holiday> getHolidaysFor(LocalDate date) {
-    Set<Holiday> matchingHolidays = new HashSet<>(0);
+    Set<Holiday> matchingHolidays = new HashSet<>(4);
 
     for (Calendar calendar : calendars) {
       matchingHolidays.addAll(calendar.getHolidaysFor(date));

@@ -321,11 +321,15 @@ public final class Iban implements Serializable {
    * @return a non-null string representing this IBAN formatted for printing
    */
   public String toPrintableString() {
-    StringBuilder printable = new StringBuilder(value);
     int length = value.length();
+    int groups = length / GROUP_SIZE_FOR_PRINTABLE_IBAN;
+    StringBuilder printable = new StringBuilder(length + groups);
 
-    for (int i = 0; i < length / GROUP_SIZE_FOR_PRINTABLE_IBAN; i++) {
-      printable.insert((i + 1) * GROUP_SIZE_FOR_PRINTABLE_IBAN + i, ' ');
+    for (int i = 0; i < length; i++) {
+      if (i > 0 && i % GROUP_SIZE_FOR_PRINTABLE_IBAN == 0) {
+        printable.append(' ');
+      }
+      printable.append(value.charAt(i));
     }
 
     return printable.toString();
