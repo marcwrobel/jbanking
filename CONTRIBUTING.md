@@ -144,6 +144,7 @@ All submissions need to be reviewed by at least one jbanking committer before be
 - Commits should be atomic and semantic.
   Please properly squash your pull requests before submitting them.
   Fixup commits can be used temporarily during the review process, but things should be squashed at the end to have meaningful commits.
+- Commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 - Git authorship (i.e., git `user.name` and `user.email`) must be properly set.
 - Tests and documentation are not optional.
   Remember to include tests in your pull requests.
