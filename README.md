@@ -13,24 +13,21 @@
 
 # jbanking - A Java banking API
 
-jbanking is a library of utilities to assist with developing banking functionalities. jbanking is focused on, but not
+jbanking is a library of utilities to help with developing banking functionalities. jbanking is focused on, but not
 limited to, European banking.
 
 ## Features
 
 jbanking is supporting the following features :
 
-* [ISO 3166-1 countries](https://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and
-  status, e.g. independent or dependent (according to the
-  [International Organization for Standardization](https://www.iso.org)).
-* Countries or territories participation to economic agreements :
+* [ISO 3166-1 countries](https://wikipedia.org/wiki/ISO_3166-1) with alpha-2 code, alpha-3 code, numeric code and status, e.g. independent or dependent (according to the [International Organization for Standardization](https://www.iso.org)).
+* Countries or territories' participation in economic agreements :
   * [European Economic Area (EEA)](https://wikipedia.org/wiki/European_Economic_Area),
   * [European Free Trade Association (EFTA)](https://wikipedia.org/wiki/European_Free_Trade_Association),
   * [European Union (EU)](https://en.wikipedia.org/wiki/European_Union),
   * [SEPA COM Pacifique](https://www.cfonb.org/Default.aspx?lid=1&rid=122&rvid=239),
   * [Single Euro Payments Area (SEPA)](https://wikipedia.org/wiki/Single_Euro_Payments_Area).
-* [ISO 4217 currencies](https://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code, minor unit and
-  countries using it).
+* [ISO 4217 currencies](https://wikipedia.org/wiki/ISO_4217) (with alphabetic code, numeric code, minor unit, and countries using it).
 * [ISO 9362 BIC](https://wikipedia.org/wiki/Bank_Identifier_Code) handling and validation.
 * [ISO 13616 IBAN](https://wikipedia.org/wiki/International_Bank_Account_Number) handling and validation (for both
   check digit and national bank account number structure).
@@ -46,10 +43,10 @@ jbanking is supporting the following features :
 
 ## Requirements
 
-jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17 and 21). It has no
-additional dependency !
+jbanking requires at least [Java 8](https://adoptium.net/) (build is tested against Java 8, 11, 17, and 21). It has no
+additional dependency!
 
-## Use it !
+## Use it!
 
 You can download the latest build on [Maven Central](https://search.maven.org/artifact/fr.marcwrobel/jbanking) or use it
 as a maven dependency:
@@ -63,7 +60,7 @@ as a maven dependency:
 </dependency>
 ```
 
-Then you just have to use the jbanking API.
+Then you can use the jbanking API.
 
 ```java
 // Get ISO country information
@@ -132,35 +129,29 @@ Assertion.assertEquals(LocalDate.of(2022, 1, 3), calendar.next(LocalDate.of(2022
 Assertion.assertEquals(Arrays.asList(LocalDate.of(2022, 1, 3), LocalDate.of(2022, 1, 4)), calendar.businessDaysWithin(LocalDate.of(2022, 1, 1), LocalDate.of(2022, 1, 4)));
 ```
 
-For more information take a look at [the javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and
+For more information, take a look at [the Javadoc](https://javadoc.io/doc/fr.marcwrobel/jbanking) and
 [the unit tests](/src/test/java/fr/marcwrobel/jbanking). Changelogs are available on
 [GitHub Releases](https://github.com/marcwrobel/jbanking/releases).
 
 ## Alternatives
 
-There is no alternatives to jbanking that has all its features. But here are some _partial_ alternatives :
+There is no alternative to jbanking that has all of its features.
+But here are some _partial_ alternatives:
 
-- Java itself for [ISO 3166 countries](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html)
-  and [ISO 4217 currencies](https://docs.oracle.com/javase/8/docs/api/java/util/Currency.html).
-- [OpenGamma Strata](https://github.com/OpenGamma/Strata), an open source analytics and market risk library from
-  OpenGamma (especially [strata-basics](https://github.com/OpenGamma/Strata/tree/main/modules/basics)).
-- [TakahikoKawasaki/nv-i18n](https://github.com/TakahikoKawasaki/nv-i18n), a package to support internationalization,
-  containing ISO 3166-1 country code enum, ISO 639-1 language code enum, etc.
-- [arturmkrtchyan/iban4j](https://github.com/arturmkrtchyan/iban4j) (or its fork
-  [NaluKit/iban4g](https://github.com/NaluKit/iban4g)), a java library for generating and validating IBANs and BICs.
-- [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/), a java library for validating a lot
-  of things, including IBANs.
+- Java itself for [ISO 3166 countries](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html) and [ISO 4217 currencies](https://docs.oracle.com/javase/8/docs/api/java/util/Currency.html).
+- [OpenGamma Strata](https://github.com/OpenGamma/Strata), an open source analytics and market risk library from OpenGamma (especially [strata-basics](https://github.com/OpenGamma/Strata/tree/main/modules/basics)).
+- [TakahikoKawasaki/nv-i18n](https://github.com/TakahikoKawasaki/nv-i18n), a package to support internationalization, containing ISO 3166-1 country code enum, ISO 639-1 language code enum, etc.
+- [arturmkrtchyan/iban4j](https://github.com/arturmkrtchyan/iban4j) (or its fork [NaluKit/iban4g](https://github.com/NaluKit/iban4g)), a Java library for generating and validating IBANs and BICs.
+- [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/), a Java library for validating a lot of things, including IBANs.
 
 ## Contribute
 
 Take a look at the [contribution guide](CONTRIBUTING.md).
 
-## Need help ?
+## Need help?
 
 Start a [discussion](https://github.com/marcwrobel/jbanking/discussions),
 raise an [issue](https://github.com/marcwrobel/jbanking/issues?sort=created&direction=desc&state=open)
-or contribute with [a pull-request](https://github.com/marcwrobel/jbanking/pulls) (please take a look at the
-[contribution guide](CONTRIBUTING.md) before).
+or contribute with [a pull-request](https://github.com/marcwrobel/jbanking/pulls) (please take a look at the [contribution guide](CONTRIBUTING.md) before).
 
-And for the things that must be kept private (**only** !), such as [security issues](/SECURITY.md), email me at
-[marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).
+And for the things that must be kept private (**only** !), such as [security issues](/SECURITY.md), email me at [marc.wrobel@gmail.com](mailto:marc.wrobel@gmail.com).

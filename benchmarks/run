@@ -94,7 +94,6 @@ for version in sorted(versions):
 
     os.mkdir(version_dir)
     shutil.move("target/" + version_jar, version_dir)
-    shutil.copy(".tool-versions", version_dir)
 
     os.chdir(version_dir)
     execute(

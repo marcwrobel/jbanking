@@ -1,0 +1,7 @@
+# See https://mise.jdx.dev/configuration/settings.html.
+[settings]
+lockfile = true
+idiomatic_version_file_enable_tools = ["java"]
+
+[tools]
+maven = "3"

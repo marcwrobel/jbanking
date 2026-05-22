@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-If applicable, add a code snippet that reproduce the bug. If an exception occurs, add also its stacktrace.
+If applicable, add a code snippet that reproduces the bug. If an exception occurs, add also its stacktrace.
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -22,11 +22,11 @@ A clear and concise description of what you expected to happen.
 - `mvn --version` output:
 
 ```
-Apache Maven 3.8.5 (3599d3414f046de2324203b78ddcf9b5e4388aa0)
-Maven home: /home/mwrobel/.asdf/installs/maven/3.8.5
-Java version: 11.0.15, vendor: Eclipse Adoptium, runtime: /home/mwrobel/.asdf/installs/java/temurin-11.0.15+10
+Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+Maven home: /home/mwrobel/.local/share/mise/installs/maven/3.9.16/apache-maven-3.9.16
+Java version: 17.0.17, vendor: Eclipse Adoptium, runtime: /home/mwrobel/.local/share/mise/installs/java/temurin-17.0.17+10
 Default locale: en_US, platform encoding: UTF-8
-OS name: "linux", version: "5.10.0-15-amd64", arch: "amd64", family: "unix"
+OS name: "linux", version: "6.12.88+deb13-amd64", arch: "amd64", family: "unix"
 ```
 
 **Additional context**
