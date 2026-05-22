@@ -10,7 +10,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <sonar.login>${env.SONAR_LOGIN}</sonar.login>
+        <sonar.token>${env.SONAR_TOKEN}</sonar.token>
       </properties>
     </profile>
   </profiles>

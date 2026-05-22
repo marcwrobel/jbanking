@@ -37,7 +37,7 @@ jobs:
       - name: Analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: 'mvn --settings .mvn/settings.xml -B -P analyze verify sonar:sonar'
 
   codeql:
